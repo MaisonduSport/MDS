@@ -180,11 +180,19 @@ window.addEventListener('scroll',()=>{
  if(p<.5){
    heroText.innerText="MAISON WHERE FOOTBALL";
    heroText.style.opacity=1-p*2;
+
+   // Glow intensity grows as you scroll
+   let glow = 20 + p*30; //20px -> 35px
+   heroText.style.textShadow = '0 0 ${glow}px rgba(212,175,55,0.7) ';
+
+   
  }else{
    heroText.innerText="MEETS ELEGANCE";
-   heroText.style.opacity=(p-.5)*2;
+   heroText.style.opacity=(p- 0.5)*2;
+// Glow slightly pulsates
+   let glow = 50 - (p-0.5)*20; // 50px -> 40px
+   heroText.style.textshadow = '0 0 ${glow}px rgba (212,175,55,0.7)';
  }
-
  if(window.scrollY>window.innerHeight*.8){
    site.classList.add('visible');
    notice.classList.add('visible');
