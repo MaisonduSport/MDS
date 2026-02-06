@@ -3,294 +3,238 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maison du Sport — The Vault</title>
+<title>Maison du Sport — Digital Showroom</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box}
 body{
   font-family:Montserrat,sans-serif;
-  background:#05080d;
+  background:#0b1a2b;
   color:#d4af37;
-  overflow:hidden;
+  overflow-x:hidden;
 }
 
-/* INTRO */
-.intro{
-  position:fixed;
-  inset:0;
-  z-index:20;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+/* HERO */
+.hero{
+  position:relative;
+  height:100vh;
 }
-.intro video{
-  position:absolute;
+.hero video{
   width:100%;
   height:100%;
   object-fit:cover;
-  opacity:.6;
 }
-.intro::after{
+.hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:radial-gradient(circle, rgba(0,0,0,.2), rgba(0,0,0,.9));
+  background:rgba(0,0,0,.45);
 }
-.intro-text{
-  position:relative;
-  text-align:center;
-  font-family:'Playfair Display',serif;
-}
-.intro-text h1{
-  font-size:3rem;
-  letter-spacing:3px;
-  opacity:0;
-  animation:fadeIn 2s forwards 1s;
-}
-.intro-text p{
-  margin-top:15px;
-  font-size:.9rem;
-  letter-spacing:2px;
-  opacity:0;
-  animation:fadeIn 2s forwards 2.5s;
-}
-
-@keyframes fadeIn{
-  to{opacity:1}
-}
-
-/* MAIN LAYOUT */
-.app{
-  display:flex;
-  height:100vh;
-  opacity:0;
-  transition:opacity 1.5s ease;
-}
-
-/* NAV */
-.nav{
-  width:260px;
-  border-right:1px solid rgba(212,175,55,.15);
-  padding:60px 30px;
-}
-.nav h2{
-  font-family:'Playfair Display',serif;
-  font-size:1.2rem;
-  margin-bottom:50px;
-}
-.nav ul{
-  list-style:none;
-}
-.nav li{
-  margin-bottom:25px;
-  font-size:.9rem;
-  letter-spacing:2px;
-  cursor:pointer;
-  opacity:.6;
-  transition:.3s;
-}
-.nav li:hover,
-.nav li.active{
-  opacity:1;
-}
-
-/* CONTENT */
-.content{
-  flex:1;
-  position:relative;
-  padding:60px;
-  overflow:hidden;
-}
-.panel{
+.hero-content{
   position:absolute;
   inset:0;
-  padding:60px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity 1s ease;
-}
-.panel.active{
-  opacity:1;
-  pointer-events:auto;
-}
-
-/* ARCHIVE */
-.archive-entry{
-  margin-bottom:80px;
-}
-.archive-entry img{
-  width:100%;
-  max-width:700px;
-  display:block;
-  margin-bottom:20px;
-}
-.archive-entry span{
-  font-size:.75rem;
-  letter-spacing:2px;
-  opacity:.6;
-}
-.archive-entry h3{
-  font-family:'Playfair Display',serif;
-  font-size:1.8rem;
-  margin:10px 0;
-}
-
-/* COLLECTION */
-.collection-item{
   display:flex;
-  gap:40px;
-  margin-bottom:80px;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  z-index:2;
 }
-.collection-item img{
-  width:320px;
-}
-.collection-item h3{
+.hero-content h1{
   font-family:'Playfair Display',serif;
-  font-size:1.5rem;
-  margin-bottom:10px;
-}
-.collection-item button{
-  margin-top:20px;
-  background:none;
-  border:1px solid #d4af37;
-  color:#d4af37;
-  padding:10px 25px;
+  font-size:4rem;
   letter-spacing:2px;
-  cursor:pointer;
+  animation:glow 4s infinite alternate;
+}
+.hero-content p{
+  margin-top:12px;
+  font-size:1rem;
+  opacity:.85;
+}
+
+/* BREATHING GLOW */
+@keyframes glow{
+  from{text-shadow:0 0 15px rgba(212,175,55,.4)}
+  to{text-shadow:0 0 35px rgba(212,175,55,.9)}
+}
+
+/* STATEMENT */
+.statement{
+  padding:120px 10%;
+  text-align:center;
+}
+.statement p{
+  max-width:700px;
+  margin:auto;
+  font-size:1.3rem;
+  line-height:1.7;
+}
+
+/* IMAGE STRIP */
+.image-strip{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+}
+.image-strip img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* JERSEYS */
+.jerseys{
+  padding:140px 8%;
+}
+.jerseys h2{
+  font-family:'Playfair Display',serif;
+  font-size:2.6rem;
+  margin-bottom:60px;
+  text-align:center;
+}
+.jersey-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:50px;
+}
+.jersey-card{
+  text-align:center;
+  transition:.4s;
+}
+.jersey-card img{
+  width:100%;
+  border-radius:6px;
+}
+.jersey-card span{
+  display:block;
+  margin-top:16px;
+  font-size:.9rem;
+  opacity:.85;
+}
+.jersey-card:hover{
+  transform:translateY(-10px);
 }
 
 /* PHILOSOPHY */
 .philosophy{
-  max-width:700px;
+  padding:120px 12%;
+  background:#071421;
+  text-align:center;
+}
+.philosophy p{
+  max-width:900px;
+  margin:auto;
   font-style:italic;
   line-height:1.9;
-  font-size:1.05rem;
+  font-size:1.1rem;
 }
 
-/* SPACE */
-.space img{
-  width:100%;
-  max-width:700px;
+/* GALLERY */
+.gallery{
+  padding:120px 8%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:60px;
 }
-.space p{
-  margin-top:25px;
-  letter-spacing:2px;
-  opacity:.7;
+.gallery img{
+  width:100%;
+  border-radius:8px;
 }
 
 /* CONTACT */
 .contact{
-  letter-spacing:1.5px;
+  padding:120px 0;
+  text-align:center;
+}
+.contact p{
   line-height:2;
+  opacity:.85;
 }
 
-/* HIDE SCROLL */
-::-webkit-scrollbar{display:none;}
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-content h1{font-size:2.6rem}
+  .image-strip{grid-template-columns:1fr}
+}
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div class="intro" id="intro">
+<!-- HERO -->
+<section class="hero">
   <video autoplay muted loop playsinline>
     <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
   </video>
-  <div class="intro-text">
-    <h1>MAISON DU SPORT</h1>
-    <p>THE VAULT</p>
+  <div class="hero-content">
+    <h1>Maison du Sport</h1>
+    <p>Where Football Meets Elegance</p>
   </div>
-</div>
+</section>
 
-<!-- APP -->
-<div class="app" id="app">
+<!-- STATEMENT -->
+<section class="statement">
+  <p>
+    Maison du Sport is not just worn.  
+    It is represented.  
+    A uniform for those who understand presence.
+  </p>
+</section>
 
-  <!-- NAV -->
-  <div class="nav">
-    <h2>THE VAULT</h2>
-    <ul>
-      <li class="active" onclick="showPanel('archive')">01 ARCHIVE</li>
-      <li onclick="showPanel('collection')">02 COLLECTION</li>
-      <li onclick="showPanel('philosophy')">03 PHILOSOPHY</li>
-      <li onclick="showPanel('space')">04 THE SPACE</li>
-      <li onclick="showPanel('contact')">05 CONTACT</li>
-    </ul>
+<!-- IMAGE STRIP -->
+<section class="image-strip">
+  <img src="Haiti-file.png.jpeg">
+  <img src="Old-file.png.jpeg">
+  <img src="Store-file.png.jpeg">
+</section>
+
+<!-- JERSEYS -->
+<section class="jerseys">
+  <h2>The Jerseys</h2>
+  <div class="jersey-grid">
+    <div class="jersey-card">
+      <img src="Old2-file.png.jpeg">
+      <span>1974 Tribute Tee</span>
+    </div>
+    <div class="jersey-card">
+      <img src="CW-file.png.jpeg">
+      <span>Trainer Tee</span>
+    </div>
+    <div class="jersey-card">
+      <img src="WW-file.png.jpeg">
+      <span>White Trainer Tee</span>
+    </div>
+    <div class="jersey-card">
+      <img src="WC-file.png.jpeg">
+      <span>World Cup Tee</span>
+    </div>
   </div>
+</section>
 
-  <!-- CONTENT -->
-  <div class="content">
+<!-- PHILOSOPHY -->
+<section class="philosophy">
+  <p>
+    At Maison du Sport, we believe every great moment begins with vision,
+    discipline, and faith. Each piece honors culture, ambition, and the
+    elegance of the game — where talent meets purpose.
+  </p>
+</section>
 
-    <!-- ARCHIVE -->
-    <div class="panel active" id="archive">
-      <div class="archive-entry">
-        <img src="Haiti-file.png.jpeg">
-        <span>1974</span>
-        <h3>First World Cup Qualification</h3>
-        <p>A moment that shaped a nation.</p>
-      </div>
-    </div>
+<!-- GALLERY -->
+<section class="gallery">
+  <img src="Store-file.png.jpeg">
+</section>
 
-    <!-- COLLECTION -->
-    <div class="panel" id="collection">
-      <div class="collection-item">
-        <img src="Old2-file.png.jpeg">
-        <div>
-          <h3>1974 Tribute Tee</h3>
-          <p>Documented release.</p>
-          <button>REQUEST DETAILS</button>
-        </div>
-      </div>
-      <div class="collection-item">
-        <img src="WC-file.png.jpeg">
-        <div>
-          <h3>World Cup Tee</h3>
-          <p>Limited presentation.</p>
-          <button>REQUEST DETAILS</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- PHILOSOPHY -->
-    <div class="panel" id="philosophy">
-      <div class="philosophy">
-        At Maison du Sport, we believe that every great moment begins with vision, discipline, and purpose.
-        Guided by a higher hand, we honor excellence in every detail.
-        Here, ambition meets intention — and intention meets God.
-      </div>
-    </div>
-
-    <!-- SPACE -->
-    <div class="panel space" id="space">
-      <img src="Store-file.png.jpeg">
-      <p>A physical Maison.<br>Location undisclosed.</p>
-    </div>
-
-    <!-- CONTACT -->
-    <div class="panel contact" id="contact">
-      contactmaisondusport@gmail.com<br>
-      +509 4720 9775
-    </div>
-
-  </div>
-</div>
-
-<script>
-setTimeout(()=>{
-  document.getElementById('intro').style.display='none';
-  document.getElementById('app').style.opacity=1;
-},4500);
-
-function showPanel(id){
-  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-
-  document.querySelectorAll('.nav li').forEach(l=>l.classList.remove('active'));
-  event.target.classList.add('active');
-}
-</script>
+<!-- CONTACT -->
+<section class="contact">
+  <p>
+    contactmaisondusport@gmail.com<br>
+    +509 4720 9775
+  </p>
+</section>
 
 </body>
 </html>
+
 
