@@ -25,9 +25,68 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 .hero-wrapper{position:relative;height:200vh;}
 .hero-section{position:sticky;top:0;height:100vh;width:100%;overflow:hidden;}
 .hero-img{position:absolute;width:100%;height:100%;object-fit:cover;transition:opacity 1s ease;}
-.hero-text{position:absolute;width:100%;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:3rem;text-align:center;z-index:2;transition:opacity .6s ease;color:#D4AF37;text-shadow:0 0 20px rgba (212,175,55,0.6)}
+.hero-text{position:absolute;width:100%;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Playfair Display',serif;font-size:3rem;text-align:center;z-index:2;transition:opacity .6s ease;color:#D4AF37;text-shadow:0 0 20px rgba(212,175,55,0.6);animation:heroBreath 5.5s ease-in-out infinite;}
 
-  }  
+/* SETTINGS ICON */
+.settings-icon{
+  position:fixed;
+  top:35px;
+  right:40px;
+  width:36px;
+  height:36px;
+  background:#800020;
+  border:1px solid #D4AF37;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  cursor:pointer;
+  z-index:100;
+  font-size:20px;
+  color:#D4AF37;
+  transition:.3s;
+}
+.settings-icon:hover{
+  background:#D4AF37;
+  color:#0b1a2b;
+}
+
+/* SETTINGS POPUP */
+.settings-popup{
+  position:fixed;
+  top:75px;
+  right:40px;
+  background:#0b1a2b;
+  border:1px solid #D4AF37;
+  padding:20px;
+  width:180px;
+  border-radius:8px;
+  display:none;
+  flex-direction:column;
+  gap:12px;
+  z-index:99;
+}
+.settings-popup.visible{display:flex;}
+.settings-popup h4{
+  font-family:'Playfair Display',serif;
+  margin-bottom:10px;
+  font-size:1rem;
+  color:#D4AF37;
+}
+.settings-popup button{
+  background:#800020;
+  color:#D4AF37;
+  border:1px solid #D4AF37;
+  padding:6px 10px;
+  border-radius:4px;
+  cursor:pointer;
+  transition:.3s;
+}
+.settings-popup button:hover{
+  background:#D4AF37;
+  color:#0b1a2b;
+}
+
 /* SITE */
 .site{opacity:0;transition:opacity 1.5s ease;padding:60px 10%;max-width:1300px;margin:auto;background:#800020;}
 .site.visible{opacity:1}
@@ -75,8 +134,11 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 .close-modal{position:absolute;top:15px;right:20px;font-size:1.5rem;cursor:pointer;}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-  }
+@keyframes heroBreath {
+  0%   { text-shadow: 0 0 18px rgba(212,175,55,0.45); }
+  50%  { text-shadow: 0 0 34px rgba(212,175,55,0.85); }
+  100% { text-shadow: 0 0 18px rgba(212,175,55,0.45); }
+}
 </style>
 </head>
 
@@ -94,6 +156,15 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 </section>
 
 <img src="Maisondusport-file.png" class="logo">
+
+<!-- SETTINGS ICON -->
+<div class="settings-icon" id="settingsIcon">⚙</div>
+<div class="settings-popup" id="settingsPopup">
+  <h4>Settings</h4>
+  <button onclick="alert('Dark Mode toggled')">Dark Mode</button>
+  <button onclick="alert('Music toggled')">Background Music</button>
+  <button onclick="alert('Info panel opened')">Info</button>
+</div>
 
 <div class="hero-wrapper" id="heroWrapper" style="display:none;">
   <div class="hero-section">
@@ -122,23 +193,6 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
   <div class="philosophy">
     At Maison du Sport, we believe that every great moment on the field begins with vision, discipline, and passion. Our work celebrates not just the game, but the dedication, culture, and spirit that elevate it. Guided by a higher hand, we honor exellence in every stitch, every detail, creating a space where sport meet elegance, and ambition meets purpose. Here talents meets vision, vision meets ambition, and ambition meets the hand of God.
   </div> 
-
-  <style>
-    /* Maison Philosophy Styling */
-    .philosophy {
-      background: #0b1a2b; /* deep background to make it stand out */
-      padding: 40px 30px;
-      border-left: 4px solid #d4af37; /* gold acccent line */
-      font-size: 1.1rem;
-      line-height: 1.8;
-      color: #d4af37; /* gold text */
-      font-style: italic;
-      max-width: 1000px;
-      margin-left: auto;
-      margin-right: auto;
-      text-align: center;
-    }
-  </style>
 
   <div class="section-title">Maison Gallery</div>
   <div class="gallery">
@@ -191,7 +245,16 @@ window.addEventListener('scroll',()=>{
  if(window.scrollY>window.innerHeight*.8){
    site.classList.add('visible');
    notice.classList.add('visible');
+   document.querySelector('.philosophy')?.classList.add('visible');
  }
+});
+
+/* SETTINGS ICON TOGGLE */
+const settingsIcon = document.getElementById('settingsIcon');
+const settingsPopup = document.getElementById('settingsPopup');
+
+settingsIcon.addEventListener('click',()=>{
+  settingsPopup.classList.toggle('visible');
 });
 
 /* PRODUCT INFO */
@@ -220,3 +283,4 @@ productModal.addEventListener('click',e=>{if(e.target.id==='productModal')closeM
 
 </body>
 </html>
+
