@@ -3,16 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maison du Sport — Digital Showroom</title>
+<title>Maison du Sport</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+
 body{
   font-family:Montserrat,sans-serif;
-  background:#0b1a2b;
-  color:#d4af37;
+  background:#f5f3ef;
+  color:#111;
   overflow:hidden;
 }
 
@@ -27,193 +28,198 @@ body{
   height:100%;
   object-fit:cover;
 }
-.intro::after{
-  content:"";
+.intro-overlay{
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.45);
-}
-.intro-text{
-  position:absolute;
-  inset:0;
+  background:rgba(0,0,0,.35);
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
-  text-align:center;
-  z-index:2;
+  flex-direction:column;
 }
-.intro-text h1{
-  font-family:'Playfair Display',serif;
-  font-size:3.8rem;
-  animation:fadeUp 2s forwards;
+.intro-overlay p{
+  color:#f5f3ef;
+  letter-spacing:4px;
+  font-size:.8rem;
+  margin-bottom:20px;
 }
-@keyframes fadeUp{
-  from{opacity:0;transform:translateY(20px)}
-  to{opacity:1;transform:translateY(0)}
+.intro-overlay button{
+  background:none;
+  border:1px solid rgba(255,255,255,.6);
+  color:#fff;
+  padding:12px 36px;
+  letter-spacing:3px;
+  cursor:pointer;
+  transition:.4s;
+}
+.intro-overlay button:hover{
+  background:#fff;
+  color:#000;
 }
 
-/* CURTAINS */
-.curtain{
-  position:fixed;
-  top:0;
-  width:50%;
-  height:100%;
-  background:#0b1a2b;
-  z-index:9;
-  transition:1.6s cubic-bezier(.77,0,.18,1);
-}
-.left{left:0}
-.right{right:0}
-.open .left{transform:translateX(-100%)}
-.open .right{transform:translateX(100%)}
-
-/* SITE */
-.site{
+/* MAIN */
+.main{
   opacity:0;
-  transition:opacity 1.6s ease;
+  transition:1.5s ease;
 }
-.site.visible{
-  opacity:1;
-}
+.main.visible{opacity:1}
 
 /* HERO */
 .hero{
-  position:relative;
   height:100vh;
-}
-.hero img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.hero-text{
-  position:absolute;
-  inset:0;
   display:flex;
-  justify-content:center;
   align-items:center;
-  font-family:'Playfair Display',serif;
-  font-size:3rem;
-  animation:glow 4s infinite alternate;
+  justify-content:center;
 }
-@keyframes glow{
-  from{text-shadow:0 0 15px rgba(212,175,55,.4)}
-  to{text-shadow:0 0 35px rgba(212,175,55,.9)}
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:3.2rem;
+  font-weight:400;
+  letter-spacing:1px;
 }
 
-/* SECTIONS */
-section{
-  padding:120px 10%;
+/* PHILOSOPHY */
+.philosophy{
+  max-width:700px;
+  margin:0 auto;
+  padding:160px 20px;
+  text-align:center;
 }
-.hidden{
+.philosophy p{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;
+  line-height:1.9;
   opacity:0;
-  transform:translateY(60px);
-  transition:1.2s ease;
+  transform:translateY(40px);
+  transition:1.4s ease;
 }
-.show{
+.philosophy p.show{
   opacity:1;
   transform:translateY(0);
 }
 
-/* PRODUCTS */
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:50px;
+/* IMAGE SECTIONS */
+.image-section{
+  height:100vh;
+  display:flex;
 }
-.card img{
+.image-section img{
   width:100%;
-  border-radius:6px;
+  height:100%;
+  object-fit:cover;
 }
-.card span{
-  display:block;
-  margin-top:12px;
+
+/* PRODUCTS */
+.collection{
+  padding:160px 10%;
+}
+.collection h2{
+  font-family:'Playfair Display',serif;
   text-align:center;
+  margin-bottom:100px;
+  font-weight:400;
+}
+.items{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:80px;
+}
+.item{
+  text-align:center;
+}
+.item img{
+  width:100%;
+}
+.item span{
+  display:block;
+  margin-top:18px;
+  letter-spacing:1px;
+  font-size:.9rem;
 }
 
 /* FOOTER */
-.contact{
+.footer{
+  padding:140px 20px;
   text-align:center;
-  line-height:2;
+  font-size:.9rem;
+  opacity:.7;
 }
 </style>
 </head>
 
 <body>
 
-<div class="curtain left"></div>
-<div class="curtain right"></div>
-
 <!-- INTRO -->
 <div class="intro" id="intro">
   <video autoplay muted loop playsinline>
     <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
   </video>
-  <div class="intro-text">
-    <h1>Maison du Sport</h1>
+  <div class="intro-overlay">
+    <p>MAISON DU SPORT</p>
+    <button onclick="enter()">ENTER</button>
   </div>
 </div>
 
-<!-- SITE -->
-<div class="site" id="site">
+<!-- MAIN -->
+<div class="main" id="main">
 
-  <!-- HERO -->
   <section class="hero">
-    <img src="Haiti-file.png .jpeg">
-    <div class="hero-text">MAISON WHERE FOOTBALL</div>
+    <h1>Maison du Sport</h1>
   </section>
 
-  <!-- STATEMENT -->
-  <section class="hidden">
-    <p style="text-align:center;font-size:1.3rem;max-width:700px;margin:auto;">
-      A Maison built on discipline, vision, and elegance.
+  <section class="image-section">
+    <img src="Haiti-file.png.jpeg">
+  </section>
+
+  <section class="philosophy">
+    <p id="philoText">
+      At Maison du Sport, every expression of the game is guided by discipline,
+      purpose, and a higher vision. We believe excellence is never accidental —
+      it is crafted, honored, and entrusted to the hands of God.
     </p>
   </section>
 
-  <!-- JERSEYS -->
-  <section class="hidden">
-    <h2 style="text-align:center;font-family:'Playfair Display',serif;">World Cup Special</h2>
-    <div class="products">
-      <div class="card"><img src="Old2-file.png.jpeg"><span>1974 Tribute Tee</span></div>
-      <div class="card"><img src="CW-file.png.jpeg"><span>Trainer Tee</span></div>
-      <div class="card"><img src="WW-file.png.jpeg"><span>White Trainer Tee</span></div>
-      <div class="card"><img src="WC-file.png.jpeg"><span>World Cup Tee</span></div>
+  <section class="image-section">
+    <img src="Old-file.png.jpeg">
+  </section>
+
+  <section class="collection">
+    <h2>World Cup Special</h2>
+    <div class="items">
+      <div class="item"><img src="Old2-file.png.jpeg"><span>1974 Tribute Tee</span></div>
+      <div class="item"><img src="CW-file.png.jpeg"><span>Trainer Tee</span></div>
+      <div class="item"><img src="WW-file.png.jpeg"><span>White Trainer Tee</span></div>
+      <div class="item"><img src="WC-file.png.jpeg"><span>World Cup Tee</span></div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact hidden">
-    contactmaisondusport@gmail.com<br>
-    +509 4720 9775
-  </section>
+  <div class="footer">
+    contactmaisondusport@gmail.com · +509 4720 9775
+  </div>
 
 </div>
 
 <script>
-/* AUTO INTRO TRANSITION */
-setTimeout(()=>{
-  document.body.classList.add("open");
+function enter(){
+  intro.style.opacity=0;
   setTimeout(()=>{
     intro.style.display="none";
-    site.classList.add("visible");
+    main.classList.add("visible");
     document.body.style.overflow="auto";
-  },1600);
-},4000);
+  },1200);
+}
 
-/* SCROLL REVEAL */
-const hiddenEls=document.querySelectorAll('.hidden');
-window.addEventListener('scroll',()=>{
-  hiddenEls.forEach(el=>{
-    const rect=el.getBoundingClientRect().top;
-    if(rect<window.innerHeight-100){
-      el.classList.add('show');
-    }
-  });
+const philo=document.getElementById("philoText");
+window.addEventListener("scroll",()=>{
+  const rect=philo.getBoundingClientRect().top;
+  if(rect<window.innerHeight-120){
+    philo.classList.add("show");
+  }
 });
 </script>
 
 </body>
 </html>
+
 
 
