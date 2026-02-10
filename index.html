@@ -50,19 +50,34 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 .notice span{display:block;font-size:.85rem;margin-top:8px;opacity:.7;font-family:Montserrat;}
 
 .section-title{text-align:center;font-size:2rem;margin-bottom:40px;}
+
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:50px;margin-bottom:120px;}
-.card{background:#a0002b;padding:25px;border-radius:6px;text-align:center;position:relative;transition:.4s;color:#f6f1e8;cursor:pointer;}
+
+.card{
+  background:#a0002b;
+  padding:25px;
+  border-radius:6px;
+  text-align:center;
+  position:relative;
+  transition:.4s;
+  color:#f6f1e8;
+  cursor:pointer;
+}
 .card img{width:100%;border-radius:4px;margin-bottom:15px;transition:.4s;}
 .card span{position:absolute;top:12px;left:12px;font-size:.65rem;background:#5a0015;padding:4px 8px;}
+.card h3{margin-bottom:8px;}
+.card .price{font-size:1rem;font-weight:500;opacity:.9;}
+
 .card:hover{transform:translateY(-10px) scale(1.05);}
 .card:hover img{transform:scale(1.1);}
+
 .card::after{
-  content:"Inquire";
+  content:"INQUIRE";
   position:absolute;
   bottom:10px;
   left:50%;
   transform:translateX(-50%);
-  padding:6px 14px;
+  padding:6px 16px;
   background:rgba(0,0,0,.6);
   font-size:.85rem;
   border-radius:20px;
@@ -128,11 +143,11 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 
   <div class="section-title">World Cup Special</div>
   <div class="products">
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Oldred-file.png.jpeg"><h3>1974 Tribute Tee</h3></div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-white.png .jpeg"><h3>White Haiti Men's World Cup Shirt</h3></div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-Red.png.jpeg"><h3>Red Haiti Men's World Cup Shirt</h3></div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Blue-file.png .jpeg"><h3>Blue Haiti Men's World Cup Shirt</h3></div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-cap.png.jpeg"><h3>2026 World Cup Cap</h3></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Oldred-file.png.jpeg"><h3>1974 Tribute Tee</h3><div class="price">$120</div></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-white.png .jpeg"><h3>White Haiti Men's World Cup Shirt</h3><div class="price">$100</div></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-Red.png.jpeg"><h3>Red Haiti Men's World Cup Shirt</h3><div class="price">$100</div></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Blue-file.png .jpeg"><h3>Blue Haiti Men's World Cup Shirt</h3><div class="price">$100</div></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-cap.png.jpeg"><h3>2026 World Cup Cap</h3><div class="price">$50</div></div>
   </div>
 
   <div class="section-title">Maison Gallery</div>
@@ -171,16 +186,15 @@ window.addEventListener('scroll',()=>{
  }
 });
 
-/* DIRECT INSTAGRAM INQUIRY */
-document.querySelectorAll('.card').forEach(card=>{
+/* DIRECT INSTAGRAM DM */
+document.querySelectorAll('.products .card').forEach(card=>{
   card.addEventListener('click',()=>{
-    const product = encodeURIComponent(card.querySelector('h3').innerText);
-    const url = `https://www.instagram.com/direct/new/?username=sebastianlaurence_06&text=Hi%20I’m%20interested%20in%20the%20${product}%20from%20Maison%20du%20Sport`;
-    window.open(url,'_blank');
+    window.open('https://www.instagram.com/direct/t/sebastianlaurence_06/','_blank');
   });
 });
 </script>
 
 </body>
 </html>
+
 
