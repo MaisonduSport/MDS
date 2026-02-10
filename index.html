@@ -89,6 +89,33 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
   text-align:center;
 }
 
+/* GALLERY OVERLAY */
+.gallery-overlay {
+  position: fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background: rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index: 100;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+  color: #f6f1e8;
+}
+.gallery-overlay img {
+  max-width: 90%;
+  max-height: 70%;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+.gallery-overlay p {
+  font-size: 1.1rem;
+  max-width: 800px;
+  line-height: 1.6;
+}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
@@ -148,6 +175,12 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
   </div>
 </section>
 
+<!-- GALLERY OVERLAY HTML -->
+<div class="gallery-overlay" id="galleryOverlay">
+  <img id="overlayImg" src="">
+  <p id="overlayDesc"></p>
+</div>
+
 <script>
 function enterMaison(){
   document.body.classList.add("open");
@@ -177,38 +210,24 @@ document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('click',()=>{
     const title = card.querySelector('h3').innerText;
 
-    /* Check if it is a gallery item */
+    // Gallery item: show overlay
     if(title === "Maison Concept"){
-      document.getElementById('modalTitle').innerText = title;
-      document.getElementById('modalDesc').innerText = "A concept soon to be realized that will give our members an experience of the Maison in Haiti";
-      document.getElementById('modalImg').src = card.querySelector('img').src;
-      document.getElementById('modalPrice').innerText = "";
-      document.getElementById('productModal').classList.add('active');
+      document.getElementById('overlayImg').src = card.querySelector('img').src;
+      document.getElementById('overlayDesc').innerText =
+        "A concept soon to be realized that will give our members an experience of the Maison in Haiti";
+      document.getElementById('galleryOverlay').style.display = "flex";
     } else {
-      const product = encodeURIComponent(title);
-      const url = `https://www.instagram.com/sebastianlaurence_06`;
-      window.open(url,'_blank');
+      // Product card: open Instagram
+      window.open('https://www.instagram.com/sebastianlaurence_06','_blank');
     }
   });
 });
 
-/* MODAL */
-function closeModal(){document.getElementById('productModal').classList.remove('active');}
-document.getElementById('productModal').addEventListener('click',e=>{
-  if(e.target.id==='productModal') closeModal();
+// Close overlay when clicked anywhere
+document.getElementById('galleryOverlay').addEventListener('click', ()=>{
+  document.getElementById('galleryOverlay').style.display = "none";
 });
 </script>
-
-<!-- MODAL -->
-<div class="modal" id="productModal">
-  <div class="modal-content">
-    <div class="close-modal" onclick="closeModal()">✕</div>
-    <img id="modalImg">
-    <h2 id="modalTitle"></h2>
-    <div class="modal-price" id="modalPrice"></div>
-    <p id="modalDesc"></p>
-  </div>
-</div>
 
 </body>
 </html>
