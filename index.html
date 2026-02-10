@@ -30,27 +30,7 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 .site.visible{opacity:1}
 .logo{position:fixed;top:25px;left:40px;width:210px;opacity:.85;z-index:2;}
 
-.notice{
-  text-align:center;
-  margin:0 auto 80px;
-  padding:25px 40px;
-  max-width:700px;
-  font-family:'Playfair Display',serif;
-  letter-spacing:1px;
-  font-size:1.1rem;
-  border:1px solid rgba(255,255,255,0.4);
-  background:linear-gradient(145deg, rgba(255,255,255,0.08), rgba(0,0,0,0.2));
-  backdrop-filter:blur(6px);
-  box-shadow:0 0 30px rgba(255,255,255,0.08);
-  opacity:0;
-  transform:translateY(20px);
-  transition:opacity 1.2s ease, transform 1.2s ease;
-}
-.notice.visible{opacity:1;transform:translateY(0);}
-.notice span{display:block;font-size:.85rem;margin-top:8px;opacity:.7;font-family:Montserrat;}
-
 .section-title{text-align:center;font-size:2rem;margin-bottom:40px;}
-
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:50px;margin-bottom:120px;}
 
 .card{
@@ -65,19 +45,19 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 }
 .card img{width:100%;border-radius:4px;margin-bottom:15px;transition:.4s;}
 .card span{position:absolute;top:12px;left:12px;font-size:.65rem;background:#5a0015;padding:4px 8px;}
-.card h3{margin-bottom:8px;}
-.card .price{font-size:1rem;font-weight:500;opacity:.9;}
+.card h3{margin-bottom:6px;}
+.price{font-size:.9rem;letter-spacing:1px;opacity:.85;}
 
 .card:hover{transform:translateY(-10px) scale(1.05);}
 .card:hover img{transform:scale(1.1);}
 
 .card::after{
-  content:"INQUIRE";
+  content:"Inquire";
   position:absolute;
   bottom:10px;
   left:50%;
   transform:translateX(-50%);
-  padding:6px 16px;
+  padding:6px 14px;
   background:rgba(0,0,0,.6);
   font-size:.85rem;
   border-radius:20px;
@@ -86,9 +66,6 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
   letter-spacing:1px;
 }
 .card:hover::after{opacity:1;}
-
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:60px;margin-bottom:120px;}
-.contact{text-align:center;margin-bottom:120px;line-height:2;}
 
 .philosophy{
   background:#0b1a2b;
@@ -103,19 +80,19 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
   text-align:center;
 }
 
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:60px;margin-bottom:120px;}
+.contact{text-align:center;margin-bottom:120px;line-height:2;}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 
 <body>
 
-<div class="curtain left-curtain"></div>
-<div class="curtain right-curtain"></div>
-
 <section class="intro" id="intro">
-  <video autoplay muted loop playsinline preload="auto">
+  <video autoplay muted loop playsinline>
     <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
-  </video> 
+  </video>
   <h1>Welcome to Maison du Sport</h1>
   <button class="enter-btn" onclick="enterMaison()">ENTER THE MAISON</button>
 </section>
@@ -131,14 +108,11 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 </div>
 
 <section class="site" id="site">
-  <div class="notice" id="notice">
-    Exclusive Digital Showroom Access  
-    <span>This space is designed for viewing the Maison collection experience only</span>
-  </div>
 
   <div class="section-title">Maison Philosophy</div>
   <div class="philosophy">
-    At Maison du Sport, we believe that every great moment on the field begins with vision, discipline, and passion. Our work celebrates not just the game, but the dedication, culture, and spirit that elevate it. Guided by a higher hand, we honor excellence in every stitch, every detail, creating a space where sport meets elegance, and ambition meets purpose.
+    At Maison du Sport, we believe that every great moment on the field begins with vision, discipline, and passion.
+    Our work celebrates the culture, the craft, and the spirit where sport meets elegance.
   </div>
 
   <div class="section-title">World Cup Special</div>
@@ -164,32 +138,14 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 
 <script>
 function enterMaison(){
-  document.body.classList.add("open");
-  setTimeout(()=>{
-    intro.style.display="none";
-    heroWrapper.style.display="block";
-    document.body.style.overflow="auto";
-  },1200);
+  intro.style.display="none";
+  heroWrapper.style.display="block";
+  document.body.style.overflow="auto";
 }
 
-window.addEventListener('scroll',()=>{
- if(heroWrapper.style.display!=="block") return;
- const p=Math.min(window.scrollY/(window.innerHeight*.8),1);
- heroImg1.style.opacity=1-p;
- heroImg2.style.opacity=p;
- heroText.innerText = p < .5 ? "MAISON WHERE FOOTBALL" : "MEETS ELEGANCE";
- heroText.style.opacity = p < .5 ? 1-p*2 : (p-.5)*2;
-
- if(window.scrollY>window.innerHeight*.8){
-   site.classList.add('visible');
-   notice.classList.add('visible');
- }
-});
-
-/* DIRECT INSTAGRAM DM */
-document.querySelectorAll('.products .card').forEach(card=>{
+document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('click',()=>{
-    window.open('https://www.instagram.com/direct/t/sebastianlaurence_06/','_blank');
+    window.open("https://www.instagram.com/direct/inbox/","_blank");
   });
 });
 </script>
