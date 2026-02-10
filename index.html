@@ -54,10 +54,11 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 .card{background:#a0002b;padding:25px;border-radius:6px;text-align:center;position:relative;transition:.4s;color:#f6f1e8;cursor:pointer;}
 .card img{width:100%;border-radius:4px;margin-bottom:15px;transition:.4s;}
 .card span{position:absolute;top:12px;left:12px;font-size:.65rem;background:#5a0015;padding:4px 8px;}
+.card .price{position:absolute;top:12px;right:12px;font-size:.8rem;background:#5a0015;padding:4px 8px;}
 .card:hover{transform:translateY(-10px) scale(1.05);}
 .card:hover img{transform:scale(1.1);}
 .card::after{
-  content:"Inquire";
+  content:"Ask About This";
   position:absolute;
   bottom:10px;
   left:50%;
@@ -128,11 +129,11 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 
   <div class="section-title">World Cup Special</div>
   <div class="products">
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="1974shirt-png.png"><h3>1974 Tribute Tee</h3>$120</div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-white.png .jpeg"><h3>White Haiti Men's World Cup Shirt</h3>$100</div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-Red.png.jpeg"><h3>Red Haiti Men's World Cup Shirt</h3>$100</div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Blue-file.png .jpeg"><h3>Blue Haiti Men's World Cup Shirt</h3>$100</div>
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Haiticap-png.png"><h3>2026 World Cup Cap</h3>$50</div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$120</span><img src="Oldred-file.png.jpeg"><h3>1974 Tribute Tee</h3></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$100</span><img src="WC26-white.png .jpeg"><h3>White Haiti Men's World Cup Shirt</h3></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$100</span><img src="WC26-Red.png.jpeg"><h3>Red Haiti Men's World Cup Shirt</h3></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$100</span><img src="Blue-file.png .jpeg"><h3>Blue Haiti Men's World Cup Shirt</h3></div>
+    <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$50</span><img src="WC26-cap.png.jpeg"><h3>2026 World Cup Cap</h3></div>
   </div>
 
   <div class="section-title">Maison Gallery</div>
@@ -171,15 +172,43 @@ window.addEventListener('scroll',()=>{
  }
 });
 
-/* DIRECT INSTAGRAM INQUIRY */
+/* PRODUCT + GALLERY CLICK HANDLER */
 document.querySelectorAll('.card').forEach(card=>{
   card.addEventListener('click',()=>{
-    const product = encodeURIComponent(card.querySelector('h3').innerText);
-    const url = `https://www.instagram.com/direct/new/?username=sebastianlaurence_06&text=Hi%20I’m%20interested%20in%20the%20${product}%20from%20Maison%20du%20Sport`;
-    window.open(url,'_blank');
+    const title = card.querySelector('h3').innerText;
+
+    /* Check if it is a gallery item */
+    if(title === "Maison Concept"){
+      document.getElementById('modalTitle').innerText = title;
+      document.getElementById('modalDesc').innerText = "A concept soon to be realized that will give our members an experience of the Maison in Haiti";
+      document.getElementById('modalImg').src = card.querySelector('img').src;
+      document.getElementById('modalPrice').innerText = "";
+      document.getElementById('productModal').classList.add('active');
+    } else {
+      const product = encodeURIComponent(title);
+      const url = `https://www.instagram.com/sebastianlaurence_06`;
+      window.open(url,'_blank');
+    }
   });
 });
+
+/* MODAL */
+function closeModal(){document.getElementById('productModal').classList.remove('active');}
+document.getElementById('productModal').addEventListener('click',e=>{
+  if(e.target.id==='productModal') closeModal();
+});
 </script>
+
+<!-- MODAL -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <div class="close-modal" onclick="closeModal()">✕</div>
+    <img id="modalImg">
+    <h2 id="modalTitle"></h2>
+    <div class="modal-price" id="modalPrice"></div>
+    <p id="modalDesc"></p>
+  </div>
+</div>
 
 </body>
 </html>
