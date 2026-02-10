@@ -121,6 +121,11 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
     <span>This space is designed for viewing the Maison collection experience only</span>
   </div>
 
+  <div class="section-title">Maison Philosophy</div>
+  <div class="philosophy">
+    At Maison du Sport, we believe that every great moment on the field begins with vision, discipline, and passion. Our work celebrates not just the game, but the dedication, culture, and spirit that elevate it. Guided by a higher hand, we honor exellence in every stitch, every detail, creating a space where sport meet elegance, and ambition meets purpose. Here talents meets vision, vision meets ambition, and ambition meets the hand of God.
+  </div>
+
   <div class="section-title">World Cup Special</div>
   <div class="products">
     <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Oldred-file.png.jpeg"><h3>1974 Tribute Tee</h3></div>
@@ -128,11 +133,6 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
     <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-Red.png.jpeg"><h3>Red Haiti Men's World cup shirt</h3></div>
     <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="Blue-file.png .jpeg"><h3>Blue Haiti Men's World Cup shirt</h3></div>
     <div class="card"><span>EXCLUSIVELY ONLINE</span><img src="WC26-cap.png.jpeg"><h3>2026 World Cup Cap</h3></div>
-  </div>
-
-  <div class="section-title">Maison Philosophy</div>
-  <div class="philosophy">
-    At Maison du Sport, we believe that every great moment on the field begins with vision, discipline, and passion. Our work celebrates not just the game, but the dedication, culture, and spirit that elevate it. Guided by a higher hand, we honor exellence in every stitch, every detail, creating a space where sport meet elegance, and ambition meets purpose. Here talents meets vision, vision meets ambition, and ambition meets the hand of God.
   </div>
 
   <div class="section-title">Maison Gallery</div>
@@ -184,10 +184,10 @@ window.addEventListener('scroll',()=>{
 
 const productData={
  "1974 Tribute Tee":{price:"$120",desc:"After the country’s second qualification, this tee pays tribute to Haiti’s first historic World Cup qualification."},
- "2026 Haiti mens world cup shirt":{price:"$100",desc:" Newly released Haiti Men's world cup shirt"},
- "2026 Haiti mens world cup shirt ":{price:"$100",desc:" Newly released Haiti Men's world cup shirt ."},
- "2026 Haiti mens World Cup shirt":{price:"$100",desc:" Newly released Haiti Men's world cup shirt"},
- "2026 Men's World Cup Cap":{price:"$50",desc:"Limited edition cap celebrating the road to the 2026 FIFA World Cup."},
+ "White Haiti Men's world cup Shirt":{price:"$100",desc:"Newly released Haiti Men's World Cup shirt"},
+ "Red Haiti Men's World cup shirt":{price:"$100",desc:"Newly released Haiti Men's World Cup shirt"},
+ "Blue Haiti Men's World Cup shirt":{price:"$100",desc:"Newly released Haiti Men's World Cup shirt"},
+ "2026 World Cup Cap":{price:"$50",desc:"Limited edition cap celebrating the road to the 2026 FIFA World Cup."},
  "Maison Concept":{price:"Concept Project",desc:"A future physical Maison du Sport location where visitors will experience the Maison in person."}
 };
 
@@ -196,8 +196,8 @@ document.querySelectorAll('.card').forEach(card=>{
    const title=card.querySelector('h3').innerText;
    modalImg.src=card.querySelector('img').src;
    modalTitle.innerText=title;
-   modalPrice.innerText=productData[title].price;
-   modalDesc.innerText=productData[title].desc;
+   modalPrice.innerText=productData[title]?.price || "";
+   modalDesc.innerText=productData[title]?.desc || "";
    productModal.classList.add('active');
  });
 });
