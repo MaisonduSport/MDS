@@ -10,6 +10,33 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;background:#0b1a2b;color:#D4AF37;}
 
+/* ======== Elegant Top Promo Banner ======== */
+#promoBanner {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #D4AF37, #FFD700);
+  color: #0b1a2b;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 1px;
+  cursor: default;
+  opacity: 0.95;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.hidePromo {
+  transform: translateY(-120%);
+  opacity: 0;
+}
+#promoBanner:hover {
+  text-shadow: 0 0 10px rgba(212,175,55,0.8);
 }
 
 /* ORIGINAL STYLES */
@@ -253,19 +280,26 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
     </div>
 
     <div class="card-wrapper">
-      <div class="card-announcement">First 20 Pieces- $85</div>
+      <div> class="card-announcement">First 20 Pieces- $85</div>
       <div class="card">
-      <span>EXCLUSIVELY ONLINE</span>
-      <span class="price">$85</span>
-      <img src="Blue-file.png .jpeg">
-      <h3>Official Haiti Men's World Cup Kit-Blue</h3>
+       </span>EXCLUSIVELY ONLINE</span>
+        <span class="price">$85</span>
+        <img src="Blue-file.png .jpeg"
+        ><h3>Official Haiti Men's World Cup Kit-Blue</h3>
+      </div>
+      
+    <div class="card-wrapper">
+      <div class="card-announcement">First 20 Pieces — $85</div>
+      <div class="card">
+        <span>EXCLUSIVELY ONLINE</span>
+        <span class="price">$120</span>
+        <img src="1974shirt-png.png">
+        <h3>Red Haiti Men's Soccer Jersey- 1974 Commermorative Edition</h3>
+      </div>
     </div>
-  </div>
-
 
     <!-- Remaining cards without announcement -->
-    
-    <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$120</span><img src="1974shirt-png.png"><h3>Red Haiti Men's Soccer Jersey- 1974 Commermorative Edition</h3></div>
+     <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$120</span><img src="1974shirt-png.png"><h3>Red Haiti Men's Soccer Jersey- 1974 Commermorative Edition</h3></div>
     <div class="card"><span>EXCLUSIVELY ONLINE</span><span class="price">$40</span><img src="Haiticap-png.png"><h3>Haiti's World Cup Cap</h3></div>
   </div>
 
@@ -383,3 +417,4 @@ document.querySelectorAll('img').forEach(img=>{ img.loading='lazy'; });
 
 </body>
 </html>
+
