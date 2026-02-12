@@ -10,6 +10,35 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;background:#0b1a2b;color:#D4AF37;}
 
+/* ======== Elegant Top Promo Banner ======== */
+#promoBanner {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #D4AF37, #FFD700);
+  color: #0b1a2b;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0 0 12px 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  z-index: 1000;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 1px;
+  cursor: default;
+  opacity: 0.95;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+.hidePromo {
+  transform: translateY(-120%);
+  opacity: 0;
+}
+#promoBanner:hover {
+  text-shadow: 0 0 10px rgba(212,175,55,0.8);
+}
+
 /* ORIGINAL STYLES */
 .intro{position:fixed;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:10;overflow:hidden;}
 .intro video{position:absolute;width:100%;height:100%;object-fit:cover;opacity:.85;}
@@ -64,12 +93,27 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 .section-title{text-align:center;font-size:2rem;margin-bottom:40px;}
 
 .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:50px;margin-bottom:120px;}
-.card{background:#a0002b;padding:25px;border-radius:6px;text-align:center;position:relative;transition:.4s;color:#f6f1e8;cursor:pointer;overflow:hidden;}
+.card{background:#a0002b;padding:25px;border-radius:6px;text-align:center;position:relative;transition:.4s;color:#f6f1e8;cursor:pointer;}
 .card img{width:100%;border-radius:4px;margin-bottom:15px;transition:.4s;}
 .card span{position:absolute;top:12px;left:12px;font-size:.65rem;background:#5a0015;padding:4px 8px;}
 .card .price{position:absolute;top:12px;right:12px;font-size:.8rem;background:#5a0015;padding:4px 8px;}
 .card:hover{transform:translateY(-10px) scale(1.05);}
 .card:hover img{transform:scale(1.1);}
+.card::after{
+  content:"Inquire";
+  position:absolute;
+  bottom:10px;
+  left:50%;
+  transform:translateX(-50%);
+  padding:6px 14px;
+  background:rgba(0,0,0,.6);
+  font-size:.85rem;
+  border-radius:20px;
+  opacity:0;
+  transition:.3s;
+  letter-spacing:1px;
+}
+.card:hover::after{opacity:1;}
 
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:60px;margin-bottom:120px;}
 .contact{text-align:center;margin-bottom:120px;line-height:2;}
@@ -146,6 +190,11 @@ body{font-family:Montserrat,sans-serif;overflow:hidden;scroll-behavior:smooth;ba
 </head>
 
 <body>
+
+<!-- ======== Elegant Top Promo Banner ======== -->
+<div id="promoBanner">
+  🎉 First 20 World Cup Kits for $85! Limited Offer
+</div>
 
 <div class="curtain left-curtain"></div>
 <div class="curtain right-curtain"></div>
@@ -224,6 +273,7 @@ const heroText = document.getElementById('heroText');
 const site = document.getElementById('site');
 const notice = document.getElementById('notice');
 const topNav = document.getElementById('topNav');
+const promoBanner = document.getElementById('promoBanner');
 
 function enterMaison(){
   document.body.classList.add("open");
@@ -235,32 +285,39 @@ function enterMaison(){
 }
 
 window.addEventListener('scroll',()=>{
- if(heroWrapper.style.display!=="block") return;
- const p=Math.min(window.scrollY/(window.innerHeight*.8),1);
- heroImg1.style.opacity=1-p;
- heroImg2.style.opacity=p;
+  // Hide promo banner after hero section
+  if(window.scrollY > window.innerHeight){
+    promoBanner.classList.add('hidePromo');
+  } else {
+    promoBanner.classList.remove('hidePromo');
+  }
 
- if (p < 0.5) {
-   heroText.innerText = "MAISON WHERE FOOTBALL";
-   heroText.style.color = "#D4AF37";
-   heroText.style.textShadow = "0 0 20px rgba(212,175,55,0.6)";
-   heroText.style.opacity = 1 - (p*2);
- } else {
-   heroText.innerText = "MEETS ELEGANCE";
-   heroText.style.color = "#003153";
-   heroText.style.textShadow = "0 0 15px rgba(0,49,83,0.5)";
-   heroText.style.top = "64%";
-   heroText.style.opacity = (p-0.5)*2;
- }
+  if(heroWrapper.style.display!=="block") return;
+  const p=Math.min(window.scrollY/(window.innerHeight*.8),1);
+  heroImg1.style.opacity=1-p;
+  heroImg2.style.opacity=p;
 
- if(window.scrollY>window.innerHeight*.8){
-   site.classList.add('visible');
-   notice.classList.add('visible');
-   topNav.classList.add('visible');
- } else {
-   topNav.classList.remove('visible');
-   heroText.style.top = "66%";
- }
+  if (p < 0.5) {
+    heroText.innerText = "MAISON WHERE FOOTBALL";
+    heroText.style.color = "#D4AF37"; // Gold
+    heroText.style.textShadow = "0 0 20px rgba(212,175,55,0.6)";
+    heroText.style.opacity = 1 - (p*2);
+  } else {
+    heroText.innerText = "MEETS ELEGANCE";
+    heroText.style.color = "#003153";
+    heroText.style.textShadow = "0 0 15px rgba(0,49,83,0.5)";
+    heroText.style.top = "64%";
+    heroText.style.opacity = (p-0.5)*2;
+  }
+
+  if(window.scrollY>window.innerHeight*.8){
+    site.classList.add('visible');
+    notice.classList.add('visible');
+    topNav.classList.add('visible');
+  } else {
+    topNav.classList.remove('visible');
+    heroText.style.top = "66%";
+  }
 });
 
 // Card click events + gallery overlay
@@ -297,93 +354,8 @@ window.addEventListener('scroll', ()=>{
 
 // Lazy loading for images
 document.querySelectorAll('img').forEach(img=>{ img.loading='lazy'; });
-
-
-// ======== Elegant Corner Ribbon Promotion ========
-
-const worldCupProducts = [
-  {
-    cardSelector: '.products .card:nth-child(1)', // White Kit
-    promoPrice: 85,
-    normalPrice: 95,
-    promoLimit: 20,
-    sold: 0
-  },
-  {
-    cardSelector: '.products .card:nth-child(2)', // Red Kit
-    promoPrice: 85,
-    normalPrice: 95,
-    promoLimit: 20,
-    sold: 0
-  },
-  {
-    cardSelector: '.products .card:nth-child(4)', // Blue Kit
-    promoPrice: 85,
-    normalPrice: 95,
-    promoLimit: 20,
-    sold: 0
-  }
-];
-
-worldCupProducts.forEach(product => {
-  const card = document.querySelector(product.cardSelector);
-  const priceEl = card.querySelector('.price');
-
-  const ribbon = document.createElement('div');
-  ribbon.style.position = 'absolute';
-  ribbon.style.top = '12px';
-  ribbon.style.left = '-45px';
-  ribbon.style.width = '150px';
-  ribbon.style.padding = '6px 0';
-  ribbon.style.background = 'linear-gradient(45deg, #FFD700, #E6C200)';
-  ribbon.style.color = '#0b1a2b';
-  ribbon.style.fontWeight = '700';
-  ribbon.style.fontSize = '0.75rem';
-  ribbon.style.textAlign = 'center';
-  ribbon.style.transform = 'rotate(-45deg)';
-  ribbon.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.4)';
-  ribbon.style.transition = 'all 0.5s ease, transform 0.3s ease';
-  ribbon.style.opacity = '0';
-  card.appendChild(ribbon);
-
-  setTimeout(() => {
-    ribbon.style.opacity = '1';
-  }, 300);
-
-  const updateRibbon = () => {
-    if(product.sold < product.promoLimit){
-      ribbon.innerText = `FIRST ${product.promoLimit} $${product.promoPrice}`;
-      priceEl.innerText = `$${product.promoPrice}`;
-    } else {
-      ribbon.innerText = `PROMO ENDED`;
-      ribbon.style.background = '#8B7500';
-      priceEl.innerText = `$${product.normalPrice}`;
-    }
-  };
-
-  updateRibbon();
-
-  card.addEventListener('mouseenter', () => {
-    ribbon.style.transform = 'rotate(-45deg) scale(1.05)';
-    ribbon.style.boxShadow = '0 4px 12px rgba(0,0,0,0.35), inset 0 1px 3px rgba(255,255,255,0.5)';
-  });
-  card.addEventListener('mouseleave', () => {
-    ribbon.style.transform = 'rotate(-45deg) scale(1)';
-    ribbon.style.boxShadow = '0 2px 6px rgba(0,0,0,0.3), inset 0 1px 2px rgba(255,255,255,0.4)';
-  });
-
-  card.addEventListener('click', () => {
-    if(product.sold < product.promoLimit){
-      product.sold++;
-      alert(`Congratulations! You got this kit for $${product.promoPrice}.`);
-    } else {
-      alert(`Price now is $${product.normalPrice}`);
-    }
-    updateRibbon();
-    window.open('https://www.instagram.com/sebastianlaurence_06','_blank');
-  });
-});
 </script>
+
 </body>
 </html>
 
