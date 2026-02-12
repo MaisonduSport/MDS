@@ -328,5 +328,78 @@ window.addEventListener('scroll', ()=>{
 document.querySelectorAll('img').forEach(img=>{ img.loading='lazy'; });
 </script>
 
-</body>
-</html>
+// ======== Elegant First 20 Purchases Promotion ========
+
+// Define World Cup products
+const worldCupProducts = [
+  {
+    cardSelector: '.products .card:nth-child(1)', // White Kit
+    promoPrice: 85,
+    normalPrice: 95, // adjust as needed
+    promoLimit: 20,
+    sold: 0
+  },
+  {
+    cardSelector: '.products .card:nth-child(2)', // Red Kit
+    promoPrice: 85,
+    normalPrice: 95,
+    promoLimit: 20,
+    sold: 0
+  },
+  {
+    cardSelector: '.products .card:nth-child(4)', // Blue Kit
+    promoPrice: 85,
+    normalPrice: 95,
+    promoLimit: 20,
+    sold: 0
+  }
+];
+
+// Add badge and click functionality
+worldCupProducts.forEach(product => {
+  const card = document.querySelector(product.cardSelector);
+  const priceEl = card.querySelector('.price');
+
+  // Create elegant badge
+  const badge = document.createElement('span');
+  badge.style.position = "absolute";
+  badge.style.top = "12px";
+  badge.style.right = "12px";
+  badge.style.background = "#D4AF37"; // Gold
+  badge.style.color = "#0b1a2b"; // Dark text
+  badge.style.padding = "4px 8px";
+  badge.style.borderRadius = "12px";
+  badge.style.fontSize = "0.75rem";
+  badge.style.fontWeight = "bold";
+  badge.style.letterSpacing = "0.5px";
+  badge.style.zIndex = "2";
+  card.appendChild(badge);
+
+  // Function to update badge text
+  const updateBadge = () => {
+    const remaining = product.promoLimit - product.sold;
+    if(remaining > 0){
+      badge.innerText = `First ${product.promoLimit} purchases: $${product.promoPrice} (${remaining} left)`;
+      priceEl.innerText = `$${product.promoPrice}`;
+    } else {
+      badge.innerText = `Promo ended`;
+      priceEl.innerText = `$${product.normalPrice}`;
+    }
+  };
+
+  updateBadge();
+
+  // On card click
+  card.addEventListener('click', () => {
+    if(product.sold < product.promoLimit){
+      product.sold++;
+      alert(`Congratulations! You got this kit for $${product.promoPrice}. Promo #${product.sold} of ${product.promoLimit}`);
+    } else {
+      alert(`Price now is $${product.normalPrice}`);
+    }
+    updateBadge();
+
+    // Redirect to Instagram or checkout
+    window.open('https://www.instagram.com/sebastianlaurence_06','_blank');
+  });
+});
