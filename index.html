@@ -38,6 +38,7 @@ body{
   height:100%;
   object-fit:cover;
   opacity:.85;
+  preload:metadata;
 }
 
 .intro h1{
@@ -94,7 +95,7 @@ body{
   font-size:3rem;
   text-align:center;
   z-index:2;
-  transition:opacity .6s ease, color .6s ease, text-shadow .6s ease;
+  transition:opacity .6s ease, color .6s ease, text-shadow .6s ease, top .6s ease;
 }
 
 /* SITE */
@@ -253,4 +254,207 @@ body{
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
+
+<body>
+
+<div class="curtain left-curtain"></div>
+<div class="curtain right-curtain"></div>
+
+<section class="intro" id="intro">
+  <video autoplay muted loop playsinline>
+    <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
+  </video> 
+  <h1>Welcome to Maison du Sport</h1>
+  <button class="enter-btn" onclick="enterMaison()">ENTER THE MAISON</button>
+</section>
+
+<img src="Maisondusport-file.png" class="logo">
+
+<nav class="top-nav" id="topNav">
+  <a href="#philosophy">Philosophy</a>
+  <a href="#products">Products</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<div class="hero-wrapper" id="heroWrapper">
+  <div class="hero-section">
+    <img src="Haiti-file.png.jpeg" class="hero-img" id="heroImg1">
+    <img src="Sit-png.png" class="hero-img" id="heroImg2" style="opacity:0">
+    <div class="hero-text" id="heroText">MAISON WHERE FOOTBALL</div>
+  </div>
+</div>
+
+<section class="site" id="site">
+  <div class="notice" id="notice">
+    Exclusive Digital Showroom Access  
+    <span>This space is designed for viewing the Maison collection experience only</span>
+  </div>
+
+  <div id="philosophy" class="section-title">Maison Philosophy</div>
+  <div class="philosophy">
+    At Maison du Sport, we believe that every great moment on the field begins with vision, discipline, and passion. Our work celebrates not just the game, but the dedication, culture, and spirit that elevate it. Guided by a higher hand, we honor excellence in every stitch, every detail, creating a space where sport meets elegance and ambition, and ambition meets purpose, and purpose meets the hand of God.
+  </div>
+
+  <div id="products" class="section-title"> World Cup Special</div>
+  <div class="products">  
+    <!-- White Kit -->
+    <div class="card-wrapper">
+      <div class="card-announcement">First 20 Pieces — $85</div>
+      <div class="card">
+        <span>EXCLUSIVELY ONLINE</span>
+        <span class="price">$85</span>
+        <img src="WC26-white.png.jpeg">
+        <h3>Official Haiti Men's World Cup Kit-White</h3>
+      </div>
+    </div>
+
+    <!-- Red Kit -->
+    <div class="card-wrapper">
+      <div class="card-announcement">First 20 Pieces — $85</div>
+      <div class="card">
+        <span>EXCLUSIVELY ONLINE</span>
+        <span class="price">$85</span>
+        <img src="WC26-Red.png.jpeg">
+        <h3>Official Haiti Men's World Cup Kit-Red</h3>
+      </div>
+    </div>
+
+    <!-- 1974 Kit — NO promo -->
+    <div class="card">
+      <span>EXCLUSIVELY ONLINE</span>
+      <span class="price">$120</span>
+      <img src="1974shirt-png.png">
+      <h3>Red Haiti Men's Soccer Jersey- 1974 Commemorative Edition</h3>
+    </div>
+
+    <!-- Blue Kit -->
+    <div class="card-wrapper">
+      <div class="card-announcement">First 20 Pieces — $85</div>
+      <div class="card">
+        <span>EXCLUSIVELY ONLINE</span>
+        <span class="price">$85</span>
+        <img src="Blue-file.png.jpeg">
+        <h3>Official Haiti Men's World Cup Kit-Blue</h3>
+      </div>
+    </div>
+
+    <!-- Cap -->
+    <div class="card">
+      <span>EXCLUSIVELY ONLINE</span>
+      <span class="price">$40</span>
+      <img src="Haiticap-png.png">
+      <h3>Haiti's World Cup Cap</h3>
+    </div>
+  </div>
+
+  <div id="gallery" class="section-title">Maison Gallery</div>
+  <div class="gallery">
+    <div class="card"><span>CONCEPT (COMING SOON)</span><img src="Store-file.png.jpeg"><h3>Maison Concept</h3></div>
+    <div class="card"><span>CONCEPT (COMING SOON)</span><img src="Store2.png"><h3>Maison Concept</h3></div>
+    <div class="card"><span>CONCEPT (COMING SOON)</span><img src="Store3.png"><h3>Maison Concept</h3></div>
+    <div class="card"><span>CONCEPT (COMING SOON)</span><img src="Store4.png"><h3>Maison Concept</h3></div>
+  </div>
+
+  <div id="contact" class="section-title">Contact</div>
+  <div class="contact">
+    Email: contactmaisondusport@gmail.com<br>
+    Phone: +509 4720 9775
+  </div>
+</section>
+
+<div class="gallery-overlay" id="galleryOverlay">
+  <img id="overlayImg" src="">
+  <p id="overlayDesc"></p>
+</div>
+
+<script>
+const intro = document.getElementById('intro');
+const heroWrapper = document.getElementById('heroWrapper');
+const heroImg1 = document.getElementById('heroImg1');
+const heroImg2 = document.getElementById('heroImg2');
+const heroText = document.getElementById('heroText');
+const site = document.getElementById('site');
+const notice = document.getElementById('notice');
+const topNav = document.getElementById('topNav');
+
+function enterMaison(){
+  document.body.classList.add("open");
+  intro.classList.add('fade-out');
+  setTimeout(()=>{
+    intro.style.display="none";
+    heroWrapper.style.display="block";
+    document.body.style.overflow="auto";
+  },1200);
+}
+
+window.addEventListener('scroll',()=>{
+  if(heroWrapper.style.display!=="block") return;
+  const p=Math.min(window.scrollY/(window.innerHeight*.8),1);
+  heroImg1.style.opacity=1-p;
+  heroImg2.style.opacity=p;
+
+  if (p < 0.5) {
+    heroText.innerText = "MAISON WHERE FOOTBALL";
+    heroText.style.color = "#D4AF37"; // Gold
+    heroText.style.textShadow = "0 0 20px rgba(212,175,55,0.6)";
+    heroText.style.opacity = 1 - (p*2);
+    heroText.style.top = "30%";
+  } else {
+    heroText.innerText = "MEETS ELEGANCE";
+    heroText.style.color = "#003153";
+    heroText.style.textShadow = "0 0 15px rgba(0,49,83,0.5)";
+    heroText.style.top = "64%";
+    heroText.style.opacity = (p-0.5)*2;
+  }
+
+  if(window.scrollY>window.innerHeight*.8){
+    site.classList.add('visible');
+    notice.classList.add('visible');
+    topNav.classList.add('visible');
+  } else {
+    topNav.classList.remove('visible');
+    heroText.style.top = "30%";
+  }
+});
+
+// Card click events + gallery overlay
+document.querySelectorAll('.card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    const title = card.querySelector('h3').innerText;
+    if(title === "Maison Concept"){
+      document.getElementById('overlayImg').src = card.querySelector('img').src;
+      document.getElementById('overlayDesc').innerText =
+        "A concept soon to be realized that will give our members an experience of the Maison in Haiti";
+      document.getElementById('galleryOverlay').style.display = "flex";
+    } else {
+      window.open('https://www.instagram.com/sebastianlaurence_06','_blank');
+    }
+  });
+});
+
+document.getElementById('galleryOverlay').addEventListener('click', ()=>{
+  document.getElementById('galleryOverlay').style.display = "none";
+});
+
+// Navigation active state on scroll
+window.addEventListener('scroll', ()=>{
+  let scrollPos = window.scrollY + window.innerHeight/2;
+  document.querySelectorAll('.top-nav a').forEach(link=>{
+    const target = document.querySelector(link.getAttribute('href'));
+    if(target && scrollPos >= target.offsetTop && scrollPos < target.offsetTop + target.offsetHeight){
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
+});
+
+// Lazy loading for images
+document.querySelectorAll('img').forEach(img=>{ img.loading='lazy'; });
+</script>
+
+</body>
+</html>
+
 
