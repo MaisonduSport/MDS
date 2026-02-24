@@ -7,12 +7,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
 <style>
     :root {
-        --bg: #070D0A;
-        --forest: #0E1A14;
+        --bg-dark: #0B100D;
+        --forest: #0F1C14;
         --gold: #C6A75E;
         --gold-bright: #E8D296;
         --cream: #F5F1E6;
-        --cream-low: rgba(245, 241, 230, 0.6);
+        --cream-low: rgba(245,241,230,0.6);
         --ease: cubic-bezier(0.23, 1, 0.32, 1);
     }
 
@@ -20,232 +20,219 @@
 
     body {
         font-family: 'Inter', sans-serif;
-        background: var(--bg);
+        background: var(--bg-dark);
         color: var(--cream);
         overflow-x: hidden;
-        -webkit-font-smoothing: antialiased;
-    }
-
-    /* Cinematic Grain Overlay */
-    body::before {
-        content:"";
-        position: fixed;
-        top:0; left:0; width:100%; height:100%;
-        background: url('https://grainy-gradients.vercel.app/noise.svg');
-        opacity:0.04;
-        pointer-events:none;
-        z-index:9999;
     }
 
     /* Navigation */
     nav {
         position: fixed;
         top:0; width:100%;
-        padding:2.5rem 5%;
-        display:flex; justify-content:space-between; align-items:center;
-        transition: all 0.8s var(--ease);
+        padding:2rem 5%;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
         z-index:1000;
+        transition: all 0.5s var(--ease);
     }
 
     nav.scrolled {
-        padding:1.2rem 5%;
-        background: rgba(7,13,10,0.95);
-        backdrop-filter: blur(10px);
+        background: rgba(11,16,13,0.95);
+        backdrop-filter: blur(8px);
         border-bottom: 1px solid rgba(198,167,94,0.2);
+        padding:1rem 5%;
     }
 
     .logo {
-        font-family: 'Playfair Display', serif;
+        font-family:'Playfair Display', serif;
         font-size:1.5rem;
         color: var(--gold);
-        letter-spacing: 2px;
+        letter-spacing:2px;
         text-decoration:none;
     }
 
     .nav-links a {
         color: var(--cream-low);
-        text-decoration: none;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
         margin-left:2rem;
-        transition: 0.4s;
+        font-size:0.75rem;
+        text-transform:uppercase;
+        letter-spacing:2px;
+        text-decoration:none;
+        transition: 0.3s;
     }
 
     .nav-links a:hover { color: var(--gold-bright); }
 
-    /* Hero Section */
+    /* Hero */
     .hero {
         height:100vh;
-        display:flex; align-items:center; justify-content:center;
-        position:relative; overflow:hidden;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        position:relative;
+        text-align:center;
+        overflow:hidden;
+    }
+
+    .hero::before {
+        content:"";
+        position:absolute; top:0; left:0; width:100%; height:100%;
+        background: linear-gradient(to bottom, rgba(15,28,20,0.4), var(--bg-dark));
+        z-index:1;
     }
 
     .hero-bg {
-        position:absolute; top:0; left:0; width:100%; height:100%;
-        background: linear-gradient(to bottom, rgba(7,13,10,0.4), var(--bg)),
-                    url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Stade_Sylvio_Cator_2010.jpg/1920px-Stade_Sylvio_Cator_2010.jpg') center/cover no-repeat;
+        position:absolute;
+        top:0; left:0; width:100%; height:100%;
+        background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Stade_Sylvio_Cator_2010.jpg/1920px-Stade_Sylvio_Cator_2010.jpg') center/cover no-repeat;
+        filter: brightness(0.6);
+        z-index:0;
         transform: scale(1.1);
-        transition: transform 12s linear;
+        transition: transform 15s linear;
     }
 
     .hero:hover .hero-bg { transform: scale(1); }
 
     .hero-content {
-        position: relative;
-        z-index: 10;
-        text-align:center;
-        max-width:1000px;
-        padding:0 1rem;
+        position:relative; z-index:2;
+        max-width:900px;
     }
 
-    .hero-tag {
-        font-size:0.8rem;
-        color: var(--gold);
-        letter-spacing: 8px;
-        text-transform:uppercase;
-        margin-bottom:1.5rem;
-        display:block;
-        opacity:0;
-        transform: translateY(20px);
-        animation: fadeIn 1s forwards 0.5s;
-    }
-
-    .hero h1 {
+    .hero-content h1 {
         font-family:'Playfair Display', serif;
-        font-size: clamp(3rem, 8vw, 6rem);
-        line-height:1.1;
-        margin-bottom:2rem;
-        font-style:italic;
+        font-size: clamp(3rem,8vw,6rem);
+        font-style: italic;
+        margin-bottom:1.5rem;
     }
 
-    .btn-elite {
-        padding:1.5rem 4rem;
-        background:transparent;
+    .hero-content p {
+        font-size:1.1rem;
+        color: var(--gold);
+        letter-spacing:3px;
+        margin-bottom:2rem;
+    }
+
+    .btn-primary {
+        padding:1rem 3rem;
         border:1px solid var(--gold);
         color: var(--gold);
+        background:transparent;
         text-transform:uppercase;
-        letter-spacing:4px;
         font-size:0.75rem;
         cursor:pointer;
-        position:relative;
-        overflow:hidden;
         transition:0.5s;
     }
 
-    .btn-elite:hover {
-        color: var(--bg);
+    .btn-primary:hover {
         background: var(--gold);
-        box-shadow: 0 0 30px rgba(198, 167, 94,0.3);
+        color: var(--bg-dark);
+        box-shadow: 0 0 20px rgba(198,167,94,0.4);
     }
 
-    /* Divisions Section */
-    .section-header {
-        padding: 10rem 5% 4rem;
+    /* Divisions Grid */
+    .divisions {
+        display:grid;
+        grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+        gap:2rem;
+        padding:8rem 5%;
     }
 
-    .division-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill,minmax(300px,1fr));
-        border-top:1px solid rgba(198,167,94,0.1);
+    .division-card {
+        background: var(--forest);
+        padding:3rem 2rem;
+        border-radius:8px;
+        transition:0.5s;
+        cursor:pointer;
     }
 
-    .div-card {
-        padding:4rem 2rem;
-        border-right:1px solid rgba(198,167,94,0.1);
-        border-bottom:1px solid rgba(198,167,94,0.1);
-        transition: var(--ease);
-        position:relative;
-        cursor: pointer;
+    .division-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(198,167,94,0.3);
     }
 
-    .div-card:hover { background: var(--forest); }
-
-    .div-card h3 {
+    .division-card h3 {
         font-family:'Playfair Display', serif;
         font-size:1.8rem;
-        margin-bottom:1.5rem;
-    }
-
-    .div-card ul { list-style:none; }
-    .div-card li {
-        font-size:0.85rem;
         margin-bottom:1rem;
-        color: var(--cream-low);
+    }
+
+    .division-card ul { list-style:none; }
+    .division-card li {
+        font-size:0.85rem;
+        margin-bottom:0.8rem;
         display:flex;
-        justify-content: space-between;
+        justify-content:space-between;
         align-items:center;
-        transition:0.3s;
     }
 
-    .div-card li:hover { color: var(--gold-bright); }
-
-    .status-pill {
+    .pill {
         font-size:0.6rem;
-        padding:2px 10px;
+        padding:2px 8px;
         border:1px solid var(--gold);
-        color: var(--gold);
         border-radius:50px;
+        color: var(--gold);
     }
-
-    /* Clickable Merch Links */
-    .merch-card { cursor:pointer; }
-    .merch-card:hover { color: var(--gold-bright); }
 
     /* HQ Section */
-    .hq-reveal {
+    .hq-section {
         display:flex;
         flex-wrap:wrap;
         margin:5% 0;
-        background: var(--forest);
-        min-height:80vh;
     }
 
     .hq-image {
         flex:1 1 60%;
         background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000') center/cover no-repeat;
-        filter: grayscale(0.3) contrast(1.2);
+        filter: grayscale(0.2) contrast(1.2);
         min-height:400px;
     }
 
     .hq-info {
         flex:1 1 40%;
-        padding:10% 5%;
-        display:flex; flex-direction:column; justify-content:center;
+        padding:5% 3%;
+        display:flex; flex-direction:column;
+        justify-content:center;
     }
+
+    .hq-info h2 {
+        font-family:'Playfair Display', serif;
+        font-size:2.5rem;
+        margin-bottom:1rem;
+    }
+
+    .hq-info p { color: var(--cream-low); margin-bottom:1.5rem; }
 
     /* Footer */
     footer {
-        padding:10rem 5% 4rem;
-        background:#050A08;
+        background: var(--bg-dark);
+        padding:6rem 5% 4rem;
         border-top:1px solid var(--gold);
     }
 
-    footer .footer-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px,1fr)); gap:4rem; }
+    footer .footer-grid {
+        display:grid;
+        grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+        gap:3rem;
+    }
 
-    footer a.logo { font-family:'Playfair Display', serif; font-size:1.5rem; color:var(--gold); text-decoration:none; }
+    footer a.logo { font-family:'Playfair Display', serif; color: var(--gold); font-size:1.5rem; text-decoration:none; }
 
     footer p { font-size:0.9rem; color: var(--cream-low); }
 
-    footer div.footer-bottom {
-        margin-top:6rem;
-        padding-top:2rem;
-        border-top:1px solid rgba(198,167,94,0.1);
+    footer .footer-bottom {
+        margin-top:4rem;
         display:flex; justify-content:space-between;
-        font-size:0.6rem; letter-spacing:3px; opacity:0.5;
+        font-size:0.6rem; opacity:0.5;
     }
 
-    @keyframes fadeIn {
-        to { opacity:1; transform:translateY(0);}
-    }
+    /* Animations */
+    @keyframes fadeIn { to { opacity:1; transform:translateY(0);} }
 
-    /* Responsive */
-    @media (max-width:900px) {
-        .hq-reveal { flex-direction:column; }
+    @media (max-width:900px){
+        .hq-section { flex-direction:column; }
         .hq-image, .hq-info { width:100%; height:400px; }
-        .nav-links { display:none; }
-        .hero h1 { font-size:clamp(2rem,8vw,4rem); }
-        .div-card { padding:3rem 1.5rem; }
+        .division-card { padding:2rem 1rem; }
     }
 </style>
 </head>
@@ -254,69 +241,63 @@
 <nav id="navbar">
     <a href="#" class="logo">MAISON DU SPORT</a>
     <div class="nav-links">
-        <a href="#about">The Mission</a>
+        <a href="#hero">Home</a>
         <a href="#divisions">Divisions</a>
         <a href="#hq">Headquarters</a>
         <a href="#contact">Contact</a>
     </div>
 </nav>
 
-<section class="hero">
+<section class="hero" id="hero">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <span class="hero-tag">Haitian Institutional Hub</span>
-        <h1>The Home of <br>Haitian Football</h1>
-        <button class="btn-elite">Enter The Headquarters</button>
+        <p>The Home of Haitian Football</p>
+        <h1>Maison Du Sport</h1>
+        <button class="btn-primary" onclick="document.getElementById('divisions').scrollIntoView({behavior:'smooth'})">Explore Divisions</button>
     </div>
 </section>
 
-<div class="section-header" id="about">
-    <span class="hero-tag" style="margin-bottom:1rem;">MDS Authority</span>
-    <h2 style="font-family:'Playfair Display', serif; font-size:3rem; max-width:800px;">Building the commercial and strategic spine of the national game.</h2>
-</div>
-
-<section class="division-grid" id="divisions">
-    <div class="div-card merch-card" onclick="window.open('https://instagram.com/mdshaiti','_blank')">
-        <h3>Merchandise & Retail</h3>
+<section class="divisions" id="divisions">
+    <div class="division-card" onclick="window.open('https://instagram.com/mdshaiti','_blank')">
+        <h3>Merch & Retail</h3>
         <ul>
-            <li>National Kit Distribution <span class="status-pill">Soon</span></li>
-            <li>Exclusive Founder Series <span class="status-pill">Soon</span></li>
-            <li>League Merch Systems <span class="status-pill">Soon</span></li>
+            <li>National Kit Distribution <span class="pill">Soon</span></li>
+            <li>Exclusive Founder Series <span class="pill">Soon</span></li>
+            <li>League Merch Systems <span class="pill">Soon</span></li>
         </ul>
     </div>
-    <div class="div-card">
+    <div class="division-card">
         <h3>Commercial Development</h3>
         <ul>
-            <li>Sponsorship Architecture <span class="status-pill">Soon</span></li>
-            <li>Commercial Advisory <span class="status-pill">Soon</span></li>
-            <li>Global Branding <span class="status-pill">Soon</span></li>
+            <li>Sponsorship Architecture <span class="pill">Soon</span></li>
+            <li>Commercial Advisory <span class="pill">Soon</span></li>
+            <li>Global Branding <span class="pill">Soon</span></li>
         </ul>
     </div>
-    <div class="div-card">
+    <div class="division-card">
         <h3>Media & Production</h3>
         <ul>
-            <li>MDS Original Docs <span class="status-pill">Soon</span></li>
-            <li>The Match Studio <span class="status-pill">Soon</span></li>
-            <li>Heritage Content Hub <span class="status-pill">Soon</span></li>
+            <li>MDS Original Docs <span class="pill">Soon</span></li>
+            <li>The Match Studio <span class="pill">Soon</span></li>
+            <li>Heritage Content Hub <span class="pill">Soon</span></li>
         </ul>
     </div>
-    <div class="div-card">
+    <div class="division-card">
         <h3>Infrastructure & Partners</h3>
         <ul>
-            <li>Strategic Collaborations <span class="status-pill">Soon</span></li>
-            <li>Institutional Liaison <span class="status-pill">Soon</span></li>
-            <li>The Physical Future <span class="status-pill">Soon</span></li>
+            <li>Strategic Collaborations <span class="pill">Soon</span></li>
+            <li>Institutional Liaison <span class="pill">Soon</span></li>
+            <li>The Physical Future <span class="pill">Soon</span></li>
         </ul>
     </div>
 </section>
 
-<section class="hq-reveal" id="hq">
+<section class="hq-section" id="hq">
     <div class="hq-image"></div>
     <div class="hq-info">
-        <span class="hero-tag">The Physical Home</span>
-        <h2 style="font-family:'Playfair Display', serif; font-size:2.5rem; margin-bottom:1.5rem;">MDS Port-au-Prince</h2>
-        <p style="color: var(--cream-low); margin-bottom:2rem;">A strategic center for the thinkers, creators, and builders of Haitian football. Currently under development.</p>
-        <span class="status-pill" style="width:fit-content; padding:5px 20px;">Opening Coming Soon</span>
+        <h2>MDS Headquarters</h2>
+        <p>The strategic home of Haitian football. A place for visionaries and creators. Opening soon.</p>
+        <span class="pill">Coming Soon</span>
     </div>
 </section>
 
@@ -324,31 +305,32 @@
     <div class="footer-grid">
         <div>
             <a href="#" class="logo">MAISON DU SPORT</a>
-            <p style="margin-top:2rem; font-size:0.8rem;">The definitive authority for football strategy in Haiti.</p>
+            <p>The definitive authority for Haitian football strategy.</p>
         </div>
         <div>
-            <p style="color: var(--gold); margin-bottom:1.5rem; text-transform:uppercase; font-size:0.7rem;">Institutional Contact</p>
-            <p style="font-family:'Playfair Display', serif; font-size:1.2rem;">+509 4720 9775</p>
-            <p style="color: var(--cream-low); font-size:0.9rem;">contactmaisondusport@gmail.com</p>
+            <p style="color: var(--gold); text-transform:uppercase; font-size:0.75rem;">Contact</p>
+            <p>+509 4720 9775</p>
+            <p>contactmaisondusport@gmail.com</p>
         </div>
         <div style="text-align:right;">
-            <p style="color: var(--gold); margin-bottom:1.5rem; text-transform:uppercase; font-size:0.7rem;">Official Channels</p>
+            <p style="color: var(--gold); text-transform:uppercase; font-size:0.75rem;">Official Channels</p>
             <p>Instagram: @mdshaiti</p>
             <p>Facebook: Maison Du Sport</p>
         </div>
     </div>
     <div class="footer-bottom">
-        <span>© 2026 MAISON DU SPORT</span>
+        <span>© 2026 Maison Du Sport</span>
         <span>STRUCTURE · LEGACY · PRIDE</span>
     </div>
 </footer>
 
 <script>
 const nav = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if(window.scrollY > 100) nav.classList.add('scrolled');
+window.addEventListener('scroll',()=>{ 
+    if(window.scrollY>100) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
 });
 </script>
+
 </body>
 </html>
