@@ -6,51 +6,27 @@
     <title>Maison Du Sport | Institutional Hub of Haitian Football</title>
     <style>
         :root {
-            --bg-deep: #0E1A14;
-            --bg-forest: #1C2B22;
-            --gold: #C6A75E;
-            --gold-dim: rgba(198, 167, 94, 0.2);
-            --cream: #F5F1E6;
-            --cream-muted: #B7B2A6;
-            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+            --navy: #0B1C2D;
+            --cream: #F9F7F2;
+            --haiti-red: #D72638;
+            --concrete: #E5E5E5;
+            --text-dark: #050A0F;
+            --border: rgba(11, 28, 45, 0.1);
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', 'Segoe UI', serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
         body {
-            background-color: var(--bg-deep);
-            color: var(--cream);
-            line-height: 1.7;
+            background-color: var(--cream);
+            color: var(--navy);
+            line-height: 1.5;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* --- Typography --- */
-        h1, h2, h3, .nav-logo {
-            font-family: 'Georgia', serif; /* Elite vibe fallback */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 700;
-        }
-
-        .coming-soon {
-            font-size: 0.7rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        /* --- Layout Elements --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
 
         /* --- Navigation --- */
@@ -58,318 +34,212 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 2rem 4rem;
+            padding: 2rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            border-bottom: 1px solid transparent;
             transition: var(--transition);
         }
 
         nav.scrolled {
-            background: var(--bg-deep);
-            padding: 1rem 4rem;
-            border-bottom: 1px solid var(--gold-dim);
+            background: var(--navy);
+            padding: 1.2rem 5%;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
-        .nav-logo { color: var(--gold); font-size: 1.2rem; }
+        .logo {
+            font-weight: 900;
+            font-size: 1.2rem;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            color: white;
+        }
 
         .nav-links a {
-            color: var(--cream-muted);
+            color: white;
             text-decoration: none;
             margin-left: 1.5rem;
             font-size: 0.75rem;
-            font-weight: 600;
+            font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
             transition: 0.3s;
         }
 
-        .nav-links a:hover { color: var(--gold); }
+        .nav-links a:hover { opacity: 1; color: var(--haiti-red); }
 
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
+            width: 100%;
+            position: relative;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+            background: var(--navy);
+            overflow: hidden;
+            color: white;
             text-align: center;
-            background: linear-gradient(rgba(14, 26, 20, 0.8), rgba(14, 26, 20, 0.9)), 
-                        url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&q=80') center/cover;
-            border-bottom: 1px solid var(--gold-dim);
+        }
+
+        /* Video Placeholder Logic */
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            filter: grayscale(100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            margin-bottom: 1rem;
-            color: var(--cream);
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            font-weight: 900;
+            line-height: 0.85;
+            letter-spacing: -0.04em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
         }
 
         .hero p {
-            font-size: 1.1rem;
-            color: var(--cream-muted);
-            margin-bottom: 3rem;
-            letter-spacing: 3px;
+            font-size: 1.2rem;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
+            margin-bottom: 3rem;
+            font-weight: 300;
+            opacity: 0.9;
         }
 
-        .btn-gold {
-            padding: 1.2rem 3.5rem;
-            border: 1px solid var(--gold);
-            color: var(--gold);
+        .cta-main {
+            padding: 1.5rem 4rem;
+            background: transparent;
+            border: 1px solid white;
+            color: white;
             text-decoration: none;
+            font-weight: 800;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            font-weight: 700;
-            letter-spacing: 2px;
+            letter-spacing: 0.2em;
             transition: var(--transition);
         }
 
-        .btn-gold:hover {
-            background: var(--gold);
-            color: var(--bg-deep);
+        .cta-main:hover {
+            background: white;
+            color: var(--navy);
         }
 
-        /* --- About Section --- */
-        .section { padding: 10rem 0; border-bottom: 1px solid var(--gold-dim); }
+        /* --- Global Sections --- */
+        section {
+            padding: 120px 8%;
+            border-bottom: 1px solid var(--border);
+        }
 
-        .about-grid {
+        .section-tag {
+            font-size: 0.7rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--haiti-red);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* --- About --- */
+        .about-section {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
-            align-items: center;
+            gap: 100px;
+            align-items: start;
         }
 
-        .doc-photo {
-            width: 100%;
-            height: 500px;
-            background: var(--bg-forest);
-            border: 1px solid var(--gold-dim);
-            filter: grayscale(40%) contrast(110%);
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            line-height: 1.1;
         }
 
-        /* --- Divisions Grid --- */
+        /* --- Divisions --- */
         .divisions-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            gap: 1px;
+            background: var(--border);
             margin-top: 4rem;
         }
 
         .division-card {
-            background: var(--bg-forest);
+            background: var(--cream);
             padding: 4rem;
-            border: 1px solid var(--gold-dim);
             transition: var(--transition);
         }
 
         .division-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: white;
         }
 
-        .division-card h3 { margin-bottom: 1.5rem; color: var(--gold); }
+        .division-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+        }
+
         .division-card ul { list-style: none; }
-        .division-card li { 
-            margin-bottom: 0.5rem; 
-            color: var(--cream-muted);
+        .division-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
             display: flex;
             justify-content: space-between;
             font-size: 0.9rem;
+            font-weight: 500;
         }
 
-        /* --- Merch / Media Grids --- */
-        .merch-grid, .media-grid {
+        .status {
+            font-size: 0.6rem;
+            background: var(--concrete);
+            padding: 2px 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- Media/Merch --- */
+        .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            gap: 20px;
             margin-top: 3rem;
         }
 
-        .item-placeholder {
-            background: var(--bg-forest);
-            aspect-ratio: 1;
-            border: 1px solid var(--gold-dim);
+        .media-placeholder {
+            aspect-ratio: 16/9;
+            background: var(--navy);
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            transition: var(--transition);
+            align-items: flex-end;
+            padding: 20px;
+            color: rgba(255,255,255,0.4);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .item-placeholder:hover {
-            border-color: var(--gold);
-            box-shadow: 0 0 20px rgba(198, 167, 94, 0.1);
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: #0A140F;
-            padding: 8rem 0 4rem;
-            border-top: 1px solid var(--gold);
-        }
-
-        .footer-flex {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 6rem;
-        }
-
-        .footer-col h4 { color: var(--gold); margin-bottom: 2rem; font-size: 0.8rem; }
-        .footer-col p { font-size: 1.2rem; margin-bottom: 0.5rem; }
-
-        @media (max-width: 900px) {
-            .about-grid, .divisions-grid, .merch-grid, .media-grid { grid-template-columns: 1fr; }
-            nav { padding: 1rem 2rem; }
-            .nav-links { display: none; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav id="navbar">
-        <div class="nav-logo">Maison Du Sport</div>
-        <div class="nav-links">
-            <a href="#about">About</a>
-            <a href="#divisions">Divisions</a>
-            <a href="#merch">Merch</a>
-            <a href="#hq">Headquarters</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
-
-    <header class="hero">
-        <h1>The Home of <br>Haitian Football.</h1>
-        <p>Revival is not a dream. It is a responsibility.</p>
-        <a href="#about" class="btn-gold">Enter Maison Du Sport</a>
-    </header>
-
-    <section id="about" class="section">
-        <div class="container about-grid">
-            <div class="doc-photo">
-                </div>
-            <div>
-                <span class="coming-soon" style="display:block; margin-bottom: 1rem;">Institutional Overview</span>
-                <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Building the structure behind the game.</h2>
-                <p style="color: var(--cream-muted); font-size: 1.1rem;">
-                    Maison Du Sport (MDS) is a Haitian football-focused company built to centralize the commercial, media, and strategic development of the game.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <section id="divisions" class="section" style="background: var(--bg-deep);">
-        <div class="container">
-            <span class="coming-soon">Strategic Hubs</span>
-            <h2 style="margin-top: 1rem;">Our Divisions</h2>
-            
-            <div class="divisions-grid">
-                <div class="division-card">
-                    <h3>Official Merchandise</h3>
-                    <ul>
-                        <li>National Team Distribution <span class="coming-soon">Soon</span></li>
-                        <li>League Partnerships <span class="coming-soon">Soon</span></li>
-                        <li>Exclusive Collections <span class="coming-soon">Soon</span></li>
-                    </ul>
-                </div>
-                <div class="division-card">
-                    <h3>Commercial Development</h3>
-                    <ul>
-                        <li>Sponsorship Structuring <span class="coming-soon">Soon</span></li>
-                        <li>Club Merchandising <span class="coming-soon">Soon</span></li>
-                        <li>Commercial Advisory <span class="coming-soon">Soon</span></li>
-                    </ul>
-                </div>
-                <div class="division-card">
-                    <h3>Media & Content</h3>
-                    <ul>
-                        <li>Match Highlights <span class="coming-soon">Soon</span></li>
-                        <li>Player Features <span class="coming-soon">Soon</span></li>
-                        <li>Mini-Documentaries <span class="coming-soon">Soon</span></li>
-                    </ul>
-                </div>
-                <div class="division-card">
-                    <h3>Strategic Partnerships</h3>
-                    <ul>
-                        <li>Corporate Alignment <span class="coming-soon">Soon</span></li>
-                        <li>Institutional Collaborations <span class="coming-soon">Soon</span></li>
-                        <li>Infrastructure Advisory <span class="coming-soon">Soon</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="merch" class="section">
-        <div class="container">
-            <h2 style="text-align: center;">MDS Atelier</h2>
-            <div class="merch-grid">
-                <div class="item-placeholder">
-                    <p>National Jersey</p>
-                    <span class="coming-soon">Available Soon</span>
-                </div>
-                <div class="item-placeholder">
-                    <p>National Jersey</p>
-                    <span class="coming-soon">Available Soon</span>
-                </div>
-                <div class="item-placeholder">
-                    <p>National Jersey</p>
-                    <span class="coming-soon">Available Soon</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="hq" class="section" style="text-align: center;">
-        <div class="container">
-            <h2 style="margin-bottom: 1rem;">MDS Headquarters</h2>
-            <p class="coming-soon" style="font-size: 1rem; color: var(--cream);">Port-au-Prince, Haiti — Opening Soon</p>
-            <div style="margin-top: 4rem; height: 500px; border: 1px solid var(--gold-dim); background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80') center/cover; filter: sepia(20%) contrast(110%);">
-                </div>
-            <p style="margin-top: 2rem; color: var(--cream-muted);">The future physical home of Haitian football operations.</p>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <div class="container">
-            <div class="footer-flex">
-                <div class="footer-col">
-                    <h4 style="font-size: 1.5rem; font-family: 'Georgia', serif;">Maison Du Sport</h4>
-                    <p style="font-size: 0.9rem; color: var(--cream-muted);">The Home of Haitian Football</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Direct Contact</h4>
-                    <p>+509 4720 9775</p>
-                    <p style="font-size: 1rem;">contactmaisondusport@gmail.com</p>
-                </div>
-                <div class="footer-col">
-                    <h4>Social Presence</h4>
-                    <p>@mdshaiti</p>
-                    <p>Maison Du Sport</p>
-                </div>
-            </div>
-            <div style="padding-top: 4rem; border-top: 1px solid var(--gold-dim); display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 2px; color: var(--cream-muted);">
-                <span>© 2026 MAISON DU SPORT</span>
-                <span>AUTHENTICITY · AUTHORITY · LEGACY</span>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-    </script>
-</body>
-</html>
+        /* --- Headquarters --- */
+        .hq-render {
+            width: 100%;
+            height: 60vh;
+            background: var(--concrete);
+            margin-top: 3rem;
+            background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(100%)
