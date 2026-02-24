@@ -1,275 +1,375 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maison Du Sport | The Home of Haitian Football</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<style>
-/* Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Du Sport | Institutional Hub of Haitian Football</title>
+    <style>
+        :root {
+            --bg-deep: #0E1A14;
+            --bg-forest: #1C2B22;
+            --gold: #C6A75E;
+            --gold-dim: rgba(198, 167, 94, 0.2);
+            --cream: #F5F1E6;
+            --cream-muted: #B7B2A6;
+            --transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
 
-body {
-  background-color: #0E1A14;
-  color: #F5F1E6;
-  line-height: 1.6;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', 'Segoe UI', serif;
+        }
 
-/* NAVIGATION */
-nav {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  padding: 20px 8%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(14,26,20,0.95);
-  border-bottom: 1px solid rgba(198,167,94,0.2);
-  z-index: 100;
-}
+        body {
+            background-color: var(--bg-deep);
+            color: var(--cream);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-nav h1 {
-  font-size: 20px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
+        /* --- Typography --- */
+        h1, h2, h3, .nav-logo {
+            font-family: 'Georgia', serif; /* Elite vibe fallback */
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
 
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-}
+        .coming-soon {
+            font-size: 0.7rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
 
-nav ul li a {
-  text-decoration: none;
-  color: #F5F1E6;
-  font-weight: 400;
-  transition: 0.3s;
-}
+        /* --- Layout Elements --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
 
-nav ul li a:hover {
-  color: #C6A75E;
-}
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid transparent;
+            transition: var(--transition);
+        }
 
-/* HERO SECTION */
-section {
-  padding: 120px 8%;
-}
+        nav.scrolled {
+            background: var(--bg-deep);
+            padding: 1rem 4rem;
+            border-bottom: 1px solid var(--gold-dim);
+        }
 
-.hero {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+        .nav-logo { color: var(--gold); font-size: 1.2rem; }
 
-.hero h2 {
-  font-size: 56px;
-  font-weight: 800;
-  max-width: 700px;
-  letter-spacing: -1px;
-}
+        .nav-links a {
+            color: var(--cream-muted);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: 0.3s;
+        }
 
-.hero p {
-  margin-top: 20px;
-  font-size: 20px;
-  color: #B7B2A6;
-}
+        .nav-links a:hover { color: var(--gold); }
 
-.btn {
-  margin-top: 30px;
-  padding: 14px 32px;
-  background: transparent;
-  border: 1px solid #C6A75E;
-  color: #C6A75E;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(14, 26, 20, 0.8), rgba(14, 26, 20, 0.9)), 
+                        url('https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&q=80') center/cover;
+            border-bottom: 1px solid var(--gold-dim);
+        }
 
-.btn:hover {
-  background: #C6A75E;
-  color: #0E1A14;
-}
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
 
-/* DIVISIONS SECTION */
-.divisions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  margin-top: 40px;
-}
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--cream-muted);
+            margin-bottom: 3rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
 
-.card {
-  background: #1C2B22;
-  padding: 35px;
-  border-radius: 6px;
-  border: 1px solid rgba(198,167,94,0.1);
-  transition: 0.3s;
-}
+        .btn-gold {
+            padding: 1.2rem 3.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            transition: var(--transition);
+        }
 
-.card:hover {
-  border-color: rgba(198,167,94,0.4);
-}
+        .btn-gold:hover {
+            background: var(--gold);
+            color: var(--bg-deep);
+        }
 
-.card h3 {
-  margin-bottom: 15px;
-}
+        /* --- About Section --- */
+        .section { padding: 10rem 0; border-bottom: 1px solid var(--gold-dim); }
 
-.coming {
-  margin-top: 15px;
-  color: #C6A75E;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+        }
 
-/* FOOTER */
-footer {
-  background: #0A140F;
-  padding: 60px 8%;
-  text-align: center;
-  border-top: 1px solid rgba(198,167,94,0.15);
-}
+        .doc-photo {
+            width: 100%;
+            height: 500px;
+            background: var(--bg-forest);
+            border: 1px solid var(--gold-dim);
+            filter: grayscale(40%) contrast(110%);
+        }
 
-footer p {
-  margin-top: 10px;
-  color: #B7B2A6;
-  font-size: 14px;
-}
+        /* --- Divisions Grid --- */
+        .divisions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
 
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  .hero h2 {
-    font-size: 38px;
-  }
-  nav ul {
-    flex-direction: column;
-    gap: 15px;
-  }
-}
-</style>
+        .division-card {
+            background: var(--bg-forest);
+            padding: 4rem;
+            border: 1px solid var(--gold-dim);
+            transition: var(--transition);
+        }
+
+        .division-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .division-card h3 { margin-bottom: 1.5rem; color: var(--gold); }
+        .division-card ul { list-style: none; }
+        .division-card li { 
+            margin-bottom: 0.5rem; 
+            color: var(--cream-muted);
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+        }
+
+        /* --- Merch / Media Grids --- */
+        .merch-grid, .media-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .item-placeholder {
+            background: var(--bg-forest);
+            aspect-ratio: 1;
+            border: 1px solid var(--gold-dim);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .item-placeholder:hover {
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(198, 167, 94, 0.1);
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: #0A140F;
+            padding: 8rem 0 4rem;
+            border-top: 1px solid var(--gold);
+        }
+
+        .footer-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 6rem;
+        }
+
+        .footer-col h4 { color: var(--gold); margin-bottom: 2rem; font-size: 0.8rem; }
+        .footer-col p { font-size: 1.2rem; margin-bottom: 0.5rem; }
+
+        @media (max-width: 900px) {
+            .about-grid, .divisions-grid, .merch-grid, .media-grid { grid-template-columns: 1fr; }
+            nav { padding: 1rem 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
 
-<!-- NAVIGATION -->
-<nav>
-  <h1>MDS</h1>
-  <ul>
-    <li><a href="#about">About</a></li>
-    <li><a href="#divisions">Divisions</a></li>
-    <li><a href="#merch">Merch</a></li>
-    <li><a href="#media">Media</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-</nav>
+    <nav id="navbar">
+        <div class="nav-logo">Maison Du Sport</div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#divisions">Divisions</a>
+            <a href="#merch">Merch</a>
+            <a href="#hq">Headquarters</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h2>The Home of Haitian Football.</h2>
-  <p>Revival is not a dream. It is a responsibility.</p>
-  <button class="btn">Enter Maison Du Sport</button>
-</section>
+    <header class="hero">
+        <h1>The Home of <br>Haitian Football.</h1>
+        <p>Revival is not a dream. It is a responsibility.</p>
+        <a href="#about" class="btn-gold">Enter Maison Du Sport</a>
+    </header>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2>About Maison Du Sport</h2>
-  <p style="margin-top:20px; max-width:700px;">
-    Maison Du Sport (MDS) is a Haitian football-focused company built to centralize
-    the commercial, media, and strategic development of the game.
-    We are building the structure behind Haitian football.
-  </p>
-</section>
+    <section id="about" class="section">
+        <div class="container about-grid">
+            <div class="doc-photo">
+                </div>
+            <div>
+                <span class="coming-soon" style="display:block; margin-bottom: 1rem;">Institutional Overview</span>
+                <h2 style="font-size: 2.5rem; margin-bottom: 2rem;">Building the structure behind the game.</h2>
+                <p style="color: var(--cream-muted); font-size: 1.1rem;">
+                    Maison Du Sport (MDS) is a Haitian football-focused company built to centralize the commercial, media, and strategic development of the game.
+                </p>
+            </div>
+        </div>
+    </section>
 
-<!-- DIVISIONS -->
-<section id="divisions">
-  <h2>Our Divisions</h2>
-  <div class="divisions">
-    <div class="card">
-      <h3>Official Football Merchandise</h3>
-      <p>National team distribution</p>
-      <p>League merchandise partnerships</p>
-      <p>Exclusive MDS collections</p>
-      <div class="coming">Coming Soon</div>
-    </div>
-    <div class="card">
-      <h3>League Commercial Development</h3>
-      <p>Sponsorship structuring</p>
-      <p>Club merchandising systems</p>
-      <p>Commercial advisory</p>
-      <div class="coming">Coming Soon</div>
-    </div>
-    <div class="card">
-      <h3>Media & Content Production</h3>
-      <p>Match highlights</p>
-      <p>Player features</p>
-      <p>Mini-documentaries</p>
-      <p>Content studio</p>
-      <div class="coming">Coming Soon</div>
-    </div>
-    <div class="card">
-      <h3>Strategic Partnerships</h3>
-      <p>Corporate alignment</p>
-      <p>Institutional collaborations</p>
-      <p>Infrastructure advisory</p>
-      <div class="coming">Coming Soon</div>
-    </div>
-  </div>
-</section>
+    <section id="divisions" class="section" style="background: var(--bg-deep);">
+        <div class="container">
+            <span class="coming-soon">Strategic Hubs</span>
+            <h2 style="margin-top: 1rem;">Our Divisions</h2>
+            
+            <div class="divisions-grid">
+                <div class="division-card">
+                    <h3>Official Merchandise</h3>
+                    <ul>
+                        <li>National Team Distribution <span class="coming-soon">Soon</span></li>
+                        <li>League Partnerships <span class="coming-soon">Soon</span></li>
+                        <li>Exclusive Collections <span class="coming-soon">Soon</span></li>
+                    </ul>
+                </div>
+                <div class="division-card">
+                    <h3>Commercial Development</h3>
+                    <ul>
+                        <li>Sponsorship Structuring <span class="coming-soon">Soon</span></li>
+                        <li>Club Merchandising <span class="coming-soon">Soon</span></li>
+                        <li>Commercial Advisory <span class="coming-soon">Soon</span></li>
+                    </ul>
+                </div>
+                <div class="division-card">
+                    <h3>Media & Content</h3>
+                    <ul>
+                        <li>Match Highlights <span class="coming-soon">Soon</span></li>
+                        <li>Player Features <span class="coming-soon">Soon</span></li>
+                        <li>Mini-Documentaries <span class="coming-soon">Soon</span></li>
+                    </ul>
+                </div>
+                <div class="division-card">
+                    <h3>Strategic Partnerships</h3>
+                    <ul>
+                        <li>Corporate Alignment <span class="coming-soon">Soon</span></li>
+                        <li>Institutional Collaborations <span class="coming-soon">Soon</span></li>
+                        <li>Infrastructure Advisory <span class="coming-soon">Soon</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- MERCH -->
-<section id="merch">
-  <h2>Merch Store Preview</h2>
-  <div class="divisions">
-    <div class="card">
-      <h3>National Team Jersey</h3>
-      <div class="coming">Available Soon</div>
-    </div>
-    <div class="card">
-      <h3>League Jersey</h3>
-      <div class="coming">Available Soon</div>
-    </div>
-    <div class="card">
-      <h3>MDS Founder Collection</h3>
-      <div class="coming">Available Soon</div>
-    </div>
-  </div>
-</section>
+    <section id="merch" class="section">
+        <div class="container">
+            <h2 style="text-align: center;">MDS Atelier</h2>
+            <div class="merch-grid">
+                <div class="item-placeholder">
+                    <p>National Jersey</p>
+                    <span class="coming-soon">Available Soon</span>
+                </div>
+                <div class="item-placeholder">
+                    <p>League Jersey</p>
+                    <span class="coming-soon">Available Soon</span>
+                </div>
+                <div class="item-placeholder">
+                    <p>Founder Collection</p>
+                    <span class="coming-soon">Available Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- MEDIA -->
-<section id="media">
-  <h2>Media Hub</h2>
-  <div class="divisions">
-    <div class="card">
-      <h3>Match Highlights</h3>
-      <div class="coming">Coming Soon</div>
-    </div>
-    <div class="card">
-      <h3>Player Features</h3>
-      <div class="coming">Coming Soon</div>
-    </div>
-    <div class="card">
-      <h3>Mini-Documentaries</h3>
-      <div class="coming">Coming Soon</div>
-    </div>
-  </div>
-</section>
+    <section id="hq" class="section" style="text-align: center;">
+        <div class="container">
+            <h2 style="margin-bottom: 1rem;">MDS Headquarters</h2>
+            <p class="coming-soon" style="font-size: 1rem; color: var(--cream);">Port-au-Prince, Haiti — Opening Soon</p>
+            <div style="margin-top: 4rem; height: 500px; border: 1px solid var(--gold-dim); background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80') center/cover; filter: sepia(20%) contrast(110%);">
+                </div>
+            <p style="margin-top: 2rem; color: var(--cream-muted);">The future physical home of Haitian football operations.</p>
+        </div>
+    </section>
 
-<!-- FOOTER -->
-<footer id="contact">
-  <h3>Maison Du Sport</h3>
-  <p>Port-au-Prince, Haiti</p>
-  <p>Phone: +509 4720 9775</p>
-  <p>Instagram: @mdshaiti</p>
-  <p>Facebook: Maison Du Sport</p>
-  <p style="margin-top:20px;">MDS — The Home of Haitian Football</p>
-</footer>
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-flex">
+                <div class="footer-col">
+                    <h4 style="font-size: 1.5rem; font-family: 'Georgia', serif;">Maison Du Sport</h4>
+                    <p style="font-size: 0.9rem; color: var(--cream-muted);">The Home of Haitian Football</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Direct Contact</h4>
+                    <p>+509 4720 9775</p>
+                    <p style="font-size: 1rem;">contactmaisondusport@gmail.com</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Social Presence</h4>
+                    <p>@mdshaiti</p>
+                    <p>Maison Du Sport</p>
+                </div>
+            </div>
+            <div style="padding-top: 4rem; border-top: 1px solid var(--gold-dim); display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 2px; color: var(--cream-muted);">
+                <span>© 2026 MAISON DU SPORT</span>
+                <span>AUTHENTICITY · AUTHORITY · LEGACY</span>
+            </div>
+        </div>
+    </footer>
 
+    <script>
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
 </body>
 </html>
