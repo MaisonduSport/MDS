@@ -16,7 +16,7 @@
             --accent-glow: #D1BA8C;
             --text-espresso: #2E2B25;
             --text-taupe: #7D766B;
-            --forest-pillar: #1F2C23; /* Kept for the Strategic Boxes depth */
+            --forest-pillar: #1F2C23; 
             --transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -30,7 +30,6 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Artistic Grain & Texture --- */
         body::before {
             content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -40,7 +39,7 @@
 
         h1, h2, h3 { font-family: 'Playfair Display', serif; text-transform: uppercase; font-weight: 900; }
 
-        /* --- Luxury Navigation --- */
+        /* --- Navigation --- */
         nav {
             position: fixed; top: 0; width: 100%; padding: 3rem 8%;
             display: flex; justify-content: space-between; align-items: center; z-index: 1000;
@@ -51,38 +50,28 @@
             backdrop-filter: blur(10px); border-bottom: 1px solid rgba(191, 166, 117, 0.2);
         }
         .logo { font-size: 1.8rem; color: var(--text-espresso); text-decoration: none; letter-spacing: -1px; }
-        .nav-links a { 
-            color: var(--text-taupe); text-decoration: none; font-size: 0.7rem; 
-            letter-spacing: 3px; margin-left: 3rem; text-transform: uppercase; 
-            font-weight: 600; transition: 0.4s; 
-        }
-        .nav-links a:hover { color: var(--accent-sable); }
+        .nav-links a { color: var(--text-taupe); text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; margin-left: 3rem; text-transform: uppercase; font-weight: 600; }
 
-        /* --- Hero Section (Cinematic) --- */
+        /* --- Hero Section --- */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; overflow: hidden;
-            background: #000;
+            text-align: center; position: relative; overflow: hidden; background: #000;
         }
         .hero-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.6; 
-            animation: slowZoom 20s infinite alternate;
+            object-fit: cover; opacity: 0.7; 
+            animation: slowZoom 25s infinite alternate;
         }
-        @keyframes slowZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
-        }
+        @keyframes slowZoom { 0% { transform: scale(1); } 100% { transform: scale(1.15); } }
         .hero-content { position: relative; z-index: 10; }
-        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); color: #fff; line-height: 0.9; margin-bottom: 1.5rem; letter-spacing: -2px; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); color: #fff; line-height: 0.85; margin-bottom: 1.5rem; }
         .hero p { color: var(--accent-sable); letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 4rem; }
 
         .btn {
             padding: 1.4rem 4rem; border: 1px solid var(--accent-sable); color: #fff;
-            text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
-            font-size: 0.7rem; font-weight: 700; transition: var(--transition);
+            text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; font-weight: 700; transition: var(--transition);
         }
-        .btn:hover { background: var(--accent-sable); color: var(--bg-primary); border-color: var(--accent-sable); }
+        .btn:hover { background: var(--accent-sable); color: var(--bg-primary); }
 
         /* --- About Section --- */
         .about {
@@ -93,47 +82,50 @@
             width: 100%; height: 600px; object-fit: cover;
             filter: sepia(0.2) contrast(1.1); border: 1px solid var(--bg-secondary);
         }
-        .about-text h2 { font-size: 3.5rem; margin-bottom: 2rem; line-height: 1; }
-        .about-text p { font-size: 1.2rem; line-height: 1.8; color: var(--text-taupe); max-width: 500px; }
 
         /* --- Strategic Pillars (The Three Big Boxes) --- */
         .pillars-grid {
             display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
-            background-color: var(--accent-sable); /* creates thin border effect */
+            background-color: var(--accent-sable); 
             border-top: 1px solid var(--accent-sable); border-bottom: 1px solid var(--accent-sable);
         }
         .pillar-box {
             background-color: var(--forest-pillar); padding: 80px 40px;
-            min-height: 700px; display: flex; flex-direction: column; 
+            min-height: 900px; display: flex; flex-direction: column; 
             align-items: center; position: relative; transition: var(--transition);
-            overflow: hidden;
         }
-        .pillar-box:hover { background-color: #26362b; box-shadow: inset 0 0 100px rgba(209, 186, 140, 0.15); }
         .pillar-box h2 { color: var(--accent-sable); font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
 
         /* --- Atelier Product Cards --- */
-        .atelier-content { width: 100%; }
+        .atelier-scroll { 
+            width: 100%; height: 700px; overflow-y: auto; 
+            padding-right: 10px;
+        }
+        .atelier-scroll::-webkit-scrollbar { width: 3px; }
+        .atelier-scroll::-webkit-scrollbar-thumb { background: var(--accent-sable); }
+
         .product-card {
             background: rgba(255,255,255,0.03); border: 1px solid rgba(191, 166, 117, 0.1);
-            margin-bottom: 20px; padding: 1.5rem; text-align: center; transition: var(--transition);
+            margin-bottom: 30px; padding: 2rem; text-align: center; transition: var(--transition);
         }
-        .product-card:hover { transform: translateY(-10px); border-color: var(--accent-glow); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-        .product-img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 1.5rem; }
-        .product-card h4 { color: #fff; font-size: 1rem; letter-spacing: 2px; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--accent-glow); background: rgba(255,255,255,0.05); }
+        .product-img { width: 100%; height: 250px; object-fit: contain; margin-bottom: 1.5rem; }
+        .product-card h4 { color: #fff; font-size: 1.1rem; letter-spacing: 2px; }
 
-        .coming-soon-label {
-            margin: auto; color: var(--accent-sable); letter-spacing: 10px;
-            text-transform: uppercase; font-weight: 300; font-size: 0.8rem;
-            opacity: 0.6;
+        /* --- Headquarters Section --- */
+        .hq-reveal {
+            padding: 160px 8%; text-align: center; background: var(--bg-primary);
         }
+        .hq-main-img {
+            width: 100%; height: 70vh; object-fit: cover; border: 1px solid var(--accent-sable);
+            margin: 4rem 0; filter: grayscale(1); transition: 1s;
+        }
+        .hq-main-img:hover { filter: grayscale(0); }
 
         /* --- Footer --- */
-        footer {
-            background: #0A140F; padding: 120px 8% 60px; color: #fff;
-        }
+        footer { background: #0A140F; padding: 120px 8% 60px; color: #fff; }
         .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; }
-        .footer-tagline { font-family: 'Playfair Display', serif; font-size: 2.5rem; max-width: 400px; line-height: 1; margin-bottom: 2rem; }
-        .footer-info p { color: var(--text-taupe); margin-bottom: 10px; font-size: 0.9rem; letter-spacing: 1px; }
+        .footer-info p { color: var(--text-taupe); margin-bottom: 10px; font-size: 0.9rem; }
 
         @media (max-width: 1200px) {
             .pillars-grid { grid-template-columns: 1fr; }
@@ -149,79 +141,93 @@
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#pillars">Divisions</a>
-            <a href="#atelier">Atelier</a>
+            <a href="#hq">Headquarters</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <header class="hero">
-        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2500" class="hero-img" alt="Sylvio Cator Stadium">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/11028986945017869926_0" class="hero-img" alt="Stade Sylvio Cator Majestic Aerial">
         <div class="hero-content">
-            <p>A Haitian Strategic Hub</p>
+            <p>The Institution of Haitian Football</p>
             <h1>The Home of <br>Haitian Football.</h1>
             <a href="#pillars" class="btn">Enter Maison Du Sport</a>
         </div>
     </header>
 
     <section id="about" class="about">
-        <img src="https://images.unsplash.com/photo-1510563393941-bd786762ff97?q=80&w=1500" class="about-img" alt="Haitian Football Culture">
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/13084499753990627791_0" class="about-img" alt="Haitian Football Action">
         <div class="about-text">
             <h2>Heritage & <br>Structure.</h2>
-            <p>Maison Du Sport (MDS) is a Haitian football-focused company built to centralize the commercial, media, and strategic development of the game.</p>
-            <p style="margin-top: 2rem;">We are building the structure behind Haitian football.</p>
+            <p>Maison Du Sport (MDS) is built to centralize the commercial, media, and strategic development of the game.</p>
+            <p style="margin-top: 2rem;">"Revival is not a dream. It is a responsibility."</p>
         </div>
     </section>
 
     <section id="pillars" class="pillars-grid">
-        
-        <div class="pillar-box" id="atelier">
+        <div class="pillar-box">
             <h2>Atelier</h2>
-            <div class="atelier-content">
+            <div class="atelier-scroll">
                 <div class="product-card">
-                    <img src="Blue-file.png.jpeg" class="product-img" alt="National Jersey Blue">
+                    <img src="Blue-file.png.jpeg" class="product-img" alt="Jersey Blue">
                     <h4>National Jersey</h4>
-                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">SOON</p>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">EXCLUSIVE</p>
                 </div>
                 <div class="product-card">
-                    <img src="WC26-white.png.jpeg" class="product-img" alt="National Jersey White">
+                    <img src="WC26-white.png.jpeg" class="product-img" alt="Jersey White">
                     <h4>National Jersey</h4>
-                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">SOON</p>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">EXCLUSIVE</p>
                 </div>
                 <div class="product-card">
-                    <img src="WC26-Red.png.jpeg" class="product-img" alt="National Jersey Red">
+                    <img src="WC26-Red.png.jpeg" class="product-img" alt="Jersey Red">
                     <h4>National Jersey</h4>
-                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">SOON</p>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">EXCLUSIVE</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1000" class="product-img" alt="Training Kit">
+                    <h4>Training Kit</h4>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">COLLECTION</p>
+                </div>
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1000" class="product-img" alt="Heritage Scarf">
+                    <h4>Heritage Scarf</h4>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">LEGACY</p>
                 </div>
             </div>
         </div>
 
         <div class="pillar-box">
             <h2>Commercial</h2>
-            <div class="coming-soon-label">Coming Soon</div>
+            <p style="color: var(--accent-sable); letter-spacing: 10px; margin: auto;">COMING SOON</p>
         </div>
 
         <div class="pillar-box">
             <h2>Partnerships</h2>
-            <div class="coming-soon-label">Coming Soon</div>
+            <p style="color: var(--accent-sable); letter-spacing: 10px; margin: auto;">COMING SOON</p>
         </div>
+    </section>
 
+    <section id="hq" class="hq-reveal">
+        <span style="letter-spacing: 8px; font-weight: 700; color: var(--accent-sable);">PHYSICAL HEADQUARTERS</span>
+        <h2 style="font-size: 3.5rem; margin-top: 1rem;">MDS Operations</h2>
+        <img src="http://googleusercontent.com/image_collection/image_retrieval/7044391637942779551_0" class="hq-main-img" alt="Corporate Headquarters Rendering">
+        <p style="font-style: italic; color: var(--text-taupe); font-size: 1.2rem;">Port-au-Prince, Haiti — Opening Soon</p>
     </section>
 
     <footer id="contact">
         <div class="footer-grid">
             <div>
-                <div class="footer-tagline">MDS — The Home of Haitian Football</div>
-                <p style="color: var(--accent-sable); letter-spacing: 3px; font-weight: 700; font-size: 0.7rem;">PORT-AU-PRINCE, HAITI</p>
+                <h2 style="font-size: 3rem; margin-bottom: 1rem;">MDS</h2>
+                <p style="color: var(--accent-sable); letter-spacing: 3px;">HAITIAN FOOTBALL HUB</p>
             </div>
             <div class="footer-info">
-                <p style="color: #fff; margin-bottom: 2rem; letter-spacing: 5px;">CONNECT</p>
                 <p>+509 4720 9775</p>
                 <p>Instagram: @mdshaiti</p>
                 <p>Facebook: Maison Du Sport</p>
             </div>
         </div>
-        <div style="margin-top: 8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; font-size: 0.6rem; letter-spacing: 4px; opacity: 0.4;">
-            © 2026 MAISON DU SPORT. ALL RIGHTS RESERVED.
+        <div style="margin-top: 6rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 2rem; font-size: 0.6rem; letter-spacing: 4px; opacity: 0.5;">
+            © 2026 MAISON DU SPORT. THE HOME OF HAITIAN FOOTBALL.
         </div>
     </footer>
 
