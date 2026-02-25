@@ -6,7 +6,7 @@
     <title>Maison Du Sport | Institutional Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -20,6 +20,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body { 
             background-color: var(--bg-primary); 
             color: var(--cream); 
@@ -69,23 +70,28 @@
         .hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.85; margin-bottom: 1.5rem; font-style: italic; }
         .hero p { letter-spacing: 12px; color: var(--gold); text-transform: uppercase; font-size: 0.85rem; font-weight: 400; }
 
-        /* --- MDS Atelier --- */
+        /* --- MDS Atelier (Jersey Cards) --- */
         .atelier-grid {
             display: grid; 
             grid-template-columns: repeat(6, 1fr); 
             gap: 40px; 
             margin-top: 5rem;
         }
+        
+        .product-link { text-decoration: none; grid-column: span 2; display: block; }
+        
         .product-card {
-            grid-column: span 2;
             background: var(--bg-secondary); border: 1px solid rgba(212, 175, 108, 0.08);
             padding: 1rem; transition: var(--transition); position: relative;
+            cursor: pointer;
         }
-        /* Layout for 5 items: 3 top, 2 bottom centered */
-        .product-card.bottom-row:nth-child(4) { grid-column: 2 / 4; }
-        .product-card.bottom-row:nth-child(5) { grid-column: 4 / 6; }
+
+        /* Layout for 5 items: 3 top row, 2 bottom row centered */
+        .product-link.bottom-row:nth-of-type(4) { grid-column: 2 / 4; }
+        .product-link.bottom-row:nth-of-type(5) { grid-column: 4 / 6; }
 
         .product-card:hover { border-color: var(--gold); transform: translateY(-15px); }
+        
         .img-container {
             width: 100%; height: 500px; overflow: hidden; background: #050a08;
             border: 1px solid rgba(212, 175, 108, 0.05);
@@ -95,6 +101,7 @@
             filter: grayscale(100%) brightness(0.8); transition: 0.5s;
         }
         .product-card:hover .product-img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
+        
         .product-info { padding: 2rem 1rem; text-align: left; border-top: 1px solid rgba(212, 175, 108, 0.1); margin-top: 1rem; }
         .product-card h3 { font-size: 1.4rem; color: var(--cream); margin-bottom: 5px; }
         .status-tag { color: var(--gold); font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
@@ -112,28 +119,29 @@
         }
         .div-item h3 { font-size: 1.8rem; letter-spacing: 1px; color: var(--cream); margin-bottom: 10px; }
 
-        /* --- Headquarters with Parallax --- */
+        /* --- Headquarters Section --- */
         .hq-image-wrap {
             width: 100%; height: 85vh; overflow: hidden; margin: 4rem 0;
             border: 1px solid var(--gold); position: relative;
         }
         .hq-img {
-            width: 100%; height: 120%; /* Taller for parallax room */
+            width: 100%; height: 115%; /* Extra height for parallax */
             object-fit: cover;
-            position: absolute; top: -10%; left: 0;
+            position: absolute; top: -5%; left: 0;
             filter: grayscale(100%) contrast(1.1) brightness(0.6);
-            transition: transform 0.2s linear;
+            transition: transform 0.1s ease-out;
         }
         .hq-overlay {
             position: absolute; bottom: 40px; left: 40px; text-align: left; z-index: 5;
         }
 
+        /* --- Footer --- */
         footer { background: #050A08; padding: 100px 8% 50px; border-top: 1px solid var(--gold); }
         .footer-flex { display: flex; justify-content: space-between; align-items: center; }
 
         @media (max-width: 1100px) {
             .atelier-grid { grid-template-columns: 1fr; }
-            .product-card, .product-card.bottom-row { grid-column: span 6 !important; }
+            .product-link, .product-link.bottom-row { grid-column: span 6 !important; }
             .divisions-container { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 40px; }
             .footer-flex { flex-direction: column; gap: 50px; text-align: center; }
             .footer-flex div { text-align: center !important; }
@@ -166,26 +174,36 @@
         <h2 style="font-size: 3.5rem; margin-top: 15px;">MDS Atelier</h2>
         
         <div class="atelier-grid">
-            <div class="product-card">
-                <div class="img-container"><img src="1974shirt-png.png" class="product-img" alt="Legacy Shirt"></div>
-                <div class="product-info"><h3>1974 Heritage</h3><span class="status-tag">Coming Soon</span></div>
-            </div>
-            <div class="product-card">
-                <div class="img-container"><img src="WC26-cap.png.jpeg" class="product-img" alt="Official Cap"></div>
-                <div class="product-info"><h3>WC26 Cap</h3><span class="status-tag">Coming Soon</span></div>
-            </div>
-            <div class="product-card">
-                <div class="img-container"><img src="WC26-Red.png.jpeg" class="product-img" alt="Red Jersey"></div>
-                <div class="product-info"><h3>National Jersey — Red</h3><span class="status-tag">Coming Soon</span></div>
-            </div>
-            <div class="product-card bottom-row">
-                <div class="img-container"><img src="WC26-white.png .jpeg" class="product-img" alt="White Jersey"></div>
-                <div class="product-info"><h3>National Jersey — White</h3><span class="status-tag">Coming Soon</span></div>
-            </div>
-            <div class="product-card bottom-row">
-                <div class="img-container"><img src="Blue-file.png .jpeg" class="product-img" alt="Blue Jersey"></div>
-                <div class="product-info"><h3>National Jersey — Blue</h3><span class="status-tag">Coming Soon</span></div>
-            </div>
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link">
+                <div class="product-card">
+                    <div class="img-container"><img src="WC26-white.png .jpeg" class="product-img" alt="Legacy Shirt"></div>
+                    <div class="product-info"><h3>1974 Heritage</h3><span class="status-tag">Coming Soon</span></div>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link">
+                <div class="product-card">
+                    <div class="img-container"><img src="WC26-Red.png.jpeg.WC26-cap.png.jpeg" class="product-img" alt="Official Cap"></div>
+                    <div class="product-info"><h3>WC26 Cap</h3><span class="status-tag">Coming Soon</span></div>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link">
+                <div class="product-card">
+                    <div class="img-container"><img src="WC26-cap.png.jpeg" class="product-img" alt="Red Jersey"></div>
+                    <div class="product-info"><h3>National Jersey — Red</h3><span class="status-tag">Coming Soon</span></div>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link bottom-row">
+                <div class="product-card">
+                    <div class="img-container"><img src="Blue-file.png .jpeg" class="product-img" alt="White Jersey"></div>
+                    <div class="product-info"><h3>National Jersey — White</h3><span class="status-tag">Coming Soon</span></div>
+                </div>
+            </a>
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link bottom-row">
+                <div class="product-card">
+                    <div class="img-container"><img src="1974shirt-png.png" class="product-img" alt="Blue Jersey"></div>
+                    <div class="product-info"><h3>National Jersey — Blue</h3><span class="status-tag">Coming Soon</span></div>
+                </div>
+            </a>
         </div>
     </section>
 
@@ -206,9 +224,9 @@
         <p style="color: var(--cream-muted); margin-top: 10px; text-transform: uppercase; letter-spacing: 2px;">Port-au-Prince, Haiti</p>
         
         <div class="hq-image-wrap">
-            <img src="STOREPNG.png" class="hq-img" id="parallaxHq" alt="MDS Headquarters Store Front">
+            <img src="STOREPNG.png" class="hq-img" id="parallaxHq" alt="MDS Headquarters Concept">
             <div class="hq-overlay">
-                <span class="status-tag" style="background: var(--gold); color: var(--bg-primary); padding: 5px 15px;">Opening — Coming Soon</span>
+                <span class="status-tag" style="background: var(--gold); color: var(--bg-primary); padding: 10px 20px;">Opening — Coming Soon</span>
             </div>
         </div>
         
@@ -240,18 +258,20 @@
     </footer>
 
     <script>
-        // Navbar scroll effect
+        // Navbar and Parallax Logic
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
+            const hqImg = document.getElementById('parallaxHq');
+            
+            // Navbar transition
             if (window.scrollY > 100) nav.classList.add('scrolled');
             else nav.classList.remove('scrolled');
             
-            // Subtle Parallax for HQ Image
-            const hqImg = document.getElementById('parallaxHq');
+            // HQ Parallax transition
             let scrollPos = window.pageYOffset;
             let hqOffset = document.getElementById('hq').offsetTop;
             if (scrollPos > hqOffset - 1000) {
-                let speed = 0.15;
+                let speed = 0.12;
                 hqImg.style.transform = `translateY(${(scrollPos - hqOffset) * speed}px)`;
             }
         });
