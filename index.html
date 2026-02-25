@@ -1,311 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maison Du Sport | Haitian Football Authority</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-<style>
-:root {
-    --bg-primary: #F0EFEA;
-    --bg-secondary: #D9D6CB;
-    --accent: #BFA675;
-    --text-primary: #2E2B25;
-    --text-secondary: #7D766B;
-    --hover-accent: #D1BA8C;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maison Du Sport | The Heritage of Haitian Football</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-primary: #F0EFEA;
+            --bg-secondary: #D9D6CB;
+            --accent-sable: #BFA675;
+            --accent-glow: #D1BA8C;
+            --text-espresso: #2E2B25;
+            --text-taupe: #7D766B;
+            --forest-pillar: #1F2C23; /* Kept for the Strategic Boxes depth */
+            --transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+        }
 
-* { margin:0; padding:0; box-sizing:border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            background-color: var(--bg-primary); 
+            color: var(--text-espresso); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    overflow-x: hidden;
-}
+        /* --- Artistic Grain & Texture --- */
+        body::before {
+            content: "";
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05; pointer-events: none; z-index: 9999;
+        }
 
-a { text-decoration:none; color: inherit; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; text-transform: uppercase; font-weight: 900; }
 
-nav {
-    position: sticky;
-    top:0;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:1.5rem 5%;
-    background: var(--bg-primary);
-    z-index:1000;
-    border-bottom: 1px solid var(--accent);
-}
+        /* --- Luxury Navigation --- */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 3rem 8%;
+            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            transition: var(--transition);
+        }
+        nav.scrolled {
+            padding: 1.5rem 8%; background: rgba(240, 239, 234, 0.95);
+            backdrop-filter: blur(10px); border-bottom: 1px solid rgba(191, 166, 117, 0.2);
+        }
+        .logo { font-size: 1.8rem; color: var(--text-espresso); text-decoration: none; letter-spacing: -1px; }
+        .nav-links a { 
+            color: var(--text-taupe); text-decoration: none; font-size: 0.7rem; 
+            letter-spacing: 3px; margin-left: 3rem; text-transform: uppercase; 
+            font-weight: 600; transition: 0.4s; 
+        }
+        .nav-links a:hover { color: var(--accent-sable); }
 
-nav .logo {
-    font-family: 'Playfair Display', serif;
-    font-size:1.5rem;
-    font-weight:700;
-    letter-spacing:2px;
-    color: var(--accent);
-}
+        /* --- Hero Section (Cinematic) --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; position: relative; overflow: hidden;
+            background: #000;
+        }
+        .hero-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.6; 
+            animation: slowZoom 20s infinite alternate;
+        }
+        @keyframes slowZoom {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.15); }
+        }
+        .hero-content { position: relative; z-index: 10; }
+        .hero h1 { font-size: clamp(3rem, 10vw, 7rem); color: #fff; line-height: 0.9; margin-bottom: 1.5rem; letter-spacing: -2px; }
+        .hero p { color: var(--accent-sable); letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 4rem; }
 
-nav .nav-links a {
-    margin-left:2rem;
-    font-size:0.9rem;
-    font-weight:700;
-    text-transform:uppercase;
-    letter-spacing:1.5px;
-    transition:0.3s;
-}
+        .btn {
+            padding: 1.4rem 4rem; border: 1px solid var(--accent-sable); color: #fff;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 4px;
+            font-size: 0.7rem; font-weight: 700; transition: var(--transition);
+        }
+        .btn:hover { background: var(--accent-sable); color: var(--bg-primary); border-color: var(--accent-sable); }
 
-nav .nav-links a:hover { color: var(--hover-accent); }
+        /* --- About Section --- */
+        .about {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding: 160px 8%;
+            align-items: center; background-color: var(--bg-primary);
+        }
+        .about-img {
+            width: 100%; height: 600px; object-fit: cover;
+            filter: sepia(0.2) contrast(1.1); border: 1px solid var(--bg-secondary);
+        }
+        .about-text h2 { font-size: 3.5rem; margin-bottom: 2rem; line-height: 1; }
+        .about-text p { font-size: 1.2rem; line-height: 1.8; color: var(--text-taupe); max-width: 500px; }
 
-/* Hero */
-.hero {
-    height: 100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2000') center/cover no-repeat;
-    position: relative;
-}
+        /* --- Strategic Pillars (The Three Big Boxes) --- */
+        .pillars-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+            background-color: var(--accent-sable); /* creates thin border effect */
+            border-top: 1px solid var(--accent-sable); border-bottom: 1px solid var(--accent-sable);
+        }
+        .pillar-box {
+            background-color: var(--forest-pillar); padding: 80px 40px;
+            min-height: 700px; display: flex; flex-direction: column; 
+            align-items: center; position: relative; transition: var(--transition);
+            overflow: hidden;
+        }
+        .pillar-box:hover { background-color: #26362b; box-shadow: inset 0 0 100px rgba(209, 186, 140, 0.15); }
+        .pillar-box h2 { color: var(--accent-sable); font-size: 2.5rem; margin-bottom: 50px; text-align: center; }
 
-.hero::after {
-    content:"";
-    position:absolute;
-    inset:0;
-    background: rgba(240,239,234,0.5);
-}
+        /* --- Atelier Product Cards --- */
+        .atelier-content { width: 100%; }
+        .product-card {
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(191, 166, 117, 0.1);
+            margin-bottom: 20px; padding: 1.5rem; text-align: center; transition: var(--transition);
+        }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--accent-glow); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+        .product-img { width: 100%; height: 180px; object-fit: contain; margin-bottom: 1.5rem; }
+        .product-card h4 { color: #fff; font-size: 1rem; letter-spacing: 2px; }
 
-.hero-content {
-    position: relative;
-    z-index:10;
-}
+        .coming-soon-label {
+            margin: auto; color: var(--accent-sable); letter-spacing: 10px;
+            text-transform: uppercase; font-weight: 300; font-size: 0.8rem;
+            opacity: 0.6;
+        }
 
-.hero-content h1 {
-    font-family:'Playfair Display', serif;
-    font-size:4rem;
-    font-weight:700;
-    margin-bottom:1rem;
-}
+        /* --- Footer --- */
+        footer {
+            background: #0A140F; padding: 120px 8% 60px; color: #fff;
+        }
+        .footer-grid { display: flex; justify-content: space-between; align-items: flex-start; }
+        .footer-tagline { font-family: 'Playfair Display', serif; font-size: 2.5rem; max-width: 400px; line-height: 1; margin-bottom: 2rem; }
+        .footer-info p { color: var(--text-taupe); margin-bottom: 10px; font-size: 0.9rem; letter-spacing: 1px; }
 
-.hero-content p {
-    font-size:1.2rem;
-    color: var(--text-secondary);
-    margin-bottom:2rem;
-}
-
-.hero-content .btn {
-    padding:1rem 3rem;
-    border:1px solid var(--accent);
-    color: var(--accent);
-    text-transform:uppercase;
-    font-weight:700;
-    letter-spacing:2px;
-    background:transparent;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.hero-content .btn:hover {
-    background: var(--hover-accent);
-    color: var(--bg-primary);
-    box-shadow:0 5px 20px rgba(209,186,140,0.3);
-}
-
-/* About Section */
-.about {
-    display:flex;
-    flex-wrap:wrap;
-    padding:5rem 5%;
-    background: var(--bg-secondary);
-}
-
-.about .photo {
-    flex:1 1 400px;
-    min-height:300px;
-    background: url('https://images.unsplash.com/photo-1561934464-f83f4e470f63?q=80&w=1200') center/cover no-repeat;
-    margin-right:3rem;
-}
-
-.about .text {
-    flex:1 1 400px;
-    display:flex;
-    align-items:center;
-}
-
-.about .text p {
-    font-size:1.1rem;
-    line-height:1.7;
-    color: var(--text-primary);
-}
-
-/* Divisions Section */
-.divisions {
-    display:grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-    gap:2rem;
-    padding:5rem 5%;
-}
-
-.div-box {
-    background: var(--bg-secondary);
-    border: 2px solid var(--accent);
-    padding:2rem;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    transition:0.3s;
-    min-height:300px;
-    text-align:center;
-}
-
-.div-box:hover { box-shadow:0 5px 20px rgba(209,186,140,0.4); }
-
-.div-box h2 {
-    font-family:'Playfair Display', serif;
-    font-size:2rem;
-    margin-bottom:1rem;
-    color: var(--text-primary);
-}
-
-.div-box .coming-soon {
-    font-size:1.1rem;
-    color: var(--accent);
-    letter-spacing:2px;
-    text-transform:uppercase;
-}
-
-/* Atelier product cards */
-.products {
-    display:flex;
-    gap:1.5rem;
-    margin-top:2rem;
-}
-
-.product-card {
-    background: var(--bg-primary);
-    border:1px solid var(--accent);
-    padding:1rem;
-    flex:1;
-    transition:0.3s;
-}
-
-.product-card:hover {
-    box-shadow:0 5px 15px rgba(209,186,140,0.3);
-    transform: translateY(-5px);
-}
-
-.product-card img {
-    width:100%;
-    height:auto;
-    margin-bottom:0.5rem;
-}
-
-/* Footer */
-footer {
-    background:#0A140F;
-    color: var(--text-primary);
-    padding:4rem 5%;
-    border-top:1px solid var(--accent);
-}
-
-footer .footer-grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
-    gap:2rem;
-    margin-bottom:2rem;
-}
-
-footer .footer-grid h3 {
-    color: var(--accent);
-    margin-bottom:1rem;
-}
-
-footer p, footer a {
-    color: var(--text-primary);
-    font-size:0.9rem;
-    margin-bottom:0.5rem;
-}
-
-@media(max-width:900px){
-    .about { flex-direction:column; }
-    .about .photo { margin-right:0; margin-bottom:2rem; }
-    nav .nav-links { display:none; }
-}
-</style>
+        @media (max-width: 1200px) {
+            .pillars-grid { grid-template-columns: 1fr; }
+            .pillar-box { min-height: auto; padding: 100px 8%; }
+            .about { grid-template-columns: 1fr; gap: 50px; }
+        }
+    </style>
 </head>
 <body>
 
-<nav>
-    <a href="#" class="logo">MAISON DU SPORT</a>
-    <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#divisions">Divisions</a>
-        <a href="#contact">Contact</a>
-    </div>
-</nav>
+    <nav id="nav">
+        <a href="#" class="logo">MDS</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#pillars">Divisions</a>
+            <a href="#atelier">Atelier</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
 
-<section class="hero">
-    <div class="hero-content">
-        <h1>The Home of Haitian Football.</h1>
-        <p>Revival is not a dream. It is a responsibility.</p>
-        <button class="btn">Enter Maison Du Sport</button>
-    </div>
-</section>
+    <header class="hero">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2500" class="hero-img" alt="Sylvio Cator Stadium">
+        <div class="hero-content">
+            <p>A Haitian Strategic Hub</p>
+            <h1>The Home of <br>Haitian Football.</h1>
+            <a href="#pillars" class="btn">Enter Maison Du Sport</a>
+        </div>
+    </header>
 
-<section class="about" id="about">
-    <div class="photo"></div>
-    <div class="text">
-        <p>Maison Du Sport (MDS) is a Haitian football-focused company built to centralize the commercial, media, and strategic development of the game. We are building the structure behind Haitian football.</p>
-    </div>
-</section>
+    <section id="about" class="about">
+        <img src="https://images.unsplash.com/photo-1510563393941-bd786762ff97?q=80&w=1500" class="about-img" alt="Haitian Football Culture">
+        <div class="about-text">
+            <h2>Heritage & <br>Structure.</h2>
+            <p>Maison Du Sport (MDS) is a Haitian football-focused company built to centralize the commercial, media, and strategic development of the game.</p>
+            <p style="margin-top: 2rem;">We are building the structure behind Haitian football.</p>
+        </div>
+    </section>
 
-<section class="divisions" id="divisions">
-    <div class="div-box">
-        <h2>Atelier / Merch</h2>
-        <div class="products">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/150" alt="National Jersey">
-                <span>National Jersey</span>
+    <section id="pillars" class="pillars-grid">
+        
+        <div class="pillar-box" id="atelier">
+            <h2>Atelier</h2>
+            <div class="atelier-content">
+                <div class="product-card">
+                    <img src="Blue-file.png.jpeg" class="product-img" alt="National Jersey Blue">
+                    <h4>National Jersey</h4>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">SOON</p>
+                </div>
+                <div class="product-card">
+                    <img src="WC26-white.png.jpeg" class="product-img" alt="National Jersey White">
+                    <h4>National Jersey</h4>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">SOON</p>
+                </div>
+                <div class="product-card">
+                    <img src="WC26-Red.png.jpeg" class="product-img" alt="National Jersey Red">
+                    <h4>National Jersey</h4>
+                    <p style="font-size: 0.6rem; color: var(--accent-sable); letter-spacing: 3px; margin-top: 5px;">SOON</p>
+                </div>
             </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/150" alt="National Jersey">
-                <span>National Jersey</span>
-            </div>
-            <div class="product-card">
-                <img src="https://via.placeholder.com/150" alt="National Jersey">
-                <span>National Jersey</span>
-            </div>
         </div>
-    </div>
-    <div class="div-box">
-        <h2>Commercial</h2>
-        <span class="coming-soon">Coming Soon</span>
-    </div>
-    <div class="div-box">
-        <h2>Partnerships</h2>
-        <span class="coming-soon">Coming Soon</span>
-    </div>
-</section>
 
-<footer id="contact">
-    <div class="footer-grid">
-        <div>
-            <h3>Maison Du Sport</h3>
-            <p>Port-au-Prince, Haiti</p>
+        <div class="pillar-box">
+            <h2>Commercial</h2>
+            <div class="coming-soon-label">Coming Soon</div>
         </div>
-        <div>
-            <h3>Contact</h3>
-            <p>Phone: +509 4720 9775</p>
-            <p>Instagram: @mdshaiti</p>
-            <p>Facebook: Maison Du Sport</p>
-        </div>
-        <div>
-            <h3>Tagline</h3>
-            <p>MDS — The Home of Haitian Football</p>
-        </div>
-    </div>
-</footer>
 
+        <div class="pillar-box">
+            <h2>Partnerships</h2>
+            <div class="coming-soon-label">Coming Soon</div>
+        </div>
+
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div>
+                <div class="footer-tagline">MDS — The Home of Haitian Football</div>
+                <p style="color: var(--accent-sable); letter-spacing: 3px; font-weight: 700; font-size: 0.7rem;">PORT-AU-PRINCE, HAITI</p>
+            </div>
+            <div class="footer-info">
+                <p style="color: #fff; margin-bottom: 2rem; letter-spacing: 5px;">CONNECT</p>
+                <p>+509 4720 9775</p>
+                <p>Instagram: @mdshaiti</p>
+                <p>Facebook: Maison Du Sport</p>
+            </div>
+        </div>
+        <div style="margin-top: 8rem; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 2rem; font-size: 0.6rem; letter-spacing: 4px; opacity: 0.4;">
+            © 2026 MAISON DU SPORT. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('nav');
+            if (window.scrollY > 100) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        });
+    </script>
 </body>
 </html>
