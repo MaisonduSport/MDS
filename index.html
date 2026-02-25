@@ -1,275 +1,311 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Du Sport | Institutional Authority</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-primary: #0B1310;
-            --bg-secondary: #1F2C23;
-            --gold: #D4AF6C;
-            --gold-hover: #E1C97A;
-            --cream: #F7F3E9;
-            --cream-muted: #AFA899;
-            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison Du Sport | Haitian Football Authority</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --bg-primary: #F0EFEA;
+    --bg-secondary: #D9D6CB;
+    --accent: #BFA675;
+    --text-primary: #2E2B25;
+    --text-secondary: #7D766B;
+    --hover-accent: #D1BA8C;
+}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background-color: var(--bg-primary); 
-            color: var(--cream); 
-            font-family: 'Inter', sans-serif; 
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
+* { margin:0; padding:0; box-sizing:border-box; }
 
-        /* --- Global Grain Texture --- */
-        body::before {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.04; pointer-events: none; z-index: 9999;
-        }
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
 
-        section { padding: 140px 8%; border-bottom: 1px solid rgba(212, 175, 108, 0.1); }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; text-transform: uppercase; }
+a { text-decoration:none; color: inherit; }
 
-        /* --- Navigation --- */
-        nav {
-            position: fixed; top: 0; width: 100%; padding: 2.5rem 5%;
-            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
-            transition: var(--transition);
-        }
-        nav.scrolled {
-            padding: 1.2rem 5%; background: rgba(11, 19, 16, 0.98);
-            border-bottom: 1px solid rgba(212, 175, 108, 0.2);
-            backdrop-filter: blur(15px);
-        }
-        .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 900; font-size: 1.6rem; text-decoration: none; letter-spacing: 2px; }
-        .nav-links a { color: var(--cream-muted); text-decoration: none; font-size: 0.75rem; letter-spacing: 3px; margin-left: 2.5rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
+nav {
+    position: sticky;
+    top:0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:1.5rem 5%;
+    background: var(--bg-primary);
+    z-index:1000;
+    border-bottom: 1px solid var(--accent);
+}
 
-        /* --- Hero Section --- */
-        .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; background: #000; overflow: hidden;
-        }
-        .hero-img {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.5; filter: grayscale(100%) brightness(0.4);
-            transform: scale(1.1); transition: 15s ease-out;
-        }
-        .hero:hover .hero-img { transform: scale(1); }
-        
-        .hero-content { position: relative; z-index: 10; max-width: 1000px; }
-        .hero h1 { font-size: clamp(3.5rem, 10vw, 7.5rem); line-height: 0.85; margin-bottom: 1.5rem; }
-        .hero p { letter-spacing: 8px; color: var(--gold); text-transform: uppercase; font-size: 0.8rem; margin-bottom: 4rem; }
-        
-        .btn {
-            padding: 1.5rem 4.5rem; border: 1px solid var(--gold); color: var(--gold);
-            text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-weight: 700;
-            font-size: 0.75rem; transition: var(--transition);
-        }
-        .btn:hover { background: var(--gold); color: var(--bg-primary); box-shadow: 0 0 50px rgba(212, 175, 108, 0.3); }
+nav .logo {
+    font-family: 'Playfair Display', serif;
+    font-size:1.5rem;
+    font-weight:700;
+    letter-spacing:2px;
+    color: var(--accent);
+}
 
-        /* --- MDS Atelier (Jersey Cards) --- */
-        .atelier-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 5rem;
-        }
-        .product-card {
-            background: var(--bg-secondary); border: 1px solid rgba(212, 175, 108, 0.1);
-            padding: 1.5rem; transition: var(--transition);
-        }
-        .product-card:hover { border-color: var(--gold); transform: translateY(-15px); }
-        
-        .img-container {
-            width: 100%; height: 550px; overflow: hidden; background: #050a08;
-            border-bottom: 1px solid rgba(212, 175, 108, 0.1);
-        }
-        .product-img {
-            width: 100%; height: 100%; object-fit: cover; transition: 0.8s var(--transition);
-        }
-        .product-card:hover .product-img { transform: scale(1.08); }
-        
-        .product-info { padding: 2rem 0.5rem; }
-        .product-card h3 { font-size: 1.5rem; color: var(--cream); margin-bottom: 8px; font-style: italic; }
-        .status-tag { color: var(--gold); font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
+nav .nav-links a {
+    margin-left:2rem;
+    font-size:0.9rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    transition:0.3s;
+}
 
-        /* --- Strategic Big Box (Divisions) --- */
-        .big-box-section { background: var(--bg-primary); }
-        .divisions-container {
-            background: var(--bg-secondary); border: 1px solid var(--gold);
-            padding: 6rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px;
-            box-shadow: 0 50px 100px rgba(0,0,0,0.6);
-        }
-        .div-item { 
-            border-bottom: 1px solid rgba(212, 175, 108, 0.2); 
-            padding-bottom: 30px; display: flex; justify-content: space-between; align-items: center; 
-        }
-        .div-item h3 { font-size: 2.2rem; color: var(--cream); font-weight: 700; }
+nav .nav-links a:hover { color: var(--hover-accent); }
 
-        /* --- Headquarters --- */
-        .hq-image-wrap {
-            width: 100%; height: 85vh; overflow: hidden; margin: 5rem 0;
-            border: 1px solid var(--gold); position: relative;
-        }
-        .hq-img {
-            width: 100%; height: 100%; object-fit: cover;
-            filter: grayscale(100%) brightness(0.6);
-        }
-        .hq-label {
-            position: absolute; bottom: 50px; left: 50px; text-align: left;
-        }
+/* Hero */
+.hero {
+    height: 100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2000') center/cover no-repeat;
+    position: relative;
+}
 
-        footer { background: #050A08; padding: 120px 8% 60px; border-top: 1px solid var(--gold); }
-        .footer-flex { display: flex; justify-content: space-between; align-items: center; }
+.hero::after {
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(240,239,234,0.5);
+}
 
-        @media (max-width: 1100px) {
-            .atelier-grid, .divisions-container, .footer-flex { grid-template-columns: 1fr; flex-direction: column; gap: 50px; }
-            .divisions-container { padding: 4rem 2rem; }
-            .hq-image-wrap { height: 60vh; }
-        }
-    </style>
+.hero-content {
+    position: relative;
+    z-index:10;
+}
+
+.hero-content h1 {
+    font-family:'Playfair Display', serif;
+    font-size:4rem;
+    font-weight:700;
+    margin-bottom:1rem;
+}
+
+.hero-content p {
+    font-size:1.2rem;
+    color: var(--text-secondary);
+    margin-bottom:2rem;
+}
+
+.hero-content .btn {
+    padding:1rem 3rem;
+    border:1px solid var(--accent);
+    color: var(--accent);
+    text-transform:uppercase;
+    font-weight:700;
+    letter-spacing:2px;
+    background:transparent;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.hero-content .btn:hover {
+    background: var(--hover-accent);
+    color: var(--bg-primary);
+    box-shadow:0 5px 20px rgba(209,186,140,0.3);
+}
+
+/* About Section */
+.about {
+    display:flex;
+    flex-wrap:wrap;
+    padding:5rem 5%;
+    background: var(--bg-secondary);
+}
+
+.about .photo {
+    flex:1 1 400px;
+    min-height:300px;
+    background: url('https://images.unsplash.com/photo-1561934464-f83f4e470f63?q=80&w=1200') center/cover no-repeat;
+    margin-right:3rem;
+}
+
+.about .text {
+    flex:1 1 400px;
+    display:flex;
+    align-items:center;
+}
+
+.about .text p {
+    font-size:1.1rem;
+    line-height:1.7;
+    color: var(--text-primary);
+}
+
+/* Divisions Section */
+.divisions {
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap:2rem;
+    padding:5rem 5%;
+}
+
+.div-box {
+    background: var(--bg-secondary);
+    border: 2px solid var(--accent);
+    padding:2rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    transition:0.3s;
+    min-height:300px;
+    text-align:center;
+}
+
+.div-box:hover { box-shadow:0 5px 20px rgba(209,186,140,0.4); }
+
+.div-box h2 {
+    font-family:'Playfair Display', serif;
+    font-size:2rem;
+    margin-bottom:1rem;
+    color: var(--text-primary);
+}
+
+.div-box .coming-soon {
+    font-size:1.1rem;
+    color: var(--accent);
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+/* Atelier product cards */
+.products {
+    display:flex;
+    gap:1.5rem;
+    margin-top:2rem;
+}
+
+.product-card {
+    background: var(--bg-primary);
+    border:1px solid var(--accent);
+    padding:1rem;
+    flex:1;
+    transition:0.3s;
+}
+
+.product-card:hover {
+    box-shadow:0 5px 15px rgba(209,186,140,0.3);
+    transform: translateY(-5px);
+}
+
+.product-card img {
+    width:100%;
+    height:auto;
+    margin-bottom:0.5rem;
+}
+
+/* Footer */
+footer {
+    background:#0A140F;
+    color: var(--text-primary);
+    padding:4rem 5%;
+    border-top:1px solid var(--accent);
+}
+
+footer .footer-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+    gap:2rem;
+    margin-bottom:2rem;
+}
+
+footer .footer-grid h3 {
+    color: var(--accent);
+    margin-bottom:1rem;
+}
+
+footer p, footer a {
+    color: var(--text-primary);
+    font-size:0.9rem;
+    margin-bottom:0.5rem;
+}
+
+@media(max-width:900px){
+    .about { flex-direction:column; }
+    .about .photo { margin-right:0; margin-bottom:2rem; }
+    nav .nav-links { display:none; }
+}
+</style>
 </head>
 <body>
 
-    <nav id="navbar">
-        <a href="#" class="logo">MAISON DU SPORT</a>
-        <div class="nav-links">
-            <a href="#atelier">Atelier</a>
-            <a href="#divisions">Strategic Hub</a>
-            <a href="#hq">Headquarters</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+<nav>
+    <a href="#" class="logo">MAISON DU SPORT</a>
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#divisions">Divisions</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
 
-    <header class="hero">
-        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2500" class="hero-img" alt="Sylvio Cator Infrastructure">
-        <div class="hero-content">
-            <p style="letter-spacing: 12px; margin-bottom: 1.5rem;">Institutional Authority</p>
-            <h1>The Home of <br>Haitian Football.</h1>
-            <p>Revival is not a dream. It is a responsibility.</p>
-            <a href="#atelier" class="btn">Enter The Hub</a>
-        </div>
-    </header>
+<section class="hero">
+    <div class="hero-content">
+        <h1>The Home of Haitian Football.</h1>
+        <p>Revival is not a dream. It is a responsibility.</p>
+        <button class="btn">Enter Maison Du Sport</button>
+    </div>
+</section>
 
-    <section id="atelier">
-        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.75rem; font-weight: 700;">Exclusive Releases</span>
-        <h2 style="font-size: 4rem; margin-top: 15px;">MDS Atelier</h2>
-        
-        <div class="atelier-grid">
+<section class="about" id="about">
+    <div class="photo"></div>
+    <div class="text">
+        <p>Maison Du Sport (MDS) is a Haitian football-focused company built to centralize the commercial, media, and strategic development of the game. We are building the structure behind Haitian football.</p>
+    </div>
+</section>
+
+<section class="divisions" id="divisions">
+    <div class="div-box">
+        <h2>Atelier / Merch</h2>
+        <div class="products">
             <div class="product-card">
-                <div class="img-container">
-                    <img src="WW-File.png.jpeg" class="product-img" alt="National Jersey Blue">
-                </div>
-                <div class="product-info">
-                    <h3>National Jersey</h3>
-                    <span class="status-tag">Coming Soon</span>
-                </div>
+                <img src="https://via.placeholder.com/150" alt="National Jersey">
+                <span>National Jersey</span>
             </div>
             <div class="product-card">
-                <div class="img-container">
-                    <img src="WC26-white.png. jpeg" class="product-img" alt="National Jersey White">
-                </div>
-                <div class="product-info">
-                    <h3>National Jersey</h3>
-                    <span class="status-tag">Coming Soon</span>
-                </div>
+                <img src="https://via.placeholder.com/150" alt="National Jersey">
+                <span>National Jersey</span>
             </div>
             <div class="product-card">
-                <div class="img-container">
-                    <img src="WC26-Red.png.jpeg" class="product-img" alt="National Jersey Red">
-                </div>
-                <div class="product-info">
-                    <h3>National Jersey</h3>
-                    <span class="status-tag">Coming Soon</span>
-                </div>
-            </div>
-        </div> class="product-card">
-                <div class="img-container">
-                    <img src="1974shirt-png.jpeg" class="product-img" alt="National Jersey White">
-                </div>
-                <div class="product-info">
-                    <h3>National Jersey</h3>
-                    <span class="status-tag">Coming Soon</span>
-                </div>
-            </div>
-    </section>
-
-    <section id="divisions" class="big-box-section">
-        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.75rem; font-weight: 700;">Infrastructure</span>
-        <h2 style="font-size: 4rem; margin: 15px 0 60px 0;">Strategic Pillars</h2>
-        
-        <div class="divisions-container">
-            <div class="div-item">
-                <h3>Commercial</h3>
-                <span class="status-tag">Coming Soon</span>
-            </div>
-            <div class="div-item">
-                <h3>Media Hub</h3>
-                <span class="status-tag">Coming Soon</span>
-            </div>
-            <div class="div-item">
-                <h3>Partnerships</h3>
-                <span class="status-tag">Coming Soon</span>
-            </div>
-            <div class="div-item">
-                <h3>Governance</h3>
-                <span class="status-tag">Coming Soon</span>
+                <img src="https://via.placeholder.com/150" alt="National Jersey">
+                <span>National Jersey</span>
             </div>
         </div>
-    </section>
+    </div>
+    <div class="div-box">
+        <h2>Commercial</h2>
+        <span class="coming-soon">Coming Soon</span>
+    </div>
+    <div class="div-box">
+        <h2>Partnerships</h2>
+        <span class="coming-soon">Coming Soon</span>
+    </div>
+</section>
 
-    <section id="hq" style="text-align: center;">
-        <span style="color: var(--gold); letter-spacing: 10px; text-transform: uppercase; font-size: 0.75rem; font-weight: 700;">Physical Headquarters</span>
-        <h2 style="font-size: 4rem; margin-top: 15px;">MDS Operations</h2>
-        <p style="color: var(--cream-muted); margin-top: 10px; text-transform: uppercase; letter-spacing: 3px;">Port-au-Prince, Haiti</p>
-        
-        <div class="hq-image-wrap">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2500" class="hq-img" alt="MDS Headquarters Concept">
-            <div class="hq-label">
-                <span class="status-tag" style="background: var(--gold); color: var(--bg-primary); padding: 8px 20px;">Institutional HQ — Soon</span>
-            </div>
+<footer id="contact">
+    <div class="footer-grid">
+        <div>
+            <h3>Maison Du Sport</h3>
+            <p>Port-au-Prince, Haiti</p>
         </div>
-        
-        <p style="font-size: 1.6rem; font-family: 'Playfair Display', serif; font-style: italic; max-width: 850px; margin: 0 auto; line-height: 1.4;">
-            "The future physical home of Haitian football operations. A beacon of strategy, commerce, and heritage."
-        </p>
-    </section>
+        <div>
+            <h3>Contact</h3>
+            <p>Phone: +509 4720 9775</p>
+            <p>Instagram: @mdshaiti</p>
+            <p>Facebook: Maison Du Sport</p>
+        </div>
+        <div>
+            <h3>Tagline</h3>
+            <p>MDS — The Home of Haitian Football</p>
+        </div>
+    </div>
+</footer>
 
-    <footer id="contact">
-        <div class="footer-flex">
-            <div>
-                <h2 class="logo" style="font-size: 3.5rem;">MDS</h2>
-                <p style="color: var(--cream-muted); margin-top: 1.5rem; letter-spacing: 1px;">Building the future of the Haitian game.</p>
-            </div>
-            <div style="text-align: right;">
-                <p style="color: var(--gold); font-size: 0.8rem; letter-spacing: 4px; margin-bottom: 1.5rem; font-weight: 700;">DIRECT LIAISON</p>
-                <p style="font-size: 1.5rem; margin-bottom: 5px;">+509 4720 9775</p>
-                <p style="color: var(--cream-muted); font-size: 1.1rem;">contact@maisondusport.com</p>
-                <div style="margin-top: 2.5rem; display: flex; gap: 30px; justify-content: flex-end; opacity: 0.6;">
-                    <span style="font-size: 0.7rem; letter-spacing: 3px;">INSTAGRAM</span>
-                    <span style="font-size: 0.7rem; letter-spacing: 3px;">FACEBOOK</span>
-                </div>
-            </div>
-        </div>
-        <div style="margin-top: 8rem; border-top: 1px solid rgba(212, 175, 108, 0.1); padding-top: 3rem; display: flex; justify-content: space-between; font-size: 0.65rem; letter-spacing: 5px; opacity: 0.4;">
-            <span>© 2026 MAISON DU SPORT</span>
-            <span>STRUCTURE · LEGACY · AUTHORITY</span>
-        </div>
-    </footer>
-
-    <script>
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 100) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        });
-    </script>
 </body>
 </html>
