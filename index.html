@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Du Sport | Institutional Authority</title>
+    <title>Maison Du Sport | Institutional Hub</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
             --gold-hover: #E1C97A;
             --cream: #F7F3E9;
             --cream-muted: #AFA899;
-            --transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            --transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,15 +28,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Global Aesthetics --- */
-        .grain {
+        /* Cinematic Film Grain */
+        body::before {
+            content: "";
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.03; pointer-events: none; z-index: 9999;
+            opacity: 0.04; pointer-events: none; z-index: 9999;
         }
 
-        section { padding: 120px 8%; border-bottom: 1px solid rgba(212, 175, 108, 0.1); }
-
+        section { padding: 140px 8%; border-bottom: 1px solid rgba(212, 175, 108, 0.1); }
         h1, h2, h3 { font-family: 'Playfair Display', serif; text-transform: uppercase; }
 
         /* --- Navigation --- */
@@ -48,180 +48,218 @@
         nav.scrolled {
             padding: 1.2rem 5%; background: rgba(11, 19, 16, 0.98);
             border-bottom: 1px solid rgba(212, 175, 108, 0.2);
+            backdrop-filter: blur(10px);
         }
-        .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 900; font-size: 1.5rem; text-decoration: none; }
-        .nav-links a { color: var(--cream-muted); text-decoration: none; font-size: 0.7rem; letter-spacing: 2px; margin-left: 2rem; text-transform: uppercase; font-weight: 600; }
+        .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 900; font-size: 1.6rem; text-decoration: none; letter-spacing: 2px; }
+        .nav-links a { color: var(--cream-muted); text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; margin-left: 2.5rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--gold); }
 
-        /* --- Hero --- */
+        /* --- Hero Section --- */
         .hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; background: #000;
+            text-align: center; position: relative; background: #000; overflow: hidden;
         }
-        .hero-video {
+        .hero-img {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.4; filter: grayscale(100%);
+            object-fit: cover; opacity: 0.5; filter: grayscale(100%) contrast(1.2) brightness(0.6);
+            transform: scale(1.05); transition: 10s ease-out;
         }
-        .hero-content { position: relative; z-index: 10; }
-        .hero h1 { font-size: clamp(3rem, 10vw, 6rem); line-height: 0.9; margin-bottom: 1rem; }
-        .hero p { letter-spacing: 4px; color: var(--cream-muted); text-transform: uppercase; font-size: 0.9rem; margin-bottom: 3rem; }
+        .hero:hover .hero-img { transform: scale(1); }
+        
+        .hero-content { position: relative; z-index: 10; max-width: 1000px; }
+        .hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.85; margin-bottom: 1.5rem; font-style: italic; }
+        .hero p { letter-spacing: 6px; color: var(--gold); text-transform: uppercase; font-size: 0.85rem; margin-bottom: 4rem; font-weight: 400; }
+        
         .btn {
-            padding: 1.2rem 3.5rem; border: 1px solid var(--gold); color: var(--gold);
-            text-decoration: none; text-transform: uppercase; letter-spacing: 2px; font-weight: 700;
-            transition: var(--transition);
+            padding: 1.5rem 4.5rem; border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none; text-transform: uppercase; letter-spacing: 4px; font-weight: 700;
+            font-size: 0.75rem; transition: var(--transition);
         }
-        .btn:hover { background: var(--gold); color: var(--bg-primary); }
+        .btn:hover { background: var(--gold); color: var(--bg-primary); box-shadow: 0 0 50px rgba(212, 175, 108, 0.25); }
 
         /* --- MDS Atelier (Jersey Cards) --- */
         .atelier-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 4rem;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-top: 5rem;
         }
         .product-card {
-            background: var(--bg-secondary); border: 1px solid rgba(212, 175, 108, 0.1);
-            padding: 3rem 2rem; text-align: center; transition: var(--transition);
+            background: var(--bg-secondary); border: 1px solid rgba(212, 175, 108, 0.08);
+            padding: 1rem; transition: var(--transition); position: relative;
         }
-        .product-card:hover { border-color: var(--gold); transform: translateY(-10px); }
-        .product-card .img-box {
-            height: 350px; background: rgba(0,0,0,0.2); margin-bottom: 2rem;
-            display: flex; align-items: center; justify-content: center;
+        .product-card:hover { border-color: var(--gold); transform: translateY(-15px); }
+        
+        .img-container {
+            width: 100%; height: 500px; overflow: hidden; background: #050a08;
             border: 1px solid rgba(212, 175, 108, 0.05);
         }
-        .product-card h3 { font-size: 1.2rem; color: var(--cream); letter-spacing: 1px; }
-        .status-tag { color: var(--gold); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; display: block; }
+        .product-img {
+            width: 100%; height: 100%; object-fit: cover; 
+            filter: grayscale(100%) brightness(0.8); transition: 0.5s;
+        }
+        .product-card:hover .product-img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
+        
+        .product-info { padding: 2rem 1rem; text-align: left; border-top: 1px solid rgba(212, 175, 108, 0.1); margin-top: 1rem; }
+        .product-card h3 { font-size: 1.4rem; color: var(--cream); margin-bottom: 5px; }
+        .status-tag { color: var(--gold); font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
 
-        /* --- The Big Box (Divisions) --- */
+        /* --- Strategic Big Box --- */
+        .big-box-section { background: #070D0A; }
         .divisions-container {
             background: var(--bg-secondary); border: 1px solid var(--gold);
-            padding: 5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 60px;
+            padding: 6rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 80px;
+            position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5);
         }
-        .div-item { border-bottom: 1px solid rgba(212, 175, 108, 0.2); padding-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }
-        .div-item h3 { font-size: 1.8rem; }
+        .div-item { 
+            border-bottom: 1px solid rgba(212, 175, 108, 0.15); 
+            padding-bottom: 30px; display: flex; justify-content: space-between; align-items: center; 
+        }
+        .div-item h3 { font-size: 2rem; letter-spacing: 1px; color: var(--cream); }
 
         /* --- Headquarters --- */
-        .hq-image {
-            width: 100%; height: 700px; 
-            background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000') center/cover;
-            filter: grayscale(100%) contrast(1.1) brightness(0.7);
-            border: 1px solid var(--gold); margin: 4rem 0;
+        .hq-image-wrap {
+            width: 100%; height: 80vh; overflow: hidden; margin: 4rem 0;
+            border: 1px solid var(--gold); position: relative;
+        }
+        .hq-img {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%) contrast(1.1) brightness(0.5);
+        }
+        .hq-overlay {
+            position: absolute; bottom: 40px; left: 40px; text-align: left;
         }
 
-        footer { background: #070D0A; padding: 80px 8%; border-top: 1px solid var(--gold); }
-        .footer-flex { display: flex; justify-content: space-between; align-items: flex-start; }
+        footer { background: #050A08; padding: 100px 8% 50px; border-top: 1px solid var(--gold); }
+        .footer-flex { display: flex; justify-content: space-between; align-items: center; }
 
-        @media (max-width: 900px) {
-            .atelier-grid, .divisions-container, .footer-flex { grid-template-columns: 1fr; flex-direction: column; gap: 40px; }
-            .divisions-container { padding: 2rem; }
+        @media (max-width: 1000px) {
+            .atelier-grid, .divisions-container, .footer-flex { grid-template-columns: 1fr; flex-direction: column; gap: 50px; }
+            .divisions-container { padding: 3rem 1.5rem; gap: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="grain"></div>
-
     <nav id="navbar">
-        <a href="#" class="logo">MDS</a>
+        <a href="#" class="logo">MAISON DU SPORT</a>
         <div class="nav-links">
             <a href="#atelier">Atelier</a>
-            <a href="#divisions">Divisions</a>
+            <a href="#divisions">Strategic Hub</a>
             <a href="#hq">Headquarters</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
     <header class="hero">
-        <img src="https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000" class="hero-video" alt="Stade Sylvio Cator">
+        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2000" class="hero-img" alt="Sylvio Cator Infrastructure">
         <div class="hero-content">
+            <p style="margin-bottom: 1rem; letter-spacing: 10px;">The Institution</p>
             <h1>The Home of <br>Haitian Football.</h1>
             <p>Revival is not a dream. It is a responsibility.</p>
-            <a href="#atelier" class="btn">Enter Maison Du Sport</a>
+            <a href="#atelier" class="btn">Access the Hub</a>
         </div>
     </header>
 
     <section id="atelier">
-        <span style="color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem;">The Boutique</span>
-        <h2 style="font-size: 3rem; margin-top: 10px;">MDS Atelier</h2>
+        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; font-weight: 700;">Curated Equipment</span>
+        <h2 style="font-size: 3.5rem; margin-top: 15px;">MDS Atelier</h2>
+        
         <div class="atelier-grid">
             <div class="product-card">
-                <div class="img-box">
-                    <span style="opacity: 0.2; letter-spacing: 2px;">JERSEY RENDER</span>
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?q=80&w=1000" class="product-img" alt="National Jersey Front">
                 </div>
-                <h3>National Jersey</h3>
-                <span class="status-tag">Coming Soon</span>
+                <div class="product-info">
+                    <h3>National Jersey</h3>
+                    <span class="status-tag">Institutional Release — Soon</span>
+                </div>
             </div>
             <div class="product-card">
-                <div class="img-box">
-                    <span style="opacity: 0.2; letter-spacing: 2px;">JERSEY RENDER</span>
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1571239700312-d4fc88979bb4?q=80&w=1000" class="product-img" alt="National Jersey Detail">
                 </div>
-                <h3>National Jersey</h3>
-                <span class="status-tag">Coming Soon</span>
+                <div class="product-info">
+                    <h3>National Jersey</h3>
+                    <span class="status-tag">Elite Edition — Soon</span>
+                </div>
             </div>
             <div class="product-card">
-                <div class="img-box">
-                    <span style="opacity: 0.2; letter-spacing: 2px;">JERSEY RENDER</span>
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&w=1000" class="product-img" alt="National Jersey Fabric">
                 </div>
-                <h3>National Jersey</h3>
-                <span class="status-tag">Coming Soon</span>
+                <div class="product-info">
+                    <h3>National Jersey</h3>
+                    <span class="status-tag">Legacy Series — Soon</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="divisions">
-        <span style="color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem;">Institutional Pillars</span>
-        <h2 style="font-size: 3rem; margin: 10px 0 40px 0;">Strategic Infrastructure</h2>
+    <section id="divisions" class="big-box-section">
+        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; font-weight: 700;">Infrastructure</span>
+        <h2 style="font-size: 3.5rem; margin: 15px 0 60px 0;">Strategic Pillars</h2>
         
         <div class="divisions-container">
             <div class="div-item">
                 <h3>Commercial</h3>
-                <span class="status-tag">Coming Soon</span>
+                <span class="status-tag">Soon</span>
             </div>
             <div class="div-item">
                 <h3>Media Hub</h3>
-                <span class="status-tag">Coming Soon</span>
+                <span class="status-tag">Soon</span>
             </div>
             <div class="div-item">
                 <h3>Partnerships</h3>
-                <span class="status-tag">Coming Soon</span>
+                <span class="status-tag">Soon</span>
             </div>
             <div class="div-item">
                 <h3>Governance</h3>
-                <span class="status-tag">Coming Soon</span>
+                <span class="status-tag">Soon</span>
             </div>
         </div>
     </section>
 
     <section id="hq" style="text-align: center;">
-        <span style="color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.7rem;">Physical Operations</span>
-        <h2 style="font-size: 3rem; margin-top: 10px;">MDS Headquarters</h2>
-        <p style="color: var(--cream-muted); margin-top: 10px;">Port-au-Prince, Haiti — Opening Soon</p>
+        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; font-weight: 700;">Physical Headquarters</span>
+        <h2 style="font-size: 3.5rem; margin-top: 15px;">MDS Operations</h2>
+        <p style="color: var(--cream-muted); margin-top: 10px; text-transform: uppercase; letter-spacing: 2px;">Port-au-Prince, Haiti</p>
         
-        <div class="hq-image"></div>
+        <div class="hq-image-wrap">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000" class="hq-img" alt="MDS Headquarters Concept">
+            <div class="hq-overlay">
+                <span class="status-tag" style="background: var(--gold); color: var(--bg-primary); padding: 5px 15px;">Opening — Coming Soon</span>
+            </div>
+        </div>
         
-        <p style="font-size: 1.2rem; font-family: 'Playfair Display', serif; font-style: italic;">
-            "The future physical home of Haitian football operations."
+        <p style="font-size: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic; max-width: 800px; margin: 0 auto;">
+            "The future physical home of Haitian football operations. A center for strategy, commerce, and national pride."
         </p>
     </section>
 
     <footer id="contact">
         <div class="footer-flex">
             <div>
-                <h2 class="logo" style="font-size: 2.5rem;">MDS</h2>
-                <p style="color: var(--cream-muted); margin-top: 1rem;">Maison Du Sport — Port-au-Prince, Haiti</p>
+                <h2 class="logo" style="font-size: 3rem;">MDS</h2>
+                <p style="color: var(--cream-muted); margin-top: 1rem; letter-spacing: 1px;">The Strategic Hub of Haitian Football.</p>
             </div>
             <div style="text-align: right;">
-                <p style="color: var(--gold); font-size: 0.7rem; letter-spacing: 2px; margin-bottom: 1rem;">CONTACT</p>
-                <p>+509 4720 9775</p>
-                <p>contactmaisondusport@gmail.com</p>
-                <p style="margin-top: 1rem;">@mdshaiti</p>
+                <p style="color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 1.5rem; font-weight: 700;">DIRECT CONTACT</p>
+                <p style="font-size: 1.2rem; margin-bottom: 5px;">+509 4720 9775</p>
+                <p style="color: var(--cream-muted);">contact@maisondusport.com</p>
+                <div style="margin-top: 2rem; display: flex; gap: 20px; justify-content: flex-end;">
+                    <span style="font-size: 0.7rem; letter-spacing: 2px;">INSTAGRAM</span>
+                    <span style="font-size: 0.7rem; letter-spacing: 2px;">FACEBOOK</span>
+                </div>
             </div>
         </div>
-        <div style="margin-top: 4rem; border-top: 1px solid rgba(212, 175, 108, 0.1); padding-top: 2rem; font-size: 0.6rem; letter-spacing: 3px; opacity: 0.4;">
-            © 2026 MAISON DU SPORT — THE HOME OF HAITIAN FOOTBALL
+        <div style="margin-top: 6rem; border-top: 1px solid rgba(212, 175, 108, 0.1); padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 4px; opacity: 0.5;">
+            <span>© 2026 MAISON DU SPORT</span>
+            <span>STRUCTURE · LEGACY · AUTHORITY</span>
         </div>
     </footer>
 
     <script>
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
+            if (window.scrollY > 100) nav.classList.add('scrolled');
             else nav.classList.remove('scrolled');
         });
     </script>
