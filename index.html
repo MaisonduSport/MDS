@@ -3,203 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDS | L'AUTORITÉ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Montserrat:wght@100;400;800&display=swap" rel="stylesheet">
+    <title>MAISON DU SPORT | L'INSTITUTION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,500&family=Inter:wght@200;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold: #D4AF37;
-            --white: #ffffff;
-            --dark: #0a0a0a;
-            --glass: rgba(255, 255, 255, 0.03);
-        }
+        :root { --gold: #BFA675; --white: #ffffff; --bg: #080808; --border: rgba(255,255,255,0.1); }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { 
-            background: #050505; 
-            color: var(--white); 
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-        }
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 5%; display: flex; justify-content: space-between; z-index: 100; mix-blend-mode: difference; }
+        .logo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; letter-spacing: 2px; }
 
-        /* DYNAMIC GRADIENT BACKGROUND */
-        .bg-glow {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
-            z-index: -1;
-        }
+        /* HERO: THE ENTRANCE */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; border-bottom: 1px solid var(--border); }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 8vw; font-style: italic; font-weight: 300; text-align: center; line-height: 0.9; }
+        .hero-sub { margin-top: 20px; font-size: 0.7rem; letter-spacing: 8px; text-transform: uppercase; opacity: 0.5; }
 
-        /* NAVIGATION: FLOATING GLASS */
-        nav {
-            position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 1400px; padding: 20px 50px;
-            background: rgba(255, 255, 255, 0.01);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; border-radius: 100px;
-        }
-        .logo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.8rem; letter-spacing: 2px; }
+        /* MANIFESTO: KINETIC REVEAL */
+        .manifesto { min-height: 100vh; padding: 10vh 10%; display: flex; flex-direction: column; justify-content: center; }
+        .manifesto p { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 4rem); line-height: 1.2; font-style: italic; transition: 1s; opacity: 0.1; transform: translateY(20px); }
+        .manifesto p.visible { opacity: 1; transform: translateY(0); }
+        .manifesto span { color: var(--gold); }
 
-        /* HERO: THE MONUMENT */
-        .hero {
-            height: 110vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            position: relative;
-        }
-        .hero h1 {
-            font-family: 'Cormorant Garamond', serif; font-size: 12vw;
-            font-style: italic; font-weight: 300; line-height: 0.8;
-            background: linear-gradient(to bottom, #fff 30%, #444 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .scroll-hint {
-            position: absolute; bottom: 10%; font-size: 0.6rem;
-            letter-spacing: 10px; text-transform: uppercase; opacity: 0.4;
-        }
-
-        /* THE ATELIER: HORIZONTAL CINEMA */
-        .atelier-section { padding: 100px 0; background: #080808; }
-        .section-title { padding-left: 5%; margin-bottom: 50px; }
-        .section-title h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-style: italic; color: var(--gold); }
-
-        .horizontal-wrap {
-            display: flex; gap: 50px; overflow-x: auto; padding: 50px 5%;
-            scrollbar-width: none;
-        }
-        .horizontal-wrap::-webkit-scrollbar { display: none; }
-
-        .item-card {
-            min-width: 500px; height: 700px;
-            background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.05);
-            display: flex; flex-direction: column;
-            padding: 40px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            position: relative; overflow: hidden;
-        }
-        .item-card:hover {
-            border-color: var(--gold); background: rgba(212, 175, 55, 0.02);
-            transform: translateY(-20px);
-        }
-
-        .img-container {
-            width: 100%; height: 70%; background: #111;
-            margin-bottom: 30px; border-radius: 2px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .img-container img { width: 80%; opacity: 0.7; filter: grayscale(1); transition: 0.8s; }
-        .item-card:hover img { opacity: 1; filter: grayscale(0); transform: scale(1.1); }
-
-        .item-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic; margin-bottom: 10px; }
-        .item-info p { font-size: 0.7rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+        /* ATELIER: EXCLUSIVE REVEAL */
+        .atelier { padding: 100px 5%; background: #050505; }
+        .atelier-header { margin-bottom: 80px; text-align: center; }
+        .atelier-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-style: italic; margin-bottom: 10px; }
         
-        .inquire-btn {
-            margin-top: auto; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.8rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
-            cursor: pointer; color: var(--white); text-align: left;
+        .product-list { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+        .product-row { 
+            display: grid; grid-template-columns: 1fr 2fr 1fr; 
+            padding: 40px 0; border-bottom: 1px solid var(--border); 
+            cursor: pointer; transition: 0.4s; position: relative;
         }
+        .product-row:hover { background: rgba(255,255,255,0.02); }
+        .product-row .p-num { font-size: 0.7rem; opacity: 0.3; }
+        .product-row .p-name { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-style: italic; }
+        .product-row .p-cta { text-align: right; font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); align-self: center; }
+        
+        /* HOVER IMAGE PREVIEW (The "Exclusive" Feel) */
+        .hover-img { 
+            position: fixed; width: 300px; height: 400px; pointer-events: none; 
+            z-index: 50; opacity: 0; transform: translate(-50%, -50%) scale(0.8); 
+            transition: opacity 0.3s, transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+            overflow: hidden; border: 1px solid var(--gold);
+        }
+        .hover-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* FOOTER: THE SIGNATURE */
-        footer {
-            height: 60vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        .f-big { font-family: 'Cormorant Garamond', serif; font-size: 15vw; opacity: 0.05; font-style: italic; }
+        /* THE THREE WORDS */
+        .triptych { height: 60vh; display: flex; align-items: center; justify-content: space-around; border-bottom: 1px solid var(--border); }
+        .word { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 4vw; opacity: 0.4; letter-spacing: 5px; transition: 0.8s; }
+        .word:hover { opacity: 1; color: var(--gold); letter-spacing: 15px; }
 
-        @media (max-width: 768px) {
-            .item-card { min-width: 90%; height: 600px; }
-            .hero h1 { font-size: 20vw; }
-        }
+        /* FOOTER */
+        footer { padding: 100px 5%; position: relative; }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .footer-info h4 { font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); margin-bottom: 20px; text-transform: uppercase; }
+        .footer-info a { display: block; color: #fff; text-decoration: none; font-size: 1.2rem; margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
+        .f-massive { font-family: 'Cormorant Garamond', serif; font-size: 18vw; opacity: 0.03; font-style: italic; line-height: 0.7; margin-top: 50px; text-align: center; }
+
+        @media (max-width: 768px) { .product-row { grid-template-columns: 1fr; gap: 10px; } .hero h1 { font-size: 15vw; } }
     </style>
 </head>
 <body>
 
-    <div class="bg-glow"></div>
+    <nav><div class="logo">MDS</div></nav>
 
-    <nav>
-        <div class="logo">MAISON DU SPORT</div>
-        <div style="font-size: 0.6rem; letter-spacing: 5px; opacity: 0.5;">L'AUTORITÉ</div>
-    </nav>
+    <div class="hover-img" id="cursor-img">
+        <img src="" id="target-img">
+    </div>
 
     <section class="hero">
-        <h1>Bespoke <br>Authority.</h1>
-        <p class="scroll-hint">Scroll to Enter</p>
+        <h1>L'Architecture <br> de la Renaissance.</h1>
+        <p class="hero-sub">Maison Du Sport // Haiti</p>
     </section>
 
-    <section class="atelier-section">
-        <div class="section-title">
-            <h2>The Atelier</h2>
-            <p style="font-size: 0.6rem; letter-spacing: 5px; opacity: 0.4;">EXCLUSIVE ACCESS ONLY</p>
+    <section class="manifesto" id="manifesto">
+        <p class="reveal">Football is not just a game. <span>It is our heritage.</span></p>
+        <p class="reveal">Maison Du Sport is the <span>sovereign bridge</span> between</p>
+        <p class="reveal">raw passion and <span>global excellence.</span></p>
+        <p class="reveal">We are the <span>architects</span> of the revival.</p>
+    </section>
+
+    <section class="atelier">
+        <div class="atelier-header">
+            <p style="font-size: 0.6rem; letter-spacing: 5px; color: var(--gold); margin-bottom: 10px;">EXCLUSIVITÉ</p>
+            <h2>L'Atelier MDS</h2>
         </div>
 
-        <div class="horizontal-wrap">
-            <div class="item-card" onclick="inquire('WC26-white.png .jpeg')">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800" alt="White Shirt">
-                </div>
-                <div class="item-info">
-                    <p>Apparel // 01</p>
-                    <h3>The World Cup White</h3>
-                </div>
-                <div class="inquire-btn">Request Inquire</div>
+        <div class="product-list">
+            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('WC26-white.png .jpeg')">
+                <span class="p-num">01 / ARCHIVE</span>
+                <span class="p-name">World Cup White</span>
+                <span class="p-cta">VIEW DETAILS —</span>
             </div>
 
-            <div class="item-card" onclick="inquire('WC26-Red.png .jpeg')">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800" alt="Red Shirt">
-                </div>
-                <div class="item-info">
-                    <p>Apparel // 02</p>
-                    <h3>The World Cup Red</h3>
-                </div>
-                <div class="inquire-btn">Request Inquire</div>
+            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('WC26-Red.png .jpeg')">
+                <span class="p-num">02 / ARCHIVE</span>
+                <span class="p-name">World Cup Red</span>
+                <span class="p-cta">VIEW DETAILS —</span>
             </div>
 
-            <div class="item-card" onclick="inquire('Blue-file.png .jpeg')">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800" alt="Blue Shirt">
-                </div>
-                <div class="item-info">
-                    <p>Apparel // 03</p>
-                    <h3>The National Blue</h3>
-                </div>
-                <div class="inquire-btn">Request Inquire</div>
+            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('Blue-file.png .jpeg')">
+                <span class="p-num">03 / ARCHIVE</span>
+                <span class="p-name">National Blue</span>
+                <span class="p-cta">VIEW DETAILS —</span>
             </div>
 
-            <div class="item-card" onclick="inquire('1974shirt-png.png')">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800" alt="Legacy Shirt">
-                </div>
-                <div class="item-info">
-                    <p>Archive // 01</p>
-                    <h3>1974 Legacy Series</h3>
-                </div>
-                <div class="inquire-btn">Request Inquire</div>
+            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('1974shirt-png.png')">
+                <span class="p-num">04 / LEGACY</span>
+                <span class="p-name">1974 Legacy Shirt</span>
+                <span class="p-cta">VIEW DETAILS —</span>
             </div>
 
-            <div class="item-card" onclick="inquire('WC26-cap.png.jpeg')">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800" alt="Cap">
-                </div>
-                <div class="item-info">
-                    <p>Accessory // 01</p>
-                    <h3>WC26 Signature Cap</h3>
-                </div>
-                <div class="inquire-btn">Request Inquire</div>
+            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('WC26-cap.png.jpeg')">
+                <span class="p-num">05 / ACCESSORY</span>
+                <span class="p-name">WC26 Signature Cap</span>
+                <span class="p-cta">VIEW DETAILS —</span>
             </div>
         </div>
     </section>
+
+    <div class="triptych">
+        <div class="word">ELEGANCE</div>
+        <div class="word">SOVEREIGNTY</div>
+        <div class="word">HERITAGE</div>
+    </div>
 
     <footer>
-        <div class="f-big">MAISON</div>
-        <p style="letter-spacing: 10px; opacity: 0.3; margin-top: -50px;">EST. 2026</p>
+        <div class="footer-grid">
+            <div class="footer-info">
+                <h4>Connect</h4>
+                <a href="https://instagram.com/mdshaiti">Instagram</a>
+                <a href="#">Facebook</a>
+            </div>
+            <div class="footer-info" style="text-align: right;">
+                <h4>Location</h4>
+                <a href="#">Port-au-Prince</a>
+                <a href="#">Haiti</a>
+            </div>
+        </div>
+        <div class="f-massive">MAISON</div>
     </footer>
 
     <script>
+        // Manifesto Reveal Logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Hover Image Preview Logic
+        const cursorImg = document.getElementById('cursor-img');
+        const targetImg = document.getElementById('target-img');
+
+        document.addEventListener('mousemove', (e) => {
+            cursorImg.style.left = e.clientX + 'px';
+            cursorImg.style.top = e.clientY + 'px';
+        });
+
+        function showImg(url) {
+            targetImg.src = url;
+            cursorImg.style.opacity = "1";
+            cursorImg.style.transform = "translate(-50%, -50%) scale(1)";
+        }
+
+        function hideImg() {
+            cursorImg.style.opacity = "0";
+            cursorImg.style.transform = "translate(-50%, -50%) scale(0.8)";
+        }
+
         function inquire(fileName) {
-            const igUsername = "mdshaiti";
-            const message = encodeURIComponent(`I would like to inquire about "${fileName}"`);
-            const igUrl = `https://instagram.com/${igUsername}/dm?text=${message}`;
-            window.open(igUrl, '_blank');
+            const msg = encodeURIComponent(`I would like to inquire about "${fileName}"`);
+            window.open(`https://instagram.com/mdshaiti/dm?text=${msg}`, '_blank');
         }
     </script>
 </body>
