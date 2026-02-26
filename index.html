@@ -14,71 +14,86 @@
         nav { position: fixed; top: 0; width: 100%; padding: 2rem 5%; display: flex; justify-content: space-between; z-index: 100; mix-blend-mode: difference; }
         .logo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; letter-spacing: 2px; }
 
-        /* HERO: THE ENTRANCE */
+        /* HERO */
         .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative; border-bottom: 1px solid var(--border); }
-        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 8vw; font-style: italic; font-weight: 300; text-align: center; line-height: 0.9; }
-        .hero-sub { margin-top: 20px; font-size: 0.7rem; letter-spacing: 8px; text-transform: uppercase; opacity: 0.5; }
+        .hero h1 { font-family: 'Cormorant Garamond', serif; font-size: 10vw; font-style: italic; font-weight: 300; text-align: center; line-height: 0.9; }
+        .hero-sub { margin-top: 20px; font-size: 0.6rem; letter-spacing: 8px; text-transform: uppercase; opacity: 0.5; }
 
-        /* MANIFESTO: KINETIC REVEAL */
-        .manifesto { min-height: 100vh; padding: 10vh 10%; display: flex; flex-direction: column; justify-content: center; }
-        .manifesto p { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 4rem); line-height: 1.2; font-style: italic; transition: 1s; opacity: 0.1; transform: translateY(20px); }
+        /* MANIFESTO */
+        .manifesto { min-height: 80vh; padding: 10vh 10%; display: flex; flex-direction: column; justify-content: center; }
+        .manifesto p { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 4vw, 3.5rem); line-height: 1.3; font-style: italic; transition: 1.2s; opacity: 0.1; transform: translateY(30px); margin-bottom: 1rem; }
         .manifesto p.visible { opacity: 1; transform: translateY(0); }
         .manifesto span { color: var(--gold); }
 
-        /* ATELIER: EXCLUSIVE REVEAL */
+        /* ATELIER: LOOKBOOK STYLE */
         .atelier { padding: 100px 5%; background: #050505; }
-        .atelier-header { margin-bottom: 80px; text-align: center; }
-        .atelier-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-style: italic; margin-bottom: 10px; }
+        .atelier-header { margin-bottom: 60px; }
+        .atelier-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 3.5rem; font-style: italic; }
         
-        .product-list { display: flex; flex-direction: column; border-top: 1px solid var(--border); }
-        .product-row { 
-            display: grid; grid-template-columns: 1fr 2fr 1fr; 
-            padding: 40px 0; border-bottom: 1px solid var(--border); 
-            cursor: pointer; transition: 0.4s; position: relative;
-        }
-        .product-row:hover { background: rgba(255,255,255,0.02); }
-        .product-row .p-num { font-size: 0.7rem; opacity: 0.3; }
-        .product-row .p-name { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-style: italic; }
-        .product-row .p-cta { text-align: right; font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); align-self: center; }
+        .lookbook-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 40px; }
         
-        /* HOVER IMAGE PREVIEW (The "Exclusive" Feel) */
-        .hover-img { 
-            position: fixed; width: 300px; height: 400px; pointer-events: none; 
-            z-index: 50; opacity: 0; transform: translate(-50%, -50%) scale(0.8); 
-            transition: opacity 0.3s, transform 0.3s cubic-bezier(0.19, 1, 0.22, 1);
-            overflow: hidden; border: 1px solid var(--gold);
+        .lookbook-card { 
+            position: relative; 
+            height: 600px; 
+            overflow: hidden; 
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            cursor: pointer;
         }
-        .hover-img img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* THE THREE WORDS */
-        .triptych { height: 60vh; display: flex; align-items: center; justify-content: space-around; border-bottom: 1px solid var(--border); }
-        .word { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 4vw; opacity: 0.4; letter-spacing: 5px; transition: 0.8s; }
-        .word:hover { opacity: 1; color: var(--gold); letter-spacing: 15px; }
+        .card-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1; transition: transform 2s ease;
+        }
+        .card-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; }
+        
+        .lookbook-card:hover .card-img { transform: scale(1.1); }
+        .lookbook-card:hover .card-img img { opacity: 0.8; }
+
+        .card-content {
+            position: relative; z-index: 2; padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+        }
+        .card-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; margin-bottom: 10px; }
+        .card-content p { font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; margin-bottom: 20px; }
+        
+        .inquire-bar {
+            display: block; width: 100%; padding: 15px; background: var(--gold);
+            color: #000; text-align: center; font-weight: 800; font-size: 0.7rem;
+            letter-spacing: 2px; text-transform: uppercase; transition: 0.3s;
+        }
+
+        /* TRIPTYCH */
+        .triptych { padding: 100px 0; display: flex; flex-direction: column; align-items: center; gap: 40px; border-bottom: 1px solid var(--border); }
+        .word { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10vw; opacity: 0.2; letter-spacing: 10px; }
 
         /* FOOTER */
-        footer { padding: 100px 5%; position: relative; }
-        .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-        .footer-info h4 { font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); margin-bottom: 20px; text-transform: uppercase; }
-        .footer-info a { display: block; color: #fff; text-decoration: none; font-size: 1.2rem; margin-bottom: 10px; font-family: 'Cormorant Garamond', serif; font-style: italic; }
-        .f-massive { font-family: 'Cormorant Garamond', serif; font-size: 18vw; opacity: 0.03; font-style: italic; line-height: 0.7; margin-top: 50px; text-align: center; }
+        footer { padding: 80px 10%; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .footer-links h4 { font-size: 0.6rem; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 20px; }
+        .footer-links a { display: block; color: #fff; text-decoration: none; font-size: 1.1rem; font-family: 'Cormorant Garamond', serif; font-style: italic; margin-bottom: 10px; }
+        .f-massive { font-family: 'Cormorant Garamond', serif; font-size: 20vw; opacity: 0.03; font-style: italic; text-align: center; margin-top: 50px; line-height: 0.7; }
 
-        @media (max-width: 768px) { .product-row { grid-template-columns: 1fr; gap: 10px; } .hero h1 { font-size: 15vw; } }
+        @media (max-width: 768px) {
+            .lookbook-grid { grid-template-columns: 1fr; }
+            .lookbook-card { height: 500px; }
+            .hero h1 { font-size: 18vw; }
+            .word { font-size: 15vw; }
+        }
     </style>
 </head>
 <body>
 
     <nav><div class="logo">MDS</div></nav>
 
-    <div class="hover-img" id="cursor-img">
-        <img src="" id="target-img">
-    </div>
-
     <section class="hero">
         <h1>L'Architecture <br> de la Renaissance.</h1>
         <p class="hero-sub">Maison Du Sport // Haiti</p>
     </section>
 
-    <section class="manifesto" id="manifesto">
+    <section class="manifesto">
         <p class="reveal">Football is not just a game. <span>It is our heritage.</span></p>
         <p class="reveal">Maison Du Sport is the <span>sovereign bridge</span> between</p>
         <p class="reveal">raw passion and <span>global excellence.</span></p>
@@ -87,39 +102,54 @@
 
     <section class="atelier">
         <div class="atelier-header">
-            <p style="font-size: 0.6rem; letter-spacing: 5px; color: var(--gold); margin-bottom: 10px;">EXCLUSIVITÉ</p>
-            <h2>L'Atelier MDS</h2>
+            <p style="font-size: 0.6rem; letter-spacing: 5px; color: var(--gold); margin-bottom: 10px;">COLLECTION 2026</p>
+            <h2>L'Atelier</h2>
         </div>
 
-        <div class="product-list">
-            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('WC26-white.png .jpeg')">
-                <span class="p-num">01 / ARCHIVE</span>
-                <span class="p-name">World Cup White</span>
-                <span class="p-cta">VIEW DETAILS —</span>
+        <div class="lookbook-grid">
+            <div class="lookbook-card" onclick="inquire('WC26-white.png .jpeg')">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800"></div>
+                <div class="card-content">
+                    <p>Apparel // 01</p>
+                    <h3>World Cup White</h3>
+                    <div class="inquire-bar">Request Access</div>
+                </div>
             </div>
 
-            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('WC26-Red.png .jpeg')">
-                <span class="p-num">02 / ARCHIVE</span>
-                <span class="p-name">World Cup Red</span>
-                <span class="p-cta">VIEW DETAILS —</span>
+            <div class="lookbook-card" onclick="inquire('WC26-Red.png .jpeg')">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800"></div>
+                <div class="card-content">
+                    <p>Apparel // 02</p>
+                    <h3>World Cup Red</h3>
+                    <div class="inquire-bar">Request Access</div>
+                </div>
             </div>
 
-            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('Blue-file.png .jpeg')">
-                <span class="p-num">03 / ARCHIVE</span>
-                <span class="p-name">National Blue</span>
-                <span class="p-cta">VIEW DETAILS —</span>
+            <div class="lookbook-card" onclick="inquire('Blue-file.png .jpeg')">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800"></div>
+                <div class="card-content">
+                    <p>Apparel // 03</p>
+                    <h3>National Blue</h3>
+                    <div class="inquire-bar">Request Access</div>
+                </div>
             </div>
 
-            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('1974shirt-png.png')">
-                <span class="p-num">04 / LEGACY</span>
-                <span class="p-name">1974 Legacy Shirt</span>
-                <span class="p-cta">VIEW DETAILS —</span>
+            <div class="lookbook-card" onclick="inquire('1974shirt-png.png')">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800"></div>
+                <div class="card-content">
+                    <p>Archive // 04</p>
+                    <h3>1974 Legacy Shirt</h3>
+                    <div class="inquire-bar">Request Access</div>
+                </div>
             </div>
 
-            <div class="product-row" onmouseenter="showImg('https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600')" onmouseleave="hideImg()" onclick="inquire('WC26-cap.png.jpeg')">
-                <span class="p-num">05 / ACCESSORY</span>
-                <span class="p-name">WC26 Signature Cap</span>
-                <span class="p-cta">VIEW DETAILS —</span>
+            <div class="lookbook-card" onclick="inquire('WC26-cap.png.jpeg')">
+                <div class="card-img"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800"></div>
+                <div class="card-content">
+                    <p>Accessory // 05</p>
+                    <h3>WC26 Signature Cap</h3>
+                    <div class="inquire-bar">Request Access</div>
+                </div>
             </div>
         </div>
     </section>
@@ -132,50 +162,31 @@
 
     <footer>
         <div class="footer-grid">
-            <div class="footer-info">
-                <h4>Connect</h4>
-                <a href="https://instagram.com/mdshaiti">Instagram</a>
-                <a href="#">Facebook</a>
+            <div class="footer-links">
+                <h4>Digital Presence</h4>
+                <a href="https://instagram.com/mdshaiti" target="_blank">Instagram / @mdshaiti</a>
+                <a href="#">Facebook / Maison Du Sport</a>
             </div>
-            <div class="footer-info" style="text-align: right;">
-                <h4>Location</h4>
-                <a href="#">Port-au-Prince</a>
-                <a href="#">Haiti</a>
+            <div class="footer-links">
+                <h4>Institutional</h4>
+                <a href="#">Port-au-Prince, Haiti</a>
+                <a href="#">Strategic Partner Portal</a>
             </div>
         </div>
         <div class="f-massive">MAISON</div>
     </footer>
 
     <script>
-        // Manifesto Reveal Logic
+        // Manifesto Reveal
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.3 });
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-        // Hover Image Preview Logic
-        const cursorImg = document.getElementById('cursor-img');
-        const targetImg = document.getElementById('target-img');
-
-        document.addEventListener('mousemove', (e) => {
-            cursorImg.style.left = e.clientX + 'px';
-            cursorImg.style.top = e.clientY + 'px';
-        });
-
-        function showImg(url) {
-            targetImg.src = url;
-            cursorImg.style.opacity = "1";
-            cursorImg.style.transform = "translate(-50%, -50%) scale(1)";
-        }
-
-        function hideImg() {
-            cursorImg.style.opacity = "0";
-            cursorImg.style.transform = "translate(-50%, -50%) scale(0.8)";
-        }
-
+        // Instagram Concierge
         function inquire(fileName) {
             const msg = encodeURIComponent(`I would like to inquire about "${fileName}"`);
             window.open(`https://instagram.com/mdshaiti/dm?text=${msg}`, '_blank');
