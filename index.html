@@ -9,152 +9,170 @@
 
     <style>
         :root {
-            --bg: #0A0A0A;
-            --text: #F4F4F0;
-            --accent: #BFA675;
-            --border: rgba(244, 244, 240, 0.15);
+            --bg: #0A0A0A; --text: #F4F4F0; --accent: #BFA675; --border: rgba(244, 244, 240, 0.15);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', sans-serif;
-            overflow-x: hidden;
-        }
-
+        body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        
         /* NAVIGATION */
-        nav {
-            position: fixed;
-            top: 0; width: 100%; padding: 2rem 5%;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; mix-blend-mode: difference;
-        }
-        .logo { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; font-style: italic; }
+        nav { position: fixed; top: 0; width: 100%; padding: 2rem 5%; display: flex; justify-content: space-between; z-index: 1000; mix-blend-mode: difference; }
+        .logo { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; font-style: italic; letter-spacing: -1px; }
 
-        /* HERO */
-        .hero {
-            height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
-            border-bottom: 1px solid var(--border);
-        }
+        /* HERO: High-Contrast Monolith */
+        .hero { height: 100vh; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
         .hero-left { padding: 15% 10%; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); }
-        h1 { font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.85; font-style: italic; }
-        .hero-right { background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000') center/cover; filter: grayscale(1); }
+        h1 { font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 10vw, 8rem); line-height: 0.85; font-style: italic; margin-bottom: 2rem; }
+        .hero-right { background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000') center/cover; filter: grayscale(1); transition: 0.6s ease; }
+        .hero:hover .hero-right { filter: grayscale(0.5); }
 
-        /* DIVISIONS */
+        /* DIVISIONS: The Interactive Hub */
         .divisions { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); }
-        .div-card {
-            padding: 5rem 10%; border-right: 1px solid var(--border);
-            cursor: pointer; transition: 0.4s; position: relative;
-        }
+        .div-card { padding: 5rem 10%; border-right: 1px solid var(--border); cursor: pointer; transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1); position: relative; }
         .div-card:hover { background: var(--text); color: var(--bg); }
-        .div-card h3 { font-family: 'Bodoni Moda', serif; font-size: 2rem; margin-bottom: 1rem; }
-        .click-hint { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); position: absolute; bottom: 2rem; }
+        .div-card h3 { font-family: 'Bodoni Moda', serif; font-size: 2.2rem; margin-bottom: 1rem; }
+        .div-card p { opacity: 0.6; font-size: 0.9rem; line-height: 1.6; }
+        .open-hint { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 3px; color: var(--accent); position: absolute; bottom: 2rem; }
 
-        /* PRODUCT MODAL / GALLERY */
-        #commercial-gallery {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg); z-index: 2000;
-            display: none; padding: 5% 10%; overflow-y: auto;
-        }
+        /* PERMANENT STATEMENT (Replaces News) */
+        .statement { padding: 15rem 10%; text-align: center; border-bottom: 1px solid var(--border); }
+        .statement h2 { font-family: 'Bodoni Moda', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-style: italic; max-width: 1000px; margin: 0 auto; line-height: 1.1; }
+
+        /* HIDDEN PRODUCT GALLERY (Triggered) */
+        #atelier-gallery { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg); z-index: 2000; display: none; padding: 5% 10%; overflow-y: auto; }
         .gallery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; }
-        .close-btn { cursor: pointer; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid var(--accent); }
+        .gallery-header h2 { font-family: 'Bodoni Moda', serif; font-size: 3rem; font-style: italic; }
+        .close-btn { cursor: pointer; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.8rem; border-bottom: 1px solid var(--accent); color: var(--accent); }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-        }
-        .product-card {
-            border: 1px solid var(--border); padding: 1.5rem; transition: 0.3s;
-        }
-        .product-card:hover { border-color: var(--accent); transform: translateY(-10px); }
-        .p-img {
-            width: 100%; height: 350px; background: #111; margin-bottom: 1.5rem;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
-        }
-        .p-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
-        .p-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
-        .p-name { font-family: 'Bodoni Moda', serif; font-size: 1.2rem; margin-top: 0.5rem; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
+        .product-card { border: 1px solid var(--border); padding: 1.5rem; transition: 0.4s; text-decoration: none; color: inherit; display: block; }
+        .product-card:hover { border-color: var(--accent); transform: scale(1.02); }
+        
+        .p-img { width: 100%; height: 350px; background: #111; overflow: hidden; margin-bottom: 1.5rem; }
+        .p-img img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .p-cat { font-size: 0.6rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; }
+        .p-name { font-family: 'Bodoni Moda', serif; font-size: 1.4rem; margin-top: 0.5rem; }
+        .preorder { display: block; margin-top: 1rem; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; font-size: 0.7rem; border-top: 1px solid var(--border); padding-top: 1rem; color: var(--accent); }
 
-        footer { padding: 5rem 10%; text-align: center; opacity: 0.3; font-size: 0.7rem; letter-spacing: 5px; }
+        /* FOOTER: The Anchor */
+        footer { padding: 6rem 10%; display: flex; justify-content: space-between; border-top: 1px solid var(--border); opacity: 0.3; }
+        .f-massive { position: absolute; bottom: 0; left: 0; font-size: 20vw; font-family: 'Bodoni Moda', serif; opacity: 0.03; width: 100%; text-align: center; }
 
-        @media (max-width: 900px) { .hero, .divisions, .product-grid { grid-template-columns: 1fr; } }
+        @media (max-width: 900px) { .hero, .divisions { grid-template-columns: 1fr; } .hero-right { display: none; } .div-card { border-right: none; } }
     </style>
 </head>
 <body>
 
-    <nav><div class="logo">MDS / HAITI</div></nav>
+    <nav>
+        <div class="logo">MDS / HAITI</div>
+        <div class="nav-links"><a href="#divisions">The Pillars</a><a href="https://instagram.com/mdshaiti" target="_blank">Instagram</a></div>
+    </nav>
 
     <section class="hero">
         <div class="hero-left">
-            <h1>L'Autorité Mondiale.</h1>
-            <p style="margin-top: 2rem; opacity: 0.6;">Architecting the commercial future of Haitian football.</p>
+            <span style="color: var(--accent); text-transform: uppercase; letter-spacing: 4px; font-size: 0.7rem; margin-bottom: 1rem;">L'Autorité Mondiale.</span>
+            <h1>The Blueprint for Haitian Football.</h1>
+            <p style="opacity: 0.6; max-width: 400px; margin-top: 1rem; line-height: 1.6;">
+                Architecting the commercial, cultural, and strategic future of the game. Revival is our responsibility.
+            </p>
         </div>
         <div class="hero-right"></div>
     </section>
 
-    <section class="divisions">
+    <section class="divisions" id="divisions">
         <div class="div-card" onclick="openGallery()">
-            <h3>Commercial Architecture</h3>
-            <p>Click to explore our strategic apparel and commercial pillars.</p>
-            <span class="click-hint">View Collection —</span>
+            <span style="font-size: 0.7rem; color: var(--accent); letter-spacing: 3px;">01 — ACTIVE</span>
+            <h3>Atelier MDS</h3>
+            <p>Access the exclusive Architecture apparel and the signature national collection.</p>
+            <span class="open-hint">Enter the Atelier —</span>
         </div>
-        <div class="div-card"><h3>Media & Culture</h3><p>Storytelling the revival.</p></div>
-        <div class="div-card"><h3>L'Atelier</h3><p>Crafting identity.</p></div>
+        <div class="div-card">
+            <span style="font-size: 0.7rem; opacity: 0.3; letter-spacing: 3px;">02 — PERMANENT</span>
+            <h3>Commercial Architecture</h3>
+            <p>Developing sustainable, high-growth revenue models for clubs and the national program.</p>
+        </div>
+        <div class="div-card">
+            <span style="font-size: 0.7rem; opacity: 0.3; letter-spacing: 3px;">03 — PERMANENT</span>
+            <h3>Media & Culture</h3>
+            <p>Documenting the revival. Centralizing the narrative of Haitian football for global broadcasting.</p>
+        </div>
     </section>
 
-    <div id="commercial-gallery">
+    <section class="statement">
+        <h2>"This is not a project; it is an institution. We build the structure that allows passion to become a professional engine."</h2>
+    </section>
+
+    <div id="atelier-gallery">
         <div class="gallery-header">
-            <h2 style="font-family: 'Bodoni Moda', serif; font-size: 2.5rem; font-style: italic;">L'Architecture Collection</h2>
-            <div class="close-btn" onclick="closeGallery()">Close Gallery</div>
+            <h2>L'Architecture Collection</h2>
+            <div class="close-btn" onclick="closeGallery()">Close Collection</div>
         </div>
 
         <div class="product-grid">
-
-            <div class="product-card">
-                <div class="p-img"><img src="WC26-white.png .jpeg"></div>
-                <span class="p-label">Apparel / 02</span>
-                <p class="p-name">Haiti National Away Shirt</p>
-            </div>
-            <div class="product-card">
-                <div class="p-img"><img src="WC26-Red.png.jpeg"></div>
-                <span class="p-label">Apparel / 02</span>
-                <p class="p-name">Haiti National Away Shirt</p>
-            </div>
-            <div class="product-card">
-                <div class="p-img"><img src="WC-file.png.jpeg" alt="Shirt"></div>
-                <span class="p-label">Apparel / 03</span>
-                <p class="p-name">Haiti National Home Shirt </p>
-            </div>
-            <div class="product-card">
-                <div class="p-img"><img src="1974shirt-png.png" alt="Shirt"></div>
-                <span class="p-label">Apparel / 04</span>
-                <p class="p-name">Haiti 1974 Heritage Shirt'</p>
-            </div>
-            <div class="product-card">
-                <div class="p-img"><img src="Haiticap-png.png"></div>
-                <span class="p-label">Headwear / 01</span>
-                <p class="p-name">Haitian Federation Cap</p>
-            </div>
+            <a href="#" class="product-card" data-product="Heritage Home Shirt">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=400"></div>
+                <span class="p-cat">Maison Apparel</span>
+                <p class="p-name">Heritage Home Shirt</p>
+                <span class="preorder">Inquire via IG Concierge —</span>
+            </a>
+            <a href="#" class="product-card" data-product="Strategic Away Shirt">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=400"></div>
+                <span class="p-cat">Maison Apparel</span>
+                <p class="p-name">Strategic Away Shirt</p>
+                <span class="preorder">Inquire via IG Concierge —</span>
+            </a>
+            <a href="#" class="product-card" data-product="Training Kit 'Monolith'">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=400"></div>
+                <span class="p-cat">Maison Apparel</span>
+                <p class="p-name">Training Kit 'Monolith'</p>
+                <span class="preorder">Inquire via IG Concierge —</span>
+            </a>
+            <a href="#" class="product-card" data-product="Third Kit 'Authority'">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=400"></div>
+                <span class="p-cat">Maison Apparel</span>
+                <p class="p-name">Third Kit 'Authority'</p>
+                <span class="preorder">Inquire via IG Concierge —</span>
+            </a>
+            <a href="#" class="product-card" data-product="Signature Cap 'Archive 2026'">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=400"></div>
+                <span class="p-cat">Headwear</span>
+                <p class="p-name">Signature Cap 'Archive 2026'</p>
+                <span class="preorder">Inquire via IG Concierge —</span>
+            </a>
         </div>
     </div>
 
-    <footer>MAISON DU SPORT — 2026</footer>
+    <footer style="position: relative; overflow: hidden; min-height: 400px;">
+        <div style="z-index: 2;">PORT-AU-PRINCE / HAITI</div>
+        <div style="z-index: 2;">MDS © 2026 — L'AUTORITÉ</div>
+        <div class="f-massive">MAISON</div>
+    </footer>
 
     <script>
-        function openGallery() {
-            const gallery = document.getElementById('commercial-gallery');
-            gallery.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Stop background scrolling
-        }
+        // 1. Modal Logic (Toggle Visibility)
+        function openGallery() { document.getElementById('atelier-gallery').style.display = 'block'; document.body.style.overflow = 'hidden'; }
+        function closeGallery() { document.getElementById('atelier-gallery').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-        function closeGallery() {
-            const gallery = document.getElementById('commercial-gallery');
-            gallery.style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        }
+        // 2. Instagram Concierge Logic (The Pre-Typed Message)
+        const igUsername = "mdshaiti";
+        
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                // Prevent standard anchor behavior if we handle the link
+                e.preventDefault(); 
+                
+                const productName = this.getAttribute('data-product');
+                // The Message: Encoded for URL
+                const message = encodeURIComponent(`Hello MDS, I would like to inquire about: ${productName}. — MDS 2026`);
+                
+                // The Instagram direct link with pre-typed message
+                const igUrl = `https://instagram.com/${igUsername}/dm?text=${message}`;
+                
+                // Launch the link in a new tab
+                window.open(igUrl, '_blank');
+            });
+        });
     </script>
+
 </body>
-</html>>
+</html>
