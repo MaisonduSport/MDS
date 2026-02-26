@@ -3,284 +3,299 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maison Du Sport | Institutional Hub</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet">
+    <title>MAISON DU SPORT | L'Autorité</title>
     
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
+
     <style>
+        /* CSS VARIABLES & RESET */
         :root {
-            --bg-primary: #0B1310;
-            --bg-secondary: #1F2C23;
-            --gold: #D4AF6C;
-            --gold-hover: #E1C97A;
-            --cream: #F7F3E9;
-            --cream-muted: #AFA899;
-            --transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            --bg: #0A0A0A;
+            --text: #F4F4F0;
+            --accent: #BFA675;
+            --border: rgba(244, 244, 240, 0.15);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         
-        body { 
-            background-color: var(--bg-primary); 
-            color: var(--cream); 
-            font-family: 'Inter', sans-serif; 
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
 
-        /* Cinematic Film Grain Overlay */
-        body::before {
-            content: "";
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://grainy-gradients.vercel.app/noise.svg');
-            opacity: 0.04; pointer-events: none; z-index: 9999;
-        }
-
-        section { padding: 140px 8%; border-bottom: 1px solid rgba(212, 175, 108, 0.1); }
-        h1, h2, h3 { font-family: 'Playfair Display', serif; text-transform: uppercase; }
-
-        /* --- Navigation --- */
+        /* NAVIGATION */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 2.5rem 5%;
-            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
-            transition: var(--transition);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: difference; /* Text changes color based on background */
         }
-        nav.scrolled {
-            padding: 1.2rem 5%; background: rgba(11, 19, 16, 0.98);
-            border-bottom: 1px solid rgba(212, 175, 108, 0.2);
-            backdrop-filter: blur(10px);
-        }
-        .logo { font-family: 'Playfair Display', serif; color: var(--gold); font-weight: 900; font-size: 1.6rem; text-decoration: none; letter-spacing: 2px; }
-        .nav-links a { color: var(--cream-muted); text-decoration: none; font-size: 0.7rem; letter-spacing: 3px; margin-left: 2.5rem; text-transform: uppercase; font-weight: 600; transition: 0.3s; }
-        .nav-links a:hover { color: var(--gold); }
 
-        /* --- Hero Section --- */
+        .logo {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            letter-spacing: -1px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 900;
+            margin-left: 2rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--accent); }
+
+        /* HERO SECTION */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            text-align: center; position: relative; background: #000; overflow: hidden;
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid var(--border);
         }
-        .hero-img {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; opacity: 0.5; filter: grayscale(100%) contrast(1.2) brightness(0.6);
-            transform: scale(1.05); transition: 10s ease-out;
-        }
-        .hero:hover .hero-img { transform: scale(1); }
-        .hero-content { position: relative; z-index: 10; max-width: 1000px; }
-        .hero h1 { font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.85; margin-bottom: 1.5rem; font-style: italic; }
-        .hero p { letter-spacing: 12px; color: var(--gold); text-transform: uppercase; font-size: 0.85rem; font-weight: 400; }
 
-        /* --- MDS Atelier (Jersey Cards) --- */
-        .atelier-grid {
-            display: grid; 
-            grid-template-columns: repeat(6, 1fr); 
-            gap: 40px; 
-            margin-top: 5rem;
+        .hero-left {
+            padding: 15% 10% 5% 10%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid var(--border);
         }
-        
-        .product-link { text-decoration: none; grid-column: span 2; display: block; }
-        
-        .product-card {
-            background: var(--bg-secondary); border: 1px solid rgba(212, 175, 108, 0.08);
-            padding: 1rem; transition: var(--transition); position: relative;
+
+        .hero-left span {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            line-height: 0.85;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+        .hero-right {
+            background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000') center/cover;
+            filter: grayscale(1) contrast(1.1);
+            transition: 1s ease;
+        }
+
+        .hero:hover .hero-right {
+            filter: grayscale(0.5) contrast(1);
+        }
+
+        /* THE MANIFESTO (SCROLL REVEAL) */
+        .manifesto {
+            padding: 15rem 10%;
+            text-align: center;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .manifesto h2 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* GRID DIVISIONS */
+        .divisions {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .div-card {
+            padding: 6rem 10%;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* Order: Red, Blue, White on top row. 1974, Cap centered on bottom. */
-        .product-link.bottom-row:nth-of-type(4) { grid-column: 2 / 4; }
-        .product-link.bottom-row:nth-of-type(5) { grid-column: 4 / 6; }
+        .div-card:last-child { border-right: none; }
 
-        .product-card:hover { border-color: var(--gold); transform: translateY(-15px); }
-        
-        .img-container {
-            width: 100%; height: 500px; overflow: hidden; background: #050a08;
-            border: 1px solid rgba(212, 175, 108, 0.05);
-        }
-        .product-img {
-            width: 100%; height: 100%; object-fit: cover; 
-            filter: grayscale(100%) brightness(0.8); transition: 0.5s;
-        }
-        .product-card:hover .product-img { filter: grayscale(0%) brightness(1); transform: scale(1.05); }
-        
-        .product-info { padding: 2rem 1rem; text-align: left; border-top: 1px solid rgba(212, 175, 108, 0.1); margin-top: 1rem; }
-        .product-card h3 { font-size: 1.4rem; color: var(--cream); margin-bottom: 5px; }
-        .status-tag { color: var(--gold); font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 700; }
-
-        /* --- Strategic Big Box --- */
-        .big-box-section { background: #070D0A; }
-        .divisions-container {
-            background: var(--bg-secondary); border: 1px solid var(--gold);
-            padding: 6rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 80px;
-            position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5);
-        }
-        .div-item { 
-            border-bottom: 1px solid rgba(212, 175, 108, 0.15); 
-            padding-bottom: 30px; display: flex; flex-direction: column; align-items: flex-start; 
-        }
-        .div-item h3 { font-size: 1.8rem; letter-spacing: 1px; color: var(--cream); margin-bottom: 10px; }
-
-        /* --- Headquarters Section --- */
-        .hq-image-wrap {
-            width: 100%; height: 85vh; overflow: hidden; margin: 4rem 0;
-            border: 1px solid var(--gold); position: relative;
-        }
-        .hq-img {
-            width: 100%; height: 115%; 
-            object-fit: cover;
-            position: absolute; top: -5%; left: 0;
-            filter: grayscale(100%) contrast(1.1) brightness(0.6);
-            transition: transform 0.1s ease-out;
-        }
-        .hq-overlay {
-            position: absolute; bottom: 40px; left: 40px; text-align: left; z-index: 5;
+        .div-card:hover {
+            background-color: var(--text);
+            color: var(--bg);
         }
 
-        /* --- Footer --- */
-        footer { background: #050A08; padding: 100px 8% 50px; border-top: 1px solid var(--gold); }
-        .footer-flex { display: flex; justify-content: space-between; align-items: center; }
-        .social-item { margin-top: 1.5rem; display: flex; flex-direction: column; align-items: flex-end; }
-        .social-handle { font-size: 0.8rem; letter-spacing: 2px; color: var(--cream); margin-bottom: 5px; }
-        .social-label { font-size: 0.6rem; letter-spacing: 3px; color: var(--gold); font-weight: 700; }
+        .div-card h3 {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 2.5rem;
+            margin-bottom: 5rem;
+            position: relative;
+            z-index: 2;
+        }
 
-        @media (max-width: 1100px) {
-            .atelier-grid { grid-template-columns: 1fr; }
-            .product-link, .product-link.bottom-row { grid-column: span 6 !important; }
-            .divisions-container { grid-template-columns: 1fr; padding: 3rem 1.5rem; gap: 40px; }
-            .footer-flex { flex-direction: column; gap: 50px; text-align: center; }
-            .footer-flex div { text-align: center !important; }
-            .social-item { align-items: center; }
+        .div-card p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            opacity: 0.7;
+            position: relative;
+            z-index: 2;
+        }
+
+        .div-card .tag {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 10rem 10% 4rem 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            position: relative;
+        }
+
+        .footer-logo {
+            font-family: 'Bodoni Moda', serif;
+            font-size: 15vw;
+            line-height: 0.7;
+            opacity: 0.03;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            pointer-events: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .contact-info p {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        /* MOBILE FIXES */
+        @media (max-width: 900px) {
+            .hero, .divisions { grid-template-columns: 1fr; }
+            .hero-right { height: 50vh; }
+            .div-card { border-right: none; }
+            .nav-links { display: none; }
+        }
+
+        /* ANIMATION CLASSES */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <nav id="navbar">
-        <a href="#" class="logo">MAISON DU SPORT</a>
+    <nav>
+        <div class="logo">MDS / HAITI</div>
         <div class="nav-links">
-            <a href="#atelier">Atelier</a>
-            <a href="#divisions">Strategic Hub</a>
-            <a href="#hq">Headquarters</a>
+            <a href="#vision">The Vision</a>
+            <a href="#divisions">Divisions</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
 
-    <header class="hero">
-        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2000" class="hero-img" alt="Sylvio Cator Infrastructure">
-        <div class="hero-content">
-            <p style="margin-bottom: 1rem; letter-spacing: 12px;">The Institution</p>
-            <h1>The Home of <br>Haitian Football.</h1>
-            <p>Revival is not a dream. It is a responsibility.</p>
+    <section class="hero">
+        <div class="hero-left">
+            <span>The Home of Haitian Football</span>
+            <h1>L'Autorité Mondiale.</h1>
+            <p style="opacity: 0.6; max-width: 400px; margin-top: 1rem;">
+                Architecting the commercial, cultural, and strategic future of the game. Revival is our responsibility.
+            </p>
         </div>
-    </header>
-
-    <section id="atelier">
-        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; font-weight: 700;">Curated Equipment</span>
-        <h2 style="font-size: 3.5rem; margin-top: 15px;">MDS Atelier</h2>
-        
-        <div class="atelier-grid">
-            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link">
-                <div class="product-card">
-                    <div class="img-container"><img src="WC26-Red.png.jpeg" class="product-img" alt="Haiti National Jersey Red"></div>
-                    <div class="product-info"><h3>National Jersey — Red</h3><span class="status-tag">Coming Soon</span></div>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link">
-                <div class="product-card">
-                    <div class="img-container"><img src="Blue-file.png .jpeg" class="product-img" alt="Haiti National Jersey Blue"></div>
-                    <div class="product-info"><h3>National Jersey — Blue</h3><span class="status-tag">Coming Soon</span></div>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link">
-                <div class="product-card">
-                    <div class="img-container"><img src="WC26-white.png .jpeg" class="product-img" alt="Haiti National Jersey White"></div>
-                    <div class="product-info"><h3>National Jersey — White</h3><span class="status-tag">Coming Soon</span></div>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link bottom-row">
-                <div class="product-card">
-                    <div class="img-container"><img src="1974shirt-png.png" class="product-img" alt="1974 Heritage Tee"></div>
-                    <div class="product-info"><h3>1974 Heritage</h3><span class="status-tag">Coming Soon</span></div>
-                </div>
-            </a>
-            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="product-link bottom-row">
-                <div class="product-card">
-                    <div class="img-container"><img src="WC26-cap.png.jpeg" class="product-img" alt="Haitian Federation Cap"></div>
-                    <div class="product-info"><h3>WC26 Cap</h3><span class="status-tag">Coming Soon</span></div>
-                </div>
-            </a>
-        </div>
+        <div class="hero-right"></div>
     </section>
 
-    <section id="divisions" class="big-box-section">
-        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; font-weight: 700;">Infrastructure</span>
-        <h2 style="font-size: 3.5rem; margin: 15px 0 60px 0;">Strategic Pillars</h2>
-        
-        <div class="divisions-container">
-            <div class="div-item"><h3>Commercial</h3><span class="status-tag">Soon</span></div>
-            <div class="div-item"><h3>Media Hub</h3><span class="status-tag">Soon</span></div>
-            <div class="div-item"><h3>Partnerships</h3><span class="status-tag">Soon</span></div>
-        </div>
+    <section class="manifesto reveal" id="vision">
+        <h2>"We are building the structure behind the passion. A new era for the Blue and Red."</h2>
     </section>
 
-    <section id="hq" style="text-align: center;">
-        <span style="color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; font-weight: 700;">Physical Headquarters</span>
-        <h2 style="font-size: 3.5rem; margin-top: 15px;">MDS Operations</h2>
-        <p style="color: var(--cream-muted); margin-top: 10px; text-transform: uppercase; letter-spacing: 2px;">Port-au-Prince, Haiti</p>
-        
-        <div class="hq-image-wrap">
-            <img src="STOREPNG.png" class="hq-img" id="parallaxHq" alt="MDS Headquarters Store Front">
-            <div class="hq-overlay">
-                <span class="status-tag" style="background: var(--gold); color: var(--bg-primary); padding: 10px 20px;">Opening — Coming Soon</span>
-            </div>
+    <section class="divisions" id="divisions">
+        <div class="div-card reveal">
+            <span class="tag">Division 01</span>
+            <h3>Commercial Architecture</h3>
+            <p>Modernizing the economic engine of Haitian football through strategic partnerships and global investment.</p>
         </div>
-        
-        <p style="font-size: 1.5rem; font-family: 'Playfair Display', serif; font-style: italic; max-width: 800px; margin: 0 auto;">
-            "The future physical home of Haitian football operations. A center for strategy, commerce, and national pride."
-        </p>
+        <div class="div-card reveal">
+            <span class="tag">Division 02</span>
+            <h3>Media & Culture</h3>
+            <p>Directing the narrative of the game. High-production content, broadcasting, and archival storytelling.</p>
+        </div>
+        <div class="div-card reveal">
+            <span class="tag">Division 03</span>
+            <h3>L'Atelier MDS</h3>
+            <p>Premium kit design and merchandise. A celebration of identity through performance and lifestyle apparel.</p>
+        </div>
     </section>
 
     <footer id="contact">
-        <div class="footer-flex">
-            <div>
-                <h2 class="logo" style="font-size: 3rem;">MDS</h2>
-                <p style="color: var(--cream-muted); margin-top: 1rem; letter-spacing: 1px;">The Strategic Hub of Haitian Football.</p>
-            </div>
-            <div style="text-align: right;">
-                <p style="color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; margin-bottom: 1.5rem; font-weight: 700;">DIRECT CONTACT</p>
-                <p style="font-size: 1.2rem; margin-bottom: 5px;">+509 4720 9775</p>
-                <p style="color: var(--cream-muted);">contact@maisondusport.com</p>
-                
-                <div class="social-item">
-                    <span class="social-label">INSTAGRAM</span>
-                    <span class="social-handle">@mdshaiti</span>
-                </div>
-                <div class="social-item" style="margin-top: 1rem;">
-                    <span class="social-label">FACEBOOK</span>
-                    <span class="social-handle">Maison Du Sport</span>
-                </div>
-            </div>
+        <div class="contact-info">
+            <p>Port-au-Prince, Haiti</p>
+            <p>+509 4720 9775</p>
+            <p>IG: @mdshaiti</p>
         </div>
-        <div style="margin-top: 6rem; border-top: 1px solid rgba(212, 175, 108, 0.1); padding-top: 2rem; display: flex; justify-content: space-between; font-size: 0.6rem; letter-spacing: 4px; opacity: 0.5;">
-            <span>© 2026 MAISON DU SPORT</span>
-            <span>STRUCTURE · LEGACY · AUTHORITY</span>
+        <div style="text-align: right;">
+            <p style="opacity: 0.4;">© 2026 Maison Du Sport</p>
+            <p style="color: var(--accent);">L'Autorité</p>
         </div>
+        <div class="footer-logo">MAISON</div>
     </footer>
 
     <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Simple Parallax for Hero
         window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            const hqImg = document.getElementById('parallaxHq');
-            
-            if (window.scrollY > 100) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-            
-            let scrollPos = window.pageYOffset;
-            let hqOffset = document.getElementById('hq').offsetTop;
-            if (scrollPos > hqOffset - 1000) {
-                let speed = 0.12;
-                hqImg.style.transform = `translateY(${(scrollPos - hqOffset) * speed}px)`;
-            }
+            const scroll = window.pageYOffset;
+            document.querySelector('.hero-right').style.backgroundPositionY = -(scroll * 0.2) + 'px';
         });
     </script>
+
 </body>
 </html>
