@@ -3,222 +3,213 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAISON DU SPORT | L'EXÉCUTIF</title>
+    <title>MDS | MAISON DU SPORT</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@1,900&family=Plus+Jakarta+Sans:wght@200;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --gold: #BFA675; --bg: #050505; --white: #FFFFFF; --glass: rgba(255,255,255,0.03);
+            --bg: #FFFFFF;
+            --text: #0F0F0F;
+            --accent: #BFA675;
+            --glass: rgba(255, 255, 255, 0.8);
+            --line: rgba(0, 0, 0, 0.08);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; cursor: none; } /* Custom cursor active */
-        body { background: var(--bg); color: var(--white); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-
-        /* CUSTOM CURSOR */
-        #cursor {
-            position: fixed; width: 40px; height: 40px; border: 1px solid var(--gold);
-            border-radius: 50%; pointer-events: none; z-index: 9999;
-            transition: transform 0.15s ease-out, background 0.3s; transform: translate(-50%, -50%);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--bg); 
+            color: var(--text); 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* NAVIGATION: Minimalist Executive */
+        /* TOP 100 FLOATING NAV */
         nav {
-            position: fixed; top: 0; width: 100%; padding: 3rem 5%;
-            display: flex; justify-content: space-between; align-items: center; z-index: 1000;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1200px; height: 70px;
+            background: var(--glass); backdrop-filter: blur(15px);
+            border: 1px solid var(--line); border-radius: 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px; z-index: 1000;
         }
-        .logo { font-family: 'Bodoni Moda', serif; font-size: 1.2rem; letter-spacing: 2px; font-style: italic; }
-        .nav-status { font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); }
+        .logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; }
+        .nav-btn { 
+            background: var(--text); color: #fff; padding: 10px 25px; 
+            border-radius: 20px; font-size: 0.7rem; font-weight: 800; 
+            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-btn:hover { background: var(--accent); }
 
-        /* HERO: The Kinetic Entrance */
+        /* HERO: STRUCTURAL MINIMALISM */
         .hero {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            position: relative; overflow: hidden;
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            border-bottom: 1px solid var(--line);
         }
-        .hero-title {
-            font-family: 'Bodoni Moda', serif; font-size: 15vw; line-height: 0.8;
-            font-style: italic; z-index: 2; text-align: center; pointer-events: none;
+        .hero h1 {
+            font-family: 'Playfair Display', serif; font-size: clamp(4rem, 12vw, 10rem);
+            line-height: 0.8; margin-bottom: 2rem;
         }
-        .hero-sub {
-            position: absolute; bottom: 15%; left: 5%; font-size: 0.7rem;
-            letter-spacing: 5px; text-transform: uppercase; opacity: 0.4;
+        .hero p {
+            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 6px;
+            font-weight: 300; color: var(--accent);
         }
 
-        /* THE ATELIER TRIGGER (LARGE) */
-        .atelier-trigger {
-            height: 100vh; display: flex; align-items: center; justify-content: center;
-            border-top: 1px solid rgba(255,255,255,0.1); background: #080808;
+        /* THE ATELIER: LIGHTBOX MODE */
+        #atelier {
+            padding: 100px 5%;
         }
-        .big-btn {
-            font-size: 5vw; font-family: 'Bodoni Moda', serif; font-style: italic;
-            border-bottom: 2px solid var(--gold); padding-bottom: 1rem; transition: 0.5s;
+        .section-tag {
+            font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;
+            text-transform: uppercase; margin-bottom: 40px; display: block;
         }
-        .big-btn:hover { color: var(--gold); transform: skewX(-10deg); }
 
-        /* FULLSCREEN ATELIER DRAWER */
-        #atelier-view {
-            position: fixed; top: 0; right: -100%; width: 100%; height: 100%;
-            background: #000; z-index: 2000; transition: 0.8s cubic-bezier(0.85, 0, 0.15, 1);
-            display: flex; flex-direction: column; padding: 5%;
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--line);
+            border-left: 1px solid var(--line);
         }
-        #atelier-view.active { right: 0; }
-        
-        .gallery-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 5vh; }
-        .gallery-header h2 { font-family: 'Bodoni Moda'; font-size: 4rem; font-style: italic; }
-
-        .horizontal-gallery {
-            display: flex; gap: 4rem; overflow-x: scroll; padding: 2rem 0;
-            scrollbar-width: none; -ms-overflow-style: none;
-        }
-        .horizontal-gallery::-webkit-scrollbar { display: none; }
 
         .product-card {
-            min-width: 450px; position: relative; transition: 0.5s;
-        }
-        .p-image-box {
-            width: 100%; height: 60vh; background: var(--glass);
-            border: 1px solid rgba(255,255,255,0.05); display: flex;
-            align-items: center; justify-content: center; overflow: hidden;
-        }
-        .p-image-box img { width: 100%; height: 100%; object-fit: cover; opacity: 0.6; transition: 1s; }
-        .product-card:hover img { opacity: 1; transform: scale(1.1); }
-        
-        .p-meta { margin-top: 2rem; }
-        .p-meta span { font-size: 0.6rem; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; }
-        .p-meta h3 { font-family: 'Bodoni Moda'; font-size: 1.8rem; margin-top: 0.5rem; }
-        .p-cta {
-            margin-top: 1rem; font-size: 0.7rem; font-weight: 800;
-            letter-spacing: 2px; border-bottom: 1px solid var(--gold); width: fit-content;
+            padding: 60px; border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            transition: 0.5s ease; cursor: pointer; position: relative;
+            background: #fff;
         }
 
-        /* PILLARS (STATIC) */
-        .pillars { padding: 10rem 5%; display: grid; grid-template-columns: repeat(2, 1fr); gap: 5rem; opacity: 0.3; }
-        .pillar h4 { font-size: 0.7rem; letter-spacing: 4px; color: var(--gold); margin-bottom: 1rem; }
-        .pillar p { font-family: 'Bodoni Moda'; font-size: 2rem; }
+        .product-card:hover { background: #fafafa; }
 
-        footer { padding: 5rem; text-align: center; font-size: 0.6rem; letter-spacing: 10px; opacity: 0.2; }
+        .p-image {
+            width: 100%; aspect-ratio: 1/1; background: #f9f9f9;
+            margin-bottom: 30px; display: flex; align-items: center;
+            justify-content: center; position: relative; overflow: hidden;
+        }
 
+        /* Filename Labels */
+        .p-file { 
+            position: absolute; bottom: 10px; left: 10px; font-size: 10px; 
+            color: rgba(0,0,0,0.2); font-family: monospace; 
+        }
+
+        .p-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 5px; }
+        .p-type { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 800; }
+
+        /* THE PILLARS (STATIC AUTHORITY) */
+        .pillars {
+            display: grid; grid-template-columns: 1fr 1fr;
+            height: 60vh; border-bottom: 1px solid var(--line);
+        }
+        .pillar-box {
+            padding: 10%; display: flex; flex-direction: column; justify-content: center;
+            border-right: 1px solid var(--line);
+        }
+        .pillar-box h3 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px; }
+        .pillar-box p { font-size: 0.9rem; line-height: 1.8; opacity: 0.6; max-width: 400px; }
+
+        footer {
+            padding: 80px 5%; display: flex; justify-content: space-between;
+            align-items: center; font-size: 0.7rem; font-weight: 800;
+            letter-spacing: 2px; color: rgba(0,0,0,0.3);
+        }
+
+        /* MOBILE RESPONSIVE */
+        @media (max-width: 1000px) {
+            .product-grid, .pillars { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 5rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
-
     <nav>
-        <div class="logo">MDS — AUTHORITY</div>
-        <div class="nav-status">EST. 2026 // PORT-AU-PRINCE</div>
+        <div class="logo">MAISON DU SPORT</div>
+        <div class="nav-btn" onclick="document.getElementById('atelier').scrollIntoView()">The Atelier</div>
     </nav>
 
     <section class="hero">
-        <div class="hero-title">MAISON</div>
-        <div class="hero-sub">The Strategic Architecture of Haitian Football</div>
+        <p>Strategic Football Authority</p>
+        <h1>Architecting <br><i>The Game.</i></h1>
     </section>
 
-    <section class="atelier-trigger">
-        <div class="big-btn" onclick="toggleAtelier(true)">Enter L'Atelier</div>
-    </section>
-
-    <section class="pillars">
-        <div class="pillar">
-            <h4>COMMERCIAL</h4>
-            <p>Economic Sovereignty.</p>
-        </div>
-        <div class="pillar">
-            <h4>CULTURAL</h4>
-            <p>National Narrative.</p>
-        </div>
-    </section>
-
-    <div id="atelier-view">
-        <div class="gallery-header">
-            <h2>L'Atelier</h2>
-            <div onclick="toggleAtelier(false)" style="font-size: 0.7rem; letter-spacing: 3px; border-bottom: 1px solid #fff;">EXIT —</div>
-        </div>
-
-        <div class="horizontal-gallery">
+    <section id="atelier">
+        <span class="section-tag">/ Selected Works 2026</span>
+        
+        <div class="product-grid">
             <div class="product-card" onclick="inquire('WC26-white.png .jpeg')">
-                <div class="p-image-box"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800"></div>
-                <div class="p-meta">
-                    <span>Apparel // 01</span>
-                    <h3>The World Cup White</h3>
-                    <div class="p-cta">INQUIRE ACCESS</div>
-                </div>
+                <div class="p-image">
+                    <span class="p-file">REF: WC26-white.png .jpeg</span>
+                    <div style="width: 60%; height: 60%; background: #eee;"></div> </div>
+                <p class="p-type">Home Kit</p>
+                <h3 class="p-name">World Cup White</h3>
             </div>
 
             <div class="product-card" onclick="inquire('WC26-Red.png .jpeg')">
-                <div class="p-image-box"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800"></div>
-                <div class="p-meta">
-                    <span>Apparel // 02</span>
-                    <h3>The World Cup Red</h3>
-                    <div class="p-cta">INQUIRE ACCESS</div>
+                <div class="p-image">
+                    <span class="p-file">REF: WC26-Red.png .jpeg</span>
+                    <div style="width: 60%; height: 60%; background: #eee;"></div>
                 </div>
+                <p class="p-type">Away Kit</p>
+                <h3 class="p-name">World Cup Red</h3>
             </div>
 
             <div class="product-card" onclick="inquire('Blue-file.png .jpeg')">
-                <div class="p-image-box"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800"></div>
-                <div class="p-meta">
-                    <span>Apparel // 03</span>
-                    <h3>The National Blue</h3>
-                    <div class="p-cta">INQUIRE ACCESS</div>
+                <div class="p-image">
+                    <span class="p-file">REF: Blue-file.png .jpeg</span>
+                    <div style="width: 60%; height: 60%; background: #eee;"></div>
                 </div>
+                <p class="p-type">Third Kit</p>
+                <h3 class="p-name">National Blue</h3>
             </div>
 
             <div class="product-card" onclick="inquire('1974shirt-png.png')">
-                <div class="p-image-box"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800"></div>
-                <div class="p-meta">
-                    <span>Archive // 01</span>
-                    <h3>1974 Legacy Shirt</h3>
-                    <div class="p-cta">INQUIRE ACCESS</div>
+                <div class="p-image">
+                    <span class="p-file">REF: 1974shirt-png.png</span>
+                    <div style="width: 60%; height: 60%; background: #eee;"></div>
                 </div>
+                <p class="p-type">Archive Series</p>
+                <h3 class="p-name">1974 Legacy</h3>
             </div>
 
             <div class="product-card" onclick="inquire('WC26-cap.png.jpeg')">
-                <div class="p-image-box"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800"></div>
-                <div class="p-meta">
-                    <span>Accessory // 01</span>
-                    <h3>WC26 Signature Cap</h3>
-                    <div class="p-cta">INQUIRE ACCESS</div>
+                <div class="p-image">
+                    <span class="p-file">REF: WC26-cap.png.jpeg</span>
+                    <div style="width: 60%; height: 60%; background: #eee;"></div>
                 </div>
+                <p class="p-type">Headwear</p>
+                <h3 class="p-name">Official WC26 Cap</h3>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer>MAISON DU SPORT — L'AUTORITÉ DU FOOTBALL</footer>
+    <section class="pillars">
+        <div class="pillar-box">
+            <h3>Commercial Architecture</h3>
+            <p>We build the economic frameworks that transform the Haitian game into a global asset.</p>
+        </div>
+        <div class="pillar-box">
+            <h3>Media Strategy</h3>
+            <p>A centralized hub for the narrative, broadcasting, and storytelling of professional football.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div>MDS / ARCHIVE 2026</div>
+        <div>PORT-AU-PRINCE, HAITI</div>
+    </footer>
 
     <script>
-        // Custom Cursor Logic
-        const cursor = document.getElementById('cursor');
-        document.addEventListener('mousemove', e => {
-            cursor.style.top = e.clientY + 'px';
-            cursor.style.left = e.clientX + 'px';
-        });
-
-        // Toggle Atelier Drawer
-        function toggleAtelier(show) {
-            const view = document.getElementById('atelier-view');
-            if(show) view.classList.add('active');
-            else view.classList.remove('active');
-        }
-
-        // Instagram Concierge with EXACT Filenames
         function inquire(fileName) {
             const igUsername = "mdshaiti";
-            const message = encodeURIComponent(`I would like to inquire about "${fileName}"`);
+            // Pre-typed message with the exact filename provided
+            const message = encodeURIComponent(`Hello MDS, I would like to inquire about "${fileName}"`);
             const igUrl = `https://instagram.com/${igUsername}/dm?text=${message}`;
             window.open(igUrl, '_blank');
         }
-        
-        // Hover Cursor Expansion
-        document.querySelectorAll('.product-card, .big-btn').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(2)';
-                cursor.style.background = 'rgba(191, 166, 117, 0.2)';
-            });
-            item.addEventListener('mouseleave', () => {
-                cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursor.style.background = 'transparent';
-            });
-        });
     </script>
+
 </body>
 </html>
