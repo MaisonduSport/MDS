@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
 
     <style>
-        /* CSS VARIABLES & RESET */
         :root {
             --bg: #0A0A0A;
             --text: #F4F4F0;
@@ -17,285 +16,144 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
         body {
             background-color: var(--bg);
             color: var(--text);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
         /* NAVIGATION */
         nav {
             position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 2rem 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            mix-blend-mode: difference; /* Text changes color based on background */
+            top: 0; width: 100%; padding: 2rem 5%;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; mix-blend-mode: difference;
         }
+        .logo { font-family: 'Bodoni Moda', serif; font-size: 1.5rem; font-style: italic; }
 
-        .logo {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            letter-spacing: -1px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 900;
-            margin-left: 2rem;
-            transition: 0.3s;
-        }
-
-        .nav-links a:hover { color: var(--accent); }
-
-        /* HERO SECTION */
+        /* HERO */
         .hero {
-            height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
             border-bottom: 1px solid var(--border);
         }
+        .hero-left { padding: 15% 10%; display: flex; flex-direction: column; justify-content: center; border-right: 1px solid var(--border); }
+        h1 { font-family: 'Bodoni Moda', serif; font-size: clamp(3rem, 8vw, 6rem); line-height: 0.85; font-style: italic; }
+        .hero-right { background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000') center/cover; filter: grayscale(1); }
 
-        .hero-left {
-            padding: 15% 10% 5% 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            border-right: 1px solid var(--border);
-        }
-
-        .hero-left span {
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            font-size: 0.7rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        h1 {
-            font-family: 'Bodoni Moda', serif;
-            font-size: clamp(3.5rem, 10vw, 8rem);
-            line-height: 0.85;
-            font-style: italic;
-            margin-bottom: 2rem;
-        }
-
-        .hero-right {
-            background: url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2000') center/cover;
-            filter: grayscale(1) contrast(1.1);
-            transition: 1s ease;
-        }
-
-        .hero:hover .hero-right {
-            filter: grayscale(0.5) contrast(1);
-        }
-
-        /* THE MANIFESTO (SCROLL REVEAL) */
-        .manifesto {
-            padding: 15rem 10%;
-            text-align: center;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .manifesto h2 {
-            font-family: 'Bodoni Moda', serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            line-height: 1.1;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        /* GRID DIVISIONS */
-        .divisions {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-        }
-
+        /* DIVISIONS */
+        .divisions { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--border); }
         .div-card {
-            padding: 6rem 10%;
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            transition: 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-            cursor: pointer;
-            position: relative;
+            padding: 5rem 10%; border-right: 1px solid var(--border);
+            cursor: pointer; transition: 0.4s; position: relative;
+        }
+        .div-card:hover { background: var(--text); color: var(--bg); }
+        .div-card h3 { font-family: 'Bodoni Moda', serif; font-size: 2rem; margin-bottom: 1rem; }
+        .click-hint { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); position: absolute; bottom: 2rem; }
+
+        /* PRODUCT MODAL / GALLERY */
+        #commercial-gallery {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg); z-index: 2000;
+            display: none; padding: 5% 10%; overflow-y: auto;
+        }
+        .gallery-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4rem; }
+        .close-btn { cursor: pointer; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px; border-bottom: 1px solid var(--accent); }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .product-card {
+            border: 1px solid var(--border); padding: 1.5rem; transition: 0.3s;
+        }
+        .product-card:hover { border-color: var(--accent); transform: translateY(-10px); }
+        .p-img {
+            width: 100%; height: 350px; background: #111; margin-bottom: 1.5rem;
+            display: flex; align-items: center; justify-content: center;
             overflow: hidden;
         }
+        .p-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .p-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); }
+        .p-name { font-family: 'Bodoni Moda', serif; font-size: 1.2rem; margin-top: 0.5rem; }
 
-        .div-card:last-child { border-right: none; }
+        footer { padding: 5rem 10%; text-align: center; opacity: 0.3; font-size: 0.7rem; letter-spacing: 5px; }
 
-        .div-card:hover {
-            background-color: var(--text);
-            color: var(--bg);
-        }
-
-        .div-card h3 {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 2.5rem;
-            margin-bottom: 5rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .div-card p {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            opacity: 0.7;
-            position: relative;
-            z-index: 2;
-        }
-
-        .div-card .tag {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent);
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 10rem 10% 4rem 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            position: relative;
-        }
-
-        .footer-logo {
-            font-family: 'Bodoni Moda', serif;
-            font-size: 15vw;
-            line-height: 0.7;
-            opacity: 0.03;
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            pointer-events: none;
-            width: 100%;
-            text-align: center;
-        }
-
-        .contact-info p {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-
-        /* MOBILE FIXES */
-        @media (max-width: 900px) {
-            .hero, .divisions { grid-template-columns: 1fr; }
-            .hero-right { height: 50vh; }
-            .div-card { border-right: none; }
-            .nav-links { display: none; }
-        }
-
-        /* ANIMATION CLASSES */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        @media (max-width: 900px) { .hero, .divisions, .product-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">MDS / HAITI</div>
-        <div class="nav-links">
-            <a href="#vision">The Vision</a>
-            <a href="#divisions">Divisions</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+    <nav><div class="logo">MDS / HAITI</div></nav>
 
     <section class="hero">
         <div class="hero-left">
-            <span>The Home of Haitian Football</span>
             <h1>L'Autorité Mondiale.</h1>
-            <p style="opacity: 0.6; max-width: 400px; margin-top: 1rem;">
-                Architecting the commercial, cultural, and strategic future of the game. Revival is our responsibility.
-            </p>
+            <p style="margin-top: 2rem; opacity: 0.6;">Architecting the commercial future of Haitian football.</p>
         </div>
         <div class="hero-right"></div>
     </section>
 
-    <section class="manifesto reveal" id="vision">
-        <h2>"We are building the structure behind the passion. A new era for the Blue and Red."</h2>
-    </section>
-
-    <section class="divisions" id="divisions">
-        <div class="div-card reveal">
-            <span class="tag">Division 01</span>
+    <section class="divisions">
+        <div class="div-card" onclick="openGallery()">
             <h3>Commercial Architecture</h3>
-            <p>Modernizing the economic engine of Haitian football through strategic partnerships and global investment.</p>
+            <p>Click to explore our strategic apparel and commercial pillars.</p>
+            <span class="click-hint">View Collection —</span>
         </div>
-        <div class="div-card reveal">
-            <span class="tag">Division 02</span>
-            <h3>Media & Culture</h3>
-            <p>Directing the narrative of the game. High-production content, broadcasting, and archival storytelling.</p>
-        </div>
-        <div class="div-card reveal">
-            <span class="tag">Division 03</span>
-            <h3>L'Atelier MDS</h3>
-            <p>Premium kit design and merchandise. A celebration of identity through performance and lifestyle apparel.</p>
-        </div>
+        <div class="div-card"><h3>Media & Culture</h3><p>Storytelling the revival.</p></div>
+        <div class="div-card"><h3>L'Atelier</h3><p>Crafting identity.</p></div>
     </section>
 
-    <footer id="contact">
-        <div class="contact-info">
-            <p>Port-au-Prince, Haiti</p>
-            <p>+509 4720 9775</p>
-            <p>IG: @mdshaiti</p>
+    <div id="commercial-gallery">
+        <div class="gallery-header">
+            <h2 style="font-family: 'Bodoni Moda', serif; font-size: 2.5rem; font-style: italic;">L'Architecture Collection</h2>
+            <div class="close-btn" onclick="closeGallery()">Close Gallery</div>
         </div>
-        <div style="text-align: right;">
-            <p style="opacity: 0.4;">© 2026 Maison Du Sport</p>
-            <p style="color: var(--accent);">L'Autorité</p>
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800" alt="Shirt"></div>
+                <span class="p-label">Apparel / 01</span>
+                <p class="p-name">Heritage Home Shirt</p>
+            </div>
+            <div class="product-card">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800" alt="Shirt"></div>
+                <span class="p-label">Apparel / 02</span>
+                <p class="p-name">Strategic Away Shirt</p>
+            </div>
+            <div class="product-card">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800" alt="Shirt"></div>
+                <span class="p-label">Apparel / 03</span>
+                <p class="p-name">Maison Training Jersey</p>
+            </div>
+            <div class="product-card">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800" alt="Shirt"></div>
+                <span class="p-label">Apparel / 04</span>
+                <p class="p-name">Third Kit 'Authority'</p>
+            </div>
+            <div class="product-card">
+                <div class="p-img"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800" alt="Cap"></div>
+                <span class="p-label">Headwear / 01</span>
+                <p class="p-name">Maison Signature Cap</p>
+            </div>
         </div>
-        <div class="footer-logo">MAISON</div>
-    </footer>
+    </div>
+
+    <footer>MAISON DU SPORT — 2026</footer>
 
     <script>
-        const observerOptions = {
-            threshold: 0.1
-        };
+        function openGallery() {
+            const gallery = document.getElementById('commercial-gallery');
+            gallery.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.reveal').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Simple Parallax for Hero
-        window.addEventListener('scroll', () => {
-            const scroll = window.pageYOffset;
-            document.querySelector('.hero-right').style.backgroundPositionY = -(scroll * 0.2) + 'px';
-        });
+        function closeGallery() {
+            const gallery = document.getElementById('commercial-gallery');
+            gallery.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
     </script>
-
 </body>
-</html>
+</html>>
