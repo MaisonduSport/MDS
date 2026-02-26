@@ -3,213 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDS | MAISON DU SPORT</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;800&family=Playfair+Display:ital,wght@0,900;1,900&display=swap" rel="stylesheet">
-
+    <title>MDS | L'AUTORITÉ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Montserrat:wght@100;400;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #FFFFFF;
-            --text: #0F0F0F;
-            --accent: #BFA675;
-            --glass: rgba(255, 255, 255, 0.8);
-            --line: rgba(0, 0, 0, 0.08);
+            --gold: #D4AF37;
+            --white: #ffffff;
+            --dark: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.03);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { 
-            background: var(--bg); 
-            color: var(--text); 
-            font-family: 'Inter', sans-serif; 
+            background: #050505; 
+            color: var(--white); 
+            font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
         }
 
-        /* TOP 100 FLOATING NAV */
+        /* DYNAMIC GRADIENT BACKGROUND */
+        .bg-glow {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        /* NAVIGATION: FLOATING GLASS */
         nav {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            width: 90%; max-width: 1200px; height: 70px;
-            background: var(--glass); backdrop-filter: blur(15px);
-            border: 1px solid var(--line); border-radius: 40px;
+            position: fixed; top: 30px; left: 50%; transform: translateX(-50%);
+            width: 90%; max-width: 1400px; padding: 20px 50px;
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             display: flex; justify-content: space-between; align-items: center;
-            padding: 0 40px; z-index: 1000;
+            z-index: 1000; border-radius: 100px;
         }
-        .logo { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; }
-        .nav-btn { 
-            background: var(--text); color: #fff; padding: 10px 25px; 
-            border-radius: 20px; font-size: 0.7rem; font-weight: 800; 
-            text-transform: uppercase; letter-spacing: 1px; cursor: pointer;
-            transition: 0.3s;
-        }
-        .nav-btn:hover { background: var(--accent); }
+        .logo { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.8rem; letter-spacing: 2px; }
 
-        /* HERO: STRUCTURAL MINIMALISM */
+        /* HERO: THE MONUMENT */
         .hero {
-            height: 100vh; display: flex; flex-direction: column;
+            height: 110vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            border-bottom: 1px solid var(--line);
+            position: relative;
         }
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(4rem, 12vw, 10rem);
-            line-height: 0.8; margin-bottom: 2rem;
+            font-family: 'Cormorant Garamond', serif; font-size: 12vw;
+            font-style: italic; font-weight: 300; line-height: 0.8;
+            background: linear-gradient(to bottom, #fff 30%, #444 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .hero p {
-            font-size: 0.8rem; text-transform: uppercase; letter-spacing: 6px;
-            font-weight: 300; color: var(--accent);
-        }
-
-        /* THE ATELIER: LIGHTBOX MODE */
-        #atelier {
-            padding: 100px 5%;
-        }
-        .section-tag {
-            font-size: 0.7rem; font-weight: 800; letter-spacing: 4px;
-            text-transform: uppercase; margin-bottom: 40px; display: block;
+        .scroll-hint {
+            position: absolute; bottom: 10%; font-size: 0.6rem;
+            letter-spacing: 10px; text-transform: uppercase; opacity: 0.4;
         }
 
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            border-top: 1px solid var(--line);
-            border-left: 1px solid var(--line);
+        /* THE ATELIER: HORIZONTAL CINEMA */
+        .atelier-section { padding: 100px 0; background: #080808; }
+        .section-title { padding-left: 5%; margin-bottom: 50px; }
+        .section-title h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-style: italic; color: var(--gold); }
+
+        .horizontal-wrap {
+            display: flex; gap: 50px; overflow-x: auto; padding: 50px 5%;
+            scrollbar-width: none;
+        }
+        .horizontal-wrap::-webkit-scrollbar { display: none; }
+
+        .item-card {
+            min-width: 500px; height: 700px;
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex; flex-direction: column;
+            padding: 40px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative; overflow: hidden;
+        }
+        .item-card:hover {
+            border-color: var(--gold); background: rgba(212, 175, 55, 0.02);
+            transform: translateY(-20px);
         }
 
-        .product-card {
-            padding: 60px; border-right: 1px solid var(--line);
-            border-bottom: 1px solid var(--line);
-            transition: 0.5s ease; cursor: pointer; position: relative;
-            background: #fff;
+        .img-container {
+            width: 100%; height: 70%; background: #111;
+            margin-bottom: 30px; border-radius: 2px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .img-container img { width: 80%; opacity: 0.7; filter: grayscale(1); transition: 0.8s; }
+        .item-card:hover img { opacity: 1; filter: grayscale(0); transform: scale(1.1); }
+
+        .item-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic; margin-bottom: 10px; }
+        .item-info p { font-size: 0.7rem; letter-spacing: 3px; color: var(--gold); text-transform: uppercase; }
+        
+        .inquire-btn {
+            margin-top: auto; padding: 15px 0; border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.8rem; font-weight: 800; letter-spacing: 4px; text-transform: uppercase;
+            cursor: pointer; color: var(--white); text-align: left;
         }
 
-        .product-card:hover { background: #fafafa; }
-
-        .p-image {
-            width: 100%; aspect-ratio: 1/1; background: #f9f9f9;
-            margin-bottom: 30px; display: flex; align-items: center;
-            justify-content: center; position: relative; overflow: hidden;
-        }
-
-        /* Filename Labels */
-        .p-file { 
-            position: absolute; bottom: 10px; left: 10px; font-size: 10px; 
-            color: rgba(0,0,0,0.2); font-family: monospace; 
-        }
-
-        .p-name { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 5px; }
-        .p-type { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); font-weight: 800; }
-
-        /* THE PILLARS (STATIC AUTHORITY) */
-        .pillars {
-            display: grid; grid-template-columns: 1fr 1fr;
-            height: 60vh; border-bottom: 1px solid var(--line);
-        }
-        .pillar-box {
-            padding: 10%; display: flex; flex-direction: column; justify-content: center;
-            border-right: 1px solid var(--line);
-        }
-        .pillar-box h3 { font-family: 'Playfair Display', serif; font-size: 3rem; margin-bottom: 20px; }
-        .pillar-box p { font-size: 0.9rem; line-height: 1.8; opacity: 0.6; max-width: 400px; }
-
+        /* FOOTER: THE SIGNATURE */
         footer {
-            padding: 80px 5%; display: flex; justify-content: space-between;
-            align-items: center; font-size: 0.7rem; font-weight: 800;
-            letter-spacing: 2px; color: rgba(0,0,0,0.3);
+            height: 60vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; border-top: 1px solid rgba(255,255,255,0.05);
         }
+        .f-big { font-family: 'Cormorant Garamond', serif; font-size: 15vw; opacity: 0.05; font-style: italic; }
 
-        /* MOBILE RESPONSIVE */
-        @media (max-width: 1000px) {
-            .product-grid, .pillars { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 5rem; }
+        @media (max-width: 768px) {
+            .item-card { min-width: 90%; height: 600px; }
+            .hero h1 { font-size: 20vw; }
         }
     </style>
 </head>
 <body>
 
+    <div class="bg-glow"></div>
+
     <nav>
         <div class="logo">MAISON DU SPORT</div>
-        <div class="nav-btn" onclick="document.getElementById('atelier').scrollIntoView()">The Atelier</div>
+        <div style="font-size: 0.6rem; letter-spacing: 5px; opacity: 0.5;">L'AUTORITÉ</div>
     </nav>
 
     <section class="hero">
-        <p>Strategic Football Authority</p>
-        <h1>Architecting <br><i>The Game.</i></h1>
+        <h1>Bespoke <br>Authority.</h1>
+        <p class="scroll-hint">Scroll to Enter</p>
     </section>
 
-    <section id="atelier">
-        <span class="section-tag">/ Selected Works 2026</span>
-        
-        <div class="product-grid">
-            <div class="product-card" onclick="inquire('WC26-white.png .jpeg')">
-                <div class="p-image">
-                    <span class="p-file">REF: WC26-white.png .jpeg</span>
-                    <div style="width: 60%; height: 60%; background: #eee;"></div> </div>
-                <p class="p-type">Home Kit</p>
-                <h3 class="p-name">World Cup White</h3>
-            </div>
-
-            <div class="product-card" onclick="inquire('WC26-Red.png .jpeg')">
-                <div class="p-image">
-                    <span class="p-file">REF: WC26-Red.png .jpeg</span>
-                    <div style="width: 60%; height: 60%; background: #eee;"></div>
-                </div>
-                <p class="p-type">Away Kit</p>
-                <h3 class="p-name">World Cup Red</h3>
-            </div>
-
-            <div class="product-card" onclick="inquire('Blue-file.png .jpeg')">
-                <div class="p-image">
-                    <span class="p-file">REF: Blue-file.png .jpeg</span>
-                    <div style="width: 60%; height: 60%; background: #eee;"></div>
-                </div>
-                <p class="p-type">Third Kit</p>
-                <h3 class="p-name">National Blue</h3>
-            </div>
-
-            <div class="product-card" onclick="inquire('1974shirt-png.png')">
-                <div class="p-image">
-                    <span class="p-file">REF: 1974shirt-png.png</span>
-                    <div style="width: 60%; height: 60%; background: #eee;"></div>
-                </div>
-                <p class="p-type">Archive Series</p>
-                <h3 class="p-name">1974 Legacy</h3>
-            </div>
-
-            <div class="product-card" onclick="inquire('WC26-cap.png.jpeg')">
-                <div class="p-image">
-                    <span class="p-file">REF: WC26-cap.png.jpeg</span>
-                    <div style="width: 60%; height: 60%; background: #eee;"></div>
-                </div>
-                <p class="p-type">Headwear</p>
-                <h3 class="p-name">Official WC26 Cap</h3>
-            </div>
+    <section class="atelier-section">
+        <div class="section-title">
+            <h2>The Atelier</h2>
+            <p style="font-size: 0.6rem; letter-spacing: 5px; opacity: 0.4;">EXCLUSIVE ACCESS ONLY</p>
         </div>
-    </section>
 
-    <section class="pillars">
-        <div class="pillar-box">
-            <h3>Commercial Architecture</h3>
-            <p>We build the economic frameworks that transform the Haitian game into a global asset.</p>
-        </div>
-        <div class="pillar-box">
-            <h3>Media Strategy</h3>
-            <p>A centralized hub for the narrative, broadcasting, and storytelling of professional football.</p>
+        <div class="horizontal-wrap">
+            <div class="item-card" onclick="inquire('WC26-white.png .jpeg')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800" alt="White Shirt">
+                </div>
+                <div class="item-info">
+                    <p>Apparel // 01</p>
+                    <h3>The World Cup White</h3>
+                </div>
+                <div class="inquire-btn">Request Inquire</div>
+            </div>
+
+            <div class="item-card" onclick="inquire('WC26-Red.png .jpeg')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800" alt="Red Shirt">
+                </div>
+                <div class="item-info">
+                    <p>Apparel // 02</p>
+                    <h3>The World Cup Red</h3>
+                </div>
+                <div class="inquire-btn">Request Inquire</div>
+            </div>
+
+            <div class="item-card" onclick="inquire('Blue-file.png .jpeg')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=800" alt="Blue Shirt">
+                </div>
+                <div class="item-info">
+                    <p>Apparel // 03</p>
+                    <h3>The National Blue</h3>
+                </div>
+                <div class="inquire-btn">Request Inquire</div>
+            </div>
+
+            <div class="item-card" onclick="inquire('1974shirt-png.png')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=800" alt="Legacy Shirt">
+                </div>
+                <div class="item-info">
+                    <p>Archive // 01</p>
+                    <h3>1974 Legacy Series</h3>
+                </div>
+                <div class="inquire-btn">Request Inquire</div>
+            </div>
+
+            <div class="item-card" onclick="inquire('WC26-cap.png.jpeg')">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=800" alt="Cap">
+                </div>
+                <div class="item-info">
+                    <p>Accessory // 01</p>
+                    <h3>WC26 Signature Cap</h3>
+                </div>
+                <div class="inquire-btn">Request Inquire</div>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div>MDS / ARCHIVE 2026</div>
-        <div>PORT-AU-PRINCE, HAITI</div>
+        <div class="f-big">MAISON</div>
+        <p style="letter-spacing: 10px; opacity: 0.3; margin-top: -50px;">EST. 2026</p>
     </footer>
 
     <script>
         function inquire(fileName) {
             const igUsername = "mdshaiti";
-            // Pre-typed message with the exact filename provided
-            const message = encodeURIComponent(`Hello MDS, I would like to inquire about "${fileName}"`);
+            const message = encodeURIComponent(`I would like to inquire about "${fileName}"`);
             const igUrl = `https://instagram.com/${igUsername}/dm?text=${message}`;
             window.open(igUrl, '_blank');
         }
     </script>
-
 </body>
 </html>
