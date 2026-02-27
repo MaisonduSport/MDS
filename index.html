@@ -3,150 +3,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDS | MAISON DU SPORT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Inter:wght@200;700&display=swap" rel="stylesheet">
+    <title>MDS | L'INSTITUTION</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Inter:wght@900&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #BFA675; --white: #fff; --bg: #000; }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-        /* HERO - CINEMATIC ENTRANCE */
-        .hero { height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
-        .hero-vid { position: absolute; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.4); }
+        /* HERO - GLITCH & SCALE */
+        .hero { 
+            height: 100vh; position: relative; overflow: hidden; 
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-bg {
+            position: absolute; width: 110%; height: 110%; 
+            background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1500') center/cover;
+            filter: brightness(0.3) grayscale(1);
+            animation: pan 20s infinite alternate;
+        }
+        @keyframes pan { from { transform: scale(1); } to { transform: scale(1.1) rotate(1deg); } }
+        
         .hero-text { z-index: 10; text-align: center; }
-        .hero-text h1 { font-family: 'Cormorant Garamond', serif; font-size: 8vw; font-style: italic; line-height: 0.9; }
-
-        /* MANIFESTO - THE TRUTH */
-        .manifesto { padding: 150px 10%; text-align: center; background: #000; }
-        .manifesto p { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-style: italic; line-height: 1.2; opacity: 0.2; transition: 1s; }
-        .manifesto p.active { opacity: 1; }
-        .manifesto span { color: var(--gold); }
-
-        /* PHOTO REEL - AUTOMATIC ANIMATION */
-        .reel { height: 60vh; display: flex; gap: 20px; padding: 0 20px; overflow: hidden; position: relative; }
-        .reel-track { display: flex; gap: 20px; animation: scrollReel 30s linear infinite; }
-        .reel-img { width: 400px; height: 100%; object-fit: cover; filter: grayscale(0.5); border-radius: 4px; }
-        @keyframes scrollReel { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-        /* THE 3 DIVISIONS */
-        .divisions { padding: 100px 5%; background: #080808; }
-        .div-row { 
-            display: grid; grid-template-columns: 1fr 1fr; padding: 60px 0; 
-            border-bottom: 1px solid rgba(255,255,255,0.1); cursor: pointer; transition: 0.3s;
+        .hero-text h1 { 
+            font-family: 'Cormorant Garamond', serif; font-size: 12vw; 
+            font-style: italic; line-height: 0.8; letter-spacing: -2px;
+            animation: heroFade 2s ease-out;
         }
-        .div-row:hover { background: rgba(255,255,255,0.05); padding-left: 20px; }
-        .div-row h2 { font-family: 'Cormorant Garamond', serif; font-size: 4rem; font-style: italic; }
-        .div-row .status { text-align: right; color: var(--gold); letter-spacing: 5px; font-size: 0.7rem; align-self: center; }
+        @keyframes heroFade { from { opacity: 0; filter: blur(20px); transform: translateY(30px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
 
-        /* PRODUCT DRAWER (Merch Section) */
+        /* MANIFESTO - BRUTALIST */
+        .manifesto { padding: 20vh 10%; background: #000; position: relative; z-index: 2; }
+        .manifesto h2 { font-family: 'Cormorant Garamond', serif; font-size: 5vw; font-style: italic; line-height: 1.1; margin-bottom: 40px; }
+        .manifesto p { font-size: 1.2rem; max-width: 600px; opacity: 0.6; line-height: 1.6; letter-spacing: 1px; }
+
+        /* AUTOMATIC PHOTO REEL */
+        .reel { height: 50vh; display: flex; overflow: hidden; border-top: 1px solid rgba(255,255,255,0.1); border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .reel-track { display: flex; animation: scroll 40s linear infinite; }
+        .reel-track img { height: 100%; width: 500px; object-fit: cover; filter: grayscale(1) contrast(1.2); padding: 5px; }
+        @keyframes scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* THE DIVISIONS - NON-BORING LAYOUT */
+        .divisions { display: flex; height: 100vh; width: 100%; background: #000; }
+        .division-card { 
+            flex: 1; border-right: 1px solid rgba(255,255,255,0.1); 
+            position: relative; display: flex; align-items: flex-end; 
+            padding: 50px; transition: 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+            overflow: hidden; text-decoration: none; color: #fff;
+        }
+        .division-card:hover { flex: 1.5; }
+        .division-card img { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
+            object-fit: cover; z-index: 1; opacity: 0.2; transition: 0.8s; 
+        }
+        .division-card:hover img { opacity: 0.6; transform: scale(1.05); }
+        .division-content { z-index: 2; position: relative; }
+        .division-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 4vw; font-style: italic; }
+        .division-content span { font-size: 0.6rem; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; }
+
+        /* PRODUCT DRAWER (Triggered by Merchandise click) */
         #merch-drawer { 
-            max-height: 0; overflow: hidden; transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #000; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;
+            display: none; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            background: #0a0a0a; padding: 50px; border-top: 2px solid var(--gold);
         }
-        .product-card { padding: 40px 20px; text-align: center; }
-        .product-card img { width: 100%; height: 300px; object-fit: cover; margin-bottom: 15px; }
+        .product-item { text-align: center; transition: 0.4s; }
+        .product-item:hover { color: var(--gold); }
+        .product-item img { width: 100%; height: 400px; object-fit: cover; margin-bottom: 20px; }
 
-        /* HAITI COOL SECTION */
-        .haiti-cool { 
-            height: 80vh; background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1500') center/cover;
-            display: flex; align-items: center; justify-content: center; position: relative;
+        /* MOUNTAIN SECTION */
+        .mountain-view { 
+            height: 120vh; position: relative; overflow: hidden; 
+            display: flex; align-items: center; justify-content: center;
         }
-        .haiti-cool::before { content: ""; position: absolute; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
-        .haiti-cool h2 { z-index: 2; font-family: 'Cormorant Garamond', serif; font-size: 10vw; font-style: italic; opacity: 0.8; }
+        .mountain-img {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://images.unsplash.com/photo-1581445106294-82559b9a676c?q=80&w=2000') center/cover;
+            background-attachment: fixed; /* Parallax effect */
+            filter: brightness(0.5);
+        }
+        .mountain-view h2 { 
+            z-index: 2; font-family: 'Cormorant Garamond', serif; font-size: 20vw; 
+            font-style: italic; opacity: 0.9; letter-spacing: 20px;
+        }
 
         /* FOOTER */
-        footer { padding: 100px 5%; display: flex; justify-content: space-between; align-items: flex-end; }
-        .f-left h2 { font-family: 'Cormorant Garamond', serif; font-size: 15vw; line-height: 0.7; opacity: 0.05; }
-        .f-right { text-align: right; }
-        .f-right a { display: block; color: white; text-decoration: none; margin-bottom: 15px; font-size: 0.8rem; letter-spacing: 3px; }
-        .f-right span { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; }
+        footer { 
+            padding: 100px 5%; display: flex; justify-content: space-between; 
+            align-items: flex-end; border-top: 1px solid rgba(255,255,255,0.1); 
+        }
+        .f-maison { font-family: 'Cormorant Garamond', serif; font-size: 15vw; opacity: 0.05; line-height: 0.7; }
+        .f-data { text-align: right; }
+        .f-data a { display: block; color: #fff; text-decoration: none; margin-bottom: 15px; font-size: 0.7rem; letter-spacing: 4px; }
+        .f-data a:hover { color: var(--gold); }
+        .f-data p { color: var(--gold); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.5rem; margin-top: 20px; }
+
+        @media (max-width: 768px) {
+            .divisions { flex-direction: column; height: auto; }
+            .division-card { height: 60vh; }
+            .hero-text h1 { font-size: 18vw; }
+        }
     </style>
 </head>
 <body>
 
+    <nav style="position: fixed; top: 40px; width: 100%; padding: 0 5%; z-index: 1000; display: flex; justify-content: space-between; mix-blend-mode: difference;">
+        <div style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.5rem;">MDS</div>
+        <div style="font-size: 0.6rem; letter-spacing: 5px; color: var(--gold);">EST. 2026</div>
+    </nav>
+
     <section class="hero">
-        <video autoplay muted loop playsinline class="hero-vid">
-            <source src="https://player.vimeo.com/external/494248648.hd.mp4?s=d0090886c99c35483a936a2964e5264f3310065c&profile_id=175" type="video/mp4">
-        </video>
+        <div class="hero-bg"></div>
         <div class="hero-text">
             <h1>L'Architecture <br> de la Renaissance.</h1>
         </div>
     </section>
 
     <section class="manifesto">
-        <p class="reveal">In Haiti, football is <span>unstructured passion.</span></p>
-        <p class="reveal">We are here to build the <span>sovereign bridge.</span></p>
-        <p class="reveal">Maison Du Sport is the <span>new institution.</span></p>
+        <h2>In Haiti, football is <span>unstructured passion.</span></h2>
+        <p>We believe the greatest talent deserves the greatest architecture. MDS is the institutional bridge between raw street passion and global economic excellence. We are the architects of the revival.</p>
     </section>
 
     <div class="reel">
         <div class="reel-track">
-            <img class="reel-img" src="https://images.unsplash.com/photo-1529900215685-80164283996f?q=80&w=800">
-            <img class="reel-img" src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800">
-            <img class="reel-img" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800">
-            <img class="reel-img" src="https://images.unsplash.com/photo-1551952237-954a0e68786c?q=80&w=800">
-            <img class="reel-img" src="https://images.unsplash.com/photo-1529900215685-80164283996f?q=80&w=800">
-            <img class="reel-img" src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800">
+            <img src="https://images.unsplash.com/photo-1529900215685-80164283996f?q=80&w=800">
+            <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800">
+            <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=800">
+            <img src="https://images.unsplash.com/photo-1551952237-954a0e68786c?q=80&w=800">
+            <img src="https://images.unsplash.com/photo-1529900215685-80164283996f?q=80&w=800">
+            <img src="https://images.unsplash.com/photo-1511886929837-354d827aae26?q=80&w=800">
         </div>
     </div>
 
     <section class="divisions">
-        <div class="div-row" onclick="toggleMerch()">
-            <h2>Merchandise</h2>
-            <div class="status">VIEW WORLD CUP SESSION [↓]</div>
+        <a href="javascript:void(0)" class="division-card" onclick="openMerch()">
+            <img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1200">
+            <div class="division-content">
+                <span>Section 01</span>
+                <h3>Merchandise</h3>
+            </div>
+        </a>
+        <div class="division-card">
+            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200">
+            <div class="division-content">
+                <span>Section 02</span>
+                <h3>Marketing</h3>
+            </div>
         </div>
-        
-        <div id="merch-drawer">
-            <div class="product-card" onclick="inquire('WC26-white')"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600"><p>WC26 White</p></div>
-            <div class="product-card" onclick="inquire('WC26-red')"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=600"><p>WC26 Red</p></div>
-            <div class="product-card" onclick="inquire('WC26-blue')"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600"><p>National Blue</p></div>
-            <div class="product-card" onclick="inquire('1974-shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600"><p>1974 Legacy</p></div>
-            <div class="product-card" onclick="inquire('WC26-cap')"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600"><p>Signature Cap</p></div>
-        </div>
-
-        <div class="div-row">
-            <h2>Marketing</h2>
-            <div class="status">ESTABLISHING PARTNERSHIPS</div>
-        </div>
-        <div class="div-row">
-            <h2>Media</h2>
-            <div class="status">DEVELOPING COVERAGE</div>
+        <div class="division-card">
+            <img src="https://images.unsplash.com/photo-1551952237-954a0e68786c?q=80&w=1200">
+            <div class="division-content">
+                <span>Section 03</span>
+                <h3>Media</h3>
+            </div>
         </div>
     </section>
 
-    <section class="haiti-cool">
+    <div id="merch-drawer">
+        <div class="product-item"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600"><h4>WC26 White</h4></div>
+        <div class="product-item"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=600"><h4>WC26 Red</h4></div>
+        <div class="product-item"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600"><h4>National Blue</h4></div>
+        <div class="product-item"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600"><h4>1974 Legacy</h4></div>
+        <div class="product-item"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600"><h4>Signature Cap</h4></div>
+    </div>
+
+    <section class="mountain-view">
+        <div class="mountain-img"></div>
         <h2>AYITI</h2>
     </section>
 
     <footer>
-        <div class="f-left">
-            <h2>MAISON</h2>
-        </div>
-        <div class="f-right">
+        <div class="f-maison">MAISON</div>
+        <div class="f-data">
             <a href="https://instagram.com/mdshaiti" target="_blank">INSTAGRAM / @MDSHAITI</a>
             <a href="https://facebook.com/maisondusport" target="_blank">FACEBOOK / MAISON DU SPORT</a>
             <a href="mailto:contactmaisondusport@gmail.com">PARTNER WITH US</a>
-            <span>Port-au-Prince, Haiti</span>
+            <p>Port-au-Prince, Haiti</p>
         </div>
     </footer>
 
     <script>
-        // Manifesto Reveal Logic
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.5 });
-        document.querySelectorAll('.reveal').forEach(p => observer.observe(p));
-
-        // Merchandise Toggle
-        function toggleMerch() {
+        function openMerch() {
             const drawer = document.getElementById('merch-drawer');
-            drawer.style.maxHeight = drawer.style.maxHeight === '1000px' ? '0' : '1000px';
-        }
-
-        function inquire(name) {
-            window.open(`https://instagram.com/mdshaiti/dm?text=Inquiry: ${name}`, '_blank');
+            drawer.style.display = drawer.style.display === 'grid' ? 'none' : 'grid';
+            drawer.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
