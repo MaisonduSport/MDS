@@ -42,7 +42,7 @@ body{
   position:absolute;
   width:100%; height:100%;
   object-fit:cover;
-  opacity:.4; /* Darker for higher contrast */
+  opacity:.4;
 }
 .intro h1{
   font-family: 'Cormorant Garamond', serif;
@@ -50,7 +50,7 @@ body{
   font-style: italic;
   text-align:center;
   color: var(--white);
-  letter-spacing: -1px;
+  letter-spacing: 2px;
   opacity:0;
   animation: fadeUp 2.5s forwards .5s;
   z-index:1;
@@ -72,21 +72,20 @@ body{
 }
 .enter-btn:hover{ background: var(--gold); color: #000; letter-spacing: 8px; }
 
-/* 2. CURTAINS (Texture added) */
+/* 2. CURTAINS */
 .curtain{
   position:fixed;
   top:0; width:50%; height:100%;
   background: var(--navy);
   z-index:90;
   transition: 1.6s cubic-bezier(0.77, 0, 0.18, 1);
-  border-right: 1px solid rgba(212,175,55,0.1);
 }
 .left-curtain{left:0}
 .right-curtain{right:0}
 .open .left-curtain{transform:translateX(-100%)}
 .open .right-curtain{transform:translateX(100%)}
 
-/* 3. HERO (Parallax Text) */
+/* 3. HERO */
 .hero-wrapper{position:relative; height:200vh; display:none; background: var(--navy);}
 .hero-section{position:sticky; top:0; height:100vh; width:100%; overflow:hidden;}
 .hero-img{position:absolute; width:100%; height:100%; object-fit:cover; filter: brightness(0.4); transition: 1s ease-out;}
@@ -103,13 +102,12 @@ body{
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 4. SITE (The Burgundy Vault) */
+/* 4. SITE */
 .site{
   opacity:0;
   transition: opacity 2s ease;
   padding: 120px 8%;
   background: var(--burgundy);
-  box-shadow: 0 -50px 100px rgba(0,0,0,0.5);
   position: relative;
   z-index: 5;
 }
@@ -117,98 +115,111 @@ body{
 
 .logo{position:fixed; top:35px; left:45px; width:180px; z-index:200; mix-blend-mode: exclusion;}
 
-/* 5. NOTICE (Glassmorphism) */
+/* 5. NOTICE */
 .notice{
   text-align:center;
   margin: 0 auto 150px;
   padding: 60px 40px;
   max-width: 800px;
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-style: italic;
-  border: 1px solid rgba(212,175,55,0.2);
-  background: rgba(0,0,0,0.2);
-  backdrop-filter: blur(15px);
+  border-top: 1px solid rgba(212,175,55,0.3);
+  border-bottom: 1px solid rgba(212,175,55,0.3);
   position: relative;
 }
-.notice::before {
-    content: "EST. 2026";
-    position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
-    background: var(--burgundy); padding: 0 15px; font-size: 0.7rem; font-family: 'Inter'; letter-spacing: 3px;
-}
-.notice span{ display:block; font-size: 0.9rem; margin-top: 15px; opacity: .6; font-family: 'Inter'; text-transform: uppercase; letter-spacing: 2px;}
+.notice span{ display:block; font-size: 0.8rem; margin-top: 15px; opacity: .6; font-family: 'Inter'; text-transform: uppercase; letter-spacing: 4px;}
 
 .section-title{
     text-align:center; 
     font-family: 'Cormorant Garamond', serif; 
-    font-size: 4.5rem; 
+    font-size: 4rem; 
     font-style: italic; 
     margin-bottom: 80px;
 }
 
-/* 6. PRODUCTS (Fine Art Spacing) */
+/* 6. PRODUCTS & ELEGANT ANNOUNCEMENT */
 .products{ display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:60px; margin-bottom:180px;}
 .card-wrapper {position: relative;}
+
+/* The Elevated Price Tag */
 .card-announcement {
-  position: absolute; top: -15px; left: 25px;
-  background: var(--gold); color: #000;
-  padding: 6px 20px; font-size: 0.65rem; font-weight: 800;
-  letter-spacing: 2px; text-transform: uppercase; z-index: 10;
+  position: absolute; 
+  top: -10px; 
+  left: 20px;
+  background: var(--gold); 
+  color: var(--navy);
+  padding: 8px 18px; 
+  font-size: 0.65rem; 
+  font-weight: 600;
+  letter-spacing: 2.5px; 
+  text-transform: uppercase; 
+  z-index: 10;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border-radius: 2px;
 }
+.card-announcement::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 10px;
+  width: 0; height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid var(--gold);
+}
+
 .card{
-  background: #910028; /* Slightly deeper than background */
-  padding: 30px;
+  background: #910028;
+  padding: 25px;
   transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--white);
   cursor: pointer;
-  border: 1px solid rgba(212,175,55,0.05);
+  border: 1px solid rgba(212,175,55,0.1);
 }
-.card img{ width:100%; height: 500px; object-fit: cover; filter: grayscale(0.2); transition: 0.8s;}
-.card h3{ font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; margin-top: 20px; text-align: left;}
-.card .price{ position: absolute; bottom: 30px; right: 30px; font-family: 'Inter'; font-weight: 300; font-size: 1.2rem; color: var(--gold); }
-.card:hover{ transform: translateY(-20px); border-color: var(--gold); }
-.card:hover img{ filter: grayscale(0); transform: scale(1.02); }
+.card img{ width:100%; height: 520px; object-fit: cover; filter: grayscale(0.2); transition: 0.8s;}
+.card h3{ font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-style: italic; margin-top: 25px; text-align: left; line-height: 1.1;}
+.card .price{ position: absolute; bottom: 25px; right: 25px; font-family: 'Inter'; font-weight: 300; font-size: 1.2rem; color: var(--gold); }
+.card:hover{ transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 30px 60px rgba(0,0,0,0.3); }
+.card:hover img{ filter: grayscale(0); }
 
-/* 7. PHILOSOPHY (Institutional Quote) */
+/* 7. PHILOSOPHY */
 .philosophy{
-  background: transparent;
   padding: 100px 0;
-  border-top: 1px solid rgba(212,175,55,0.1);
-  border-bottom: 1px solid rgba(212,175,55,0.1);
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.8rem;
-  line-height: 1.2;
+  font-size: 2.5rem;
+  line-height: 1.3;
   color: var(--gold);
   font-style: italic;
-  max-width: 1100px;
+  max-width: 1000px;
   margin: 0 auto 180px;
   text-align: center;
 }
 
-/* 8. TOP NAV (Floating Glass) */
+/* 8. TOP NAV */
 .top-nav{
   position:fixed;
   top: 30px; left: 50%; transform: translateX(-50%) translateY(-150%);
   width: auto;
-  display:flex; gap: 40px; padding: 15px 40px;
-  background: rgba(11,26,43,0.8);
+  display:flex; gap: 40px; padding: 15px 45px;
+  background: rgba(11,26,43,0.85);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(212,175,55,0.2);
-  border-radius: 50px;
+  border-radius: 40px;
   z-index: 500;
   transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .top-nav.visible{ transform: translateX(-50%) translateY(0); }
 .top-nav a{
   text-decoration:none; color: var(--gold);
-  font-size: 0.7rem; font-weight: 600;
+  font-size: 0.65rem; font-weight: 600;
   letter-spacing: 3px; text-transform: uppercase;
   transition: .4s;
 }
 .top-nav a:hover{ color: var(--white); }
 
 .contact {
-    padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 0.9rem; letter-spacing: 2px;
+    padding: 100px 0; border-top: 1px solid rgba(255,255,255,0.1); text-align: center; font-size: 0.8rem; letter-spacing: 3px;
 }
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
@@ -224,8 +235,8 @@ body{
   <video autoplay muted loop playsinline>
     <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
   </video> 
-  <h1>L'Architecture de la Renaissance</h1>
-  <button class="enter-btn" onclick="enterMaison()">COMMENCE THE EXPERIENCE</button>
+  <h1>Maison du Sport</h1>
+  <button class="enter-btn" onclick="enterMaison()">THE SHOWROOM</button>
 </section>
 
 <img src="Maisondusport-file.png" class="logo">
@@ -251,16 +262,16 @@ body{
     <span>Sovereign Bridge Between Passion and Excellence</span>
   </div>
 
-  <div id="philosophy" class="section-title">L'Institution</div>
-  <div class="philosophy">
+  <div id="philosophy" class="philosophy">
     "We believe every great moment begins with vision. Our work celebrates the dedication, culture, and spirit that elevate the game. We honor excellence in every stitch, creating a space where sport meets elegance, purpose meets ambition, and the mission meets the hand of God."
   </div>
 
   <div id="products" class="section-title">World Cup Session</div>
   <div class="products">  
+    
     <div class="card-wrapper">
-      <div class="card-announcement">Limited // $85</div>
-      <div class="card">
+      <div class="card-announcement">First 20 Pieces — $85</div>
+      <div class="card" onclick="window.open('https://instagram.com/mdshaiti','_blank')">
         <img src="WC26-white.png .jpeg">
         <h3>Official Haiti Kit — Blanc</h3>
         <span class="price">$85</span>
@@ -268,8 +279,8 @@ body{
     </div>
 
     <div class="card-wrapper">
-      <div class="card-announcement">Limited // $85</div>
-      <div class="card">
+      <div class="card-announcement">First 20 Pieces — $85</div>
+      <div class="card" onclick="window.open('https://instagram.com/mdshaiti','_blank')">
         <img src="WC26-Red.png.jpeg">
         <h3>Official Haiti Kit — Rouge</h3>
         <span class="price">$85</span>
@@ -277,21 +288,21 @@ body{
     </div>
 
     <div class="card-wrapper">
-      <div class="card-announcement">Limited // $85</div>
-      <div class="card">
+      <div class="card-announcement">First 20 Pieces — $85</div>
+      <div class="card" onclick="window.open('https://instagram.com/mdshaiti','_blank')">
         <img src="Blue-file.png .jpeg">
         <h3>Official Haiti Kit — Bleu</h3>
         <span class="price">$85</span>
       </div>
     </div>
 
-    <div class="card">
+    <div class="card" onclick="window.open('https://instagram.com/mdshaiti','_blank')">
       <img src="1974shirt-png.png">
       <h3>1974 Legacy Edition</h3>
       <span class="price">$120</span>
     </div>
     
-    <div class="card">
+    <div class="card" onclick="window.open('https://instagram.com/mdshaiti','_blank')">
       <img src="Haiticap-png.png">
       <h3>World Cup Signature Cap</h3>
       <span class="price">$40</span>
@@ -299,15 +310,21 @@ body{
   </div>
 
   <div id="gallery" class="section-title">Visual Concepts</div>
-  <div class="gallery">
-    <div class="card"><span>TERRITORY I</span><img src="STORE.PNG.png"><h3>Maison Atelier</h3></div>
-    <div class="card"><span>TERRITORY II</span><img src="Store2.png"><h3>Physical Concept</h3></div>
+  <div class="gallery" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(400px,1fr)); gap:40px;">
+    <div class="card">
+        <img src="STORE.PNG.png">
+        <h3>Maison Atelier — Territory I</h3>
+    </div>
+    <div class="card">
+        <img src="Store2.png">
+        <h3>Sovereign Space — Territory II</h3>
+    </div>
   </div>
 
   <div id="contact" class="contact">
     <p>contactmaisondusport@gmail.com</p>
     <p style="margin-top: 15px;">+509 4720 9775</p>
-    <p style="margin-top: 50px; font-size: 0.6rem; letter-spacing: 5px; opacity: 0.5;">PORT-AU-PRINCE, HAITI</p>
+    <p style="margin-top: 60px; font-size: 0.6rem; letter-spacing: 6px; opacity: 0.4;">PORT-AU-PRINCE, HAITI</p>
   </div>
 </section>
 
@@ -339,10 +356,9 @@ window.addEventListener('scroll',()=>{
   heroImg1.style.opacity = 1 - p;
   heroImg2.style.opacity = p;
   
-  // High-End text transition
   if (p < 0.5) {
     heroText.innerText = "Where Heritage";
-    heroText.style.letterSpacing = (p * 20) + "px";
+    heroText.style.letterSpacing = (p * 25) + "px";
     heroText.style.opacity = 1 - (p * 2);
   } else {
     heroText.innerText = "Meets Excellence";
@@ -351,7 +367,7 @@ window.addEventListener('scroll',()=>{
     heroText.style.color = "#f6f1e8";
   }
 
-  if(scrollY > vh * 0.5){
+  if(scrollY > vh * 0.6){
     site.classList.add('visible');
     topNav.classList.add('visible');
   } else {
