@@ -3,346 +3,393 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maison du Sport — Digital Showroom</title>
+<title>Maison du Sport — Excellence Traditionnelle</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&family=Inter:wght@200;300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --navy: #050b14; /* Deepened for Rolex-style contrast */
-  --gold: #c5a059; /* More muted, expensive gold */
-  --burgundy: #3d000e; /* Darker, velvet-like burgundy */
+  --black: #050505;
+  --gold: #b38e44;
+  --gold-bright: #f1d592;
+  --burgundy: #2d0a12;
   --white: #fdfcf9;
-  --transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *{margin:0;padding:0;box-sizing:border-box;}
 
-body{
+body {
+  background: var(--black);
+  color: var(--white);
   font-family: 'Inter', sans-serif;
-  scroll-behavior:smooth;
-  background: var(--navy);
-  color: var(--gold);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
-/* 1. CINEMATIC INTRO */
-.intro{
-  position:fixed;
-  inset:0;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-  background: #000;
-  transition: transform 1.6s cubic-bezier(0.85, 0, 0.15, 1);
-}
-.intro video{
-  position:absolute;
-  width:100%; height:100%;
-  object-fit:cover;
-  opacity:.35;
-}
-.intro h1{
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 5vw, 6rem);
-  font-style: italic;
-  text-align:center;
-  color: var(--white);
-  letter-spacing: 15px;
-  text-transform: uppercase;
-  opacity:0;
-  animation: fadeUpBlur 2.5s forwards .8s;
-  z-index:1;
-}
-.enter-btn{
-  margin-top:4rem;
-  padding:20px 65px;
-  border: 1px solid var(--gold);
-  background:transparent;
-  color: var(--gold);
-  font-size: 0.65rem;
-  text-transform: uppercase;
-  letter-spacing: 8px;
-  cursor:pointer;
-  opacity:0;
-  animation: fadeUpBlur 2s forwards 2.2s;
-  transition: 0.8s var(--transition);
-  z-index:1;
-}
-.enter-btn:hover{ background: var(--gold); color: #000; box-shadow: 0 0 40px rgba(197, 160, 89, 0.2); }
-
-/* 2. NAVIGATION */
-.logo{
-    position:fixed; top:40px; left:50px; width:150px; z-index:500; 
-    mix-blend-mode: exclusion; transition: var(--transition);
-}
-.top-nav{
-  position:fixed;
-  top: 40px; left: 50%; transform: translateX(-50%) translateY(-200%);
-  display:flex; gap: 45px; padding: 18px 55px;
-  background: rgba(5, 11, 20, 0.7);
-  backdrop-filter: blur(30px);
-  border: 1px solid rgba(197, 160, 89, 0.15);
-  border-radius: 100px;
+/* 1. THE ARCHIVAL INTRO */
+.intro {
+  position: fixed;
+  inset: 0;
   z-index: 1000;
-  transition: 1s var(--transition);
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
 }
-.top-nav.visible{ transform: translateX(-50%) translateY(0); }
-.top-nav a{
-  text-decoration:none; color: var(--gold);
-  font-size: 0.6rem; font-weight: 600;
-  letter-spacing: 4px; text-transform: uppercase;
-  transition: .4s;
+.intro-video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.25;
 }
-.top-nav a:hover{ color: var(--white); text-shadow: 0 0 8px var(--gold); }
-
-/* 3. HERO & PARALLAX */
-.hero-wrapper{position:relative; height:200vh; display:none; background: var(--navy);}
-.hero-section{position:sticky; top:0; height:100vh; width:100%; overflow:hidden;}
-.hero-img{position:absolute; width:100%; height:100%; object-fit:cover; filter: brightness(0.3) contrast(1.1); transition: 1.5s ease-out;}
-.hero-text{
-  position:absolute;
-  width:100%;
-  top:50%; left:50%;
-  transform:translate(-50%,-50%);
+.intro h1 {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3rem, 10vw, 8rem);
+  font-size: 4vw;
   font-style: italic;
-  text-align:center;
-  z-index:2;
-  transition: var(--transition);
-  text-shadow: 0 0 50px rgba(0,0,0,0.9);
+  letter-spacing: 20px;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: introFade 3s forwards 0.5s;
+}
+.enter-trigger {
+  margin-top: 50px;
+  background: none;
+  border: 1px solid var(--gold);
+  padding: 20px 80px;
+  color: var(--gold);
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: 0.6s;
+  z-index: 10;
+}
+.enter-trigger:hover { background: var(--gold); color: #000; letter-spacing: 14px; }
+
+/* 2. THE LOGO & NAV */
+.main-logo {
+  position: fixed;
+  top: 40px; left: 50px;
+  width: 140px;
+  z-index: 1100;
+  mix-blend-mode: difference;
+}
+.nav-pill {
+  position: fixed;
+  bottom: 40px; left: 50%;
+  transform: translateX(-50%) translateY(200%);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(20px);
+  padding: 15px 40px;
+  border-radius: 100px;
+  border: 1px solid rgba(179, 142, 68, 0.2);
+  display: flex; gap: 40px;
+  z-index: 1100;
+  transition: 1s var(--ease);
+}
+.nav-pill.active { transform: translateX(-50%) translateY(0); }
+.nav-pill a {
+  text-decoration: none; color: var(--gold);
+  font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase;
 }
 
-/* 4. THE VAULT (SITE CONTENT) */
-.site{
-  opacity:0;
-  transition: opacity 2s ease;
-  padding: 180px 10%;
-  background: linear-gradient(to bottom, var(--burgundy), #1a0006);
+/* 3. SCROLL-ZOOM HERO */
+.hero-container {
+  height: 300vh; /* Extended for scroll feel */
   position: relative;
+  display: none;
+}
+.hero-sticky {
+  position: sticky;
+  top: 0; height: 100vh;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  background: url('Haiti-file.png .jpeg') center/cover no-repeat;
+  transform: scale(1);
+  filter: brightness(0.4);
+}
+.hero-title-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 8vw;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1;
+}
+
+/* 4. THE VAULT (PRODUCT GALLERY) */
+.vault {
+  background: linear-gradient(to bottom, #150004, var(--black));
+  padding: 150px 8%;
+  position: relative;
+  z-index: 2;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 150px;
+}
+.section-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* LUXURY CARDS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 120px;
+}
+.item-card {
+  position: relative;
+  transition: 1.2s var(--ease);
+}
+.item-img-frame {
+  width: 100%;
+  height: 700px;
+  overflow: hidden;
+  border: 1px solid rgba(179, 142, 68, 0.1);
+  background: #0a0a0a;
+}
+.item-img-frame img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) brightness(0.8);
+  transition: 1.5s var(--ease);
+}
+.item-card:hover img { filter: grayscale(0) brightness(1); transform: scale(1.05); }
+
+/* GOLD SEAL BADGE */
+.gold-seal {
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 120px; height: 120px;
+  background: radial-gradient(circle, var(--gold-bright), var(--gold));
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #000;
+  font-size: 0.6rem;
+  font-weight: 800;
+  text-align: center;
+  padding: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  animation: rotateSeal 20s linear infinite;
   z-index: 5;
 }
-.site.visible{opacity:1}
 
-/* 5. LUXURY CARDS */
-.products{ display:grid; grid-template-columns:repeat(auto-fit,minmax(350px,1fr)); gap:100px; margin-bottom:180px;}
-.card-wrapper {position: relative;}
-.card-announcement {
-  position: absolute; top: -15px; left: 30px;
-  background: linear-gradient(135deg, #c5a059, #f9f1df, #c5a059);
-  color: #1a1a1a;
-  padding: 10px 25px; font-size: 0.6rem; font-weight: 800;
-  letter-spacing: 3px; text-transform: uppercase; z-index: 10;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+/* CONCEPT STUDIO */
+.concept-frame {
+  margin-top: 200px;
+  text-align: center;
 }
-.card{
-  background: rgba(255,255,255,0.02);
-  padding: 40px;
-  transition: var(--transition);
-  border: 1px solid rgba(197, 160, 89, 0.08);
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+}
+.concept-box {
   position: relative;
+  height: 500px;
+  border: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
-.card img{ width:100%; height: 600px; object-fit: cover; filter: grayscale(0.6) brightness(0.7); transition: 1.5s var(--transition);}
-.card h3{ font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-style: italic; margin-top: 30px; color: var(--white); }
-.card .price{ display:block; margin-top: 10px; font-family: 'Inter'; font-weight: 200; font-size: 1.2rem; color: var(--gold); }
-.card:hover{ border-color: var(--gold); background: rgba(197, 160, 89, 0.03); transform: translateY(-15px); }
-.card:hover img{ filter: grayscale(0) brightness(1); transform: scale(1.03); }
-
-/* 6. CONCEPT STUDIO */
-.concept-tag {
-    font-size: 0.6rem; letter-spacing: 5px; text-transform: uppercase; opacity: 0.5; margin-bottom: 10px; display: block;
+.concept-box img { 
+  width: 100%; height: 100%; object-fit: cover; opacity: 0.2; 
+  filter: blur(10px); transition: 1s;
 }
-.coming-soon {
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-    font-size: 0.7rem; letter-spacing: 10px; text-transform: uppercase;
-    color: var(--white); border: 1px solid var(--white); padding: 15px 30px;
-    background: rgba(0,0,0,0.4); backdrop-filter: blur(10px);
+.concept-label {
+  position: absolute;
+  font-family: 'Inter';
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  color: var(--gold);
 }
-
-/* 7. INSTITUTIONAL FOOTER */
-.footer{
-    border-top: 1px solid rgba(197, 160, 89, 0.15);
-    padding: 120px 0 60px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 60px;
-    text-align: left;
-}
-.footer-col h4 {
-    font-size: 0.65rem; letter-spacing: 5px; text-transform: uppercase; color: var(--white); margin-bottom: 30px;
-}
-.footer-col p {
-    font-size: 0.85rem; line-height: 2; opacity: 0.6; font-weight: 300;
+.coming-tag {
+  position: absolute; bottom: 20px;
+  font-size: 0.5rem; letter-spacing: 5px; opacity: 0.4;
 }
 
-@keyframes fadeUpBlur{
-    from{opacity:0; transform:translateY(60px); filter: blur(15px);}
-    to{opacity:1; transform:translateY(0); filter: blur(0);}
+/* INSTITUTIONAL FOOTER */
+.inst-footer {
+  padding: 150px 8%;
+  border-top: 1px solid rgba(179, 142, 68, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.footer-left h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem; font-style: italic; color: var(--gold);
+}
+.footer-right { text-align: right; }
+.footer-right p { font-size: 0.8rem; line-height: 2.5; letter-spacing: 2px; opacity: 0.6; }
+
+@keyframes introFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes rotateSeal {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-.section-title{
-    text-align:center; font-family: 'Cormorant Garamond', serif; 
-    font-size: clamp(2.5rem, 5vw, 4rem); font-style: italic; margin-bottom: 120px;
-    letter-spacing: 4px; color: var(--white);
-}
+/* UTILITY */
+.gold-text { color: var(--gold); }
 </style>
 </head>
 
 <body>
 
-<div class="curtain left-curtain"></div>
-<div class="curtain right-curtain"></div>
+<img src="Maisondusport-file.png" class="main-logo">
 
-<section class="intro" id="intro">
-  <video autoplay muted loop playsinline>
+<div class="intro" id="intro">
+  <video autoplay muted loop playsinline class="intro-video">
     <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
-  </video> 
+  </video>
   <h1>Maison du Sport</h1>
-  <button class="enter-btn" onclick="enterMaison()">Enter the Showroom</button>
-</section>
+  <button class="enter-trigger" onclick="initExperience()">Explore the Exhibition</button>
+</div>
 
-<img src="Maisondusport-file.png" class="logo" id="mainLogo">
-
-<nav class="top-nav" id="topNav">
-  <a href="#philosophy">The Vision</a>
-  <a href="#products">Collection</a>
-  <a href="#gallery">Studios</a>
+<nav class="nav-pill" id="nav">
+  <a href="#vault">Collection</a>
+  <a href="#studio">Studio</a>
   <a href="#contact">Alliance</a>
 </nav>
 
-<div class="hero-wrapper" id="heroWrapper">
-  <div class="hero-section">
-    <img src="Haiti-file.png .jpeg" class="hero-img" id="heroImg1">
-    <img src="Sit-png.png" class="hero-img" id="heroImg2" style="opacity:0">
-    <div class="hero-text" id="heroText">Where Heritage</div>
+<div class="hero-container" id="hero">
+  <div class="hero-sticky">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-title-wrap">
+      <div class="hero-title" id="heroTitle">
+        <span style="display:block; font-size: 0.8rem; letter-spacing: 15px; text-transform: uppercase; margin-bottom: 20px; font-family: 'Inter';">A Legacy in Motion</span>
+        HERITAGE <br> <span class="gold-text">EXCELLENCE</span>
+      </div>
+    </div>
   </div>
 </div>
 
-<section class="site" id="site">
-  
-  <div id="philosophy" class="section-title" style="max-width: 900px; margin: 0 auto 180px; line-height: 1.4; border:none;">
-    "We believe every great moment begins with vision. Our work celebrates the dedication, culture, and spirit that elevate the game."
+<section class="vault" id="vault">
+  <div class="section-header">
+    <p style="letter-spacing: 5px; font-size: 0.6rem; text-transform: uppercase; margin-bottom: 20px;">Session I</p>
+    <h2>World Cup Session</h2>
   </div>
 
-  <h2 class="section-title">World Cup Session</h2>
-  <div class="products" id="products">  
-    <div class="card-wrapper">
-      <div class="card-announcement">First 20 Editions — $85</div>
-      <div class="card">
+  <div class="grid">
+    <div class="item-card">
+      <div class="gold-seal">The First 20 <br> <span style="font-size: 1rem;">$85</span></div>
+      <div class="item-img-frame">
         <img src="WC26-white.png .jpeg">
-        <h3>Haiti Kit — Blanc</h3>
-        <span class="price">$85.00</span>
+      </div>
+      <div style="margin-top: 30px;">
+        <p style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5;">MAILLOT OFFICIEL</p>
+        <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem; font-style: italic; margin-top: 5px;">Haiti Kit — Blanc</h3>
       </div>
     </div>
 
-    <div class="card-wrapper">
-      <div class="card-announcement">First 20 Editions — $85</div>
-      <div class="card">
+    <div class="item-card">
+      <div class="gold-seal">The First 20 <br> <span style="font-size: 1rem;">$85</span></div>
+      <div class="item-img-frame">
         <img src="WC26-Red.png.jpeg">
-        <h3>Haiti Kit — Rouge</h3>
-        <span class="price">$85.00</span>
       </div>
-    </div>
-
-    <div class="card-wrapper">
-      <div class="card-announcement">First 20 Editions — $85</div>
-      <div class="card">
-        <img src="Blue-file.png .jpeg">
-        <h3>Haiti Kit — Bleu</h3>
-        <span class="price">$85.00</span>
+      <div style="margin-top: 30px;">
+        <p style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5;">MAILLOT OFFICIEL</p>
+        <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem; font-style: italic; margin-top: 5px;">Haiti Kit — Rouge</h3>
       </div>
     </div>
   </div>
 
-  <h2 class="section-title" id="gallery">Concept Studios</h2>
-  <div class="products">
-    <div class="card-wrapper">
-        <span class="concept-tag">Architectural Concept</span>
-        <div class="card">
-            <img src="STORE.PNG.png" style="filter: blur(3px) grayscale(1);">
-            <div class="coming-soon">Coming Soon</div>
-            <h3>The Atelier</h3>
-        </div>
-    </div>
-    <div class="card-wrapper">
-        <span class="concept-tag">Visual Concept</span>
-        <div class="card">
-            <img src="Store2.png" style="filter: blur(3px) grayscale(1);">
-            <div class="coming-soon">Coming Soon</div>
-            <h3>Sovereign Space</h3>
-        </div>
+  <div class="concept-frame" id="studio">
+    <h2 class="section-header" style="font-size: 2.5rem; letter-spacing: 5px;">Concept Studio</h2>
+    <div class="concept-grid">
+      <div class="concept-box">
+        <img src="STORE.PNG.png">
+        <div class="concept-label">The Atelier</div>
+        <div class="coming-soon">Architectural Preview — Coming Soon</div>
+      </div>
+      <div class="concept-box">
+        <img src="Store2.png">
+        <div class="concept-label">Digital Vault</div>
+        <div class="coming-soon">Virtual Concept — Coming Soon</div>
+      </div>
     </div>
   </div>
 
-  <footer class="footer" id="contact">
-    <div class="footer-col">
-        <h4>The Institution</h4>
-        <p>Maison du Sport represents the bridge between athletic tradition and modern elegance. A sovereign space dedicated to the Haitian spirit.</p>
+  <footer class="inst-footer" id="contact">
+    <div class="footer-left">
+      <p style="letter-spacing: 5px; font-size: 0.5rem; margin-bottom: 15px;">ESTABLISHED 2026</p>
+      <h3>Maison du Sport</h3>
+      <p style="max-width: 400px; margin-top: 20px; font-size: 0.8rem; opacity: 0.5; font-weight: 300; line-height: 1.8;">
+        The sovereign home of Haitian sporting excellence. Where vision meets the hand of God.
+      </p>
     </div>
-    <div class="footer-col">
-        <h4>Alliance</h4>
-        <p>contactmaisondusport@gmail.com</p>
-        <p>+509 4720 9775</p>
-    </div>
-    <div class="footer-col">
-        <h4>Location</h4>
-        <p>Port-au-Prince, Haiti</p>
-        <p style="opacity: 0.3; font-size: 0.6rem; margin-top: 20px; letter-spacing: 3px;">ESTABLISHED 2026</p>
+    <div class="footer-right">
+      <p>INSTITUTIONAL ALLIANCE</p>
+      <p>CONTACTMAISONDUSPORT@GMAIL.COM</p>
+      <p>PORT-AU-PRINCE, HAITI</p>
+      <p style="margin-top: 40px; color: var(--gold); font-weight: 600;">+509 4720 9775</p>
     </div>
   </footer>
 </section>
 
 <script>
-const intro = document.getElementById('intro');
-const heroWrapper = document.getElementById('heroWrapper');
-const heroImg1 = document.getElementById('heroImg1');
-const heroImg2 = document.getElementById('heroImg2');
-const heroText = document.getElementById('heroText');
-const site = document.getElementById('site');
-const topNav = document.getElementById('topNav');
-
-function enterMaison(){
-  document.body.classList.add("open");
-  intro.style.transform = "translateY(-100%)";
-  setTimeout(()=>{
-    intro.style.display="none";
-    heroWrapper.style.display="block";
-    document.body.style.overflow="auto";
-  },1400);
+function initExperience() {
+  document.getElementById('intro').style.transform = "translateY(-100%)";
+  document.getElementById('hero').style.display = "block";
+  document.body.style.overflow = "auto";
+  setTimeout(() => {
+    document.getElementById('nav').classList.add('active');
+  }, 1000);
 }
 
-window.addEventListener('scroll',()=>{
-  if(heroWrapper.style.display!=="block") return;
+window.addEventListener('scroll', () => {
   const scrollY = window.scrollY;
   const vh = window.innerHeight;
-  const p = Math.min(scrollY / (vh * 0.8), 1);
   
-  heroImg1.style.opacity = 1 - p;
-  heroImg2.style.opacity = p;
-  heroImg1.style.transform = `scale(${1 + p * 0.05})`;
+  // Hero Zoom Sequence
+  const heroProgress = Math.min(scrollY / (vh * 2), 1);
+  const heroBg = document.getElementById('heroBg');
+  const heroTitle = document.getElementById('heroTitle');
   
-  if (p < 0.5) {
-    heroText.innerText = "Where Heritage";
-    heroText.style.letterSpacing = (p * 40) + "px";
-    heroText.style.opacity = 1 - (p * 2);
-  } else {
-    heroText.innerText = "Meets Excellence";
-    heroText.style.letterSpacing = "6px";
-    heroText.style.opacity = (p - 0.5) * 2;
-    heroText.style.color = "#f6f1e8";
-  }
+  // Zooming in Effect
+  heroBg.style.transform = `scale(${1 + heroProgress * 1.5})`;
+  heroBg.style.filter = `brightness(${0.4 - heroProgress * 0.2})`;
+  
+  // Title Disappear/Blur
+  heroTitle.style.opacity = 1 - (heroProgress * 2);
+  heroTitle.style.transform = `translateY(${heroProgress * -100}px) scale(${1 - heroProgress * 0.2})`;
+  heroTitle.style.filter = `blur(${heroProgress * 20}px)`;
 
-  if(scrollY > vh * 0.6){
-    site.classList.add('visible');
-    topNav.classList.add('visible');
-    document.getElementById('mainLogo').style.opacity = "0.2";
-  } else {
-    topNav.classList.remove('visible');
-    document.getElementById('mainLogo').style.opacity = "1";
+  // Show Nav
+  if(scrollY > vh * 0.8) {
+    document.getElementById('nav').classList.add('active');
   }
 });
 </script>
