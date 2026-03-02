@@ -1,206 +1,298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MDS | L'INSTITUTION</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,600&family=Inter:wght@900&display=swap" rel="stylesheet">
-    <style>
-        :root { --gold: #BFA675; --white: #fff; --bg: #000; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--bg); color: var(--white); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maison du Sport — Digital Showroom</title>
 
-        /* HERO - CINEMATIC IMMERSION */
-        .hero { 
-            height: 100vh; position: relative; overflow: hidden; 
-            display: flex; align-items: center; justify-content: center;
-        }
-        .hero-bg {
-            position: absolute; width: 110%; height: 110%; 
-            background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1500') center/cover;
-            filter: brightness(0.3) grayscale(1) blur(5px);
-            animation: moveBackground 30s linear infinite alternate;
-        }
-        @keyframes moveBackground { from { transform: scale(1); } to { transform: scale(1.1); } }
-        
-        .hero-text { z-index: 10; text-align: center; pointer-events: none; }
-        .hero-text h1 { 
-            font-family: 'Cormorant Garamond', serif; font-size: 15vw; 
-            font-style: italic; font-weight: 300; line-height: 0.8; 
-            animation: heroReveal 2s ease-out;
-        }
-        @keyframes heroReveal { from { opacity: 0; filter: blur(20px); transform: translateY(30px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500;1,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
 
-        /* MANIFESTO - BRUTALIST IMPACT */
-        .manifesto { padding: 25vh 10%; background: #000; text-align: left; }
-        .manifesto h2 { font-family: 'Cormorant Garamond', serif; font-size: 5vw; font-style: italic; line-height: 1.1; margin-bottom: 30px; }
-        .manifesto span { color: var(--gold); }
-        .manifesto p { font-size: 1.2rem; max-width: 600px; opacity: 0.5; line-height: 1.8; letter-spacing: 1px; }
+<style>
+:root {
+  --navy: #0b1a2b;
+  --gold: #D4AF37;
+  --burgundy: #800020;
+  --white: #f6f1e8;
+}
 
-        /* ROLLING PHOTO REEL - Hyper-Textured Sequence featuring the Munich Final 1974 ball (No Logos) */
-        .reel { height: 70vh; display: flex; gap: 40px; padding: 0 40px; overflow: hidden; position: relative; border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .reel-track { display: flex; gap: 40px; animation: scrollReel 40s linear infinite; }
-        
-        .reel-card { width: 500px; height: 100%; border-radius: 4px; overflow: hidden; filter: grayscale(1) contrast(1.1); }
-        .reel-img { width: 100%; height: 100%; object-fit: cover; }
-        
-        @keyframes scrollReel { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-        /* THE DIVISIONS: KINETIC ATRIUM LAYOUT (Non-Boring) */
-        .divisions { display: flex; height: 100vh; width: 100%; background: #080808; }
-        
-        .division-atrium { 
-            flex: 1; border-right: 1px solid rgba(255,255,255,0.05); 
-            position: relative; display: flex; align-items: flex-end; 
-            padding: 60px; transition: 1s cubic-bezier(0.16, 1, 0.3, 1);
-            overflow: hidden; cursor: pointer; text-decoration: none; color: #fff;
-        }
-        .division-atrium:hover { flex: 2; }
-        
-        .div-atrium-bg { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; 
-            object-fit: cover; z-index: 1; opacity: 0.2; transition: 1s; 
-            filter: grayscale(1);
-        }
-        .division-atrium:hover .div-atrium-bg { opacity: 0.6; transform: scale(1.05); filter: grayscale(0); }
-        
-        .div-atrium-content { z-index: 2; position: relative; }
-        .div-atrium-content span { font-size: 0.6rem; letter-spacing: 5px; color: var(--gold); text-transform: uppercase; font-weight: 700; }
-        .div-atrium-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 5vw; font-style: italic; margin-top: 10px; line-height: 1; }
-        .div-atrium-status { font-size: 0.5rem; letter-spacing: 2px; color: #555; margin-top: 20px; text-transform: uppercase; }
+body{
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
+  background: var(--navy);
+  color: var(--gold);
+  overflow-x: hidden;
+}
 
-        /* PRODUCT DRAWER (Merch Section - Discoverable) */
-        #merch-drawer { 
-            max-height: 0; overflow: hidden; transition: max-height 1s cubic-bezier(0.4, 0, 0.2, 1);
-            background: #000; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; padding: 0 10%;
-        }
-        .drawer-active { max-height: 1200px !important; padding: 120px 10% !important; border-top: 2px solid var(--gold); }
-        .product-card { padding: 40px 20px; text-align: center; }
-        .product-card img { width: 100%; height: 400px; object-fit: cover; margin-bottom: 20px; transition: 0.4s; }
-        .product-card:hover img { transform: translateY(-10px); }
+/* INTRO */
+.intro{
+  position:fixed;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  z-index:100;
+  background: #000;
+  transition: transform 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
 
-        /* AYITI MOUNTAIN PARALLAX */
-        .haiti-parallax { 
-            height: 120vh; position: relative; overflow: hidden; 
-            display: flex; align-items: center; justify-content: center;
-        }
-        .haiti-parallax-bg {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=2000') center/cover;
-            background-attachment: fixed; /* Parallax effect */
-            filter: brightness(0.5);
-        }
-        .haiti-parallax h2 { 
-            z-index: 2; font-family: 'Cormorant Garamond', serif; font-size: 15vw; 
-            font-style: italic; opacity: 0.9; letter-spacing: 20px;
-        }
+.intro video{
+  position:absolute;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:.6;
+}
 
-        /* FINAL FOOTER WITH CENTRED LOCATION SIGNATURE */
-        <footer>
-            <div class="f-brand"><h2>MAISON</h2></div>
-            <div class="f-data">
-                <a href="https://instagram.com/mdshaiti" target="_blank">INSTAGRAM / @MDSHAITI</a>
-                <a href="https://facebook.com/maisondusport" target="_blank">FACEBOOK / MAISON DU SPORT</a>
-                <a href="mailto:contactmaisondusport@gmail.com">PARTNER WITH US</a>
-                <span class="f-location">Port-au-Prince, Haiti</span>
-            </div>
-        </footer>
+.intro h1{
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 5vw;
+  font-style: italic;
+  color: var(--white);
+  text-align:center;
+  opacity:0;
+  animation:fadeUp 2s forwards .5s;
+  z-index:1;
+}
 
-    </style>
+.enter-btn{
+  margin-top:3rem;
+  padding:1rem 4rem;
+  border:1px solid var(--gold);
+  background:none;
+  color: var(--gold);
+  font-size:.8rem;
+  letter-spacing:5px;
+  cursor:pointer;
+  opacity:0;
+  animation:fadeUp 2s forwards 1.5s;
+  transition:.5s;
+  z-index:1;
+}
+.enter-btn:hover{background:var(--gold); color:#000;}
+
+/* NAVIGATION */
+.top-nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  padding:30px;
+  background:rgba(11,26,43,0.9);
+  backdrop-filter:blur(10px);
+  z-index:50;
+  transform:translateY(-100%);
+  transition:transform .8s ease;
+}
+.top-nav.visible{transform:translateY(0);}
+.top-nav a{
+  text-decoration:none;
+  color: var(--gold);
+  font-size: .7rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: .3s;
+}
+.top-nav a:hover{opacity: .5;}
+
+/* HERO SCROLL */
+.hero-wrapper{position:relative; height:200vh; display:none;}
+.hero-section{position:sticky; top:0; height:100vh; width:100%; overflow:hidden;}
+.hero-img{position:absolute; width:100%; height:100%; object-fit:cover; transition: opacity 0.8s ease;}
+.hero-text{
+  position:absolute;
+  width:100%;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 7vw;
+  font-style: italic;
+  text-align:center;
+  z-index:2;
+  transition: opacity .6s ease;
+}
+
+/* MAIN SITE */
+.site{
+  opacity:0;
+  transition: opacity 1.5s ease;
+  padding: 100px 10%;
+  background: var(--burgundy);
+  position: relative;
+  z-index: 5;
+}
+.site.visible{opacity:1}
+
+.notice{
+  text-align:center;
+  margin-bottom: 120px;
+  padding: 40px;
+  border: 1px solid rgba(212,175,55,0.3);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.8rem;
+}
+
+.section-title{
+  text-align:center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 4rem;
+  font-style: italic;
+  margin-bottom: 60px;
+}
+
+/* PRODUCTS */
+.products{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap:40px;
+  margin-bottom: 150px;
+}
+.card{
+  background:#910028;
+  padding:20px;
+  text-align:center;
+  transition: .5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor:pointer;
+  color: var(--white);
+}
+.card:hover{transform: translateY(-15px);}
+.card img{width:100%; height:450px; object-fit:cover; margin-bottom:20px;}
+.card h3{font-size: .8rem; letter-spacing: 2px; text-transform: uppercase;}
+.card .price{
+  display: block;
+  margin-top: 10px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-style: italic;
+}
+
+/* PHILOSOPHY */
+.philosophy{
+  max-width: 900px;
+  margin: 0 auto 150px;
+  text-align:center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-style: italic;
+  line-height: 1.4;
+  border-left: 1px solid var(--gold);
+  border-right: 1px solid var(--gold);
+  padding: 0 40px;
+}
+
+.contact{
+  text-align:center;
+  padding: 100px 0;
+  border-top: 1px solid rgba(212,175,55,0.2);
+  letter-spacing: 2px;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+</style>
 </head>
+
 <body>
 
-    <nav style="position: fixed; top: 40px; width: 100%; padding: 0 5%; z-index: 1000; display: flex; justify-content: space-between; mix-blend-mode: difference;">
-        <div style="font-family: 'Cormorant Garamond'; font-style: italic; font-size: 1.5rem; letter-spacing: 2px;">MDS</div>
-        <div style="font-size: 0.6rem; letter-spacing: 5px; color: var(--gold); font-weight: 700;">EST. 2026</div>
-    </nav>
+<section class="intro" id="intro">
+  <video autoplay muted loop playsinline>
+    <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
+  </video> 
+  <h1>Maison du Sport</h1>
+  <button class="enter-btn" onclick="enterMaison()">L'EXPERIENCE</button>
+</section>
 
-    <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-text">
-            <h1>L'Architecture <br> de la Renaissance.</h1>
-        </div>
-    </section>
+<nav class="top-nav" id="topNav">
+  <a href="#philosophy">L'Institution</a>
+  <a href="#products">Collection</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#contact">Contact</a>
+</nav>
 
-    <section class="manifesto">
-        <h2>In Haiti, football is <span>unstructured passion.</span></h2>
-        <p>Maison Du Sport is the <span>sovereign bridge</span> between raw STREET passion and global economic excellence. We are the institutional architects, built on the 1974 legacy.</p>
-    </section>
+<div class="hero-wrapper" id="heroWrapper">
+  <div class="hero-section">
+    <img src="Haiti-file.png .jpeg" class="hero-img" id="heroImg1">
+    <img src="Sit-png.png" class="hero-img" id="heroImg2" style="opacity:0">
+    <div class="hero-text" id="heroText">Where Heritage</div>
+  </div>
+</div>
 
-    <div class="reel">
-        <div class="reel-track">
-            <div class="reel-card"><img class="reel-img" src="image_12.png"></div>
-            <div class="reel-card"><img class="reel-img" src="https://images.unsplash.com/photo-1529900215685-80164283996f?q=80&w=800"></div>
-            <div class="reel-card"><img class="reel-img" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1500"></div>
-            <div class="reel-card"><img class="reel-img" src="https://images.unsplash.com/photo-1551952237-954a0e68786c?q=80&w=800"></div>
-            <div class="reel-card"><img class="reel-img" src="image_12.png"></div>
-            <div class="reel-card"><img class="reel-img" src="https://images.unsplash.com/photo-1529900215685-80164283996f?q=80&w=800"></div>
-        </div>
+<section class="site" id="site">
+  <div class="notice">
+    Exclusive Digital Showroom Access
+    <p style="font-family: Montserrat; font-size: .7rem; letter-spacing: 3px; font-style: normal; margin-top: 10px; opacity: .7;">AUTHORIZED VIEWING ONLY</p>
+  </div>
+
+  <div id="philosophy" class="philosophy">
+    "At Maison du Sport, we believe every great moment begins with vision. We honor excellence in every stitch, creating a space where ambition meets the hand of God."
+  </div>
+
+  <div id="products" class="section-title">World Cup Session</div>
+  <div class="products">  
+    <div class="card" onclick="window.open('https://instagram.com/mdshaiti')">
+      <img src="WC26-white.png .jpeg">
+      <h3>Official Haiti Home Kit</h3>
+      <span class="price">$85.00</span>
     </div>
-
-    <section class="divisions">
-        <a href="javascript:void(0)" class="division-atrium" onclick="toggleMerch()">
-            <img class="div-atrium-bg" src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1200">
-            <div class="div-atrium-content">
-                <span>Section 01 // Discoverable</span>
-                <h2>Merchandise</h2>
-                <div class="div-atrium-status">VIEW THE 1974 LEGACY SESSION</div>
-            </div>
-        </a>
-        <div class="division-atrium">
-            <img class="div-atrium-bg" src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1200">
-            <div class="div-atrium-content">
-                <span>Section 02 // Strategic Partnering</span>
-                <h2>Marketing</h2>
-                <div class="div-atrium-status">ESTABLISHING ALLIANCES</div>
-            </div>
-        </div>
-        <div class="division-atrium">
-            <img class="div-atrium-bg" src="https://images.unsplash.com/photo-1551952237-954a0e68786c?q=80&w=1200">
-            <div class="div-atrium-content">
-                <span>Section 03 // centralized Hub</span>
-                <h2>Media</h2>
-                <div class="div-atrium-status">DEVELOPING COVERAGE</div>
-            </div>
-        </div>
-    </section>
-
-    <div id="merch-drawer">
-        <div class="product-card" onclick="inquire('WC26-white')"><img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=600"><h4>WC26 White</h4></div>
-        <div class="product-card" onclick="inquire('WC26-red')"><img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=600"><h4>WC26 Red</h4></div>
-        <div class="product-card" onclick="inquire('WC26-blue')"><img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600"><h4>National Blue</h4></div>
-        <div class="product-card" onclick="inquire('1974-shirt')"><img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=600"><h4>1974 Legacy</h4></div>
-        <div class="product-card" onclick="inquire('WC26-cap')"><img src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?q=80&w=600"><h4>Signature Cap</h4></div>
+    <div class="card" onclick="window.open('https://instagram.com/mdshaiti')">
+      <img src="WC26-Red.png.jpeg">
+      <h3>Official Haiti Away Kit</h3>
+      <span class="price">$85.00</span>
     </div>
+    <div class="card" onclick="window.open('https://instagram.com/mdshaiti')">
+      <img src="Blue-file.png .jpeg">
+      <h3>Official National Kit</h3>
+      <span class="price">$85.00</span>
+    </div>
+  </div>
 
-    <section class="mountain-view">
-        <div class="haiti-bg"></div>
-        <h2>AYITI</h2>
-    </section>
+  <div id="contact" class="contact">
+    <p style="font-family: 'Cormorant Garamond'; font-size: 2rem; font-style: italic;">Contact l'Institution</p>
+    <p style="margin-top: 20px;">contactmaisondusport@gmail.com</p>
+    <p style="font-size: .7rem; margin-top: 40px; letter-spacing: 4px;">PORT-AU-PRINCE, HAITI</p>
+  </div>
+</section>
 
-    <footer>
-        <div class="f-maison"><h2>MAISON</h2></div>
-        <div class="f-data">
-            <a href="https://instagram.com/mdshaiti" target="_blank">INSTAGRAM / @MDSHAITI</a>
-            <a href="https://facebook.com/maisondusport" target="_blank">FACEBOOK / MAISON DU SPORT</a>
-            <a href="mailto:contactmaisondusport@gmail.com">PARTNER PORTAL</a>
-            <span class="f-location">Port-au-Prince, Haiti</span>
-        </div>
-    </footer>
+<script>
+function enterMaison(){
+  const intro = document.getElementById('intro');
+  intro.style.transform = "translateY(-100%)";
+  setTimeout(()=>{
+    document.getElementById('heroWrapper').style.display="block";
+    document.body.style.overflow="auto";
+  }, 800);
+}
 
-    <script>
-        // Merchandise Drawer Toggle (Discoverable)
-        function toggleMerch() {
-            const drawer = document.getElementById('merch-drawer');
-            drawer.classList.toggle('drawer-active');
-            if (drawer.classList.contains('drawer-active')) {
-                drawer.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+window.addEventListener('scroll',()=>{
+  const scrollY = window.scrollY;
+  const vh = window.innerHeight;
+  const p = Math.min(scrollY / (vh * 0.8), 1);
+  
+  document.getElementById('heroImg1').style.opacity = 1 - p;
+  document.getElementById('heroImg2').style.opacity = p;
 
-        function inquire(name) {
-            window.open(`https://instagram.com/mdshaiti/dm?text=Inquiry regarding: ${name}`, '_blank');
-        }
-    </script>
+  const txt = document.getElementById('heroText');
+  if(p < 0.5) {
+    txt.innerText = "Where Heritage";
+    txt.style.opacity = 1 - (p*2);
+  } else {
+    txt.innerText = "Meets Excellence";
+    txt.style.opacity = (p-0.5)*2;
+    txt.style.color = "#f6f1e8";
+  }
+
+  if(scrollY > vh * 0.5){
+    document.getElementById('site').classList.add('visible');
+    document.getElementById('topNav').classList.add('visible');
+  }
+});
+</script>
+
 </body>
 </html>
