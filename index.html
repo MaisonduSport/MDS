@@ -3,394 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Maison du Sport — Excellence Traditionnelle</title>
+<title>Maison du Sport — L'Éveil</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400;1,600&family=Inter:wght@100;300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,300;1,400&family=Inter:wght@100;200;400;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --black: #050505;
-  --gold: #b38e44;
-  --gold-bright: #f1d592;
+  --black: #030303;
+  --gold: #c5a059;
   --burgundy: #2d0a12;
   --white: #fdfcf9;
-  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease: cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box; cursor: crosshair;}
 
 body {
   background: var(--black);
   color: var(--white);
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
+  overflow: hidden; /* Locked until enter */
   -webkit-font-smoothing: antialiased;
 }
 
-/* 1. THE ARCHIVAL INTRO */
-.intro {
+/* 1. THE VEIL (INTRO) */
+.veil {
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 2000;
   background: #000;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: transform 1.8s cubic-bezier(0.85, 0, 0.15, 1);
+  transition: transform 2s var(--ease), filter 2s var(--ease);
 }
-.intro-video {
+.veil-video {
   position: absolute;
   inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  opacity: 0.25;
+  opacity: 0.2;
+  filter: saturate(0);
 }
-.intro h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 4vw;
-  font-style: italic;
-  letter-spacing: 20px;
+.status-tag {
+  font-size: 0.6rem;
+  letter-spacing: 8px;
   text-transform: uppercase;
   color: var(--gold);
+  margin-bottom: 20px;
   opacity: 0;
-  transform: translateY(30px);
-  animation: introFade 3s forwards 0.5s;
+  animation: fadeIn 2s forwards 0.5s;
 }
-.enter-trigger {
-  margin-top: 50px;
+.veil h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-style: italic;
+  letter-spacing: 15px;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 3s forwards 1s;
+}
+.access-btn {
+  margin-top: 60px;
   background: none;
-  border: 1px solid var(--gold);
-  padding: 20px 80px;
-  color: var(--gold);
+  border: 1px solid rgba(197, 160, 89, 0.3);
+  padding: 20px 60px;
+  color: var(--white);
   letter-spacing: 10px;
   text-transform: uppercase;
-  font-size: 0.7rem;
-  cursor: pointer;
-  transition: 0.6s;
-  z-index: 10;
+  font-size: 0.6rem;
+  transition: 0.8s var(--ease);
+  opacity: 0;
+  animation: fadeIn 2s forwards 2s;
 }
-.enter-trigger:hover { background: var(--gold); color: #000; letter-spacing: 14px; }
+.access-btn:hover { border-color: var(--gold); letter-spacing: 14px; background: rgba(197, 160, 89, 0.05); }
 
-/* 2. THE LOGO & NAV */
+/* 2. THE LOGO & LOG-IN */
 .main-logo {
   position: fixed;
-  top: 40px; left: 50px;
-  width: 140px;
-  z-index: 1100;
-  mix-blend-mode: difference;
-}
-.nav-pill {
-  position: fixed;
-  bottom: 40px; left: 50%;
-  transform: translateX(-50%) translateY(200%);
-  background: rgba(10, 10, 10, 0.8);
-  backdrop-filter: blur(20px);
-  padding: 15px 40px;
-  border-radius: 100px;
-  border: 1px solid rgba(179, 142, 68, 0.2);
-  display: flex; gap: 40px;
-  z-index: 1100;
+  top: 40px; left: 50%; transform: translateX(-50%);
+  width: 120px;
+  z-index: 1500;
+  opacity: 0.6;
   transition: 1s var(--ease);
 }
-.nav-pill.active { transform: translateX(-50%) translateY(0); }
-.nav-pill a {
-  text-decoration: none; color: var(--gold);
-  font-size: 0.6rem; letter-spacing: 4px; text-transform: uppercase;
-}
-
-/* 3. SCROLL-ZOOM HERO */
-.hero-container {
-  height: 300vh; /* Extended for scroll feel */
-  position: relative;
-  display: none;
-}
-.hero-sticky {
-  position: sticky;
-  top: 0; height: 100vh;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  width: 100%; height: 100%;
-  background: url('Haiti-file.png .jpeg') center/cover no-repeat;
-  transform: scale(1);
-  filter: brightness(0.4);
-}
-.hero-title-wrap {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 8vw;
-  font-style: italic;
-  color: var(--white);
-  line-height: 1;
-}
-
-/* 4. THE VAULT (PRODUCT GALLERY) */
-.vault {
-  background: linear-gradient(to bottom, #150004, var(--black));
-  padding: 150px 8%;
-  position: relative;
-  z-index: 2;
-}
-.section-header {
-  text-align: center;
-  margin-bottom: 150px;
-}
-.section-header h2 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 4rem;
-  font-weight: 300;
-  letter-spacing: 10px;
+.member-access {
+  position: fixed;
+  top: 45px; right: 50px;
+  font-size: 0.55rem; letter-spacing: 4px;
   text-transform: uppercase;
   color: var(--gold);
+  z-index: 1500;
+  text-decoration: none;
+  opacity: 0.5;
 }
 
-/* LUXURY CARDS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 120px;
-}
-.item-card {
-  position: relative;
-  transition: 1.2s var(--ease);
-}
-.item-img-frame {
+/* 3. TEASER CONTENT (The Locked Gallery) */
+.content-locked {
+  height: 100vh;
   width: 100%;
-  height: 700px;
-  overflow: hidden;
-  border: 1px solid rgba(179, 142, 68, 0.1);
-  background: #0a0a0a;
-}
-.item-img-frame img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  filter: grayscale(1) brightness(0.8);
-  transition: 1.5s var(--ease);
-}
-.item-card:hover img { filter: grayscale(0) brightness(1); transform: scale(1.05); }
-
-/* GOLD SEAL BADGE */
-.gold-seal {
-  position: absolute;
-  top: -30px; right: -30px;
-  width: 120px; height: 120px;
-  background: radial-gradient(circle, var(--gold-bright), var(--gold));
-  border-radius: 50%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: #000;
-  font-size: 0.6rem;
-  font-weight: 800;
-  text-align: center;
-  padding: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-  animation: rotateSeal 20s linear infinite;
-  z-index: 5;
-}
-
-/* CONCEPT STUDIO */
-.concept-frame {
-  margin-top: 200px;
-  text-align: center;
-}
-.concept-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-}
-.concept-box {
   position: relative;
-  height: 500px;
-  border: 1px solid rgba(255,255,255,0.05);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  background: radial-gradient(circle at center, #1a0509 0%, #030303 100%);
 }
-.concept-box img { 
-  width: 100%; height: 100%; object-fit: cover; opacity: 0.2; 
-  filter: blur(10px); transition: 1s;
+.timer-wrap {
+  text-align: center;
+  z-index: 10;
 }
-.concept-label {
-  position: absolute;
-  font-family: 'Inter';
+.timer-label {
+  font-size: 0.6rem;
   letter-spacing: 12px;
   text-transform: uppercase;
-  font-size: 0.7rem;
+  margin-bottom: 40px;
+  display: block;
   color: var(--gold);
 }
-.coming-tag {
-  position: absolute; bottom: 20px;
-  font-size: 0.5rem; letter-spacing: 5px; opacity: 0.4;
+.clock {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 10vw;
+  font-style: italic;
+  display: flex;
+  gap: 40px;
+  color: var(--white);
+}
+.clock div span {
+  display: block;
+  font-size: 0.7rem;
+  font-family: 'Inter';
+  font-style: normal;
+  letter-spacing: 5px;
+  margin-top: 10px;
+  opacity: 0.3;
 }
 
-/* INSTITUTIONAL FOOTER */
-.inst-footer {
-  padding: 150px 8%;
-  border-top: 1px solid rgba(179, 142, 68, 0.1);
+/* 4. THE BLURRED HORIZON (Sneak Peak) */
+.sneak-peak {
+  position: absolute;
+  bottom: -20vh;
+  width: 100%;
+  padding: 0 10%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  opacity: 0.1; /* Barely visible */
+  filter: blur(20px);
+  transition: 2s var(--ease);
 }
-.footer-left h3 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem; font-style: italic; color: var(--gold);
-}
-.footer-right { text-align: right; }
-.footer-right p { font-size: 0.8rem; line-height: 2.5; letter-spacing: 2px; opacity: 0.6; }
+.peek-card { width: 250px; height: 350px; background: #111; border: 1px solid var(--gold); }
 
-@keyframes introFade {
+/* 5. FOOTER MANIFESTO */
+.manifesto {
+    position: fixed;
+    bottom: 40px;
+    left: 50px;
+    max-width: 350px;
+    z-index: 10;
+    opacity: 0;
+    transition: 2s var(--ease) 1s;
+}
+.manifesto p {
+    font-size: 0.7rem;
+    line-height: 2;
+    letter-spacing: 1px;
+    font-weight: 200;
+    color: var(--white);
+    opacity: 0.6;
+}
+
+@keyframes fadeIn {
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes rotateSeal {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
-/* UTILITY */
-.gold-text { color: var(--gold); }
+.bg-texture {
+    position: fixed;
+    inset: 0;
+    background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    opacity: 0.1;
+    pointer-events: none;
+    z-index: 5;
+}
 </style>
 </head>
 
 <body>
 
-<img src="Maisondusport-file.png" class="main-logo">
+<div class="bg-texture"></div>
 
-<div class="intro" id="intro">
-  <video autoplay muted loop playsinline class="intro-video">
+<img src="Maisondusport-file.png" class="main-logo" id="logo">
+<a href="#" class="member-access">Private Alliance Access</a>
+
+<div class="veil" id="veil">
+  <video autoplay muted loop playsinline class="veil-video">
     <source src="Cinematic_video_focusing_202602011237_ga4dn.mp4" type="video/mp4">
   </video>
+  <span class="status-tag">L'Architecture de la Renaissance</span>
   <h1>Maison du Sport</h1>
-  <button class="enter-trigger" onclick="initExperience()">Explore the Exhibition</button>
+  <button class="access-btn" onclick="revealTeaser()">Observe the Institution</button>
 </div>
 
-<nav class="nav-pill" id="nav">
-  <a href="#vault">Collection</a>
-  <a href="#studio">Studio</a>
-  <a href="#contact">Alliance</a>
-</nav>
-
-<div class="hero-container" id="hero">
-  <div class="hero-sticky">
-    <div class="hero-bg" id="heroBg"></div>
-    <div class="hero-title-wrap">
-      <div class="hero-title" id="heroTitle">
-        <span style="display:block; font-size: 0.8rem; letter-spacing: 15px; text-transform: uppercase; margin-bottom: 20px; font-family: 'Inter';">A Legacy in Motion</span>
-        HERITAGE <br> <span class="gold-text">EXCELLENCE</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<section class="vault" id="vault">
-  <div class="section-header">
-    <p style="letter-spacing: 5px; font-size: 0.6rem; text-transform: uppercase; margin-bottom: 20px;">Session I</p>
-    <h2>World Cup Session</h2>
-  </div>
-
-  <div class="grid">
-    <div class="item-card">
-      <div class="gold-seal">The First 20 <br> <span style="font-size: 1rem;">$85</span></div>
-      <div class="item-img-frame">
-        <img src="WC26-white.png .jpeg">
-      </div>
-      <div style="margin-top: 30px;">
-        <p style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5;">MAILLOT OFFICIEL</p>
-        <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem; font-style: italic; margin-top: 5px;">Haiti Kit — Blanc</h3>
-      </div>
-    </div>
-
-    <div class="item-card">
-      <div class="gold-seal">The First 20 <br> <span style="font-size: 1rem;">$85</span></div>
-      <div class="item-img-frame">
-        <img src="WC26-Red.png.jpeg">
-      </div>
-      <div style="margin-top: 30px;">
-        <p style="font-size: 0.7rem; letter-spacing: 3px; opacity: 0.5;">MAILLOT OFFICIEL</p>
-        <h3 style="font-family: 'Cormorant Garamond'; font-size: 2rem; font-style: italic; margin-top: 5px;">Haiti Kit — Rouge</h3>
-      </div>
+<main class="content-locked">
+  <div class="timer-wrap">
+    <span class="timer-label">The Gates Open In</span>
+    <div class="clock">
+      <div>14 <span>Days</span></div>
+      <div>22 <span>Hours</span></div>
+      <div>58 <span>Mins</span></div>
     </div>
   </div>
 
-  <div class="concept-frame" id="studio">
-    <h2 class="section-header" style="font-size: 2.5rem; letter-spacing: 5px;">Concept Studio</h2>
-    <div class="concept-grid">
-      <div class="concept-box">
-        <img src="STORE.PNG.png">
-        <div class="concept-label">The Atelier</div>
-        <div class="coming-soon">Architectural Preview — Coming Soon</div>
-      </div>
-      <div class="concept-box">
-        <img src="Store2.png">
-        <div class="concept-label">Digital Vault</div>
-        <div class="coming-soon">Virtual Concept — Coming Soon</div>
-      </div>
-    </div>
+  <div class="sneak-peak" id="sneak">
+    <div class="peek-card"></div>
+    <div class="peek-card"></div>
+    <div class="peek-card"></div>
   </div>
 
-  <footer class="inst-footer" id="contact">
-    <div class="footer-left">
-      <p style="letter-spacing: 5px; font-size: 0.5rem; margin-bottom: 15px;">ESTABLISHED 2026</p>
-      <h3>Maison du Sport</h3>
-      <p style="max-width: 400px; margin-top: 20px; font-size: 0.8rem; opacity: 0.5; font-weight: 300; line-height: 1.8;">
-        The sovereign home of Haitian sporting excellence. Where vision meets the hand of God.
-      </p>
-    </div>
-    <div class="footer-right">
-      <p>INSTITUTIONAL ALLIANCE</p>
-      <p>CONTACTMAISONDUSPORT@GMAIL.COM</p>
-      <p>PORT-AU-PRINCE, HAITI</p>
-      <p style="margin-top: 40px; color: var(--gold); font-weight: 600;">+509 4720 9775</p>
-    </div>
-  </footer>
-</section>
+  <div class="manifesto" id="manifesto">
+    <p>"Every great moment begins with vision. We are currently refining the excellence of the renaissance. The vault remains sealed until the vision is complete."</p>
+    <p style="margin-top: 20px; color: var(--gold); font-weight: 600; font-size: 0.55rem; letter-spacing: 3px;">PORT-AU-PRINCE, HAITI</p>
+  </div>
+</main>
 
 <script>
-function initExperience() {
-  document.getElementById('intro').style.transform = "translateY(-100%)";
-  document.getElementById('hero').style.display = "block";
-  document.body.style.overflow = "auto";
+function revealTeaser() {
+  const veil = document.getElementById('veil');
+  const logo = document.getElementById('logo');
+  const sneak = document.getElementById('sneak');
+  const manifesto = document.getElementById('manifesto');
+  
+  // Slide the veil up like a theater curtain
+  veil.style.transform = "translateY(-100%) scale(1.1)";
+  veil.style.filter = "blur(20px)";
+  
+  // Adjust logo
+  logo.style.top = "30px";
+  logo.style.width = "100px";
+  logo.style.opacity = "1";
+  
+  // Bring in the subtle elements
   setTimeout(() => {
-    document.getElementById('nav').classList.add('active');
+    sneak.style.bottom = "5vh";
+    sneak.style.opacity = "0.2";
+    manifesto.style.opacity = "1";
   }, 1000);
 }
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const vh = window.innerHeight;
-  
-  // Hero Zoom Sequence
-  const heroProgress = Math.min(scrollY / (vh * 2), 1);
-  const heroBg = document.getElementById('heroBg');
-  const heroTitle = document.getElementById('heroTitle');
-  
-  // Zooming in Effect
-  heroBg.style.transform = `scale(${1 + heroProgress * 1.5})`;
-  heroBg.style.filter = `brightness(${0.4 - heroProgress * 0.2})`;
-  
-  // Title Disappear/Blur
-  heroTitle.style.opacity = 1 - (heroProgress * 2);
-  heroTitle.style.transform = `translateY(${heroProgress * -100}px) scale(${1 - heroProgress * 0.2})`;
-  heroTitle.style.filter = `blur(${heroProgress * 20}px)`;
-
-  // Show Nav
-  if(scrollY > vh * 0.8) {
-    document.getElementById('nav').classList.add('active');
-  }
+// Subtle mouse movement parallax for the clock
+document.addEventListener('mousemove', (e) => {
+    const x = (window.innerWidth / 2 - e.pageX) / 50;
+    const y = (window.innerHeight / 2 - e.pageY) / 50;
+    document.querySelector('.clock').style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
 });
 </script>
 
