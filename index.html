@@ -2,41 +2,75 @@
 <html lang="en">
 <head>
     <style>
-        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        .stage { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; }
-        .text { font-size: 4rem; font-weight: 800; letter-spacing: -0.02em; }
-        .quote { font-size: 2rem; color: #aaa; max-width: 800px; padding: 20px; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
+        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+        .overlay { position: relative; z-index: 2; pointer-events: none; }
+        .quote-layer { height: 200vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; opacity: 0; }
+        h1 { font-family: 'Inter', sans-serif; font-size: 10vw; letter-spacing: -0.05em; text-transform: uppercase; }
     </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
 
-    <div class="stage"><h1 class="text" id="main-title">MAISON DU SPORT</h1></div>
-    <div class="stage"><p class="quote">"Haitian football was once our heartbeat, now it is a whisper."</p></div>
-    <div class="stage"><p class="quote">"We are not here to watch the decay. We are here to architect the return."</p></div>
-    <div class="stage"><h1 class="text" id="final-cta">COMING SOON</h1></div>
+    <div id="canvas-container"></div>
 
-    <script>
-        // Entrance Animation
-        gsap.from("#main-title", { duration: 2, opacity: 0, y: 50, filter: "blur(20px)" });
+    <div class="overlay">
+        <section style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <h1 id="main-title">MAISON DU SPORT</h1>
+        </section>
 
-        // Scroll-triggered quotes
-        gsap.utils.toArray(".quote").forEach((q) => {
-            gsap.from(q, {
-                scrollTrigger: { trigger: q, start: "top 80%" },
-                opacity: 0,
-                y: 100,
-                duration: 1.5
-            });
+        <section class="quote-layer" id="q1">
+            <p>THE GAME IS FRAGMENTED.</p>
+        </section>
+        
+        <section class="quote-layer" id="q2">
+            <p>WE ARE THE ARCHITECTS OF THE RETURN.</p>
+        </section>
+
+        <section style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <h1 id="footer">COMING SOON</h1>
+        </section>
+    </div>
+
+    <script type="module">
+        import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
+        import { gsap } from 'https://cdn.skypack.dev/gsap@3.11.0';
+        import { ScrollTrigger } from 'https://cdn.skypack.dev/gsap@3.11.0/ScrollTrigger';
+
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.getElementById('canvas-container').appendChild(renderer.domElement);
+
+        // Geometric shards of "Haitian Football"
+        const geometry = new THREE.IcosahedronGeometry(1, 15);
+        const material = new THREE.MeshPhongMaterial({ color: 0x111111, wireframe: true });
+        const sphere = new THREE.Mesh(geometry, material);
+        scene.add(sphere);
+
+        // Scroll-driven Animation
+        gsap.to(sphere.rotation, {
+            scrollTrigger: { scrub: 1 },
+            y: Math.PI * 2,
+            z: Math.PI
         });
 
-        // Morphing effect for the final reveal
-        gsap.to("#final-cta", {
-            scrollTrigger: { trigger: "#final-cta", start: "top 50%" },
+        // The "Shattering" logic
+        gsap.to(".quote-layer", {
+            scrollTrigger: { trigger: "#q1", start: "top center", toggleActions: "play reverse play reverse" },
             opacity: 1,
-            duration: 2,
-            textShadow: "0 0 20px rgba(255,255,255,0.5)"
+            duration: 1
         });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            sphere.rotation.x += 0.001;
+            renderer.render(scene, camera);
+        }
+        animate();
     </script>
 </body>
 </html>
