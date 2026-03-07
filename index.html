@@ -2,75 +2,47 @@
 <html lang="en">
 <head>
     <style>
-        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background: #000; overflow: hidden; }
-        #canvas-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
-        .overlay { position: relative; z-index: 2; pointer-events: none; }
-        .quote-layer { height: 200vh; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; opacity: 0; }
-        h1 { font-family: 'Inter', sans-serif; font-size: 10vw; letter-spacing: -0.05em; text-transform: uppercase; }
+        /* The Concrete Environment */
+        body { 
+            margin: 0; 
+            background: #f0f0f0; /* Not black, but cold, industrial grey */
+            color: #050505; 
+            font-family: 'Syne', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Kinetic Typography Layer */
+        .fragment {
+            position: absolute;
+            font-size: 15vw;
+            font-weight: 900;
+            text-transform: uppercase;
+            pointer-events: none;
+            mix-blend-mode: multiply;
+        }
+
+        .scroll-trigger { height: 100vh; position: relative; }
     </style>
 </head>
 <body>
 
-    <div id="canvas-container"></div>
-
-    <div class="overlay">
-        <section style="height: 100vh; display: flex; align-items: center; justify-content: center;">
-            <h1 id="main-title">MAISON DU SPORT</h1>
-        </section>
-
-        <section class="quote-layer" id="q1">
-            <p>THE GAME IS FRAGMENTED.</p>
-        </section>
-        
-        <section class="quote-layer" id="q2">
-            <p>WE ARE THE ARCHITECTS OF THE RETURN.</p>
-        </section>
-
-        <section style="height: 100vh; display: flex; align-items: center; justify-content: center;">
-            <h1 id="footer">COMING SOON</h1>
-        </section>
+    <div class="scroll-trigger">
+        <h1 class="fragment" id="ms">MAISON<br>DU SPORT</h1>
     </div>
 
-    <script type="module">
-        import * as THREE from 'https://cdn.skypack.dev/three@0.132.2';
-        import { gsap } from 'https://cdn.skypack.dev/gsap@3.11.0';
-        import { ScrollTrigger } from 'https://cdn.skypack.dev/gsap@3.11.0/ScrollTrigger';
+    <section style="height: 200vh; padding: 20vh 10vw;">
+        <h2 style="font-size: 5vw; line-height: 1.1;">Haitian football is not dead. <br>It is just waiting for the architect.</h2>
+    </section>
 
-        gsap.registerPlugin(ScrollTrigger);
-
-        // Scene setup
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-        // Geometric shards of "Haitian Football"
-        const geometry = new THREE.IcosahedronGeometry(1, 15);
-        const material = new THREE.MeshPhongMaterial({ color: 0x111111, wireframe: true });
-        const sphere = new THREE.Mesh(geometry, material);
-        scene.add(sphere);
-
-        // Scroll-driven Animation
-        gsap.to(sphere.rotation, {
-            scrollTrigger: { scrub: 1 },
-            y: Math.PI * 2,
-            z: Math.PI
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        // High-end motion: Fragments coming together
+        gsap.to("#ms", { 
+            scrollTrigger: { scrub: 2 },
+            scale: 0.5,
+            rotation: 10,
+            opacity: 0
         });
-
-        // The "Shattering" logic
-        gsap.to(".quote-layer", {
-            scrollTrigger: { trigger: "#q1", start: "top center", toggleActions: "play reverse play reverse" },
-            opacity: 1,
-            duration: 1
-        });
-
-        function animate() {
-            requestAnimationFrame(animate);
-            sphere.rotation.x += 0.001;
-            renderer.render(scene, camera);
-        }
-        animate();
     </script>
 </body>
 </html>
