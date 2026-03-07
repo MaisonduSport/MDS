@@ -2,43 +2,41 @@
 <html lang="en">
 <head>
     <style>
-        body { margin: 0; background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
-        
-        .stage { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 20px; }
-        
-        .morph-text { font-size: 3rem; font-weight: 200; letter-spacing: 0.1em; transition: all 1.5s ease-in-out; }
-
-        .quote { font-size: 1.5rem; color: #888; max-width: 600px; margin: 50px auto; opacity: 0; transform: translateY(30px); transition: all 1s ease-out; }
-        
-        .active { opacity: 1; transform: translateY(0); }
+        body { background: #000; color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        .stage { height: 100vh; display: flex; justify-content: center; align-items: center; text-align: center; }
+        .text { font-size: 4rem; font-weight: 800; letter-spacing: -0.02em; }
+        .quote { font-size: 2rem; color: #aaa; max-width: 800px; padding: 20px; }
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
 
-    <section class="stage">
-        <div id="hero-text" class="morph-text">WELCOME TO MAISON DU SPORT</div>
-    </section>
-
-    <section class="stage">
-        <div class="quote">"Haitian football was once our heartbeat, now it is a whisper."</div>
-    </section>
-
-    <section class="stage">
-        <div class="quote">"We are not here to watch the decay. We are here to architect the return."</div>
-    </section>
-
-    <section class="stage">
-        <div id="footer-text" class="morph-text">COMING SOON</div>
-    </section>
+    <div class="stage"><h1 class="text" id="main-title">MAISON DU SPORT</h1></div>
+    <div class="stage"><p class="quote">"Haitian football was once our heartbeat, now it is a whisper."</p></div>
+    <div class="stage"><p class="quote">"We are not here to watch the decay. We are here to architect the return."</p></div>
+    <div class="stage"><h1 class="text" id="final-cta">COMING SOON</h1></div>
 
     <script>
-        // Trigger reveal on scroll
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+        // Entrance Animation
+        gsap.from("#main-title", { duration: 2, opacity: 0, y: 50, filter: "blur(20px)" });
+
+        // Scroll-triggered quotes
+        gsap.utils.toArray(".quote").forEach((q) => {
+            gsap.from(q, {
+                scrollTrigger: { trigger: q, start: "top 80%" },
+                opacity: 0,
+                y: 100,
+                duration: 1.5
             });
         });
-        document.querySelectorAll('.quote').forEach(q => observer.observe(q));
+
+        // Morphing effect for the final reveal
+        gsap.to("#final-cta", {
+            scrollTrigger: { trigger: "#final-cta", start: "top 50%" },
+            opacity: 1,
+            duration: 2,
+            textShadow: "0 0 20px rgba(255,255,255,0.5)"
+        });
     </script>
 </body>
 </html>
