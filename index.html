@@ -2,96 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAISON DU SPORT | Evolution</title>
+    <title>MAISON DU SPORT | The Archive</title>
     <style>
-        :root {
-            --bg: #050505;
-            --text: #ffffff;
-            --accent: #e5e5e5;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400&display=swap');
 
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            background: var(--bg);
-            color: var(--text);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            overflow-x: hidden;
-            cursor: crosshair;
-        }
-
-        /* The Interactive Spotlight */
-        #cursor-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%);
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 10;
-        }
-
-        .hero {
-            height: 100vh;
+            background: #020202;
+            color: #fcfcfc;
+            font-family: 'Inter', sans-serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            opacity: 0;
-            animation: fadeIn 2s ease-out forwards;
+            overflow: hidden;
         }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        /* Luxury Grain Texture Overlay */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url('https://grainy-gradients.vercel.app/noise.svg');
+            opacity: 0.05;
+            pointer-events: none;
+        }
 
-        h1 {
-            font-size: clamp(4rem, 15vw, 12rem);
-            font-weight: 900;
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .brand-name {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 200;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
             margin: 0;
-            letter-spacing: -0.06em;
-            line-height: 0.9;
+            line-height: 1;
+            /* Text reveal animation */
+            animation: reveal 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .tagline {
-            font-size: clamp(1rem, 2vw, 1.5rem);
-            letter-spacing: 0.6em;
+            margin-top: 40px;
+            font-size: 0.75rem;
+            letter-spacing: 0.5em;
             text-transform: uppercase;
-            margin-top: 30px;
-            color: var(--accent);
+            color: #888;
+            opacity: 0;
+            animation: fadeIn 2s 1s ease-in forwards;
         }
 
-        .scroll-hint {
-            position: absolute;
-            bottom: 40px;
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.2em;
-            opacity: 0.4;
+        @keyframes reveal {
+            from { opacity: 0; transform: translateY(20px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
 
-    <div id="cursor-glow"></div>
+    <div class="container">
+        <h1 class="brand-name">Maison du Sport</h1>
+        <div class="tagline">Forthcoming</div>
+    </div>
 
-    <section class="hero">
-        <h1>MAISON<br>DU SPORT</h1>
-        <div class="tagline">The Game Returns</div>
-        <div class="scroll-hint">Scroll to discover</div>
-    </section>
-
-    <script>
-        // Move the glow with the cursor
-        const glow = document.getElementById('cursor-glow');
-        document.addEventListener('mousemove', (e) => {
-            glow.style.left = e.clientX + 'px';
-            glow.style.top = e.clientY + 'px';
-        });
-    </script>
 </body>
 </html>
