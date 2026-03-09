@@ -17,7 +17,7 @@
             overflow-x: hidden;
         }
 
-        /* Film Grain Overlay for Texture */
+        /* Film Grain Overlay */
         body::after {
             content: "";
             position: fixed;
@@ -35,7 +35,6 @@
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            height: 120vh; /* Extra height for smooth scroll */
         }
 
         .outline-text {
@@ -43,17 +42,21 @@
             color: transparent;
         }
 
+        /* Updated Logo Size: More noticeable but balanced */
         .brand-logo {
             position: fixed;
-            top: 2rem;
-            right: 2rem;
+            top: 2.5rem;
+            right: 2.5rem;
             z-index: 50;
-            width: 70px;
-            filter: drop-shadow(0 0 10px rgba(0,0,0,0.5));
+            width: 90px; /* Increased from 70px */
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Moving glow effect */
+        .brand-logo:hover {
+            transform: scale(1.08);
+        }
+
         .hype-glow {
             position: absolute;
             width: 400px; height: 400px;
@@ -66,7 +69,7 @@
 </head>
 <body>
 
-    <img src="LOGO.jpeg" alt="MDS Logo" class="brand-logo">
+    <img src="LOGO.JPEG" alt="MDS Logo" class="brand-logo">
 
     <section class="relative h-screen flex items-center justify-center stadium-parallax">
         <div class="hype-glow"></div>
@@ -74,7 +77,7 @@
             <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter uppercase leading-none">
                 MAISON <br> <span class="outline-text">DU SPORT</span>
             </h1>
-            <p class="mt-8 tracking-[1em] text-xs uppercase opacity-50">Private Holding Company</p>
+            <p class="mt-8 tracking-[1em] text-xs uppercase opacity-50">A Private Company</p>
         </div>
     </section>
 
@@ -105,54 +108,63 @@
     </section>
 
     <footer class="relative bg-[#030303] pt-40 pb-20 px-10 border-t border-white/5 overflow-hidden">
-    
-    <div class="absolute bottom-[-5%] left-1/2 -translate-x-1/2 select-none pointer-events-none">
-        <h2 class="text-[28vw] font-black leading-none text-white/[0.02] tracking-tighter">MAISON</h2>
-    </div>
-
-    <div class="relative z-10 max-w-7xl mx-auto">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-end">
-            
-            <div class="space-y-6">
-                <div class="flex items-center gap-4">
-                    <div class="w-8 h-[1px] bg-white/30"></div>
-                    <span class="text-[10px] tracking-[0.4em] uppercase text-gray-500 font-bold">Port-au-Prince / Global</span>
-                </div>
-                <p class="text-xs text-gray-400 leading-loose max-w-[200px] uppercase tracking-widest">
-                    The private holding company for the future of sports.
-                </p>
-            </div>
-
-            <div class="flex flex-col items-center text-center space-y-8">
-                <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Inquiries</span>
-                <a href="mailto:contactmaisondusport@gmail.com" class="group relative text-lg md:text-xl font-light tracking-widest text-white transition-all">
-                    CONTACT@MAISONDUSPORT.COM
-                    <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
-                </a>
-            </div>
-
-            <div class="flex flex-col md:items-end space-y-6">
-                <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Social Discovery</span>
-                <div class="flex gap-8">
-                    <a href="https://www.instagram.com/mdshaiti" target="_blank" class="text-xs tracking-widest uppercase hover:text-white text-gray-400 transition-colors">IG / @MDSHAITI</a>
-                    <a href="https://www.facebook.com/MaisonDuSport" target="_blank" class="text-xs tracking-widest uppercase hover:text-white text-gray-400 transition-colors">FB / MAISON DU SPORT</a>
-                </div>
-            </div>
+        <div class="absolute bottom-[-5%] left-1/2 -translate-x-1/2 select-none pointer-events-none">
+            <h2 class="text-[28vw] font-black leading-none text-white/[0.02] tracking-tighter">MAISON</h2>
         </div>
 
-        <div class="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-[9px] tracking-[0.3em] uppercase text-gray-600">
-                &copy; 2026 Maison Du Sport. All Rights Reserved.
-            </div>
-            
-            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-3 text-[9px] tracking-[0.4em] uppercase text-gray-400 hover:text-white transition-all">
-                <span>Back to Top</span>
-                <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/40 transition-all">
-                    <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M5 1V9M5 1L1 5M5 1L9 5" stroke="currentColor" stroke-width="1"/>
-                    </svg>
+        <div class="relative z-10 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-end">
+                
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-[1px] bg-white/30"></div>
+                        <span class="text-[10px] tracking-[0.4em] uppercase text-gray-500 font-bold">Port-au-Prince / Global</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-loose max-w-[200px] uppercase tracking-[0.2em]">
+                        A Private Company for the future of sports.
+                    </p>
                 </div>
-            </button>
+
+                <div class="flex flex-col items-center text-center space-y-8">
+                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Inquiries</span>
+                    <a href="mailto:contactmaisondusport@gmail.com" class="group relative text-base md:text-lg font-light tracking-[0.3em] text-white transition-all">
+                        CONTACT@MAISONDUSPORT.COM
+                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
+                    </a>
+                </div>
+
+                <div class="flex flex-col md:items-end space-y-6">
+                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Social Discovery</span>
+                    <div class="flex gap-8">
+                        <a href="https://www.instagram.com/mdshaiti" target="_blank" class="text-[10px] tracking-[0.3em] uppercase hover:text-white text-gray-400 transition-colors">IG / @MDSHAITI</a>
+                        <a href="https://www.facebook.com/MaisonDuSport" target="_blank" class="text-[10px] tracking-[0.3em] uppercase hover:text-white text-gray-400 transition-colors">FB / MAISON DU SPORT</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-[9px] tracking-[0.3em] uppercase text-gray-600">
+                    &copy; 2026 Maison Du Sport. All Rights Reserved.
+                </div>
+                
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-3 text-[9px] tracking-[0.4em] uppercase text-gray-400 hover:text-white transition-all">
+                    <span>Back to Top</span>
+                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/40 transition-all">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 1V9M5 1L1 5M5 1L9 5" stroke="currentColor" stroke-width="1"/>
+                        </svg>
+                    </div>
+                </button>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: false,
+            mirror: true
+        });
+    </script>
+</body>
+</html>
