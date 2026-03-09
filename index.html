@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAISON DU SPORT | Coming Soon</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         
@@ -16,89 +15,78 @@
             overflow-x: hidden;
         }
 
-        .gradient-bg {
-            background: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%);
+        /* Hero Stadium Background with Gradient Overlay for Contrast */
+        .stadium-hero {
+            background-image: 
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 1)), /* Gradient overlay */
+                url('https://images.unsplash.com/photo-1541252268929-91d1917ac111?q=80&w=2000&auto=format&fit=crop'); /* High-res Stadium Image */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Parallax effect for "alive" feel */
         }
 
         .glow-text {
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
         }
 
-        /* Animated background lines */
-        .line {
-            position: absolute;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            height: 1px;
-            width: 100%;
-            animation: moveLines 8s linear infinite;
-        }
-
-        @keyframes moveLines {
-            0% { transform: translateY(-100vh); }
-            100% { transform: translateY(100vh); }
+        /* Subtly fading background details for the black sections */
+        .fade-pattern {
+            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.3;
         }
     </style>
 </head>
-<body class="gradient-bg">
+<body>
 
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <div class="line" style="top: 20%; animation-delay: 0s;"></div>
-        <div class="line" style="top: 50%; animation-delay: 2s;"></div>
-        <div class="line" style="top: 80%; animation-delay: 4s;"></div>
-        
-        <h1 class="text-6xl md:text-9xl font-black tracking-tighter glow-text z-10 text-center">
+    <section class="stadium-hero relative h-screen flex items-center justify-center overflow-hidden">
+        <h1 class="text-6xl md:text-9xl font-black tracking-tighter glow-text z-10 text-center select-none">
             MAISON DU SPORT
         </h1>
     </section>
 
-    <section class="h-screen flex items-center justify-center px-6">
-        <div id="quote-container" class="text-2xl md:text-4xl font-light italic text-center max-w-3xl">
-            </div>
+    <section class="relative h-screen flex items-center justify-center px-6">
+        <div class="absolute inset-0 fade-pattern"></div>
+        <div class="z-10 text-3xl md:text-5xl font-light italic text-center max-w-4xl tracking-wide opacity-80">
+            “The Game Returns.”
+        </div>
     </section>
 
-    <section class="h-screen flex flex-col items-center justify-center">
-        <h2 class="text-5xl md:text-8xl font-bold tracking-widest uppercase animate-pulse">
+    <section class="relative h-screen flex items-center justify-center px-6 border-t border-white/5">
+        <div class="absolute inset-0 fade-pattern"></div>
+        <div class="z-10 text-3xl md:text-5xl font-light italic text-center max-w-5xl tracking-wide opacity-80">
+            “Building the Future of Haitian Sports.”
+        </div>
+    </section>
+
+    <section class="relative h-[60vh] flex items-center justify-center px-6 border-t border-white/5">
+        <div class="z-10 text-2xl md:text-3xl font-bold uppercase tracking-widest text-center max-w-3xl text-gray-400">
+            Something Big is Coming.
+        </div>
+    </section>
+
+    <section class="h-screen flex flex-col items-center justify-center border-t border-white/5">
+        <h2 class="text-5xl md:text-9xl font-bold tracking-widest uppercase animate-pulse">
             Coming Soon
         </h2>
-        <p class="mt-4 text-gray-500 tracking-widest uppercase text-sm">The Evolution of Haitian Excellence</p>
+        <p class="mt-6 text-gray-500 tracking-widest uppercase text-sm select-none">The Evolution of Haitian Excellence</p>
     </section>
 
-    <footer class="py-20 flex flex-col items-center justify-center border-t border-white/5">
-        <h2 class="text-[15vw] font-black leading-none opacity-10 select-none">MAISON</h2>
+    <footer class="py-24 flex flex-col items-center justify-center border-t border-white/5 bg-[#030303]">
+        <h2 class="text-[18vw] font-black leading-none opacity-5 select-none tracking-tighter">MAISON</h2>
         
-        <div class="flex flex-col md:flex-row gap-8 mt-10 text-sm tracking-widest uppercase text-gray-400">
-            <a href="#" class="hover:text-white transition-colors">Instagram</a>
-            <a href="#" class="hover:text-white transition-colors">Facebook</a>
-            <a href="tel:+123456789" class="hover:text-white transition-colors">+509 PHONE NUMBER</a>
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 mt-12 text-sm tracking-widest uppercase text-gray-400">
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
+                Instagram (@mdshaiti)
+            </a>
+            <a href="https://www.facebook.com/MaisonDuSport" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
+                Facebook (Maison Du Sport)
+            </a>
+            <a href="mailto:contactmaisondusport@gmail.com" class="hover:text-white transition-colors duration-300">
+                contactmaisondusport@gmail.com
+            </a>
         </div>
     </footer>
 
-    <script>
-        // Simple Quote Cycle Script
-        const quotes = [
-            "The Game Returns.",
-            "Building the Future of Haitian Sports.",
-            "Something Big is Coming."
-        ];
-        
-        let currentQuote = 0;
-        const quoteElement = document.getElementById('quote-container');
-
-        function updateQuote() {
-            quoteElement.style.opacity = 0;
-            quoteElement.style.transform = "translateY(20px)";
-            quoteElement.style.transition = "all 1s ease";
-
-            setTimeout(() => {
-                quoteElement.innerText = quotes[currentQuote];
-                quoteElement.style.opacity = 1;
-                quoteElement.style.transform = "translateY(0)";
-                currentQuote = (currentQuote + 1) % quotes.length;
-            }, 1000);
-        }
-
-        setInterval(updateQuote, 4000);
-        updateQuote(); // Init
-    </script>
 </body>
 </html>
