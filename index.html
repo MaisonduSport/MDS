@@ -12,77 +12,73 @@
             font-family: 'Inter', sans-serif;
             background-color: #050505;
             color: #ffffff;
+            margin: 0;
             overflow-x: hidden;
         }
 
-        /* Hero Stadium Background with Gradient Overlay for Contrast */
+        /* High-impact Stadium Hero */
         .stadium-hero {
             background-image: 
-                linear-gradient(to bottom, rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 1)), /* Gradient overlay */
-                url('https://images.unsplash.com/photo-1541252268929-91d1917ac111?q=80&w=2000&auto=format&fit=crop'); /* High-res Stadium Image */
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.5), rgba(5, 5, 5, 1)), 
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=2070&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* Parallax effect for "alive" feel */
+            background-attachment: fixed;
         }
 
         .glow-text {
-            text-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
         }
 
-        /* Subtly fading background details for the black sections */
-        .fade-pattern {
-            background-image: radial-gradient(#1a1a1a 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.3;
+        /* Subtle grid for that technical/sportswear aesthetic */
+        .grid-overlay {
+            background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
         }
     </style>
 </head>
 <body>
 
-    <section class="stadium-hero relative h-screen flex items-center justify-center overflow-hidden">
-        <h1 class="text-6xl md:text-9xl font-black tracking-tighter glow-text z-10 text-center select-none">
+    <section class="stadium-hero relative h-screen flex items-center justify-center">
+        <div class="absolute inset-0 grid-overlay"></div>
+        <h1 class="text-6xl md:text-9xl font-black tracking-tighter glow-text z-10 text-center uppercase">
             MAISON DU SPORT
         </h1>
     </section>
 
-    <section class="relative h-screen flex items-center justify-center px-6">
-        <div class="absolute inset-0 fade-pattern"></div>
-        <div class="z-10 text-3xl md:text-5xl font-light italic text-center max-w-4xl tracking-wide opacity-80">
+    <section class="h-screen flex items-center justify-center px-8 border-b border-white/5">
+        <div class="text-3xl md:text-6xl font-light italic text-center max-w-4xl tracking-tight leading-tight opacity-90">
             “The Game Returns.”
         </div>
     </section>
 
-    <section class="relative h-screen flex items-center justify-center px-6 border-t border-white/5">
-        <div class="absolute inset-0 fade-pattern"></div>
-        <div class="z-10 text-3xl md:text-5xl font-light italic text-center max-w-5xl tracking-wide opacity-80">
-            “Building the Future of Haitian Sports.”
-        </div>
-    </section>
-
-    <section class="relative h-[60vh] flex items-center justify-center px-6 border-t border-white/5">
-        <div class="z-10 text-2xl md:text-3xl font-bold uppercase tracking-widest text-center max-w-3xl text-gray-400">
-            Something Big is Coming.
+    <section class="h-screen flex items-center justify-center px-8 bg-[#080808]">
+        <div class="text-3xl md:text-6xl font-light italic text-center max-w-5xl tracking-tight leading-tight opacity-90">
+            “Building a home for Haitian football.”
         </div>
     </section>
 
     <section class="h-screen flex flex-col items-center justify-center border-t border-white/5">
-        <h2 class="text-5xl md:text-9xl font-bold tracking-widest uppercase animate-pulse">
-            Coming Soon
+        <h2 class="text-5xl md:text-[10rem] font-black tracking-[0.2em] uppercase text-white animate-pulse">
+            Soon
         </h2>
-        <p class="mt-6 text-gray-500 tracking-widest uppercase text-sm select-none">The Evolution of Haitian Excellence</p>
+        <p class="mt-4 text-gray-500 tracking-[0.5em] uppercase text-xs font-bold">The Evolution of Excellence</p>
     </section>
 
-    <footer class="py-24 flex flex-col items-center justify-center border-t border-white/5 bg-[#030303]">
-        <h2 class="text-[18vw] font-black leading-none opacity-5 select-none tracking-tighter">MAISON</h2>
+    <footer class="py-24 flex flex-col items-center justify-center bg-black border-t border-white/10 relative overflow-hidden">
+        <h2 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[25vw] font-black opacity-5 pointer-events-none tracking-tighter">
+            MAISON
+        </h2>
         
-        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12 mt-12 text-sm tracking-widest uppercase text-gray-400">
-            <a href="https://www.instagram.com/mdshaiti" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
-                Instagram (@mdshaiti)
+        <div class="z-10 flex flex-col md:flex-row items-center gap-10 text-xs tracking-[0.3em] uppercase font-bold text-gray-400">
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="hover:text-white transition-all hover:tracking-[0.4em]">
+                Instagram
             </a>
-            <a href="https://www.facebook.com/MaisonDuSport" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors duration-300">
-                Facebook (Maison Du Sport)
+            <a href="https://www.facebook.com/MaisonDuSport" target="_blank" class="hover:text-white transition-all hover:tracking-[0.4em]">
+                Facebook
             </a>
-            <a href="mailto:contactmaisondusport@gmail.com" class="hover:text-white transition-colors duration-300">
+            <a href="mailto:contactmaisondusport@gmail.com" class="hover:text-white transition-all hover:tracking-[0.4em] lowercase font-normal italic">
                 contactmaisondusport@gmail.com
             </a>
         </div>
