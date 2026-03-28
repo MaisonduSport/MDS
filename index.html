@@ -131,10 +131,10 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="product-card p-6 group cursor-pointer" 
-                     onclick="openProduct('Haiti 2026 / Red', 'The Home kit features a deep hibiscus red with a subtle embossed pattern inspired by 1974 heritage. Designed for the heart of the game.', 'HOME')" 
+                     onclick="openProduct('Haiti 2026 / Red', 'The Home kit features a deep hibiscus red with a subtle embossed pattern inspired by 1974 heritage. Designed for the heart of the game.', 'HOME', 'Red Bench-png.png')" 
                      data-aos="fade-up">
                     <div class="shirt-placeholder bg-red-900/20 mb-8 overflow-hidden relative">
-                        <img src="Red Bench-png.png"Red Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        <img src="Red Bench-png.png" alt="Red Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
                         <div class="absolute top-4 left-4 bg-white text-black text-[9px] font-bold px-3 py-1 tracking-widest uppercase">Red</div>
                     </div>
                     <h3 class="text-xl font-bold tracking-tighter uppercase">Haiti World Cup 2026 / Red</h3>
@@ -142,10 +142,10 @@
                 </div>
 
                 <div class="product-card p-6 group cursor-pointer" 
-                     onclick="openProduct('Haiti 2026 / Blue', 'The Away kit represents the deep Caribbean blue. Engineered with sweat-wicking technology for elite performance on and off the pitch.', 'AWAY')" 
+                     onclick="openProduct('Haiti 2026 / Blue', 'The Away kit represents the deep Caribbean blue. Engineered with sweat-wicking technology for elite performance on and off the pitch.', 'AWAY', 'Blue Coconut-png.png')" 
                      data-aos="fade-up" data-aos-delay="100">
                     <div class="shirt-placeholder bg-blue-900/20 mb-8 overflow-hidden relative">
-                        <img src="Blue Coconut-png.png"Blue Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        <img src="Blue Coconut-png.png" alt="Blue Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
                         <div class="absolute top-4 left-4 bg-white text-black text-[9px] font-bold px-3 py-1 tracking-widest uppercase">Blue</div>
                     </div>
                     <h3 class="text-xl font-bold tracking-tighter uppercase">Haiti World Cup 2026 / Blue</h3>
@@ -153,7 +153,7 @@
                 </div>
 
                 <div class="product-card p-6 group cursor-pointer" 
-                     onclick="openProduct('Haiti 2026 / White', 'A tribute to the purity of the game. This Heritage Edition features brushed gold detailing and a tailored fit for the modern athlete.', 'HERITAGE')" 
+                     onclick="openProduct('Haiti 2026 / White', 'A tribute to the purity of the game. This Heritage Edition features brushed gold detailing and a tailored fit for the modern athlete.', 'HERITAGE', 'White Street-png.png')" 
                      data-aos="fade-up" data-aos-delay="200">
                     <div class="shirt-placeholder bg-gray-500/10 mb-8 overflow-hidden relative">
                         <img src="White Street-png.png" alt="White Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
@@ -214,21 +214,26 @@
         </div>
     </footer>
 
-    <div id="productModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-6 bg-black/90">
-        <div class="bg-[#0A0A0A] border border-white/10 p-8 md:p-12 max-w-lg w-full relative" data-aos="zoom-in" data-aos-duration="400">
-            <button onclick="closeProduct()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1"/></svg>
+    <div id="productModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-black/95">
+        <div class="bg-[#0A0A0A] border border-white/10 max-w-5xl w-full relative flex flex-col md:flex-row overflow-hidden">
+            <button onclick="closeProduct()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-[210]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
             </button>
             
-            <span id="modalCategory" class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-4">Collection 2026</span>
-            <h2 id="modalTitle" class="text-4xl font-black uppercase tracking-tighter mb-6">Product Title</h2>
-            <p id="modalDesc" class="text-sm text-gray-400 leading-relaxed tracking-wide mb-10">
-                Description text.
-            </p>
-            
-            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="block w-full text-center py-4 bg-white text-black font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-gray-200 transition-colors">
-                Inquire Now
-            </a>
+            <div class="w-full md:w-1/2 h-[40vh] md:h-[70vh] bg-neutral-900">
+                <img id="modalImg" src="" class="w-full h-full object-cover">
+            </div>
+
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                <span id="modalCategory" class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-4">Collection 2026</span>
+                <h2 id="modalTitle" class="text-4xl font-black uppercase tracking-tighter mb-6 leading-tight">Product Title</h2>
+                <p id="modalDesc" class="text-sm text-gray-400 leading-relaxed tracking-wide mb-10 max-w-sm">
+                    Description text.
+                </p>
+                <a href="https://www.instagram.com/mdshaiti" target="_blank" class="block w-full text-center py-5 bg-white text-black font-black text-[10px] tracking-[0.4em] uppercase hover:bg-neutral-200 transition-colors">
+                    Inquire Now
+                </a>
+            </div>
         </div>
     </div>
 
@@ -241,11 +246,12 @@
         });
 
         // Modal Logic
-        function openProduct(title, description, category) {
+        function openProduct(title, description, category, imgSrc) {
             const modal = document.getElementById('productModal');
             document.getElementById('modalTitle').innerText = title;
             document.getElementById('modalDesc').innerText = description;
             document.getElementById('modalCategory').innerText = `MDS / ${category} EDITION`;
+            document.getElementById('modalImg').src = imgSrc; // Update image
             
             modal.classList.remove('hidden');
             modal.classList.add('flex');
