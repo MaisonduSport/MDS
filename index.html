@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAISON DU SPORT | Coming Soon</title>
+    <title>MAISON DU SPORT | 2026 Collection</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
@@ -42,13 +42,12 @@
             color: transparent;
         }
 
-        /* Updated Logo Size: More noticeable but balanced */
         .brand-logo {
             position: fixed;
             top: 2.5rem;
             right: 2.5rem;
             z-index: 50;
-            width: 90px; /* Increased from 70px */
+            width: 90px;
             filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -64,6 +63,32 @@
             top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             pointer-events: none;
+        }
+
+        /* Product Card Styling */
+        .product-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .product-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-10px);
+        }
+
+        .shirt-placeholder {
+            aspect-ratio: 3/4;
+            background-size: cover;
+            background-position: center;
+            transition: filter 0.5s ease;
+        }
+
+        /* Modal Blur */
+        #productModal {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
     </style>
 </head>
@@ -97,14 +122,48 @@
         </div>
     </section>
 
-    <section class="h-[120vh] flex flex-col items-center justify-center relative overflow-hidden">
-        <div class="text-[25vw] font-black opacity-[0.02] absolute leading-none">MDS</div>
-        <h2 class="text-6xl md:text-[12rem] font-black tracking-tighter uppercase leading-none z-10" 
-            data-aos="reveal-type" data-aos-duration="1500">
-            SOON.
-        </h2>
-        <div class="w-24 h-[1px] bg-white my-10 opacity-30"></div>
-        <p class="tracking-[0.8em] text-xs uppercase opacity-40">The Evolution of Excellence</p>
+    <section class="py-32 px-8 bg-black relative min-h-screen">
+        <div class="max-w-7xl mx-auto">
+            <div class="mb-20" data-aos="fade-right">
+                <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-4">Maison Du Sport / 2026</span>
+                <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter">The National Kit</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="product-card p-6 group cursor-pointer" 
+                     onclick="openProduct('Haiti 2026 / Red', 'The Home kit features a deep hibiscus red with a subtle embossed pattern inspired by 1974 heritage. Designed for the heart of the game.', 'HOME')" 
+                     data-aos="fade-up">
+                    <div class="shirt-placeholder bg-red-900/20 mb-8 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1521440639188-df352dce7b32?q=80&w=1000&auto=format&fit=crop" alt="Red Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute top-4 left-4 bg-white text-black text-[9px] font-bold px-3 py-1 tracking-widest uppercase">Red</div>
+                    </div>
+                    <h3 class="text-xl font-bold tracking-tighter uppercase">Haiti 2026 / Red</h3>
+                    <p class="text-[10px] tracking-[0.3em] text-gray-500 mt-2 uppercase">Premium Match Jersey</p>
+                </div>
+
+                <div class="product-card p-6 group cursor-pointer" 
+                     onclick="openProduct('Haiti 2026 / Blue', 'The Away kit represents the deep Caribbean blue. Engineered with sweat-wicking technology for elite performance on and off the pitch.', 'AWAY')" 
+                     data-aos="fade-up" data-aos-delay="100">
+                    <div class="shirt-placeholder bg-blue-900/20 mb-8 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1551854838-212c20b7c8a1?q=80&w=1000&auto=format&fit=crop" alt="Blue Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute top-4 left-4 bg-white text-black text-[9px] font-bold px-3 py-1 tracking-widest uppercase">Blue</div>
+                    </div>
+                    <h3 class="text-xl font-bold tracking-tighter uppercase">Haiti 2026 / Blue</h3>
+                    <p class="text-[10px] tracking-[0.3em] text-gray-500 mt-2 uppercase">Performance Kit</p>
+                </div>
+
+                <div class="product-card p-6 group cursor-pointer" 
+                     onclick="openProduct('Haiti 2026 / White', 'A tribute to the purity of the game. This Heritage Edition features brushed gold detailing and a tailored fit for the modern athlete.', 'HERITAGE')" 
+                     data-aos="fade-up" data-aos-delay="200">
+                    <div class="shirt-placeholder bg-gray-500/10 mb-8 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1581655353564-df123a1eb820?q=80&w=1000&auto=format&fit=crop" alt="White Kit" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 transition-opacity">
+                        <div class="absolute top-4 left-4 bg-white text-black text-[9px] font-bold px-3 py-1 tracking-widest uppercase">White</div>
+                    </div>
+                    <h3 class="text-xl font-bold tracking-tighter uppercase">Haiti 2026 / White</h3>
+                    <p class="text-[10px] tracking-[0.3em] text-gray-500 mt-2 uppercase">Heritage Edition</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <footer class="relative bg-[#030303] pt-40 pb-20 px-10 border-t border-white/5 overflow-hidden">
@@ -114,7 +173,6 @@
 
         <div class="relative z-10 max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-end">
-                
                 <div class="space-y-6">
                     <div class="flex items-center gap-4">
                         <div class="w-8 h-[1px] bg-white/30"></div>
@@ -127,7 +185,7 @@
 
                 <div class="flex flex-col items-center text-center space-y-8">
                     <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Inquiries</span>
-                    <a href="mailto:contactmaisondusport@gmail.com" class="group relative text-base md:text-lg font-light tracking-[0.3em] text-white transition-all">
+                    <a href="mailto:contact@maisondusport.com" class="group relative text-base md:text-lg font-light tracking-[0.3em] text-white transition-all uppercase">
                         CONTACT@MAISONDUSPORT.COM
                         <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
                     </a>
@@ -146,25 +204,67 @@
                 <div class="text-[9px] tracking-[0.3em] uppercase text-gray-600">
                     &copy; 2026 Maison Du Sport. All Rights Reserved.
                 </div>
-                
                 <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-3 text-[9px] tracking-[0.4em] uppercase text-gray-400 hover:text-white transition-all">
                     <span>Back to Top</span>
                     <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/40 transition-all">
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 1V9M5 1L1 5M5 1L9 5" stroke="currentColor" stroke-width="1"/>
-                        </svg>
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 1V9M5 1L1 5M5 1L9 5" stroke="currentColor" stroke-width="1"/></svg>
                     </div>
                 </button>
             </div>
         </div>
     </footer>
 
+    <div id="productModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-6 bg-black/90">
+        <div class="bg-[#0A0A0A] border border-white/10 p-8 md:p-12 max-w-lg w-full relative" data-aos="zoom-in" data-aos-duration="400">
+            <button onclick="closeProduct()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="1"/></svg>
+            </button>
+            
+            <span id="modalCategory" class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-4">Collection 2026</span>
+            <h2 id="modalTitle" class="text-4xl font-black uppercase tracking-tighter mb-6">Product Title</h2>
+            <p id="modalDesc" class="text-sm text-gray-400 leading-relaxed tracking-wide mb-10">
+                Description text.
+            </p>
+            
+            <a href="https://www.instagram.com/mdshaiti" target="_blank" class="block w-full text-center py-4 bg-white text-black font-bold text-[10px] tracking-[0.4em] uppercase hover:bg-gray-200 transition-colors">
+                Inquire Now
+            </a>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
+        // Initialize Animations
         AOS.init({
             once: false,
             mirror: true
         });
+
+        // Modal Logic
+        function openProduct(title, description, category) {
+            const modal = document.getElementById('productModal');
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = description;
+            document.getElementById('modalCategory').innerText = `MDS / ${category} EDITION`;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeProduct() {
+            const modal = document.getElementById('productModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('productModal');
+            if (event.target == modal) {
+                closeProduct();
+            }
+        }
     </script>
 </body>
 </html>
