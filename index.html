@@ -3,150 +3,276 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAISON DU SPORT | Premium Inventory</title>
+    <title>MAISON DU SPORT | Elite Inventory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;400;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
             background-color: #050505;
-            color: #fff;
+            color: #ffffff;
             margin: 0;
+            overflow-x: hidden;
         }
 
-        .mds-display { font-family: 'Syncopate', sans-serif; text-transform: uppercase; }
+        /* Film Grain Overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Noise_Texture.png');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 100;
+        }
 
-        /* Stadium Header */
-        .stadium-hero {
+        .stadium-parallax {
             background-image: 
-                linear-gradient(to bottom, rgba(5, 5, 5, 0.4) 0%, rgba(5, 5, 5, 1) 100%), 
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 1)), 
                 url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2070&auto=format&fit=crop'); 
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
         }
 
-        /* Structured Product Cards */
+        .outline-text {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+            color: transparent;
+        }
+
+        .brand-logo {
+            position: fixed;
+            top: 2.5rem;
+            right: 2.5rem;
+            z-index: 50;
+            width: 90px;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .hype-glow {
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        /* Product Card Styling */
         .product-card {
-            background: #0f0f0f;
-            border: 1px solid rgba(255,255,255,0.05);
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .product-card:hover {
-            border-color: rgba(255,255,255,0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.2);
             transform: translateY(-5px);
         }
 
-        .brand-divider {
-            border-left: 4px solid #fff;
+        .shoe-placeholder {
+            aspect-ratio: 1/1;
+            background: rgba(255,255,255,0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-header {
+            border-left: 3px solid #fff;
             padding-left: 1.5rem;
         }
 
-        .tag {
-            font-size: 9px;
-            letter-spacing: 0.2em;
-            padding: 4px 12px;
-            border-radius: 2px;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .tag-nike { background: #fff; color: #000; }
-        .tag-adidas { background: #0051FF; color: #fff; }
-
-        .outline-text {
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-            color: transparent;
+        #productModal {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
     </style>
 </head>
 <body>
 
-    <section class="stadium-hero h-screen flex flex-col items-center justify-center text-center px-6">
-        <div class="z-10" data-aos="fade-up" data-aos-duration="1500">
-            <h1 class="mds-display text-6xl md:text-[9rem] font-black leading-none tracking-tighter">
+    <img src="LOGO.jpeg" alt="MDS Logo" class="brand-logo">
+
+    <section class="relative h-screen flex items-center justify-center stadium-parallax">
+        <div class="hype-glow"></div>
+        <div class="z-10 text-center" data-aos="zoom-out" data-aos-duration="2000">
+            <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter uppercase leading-none">
                 MAISON <br> <span class="outline-text">DU SPORT</span>
             </h1>
-            <p class="mt-8 tracking-[1.2em] text-[10px] md:text-xs uppercase opacity-60">L'Excellence du Jeu</p>
+            <p class="mt-8 tracking-[1em] text-xs uppercase opacity-50">Something different</p>
         </div>
     </section>
 
-    <section class="bg-black py-24 px-6 md:px-12">
-        
-        <div class="mb-20">
-            <div class="brand-divider mb-12" data-aos="fade-right">
-                <span class="text-xs tracking-[0.5em] text-gray-500 uppercase">Department 01</span>
-                <h2 class="mds-display text-4xl md:text-6xl">Nike Performance</h2>
-            </div>
+    <section class="h-screen flex items-center justify-center px-8 bg-black relative">
+        <div class="absolute left-10 text-[10vw] font-black opacity-5 select-none outline-text">01</div>
+        <div class="z-10 text-4xl md:text-7xl font-light italic text-center max-w-5xl tracking-tight" 
+             data-aos="fade-up" data-aos-duration="1200">
+            “The Game Returns.”
+        </div>
+    </section>
+
+    <section class="h-screen flex items-center justify-center px-8 bg-[#050505] relative">
+        <div class="absolute right-10 text-[10vw] font-black opacity-5 select-none outline-text">02</div>
+        <div class="z-10 text-3xl md:text-6xl font-bold uppercase text-center max-w-6xl tracking-tighter" 
+             data-aos="fade-up" data-aos-duration="1200">
+            Building a <span class="bg-white text-black px-4 italic">home</span> for Haitian football.
+        </div>
+    </section>
+
+    <section class="py-32 px-8 bg-black relative min-h-screen">
+        <div class="max-w-7xl mx-auto">
             
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <script>
-                    for(let i=1; i<=10; i++) {
-                        document.write(`
-                            <div class="product-card p-6 group cursor-pointer" data-aos="fade-up">
-                                <div class="flex justify-between items-start mb-8">
-                                    <span class="tag tag-nike">Nike</span>
-                                    <span class="text-[10px] text-gray-600 font-mono">#NK-2026-${i}</span>
-                                </div>
-                                <div class="aspect-square flex items-center justify-center mb-6">
-                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500&auto=format" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity">
-                                </div>
-                                <h3 class="mds-display text-sm mb-1">Nike Elite Silhouette</h3>
-                                <p class="text-[10px] tracking-widest text-gray-500 uppercase">Firm Ground / Pro Edition</p>
-                            </div>
-                        `);
-                    }
-                </script>
-            </div>
-        </div>
+            <div class="mb-32">
+                <div class="brand-header mb-16" data-aos="fade-right">
+                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-2">Authorized Inventory</span>
+                    <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tighter">Nike Performance</h2>
+                </div>
 
-        <div>
-            <div class="brand-divider mb-12 border-blue-600" data-aos="fade-right">
-                <span class="text-xs tracking-[0.5em] text-gray-500 uppercase">Department 02</span>
-                <h2 class="mds-display text-4xl md:text-6xl">Adidas Football</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <script>
+                        for(let i=1; i<=10; i++) {
+                            document.write(`
+                                <div class="product-card p-6 group cursor-pointer" 
+                                     onclick="openProduct('Nike Elite Silhouette ${i}', 'Engineered for top-tier performance on the pitch. Features lightweight synthetic upper and specialized traction for rapid acceleration.', 'NIKE', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format')" 
+                                     data-aos="fade-up">
+                                    <div class="shoe-placeholder mb-6 overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format" class="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110">
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <h3 class="text-sm font-bold tracking-widest uppercase">Elite Boot 0${i}</h3>
+                                            <p class="text-[9px] tracking-[0.2em] text-gray-500 mt-1 uppercase">Firm Ground</p>
+                                        </div>
+                                        <span class="text-[8px] border border-white/20 px-2 py-1">NK-26</span>
+                                    </div>
+                                </div>
+                            `);
+                        }
+                    </script>
+                </div>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                <script>
-                    for(let i=1; i<=9; i++) {
-                        document.write(`
-                            <div class="product-card p-6 group cursor-pointer" data-aos="fade-up">
-                                <div class="flex justify-between items-start mb-8">
-                                    <span class="tag tag-adidas">Adidas</span>
-                                    <span class="text-[10px] text-gray-600 font-mono">#AD-2026-${i}</span>
+            <div class="mb-20">
+                <div class="brand-header mb-16 border-blue-600" data-aos="fade-right">
+                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-2">Authorized Inventory</span>
+                    <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tighter">Adidas Football</h2>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    <script>
+                        for(let i=1; i<=9; i++) {
+                            document.write(`
+                                <div class="product-card p-6 group cursor-pointer" 
+                                     onclick="openProduct('Adidas Pro Model ${i}', 'The ultimate control boot for the modern playmaker. HybridTouch upper with specialized Turf grip for explosive movement.', 'ADIDAS', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format')" 
+                                     data-aos="fade-up">
+                                    <div class="shoe-placeholder mb-6 overflow-hidden">
+                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format" class="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110">
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <div>
+                                            <h3 class="text-sm font-bold tracking-widest uppercase">Pro Silhouette 0${i}</h3>
+                                            <p class="text-[9px] tracking-[0.2em] text-gray-500 mt-1 uppercase">Turf Edition</p>
+                                        </div>
+                                        <span class="text-[8px] border border-white/20 px-2 py-1">AD-26</span>
+                                    </div>
                                 </div>
-                                <div class="aspect-square flex items-center justify-center mb-6">
-                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500&auto=format" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity">
-                                </div>
-                                <h3 class="mds-display text-sm mb-1">Adidas Elite Silhouette</h3>
-                                <p class="text-[10px] tracking-widest text-gray-500 uppercase">Turf / Professional</p>
-                            </div>
-                        `);
-                    }
-                </script>
+                            `);
+                        }
+                    </script>
+                </div>
             </div>
+
         </div>
     </section>
 
-    <footer class="bg-[#030303] py-20 px-10 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-            <div class="text-center md:text-left">
-                <div class="mds-display text-2xl mb-2">MDS</div>
-                <p class="text-[9px] tracking-[0.4em] uppercase text-gray-600">The Future of Haitian Sport.</p>
+    <footer class="relative bg-[#030303] pt-40 pb-20 px-10 border-t border-white/5 overflow-hidden">
+        <div class="absolute bottom-[-5%] left-1/2 -translate-x-1/2 select-none pointer-events-none">
+            <h2 class="text-[28vw] font-black leading-none text-white/[0.02] tracking-tighter">MAISON</h2>
+        </div>
+        <div class="relative z-10 max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-end">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-4">
+                        <div class="w-8 h-[1px] bg-white/30"></div>
+                        <span class="text-[10px] tracking-[0.4em] uppercase text-gray-500 font-bold">Port-au-Prince / Global</span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-loose max-w-[200px] uppercase tracking-[0.2em]">
+                        A Private Company for the future of sports.
+                    </p>
+                </div>
+                <div class="flex flex-col items-center text-center space-y-8">
+                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Inquiries</span>
+                    <a href="mailto:contact@maisondusport.com" class="group relative text-base md:text-lg font-light tracking-[0.3em] text-white transition-all uppercase">
+                        CONTACT@MAISONDUSPORT.COM
+                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
+                    </a>
+                </div>
+                <div class="flex flex-col md:items-end space-y-6">
+                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Social Discovery</span>
+                    <div class="flex gap-8">
+                        <a href="https://www.instagram.com/mdshaiti" target="_blank" class="text-[10px] tracking-[0.3em] uppercase hover:text-white text-gray-400 transition-colors">IG / @MDSHAITI</a>
+                        <a href="https://www.facebook.com/MaisonDuSport" target="_blank" class="text-[10px] tracking-[0.3em] uppercase hover:text-white text-gray-400 transition-colors">FB / MAISON DU SPORT</a>
+                    </div>
+                </div>
             </div>
-            <div class="flex gap-8">
-                <a href="#" class="text-[10px] tracking-widest uppercase hover:text-white transition-colors">Instagram</a>
-                <a href="#" class="text-[10px] tracking-widest uppercase hover:text-white transition-colors">WhatsApp</a>
+            <div class="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="text-[9px] tracking-[0.3em] uppercase text-gray-600">
+                    &copy; 2026 Maison Du Sport. All Rights Reserved.
+                </div>
+                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-3 text-[9px] tracking-[0.4em] uppercase text-gray-400 hover:text-white transition-all">
+                    <span>Back to Top</span>
+                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/40 transition-all">
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 1V9M5 1L1 5M5 1L9 5" stroke="currentColor" stroke-width="1"/></svg>
+                    </div>
+                </button>
             </div>
         </div>
     </footer>
 
+    <div id="productModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-black/95">
+        <div class="bg-[#0A0A0A] border border-white/10 max-w-5xl w-full relative flex flex-col md:flex-row overflow-hidden">
+            <button onclick="closeProduct()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-[210]">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="w-full md:w-1/2 h-[40vh] md:h-[70vh] bg-neutral-900 p-12">
+                <img id="modalImg" src="" class="w-full h-full object-contain">
+            </div>
+            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                <span id="modalCategory" class="text-[10px] tracking-[0.5em] uppercase text-blue-500 block mb-4">NIKE</span>
+                <h2 id="modalTitle" class="text-4xl font-black uppercase tracking-tighter mb-6 leading-tight">Shoe Name</h2>
+                <p id="modalDesc" class="text-sm text-gray-400 leading-relaxed tracking-wide mb-10 max-w-sm">Description text.</p>
+                <a href="https://www.instagram.com/mdshaiti" target="_blank" class="block w-full text-center py-5 bg-white text-black font-black text-[10px] tracking-[0.4em] uppercase hover:bg-neutral-200 transition-colors">
+                    Check Availability
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ once: true });
+        AOS.init({ once: false, mirror: true });
+
+        function openProduct(title, description, category, imgSrc) {
+            const modal = document.getElementById('productModal');
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalDesc').innerText = description;
+            document.getElementById('modalCategory').innerText = `MDS / ${category} DEPT`;
+            document.getElementById('modalImg').src = imgSrc;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeProduct() {
+            const modal = document.getElementById('productModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto'; 
+        }
     </script>
 </body>
 </html>
