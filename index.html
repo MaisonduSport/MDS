@@ -3,155 +3,143 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAISON DU SPORT | Concept Store</title>
+    <title>MAISON DU SPORT | Premium Inventory</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;400;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;400;700;900&display=swap');
         
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #080808;
+            background-color: #050505;
             color: #fff;
             margin: 0;
-            --mds-accent: #3b82f6; /* Modern Blue */
         }
 
         .mds-display { font-family: 'Syncopate', sans-serif; text-transform: uppercase; }
 
-        /* Film Grain & Depth */
-        .overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Noise_Texture.png');
-            opacity: 0.04; pointer-events: none; z-index: 1000;
+        /* Stadium Header */
+        .stadium-hero {
+            background-image: 
+                linear-gradient(to bottom, rgba(5, 5, 5, 0.4) 0%, rgba(5, 5, 5, 1) 100%), 
+                url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
-        /* The "Vault" Card - designed for any product */
-        .vault-card {
-            position: relative;
-            background: #000;
+        /* Structured Product Cards */
+        .product-card {
+            background: #0f0f0f;
             border: 1px solid rgba(255,255,255,0.05);
-            aspect-ratio: 1/1.2;
-            overflow: hidden;
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
-        .vault-card:hover {
+        .product-card:hover {
             border-color: rgba(255,255,255,0.2);
+            transform: translateY(-5px);
         }
 
-        .product-img {
-            transition: transform 0.8s ease;
-            filter: grayscale(20%);
+        .brand-divider {
+            border-left: 4px solid #fff;
+            padding-left: 1.5rem;
         }
 
-        .vault-card:hover .product-img {
-            transform: scale(1.05);
-            filter: grayscale(0%);
-        }
-
-        .card-meta {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%;
-            padding: 1.5rem;
-            background: linear-gradient(to top, #000 0%, transparent 100%);
-            transform: translateY(10px);
-            transition: transform 0.4s ease;
-        }
-
-        .vault-card:hover .card-meta { transform: translateY(0); }
-
-        /* Navigation Minimalist */
-        .nav-link {
-            font-size: 10px;
-            letter-spacing: 0.3em;
+        .tag {
+            font-size: 9px;
+            letter-spacing: 0.2em;
+            padding: 4px 12px;
+            border-radius: 2px;
             text-transform: uppercase;
-            opacity: 0.5;
-            transition: opacity 0.3s;
+            font-weight: 700;
         }
-        .nav-link:hover { opacity: 1; }
 
+        .tag-nike { background: #fff; color: #000; }
+        .tag-adidas { background: #0051FF; color: #fff; }
+
+        .outline-text {
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+            color: transparent;
+        }
     </style>
 </head>
 <body>
 
-    <div class="overlay"></div>
-
-    <nav class="fixed top-0 w-full z-[100] p-6 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm">
-        <div class="mds-display font-bold text-lg tracking-tighter">Maison Du Sport</div>
-        <div class="flex gap-8">
-            <a href="#" class="nav-link">The Vault</a>
-            <a href="#" class="nav-link">Archive</a>
-            <a href="#" class="nav-link">Contact</a>
-        </div>
-    </nav>
-
-    <header class="h-[90vh] flex flex-col justify-end p-10 md:p-20">
-        <div data-aos="fade-right" data-aos-duration="1200">
-            <span class="text-[10px] tracking-[0.6em] text-blue-500 uppercase mb-4 block">Current Inventory Release</span>
-            <h1 class="mds-display text-5xl md:text-9xl leading-none mb-8">
-                Performance <br> <span class="opacity-30">Atelier</span>
+    <section class="stadium-hero h-screen flex flex-col items-center justify-center text-center px-6">
+        <div class="z-10" data-aos="fade-up" data-aos-duration="1500">
+            <h1 class="mds-display text-6xl md:text-[9rem] font-black leading-none tracking-tighter">
+                MAISON <br> <span class="outline-text">DU SPORT</span>
             </h1>
-            <div class="h-[1px] w-24 bg-white/30 mb-8"></div>
-            <p class="max-w-md text-xs tracking-widest text-gray-500 leading-loose uppercase">
-                A curated selection of high-performance tools. Currently featuring a specialized collection of Nike & Adidas football silhouettes.
-            </p>
-        </div>
-    </header>
-
-    <section class="p-6 md:p-12">
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-px bg-white/10 border border-white/10">
-            
-            <script>
-                const grid = document.currentScript.parentElement;
-                for(let i=1; i<=19; i++) {
-                    const isBig = i === 1 || i === 10; // "Surprise" feature: Hero slots in the grid
-                    const html = `
-                        <div class="vault-card ${isBig ? 'md:col-span-2 md:row-span-1' : ''} group cursor-pointer" 
-                             onclick="viewProduct(${i})" data-aos="fade-up">
-                            <div class="w-full h-full overflow-hidden flex items-center justify-center p-8">
-                                <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop" 
-                                     class="product-img w-full h-full object-contain">
-                            </div>
-                            <div class="card-meta">
-                                <div class="flex justify-between items-end">
-                                    <div>
-                                        <p class="text-[8px] tracking-widest text-blue-500 uppercase mb-1">In Stock</p>
-                                        <h3 class="mds-display text-sm tracking-tight">Product Slot ${i}</h3>
-                                    </div>
-                                    <span class="text-[9px] text-gray-600 font-mono">/ 0${i}</span>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                    grid.insertAdjacentHTML('beforeend', html);
-                }
-            </script>
+            <p class="mt-8 tracking-[1.2em] text-[10px] md:text-xs uppercase opacity-60">L'Excellence du Jeu</p>
         </div>
     </section>
 
-    <section class="h-screen flex items-center justify-center text-center bg-white text-black">
-        <div class="max-w-2xl px-6" data-aos="fade-up">
-            <h2 class="mds-display text-4xl md:text-6xl mb-6">Maison is a <br> Moving Target</h2>
-            <p class="text-xs tracking-widest leading-loose uppercase opacity-70">
-                Footwear is today. Gear is tomorrow. The game is forever. Our inventory evolves as fast as the athletes we serve.
-            </p>
-        </div>
-    </section>
-
-    <footer class="p-10 md:p-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-start gap-12">
-        <div>
-            <div class="mds-display text-2xl mb-4">MDS</div>
-            <p class="text-[10px] tracking-widest text-gray-600 uppercase">Port-au-Prince / Global Atelier</p>
-        </div>
-        <div class="grid grid-cols-2 gap-20">
-            <div class="space-y-4">
-                <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold">Inquiries</p>
-                <a href="mailto:contact@maisondusport.com" class="block text-xs uppercase hover:text-blue-500 transition-colors">Contact@MDS.com</a>
+    <section class="bg-black py-24 px-6 md:px-12">
+        
+        <div class="mb-20">
+            <div class="brand-divider mb-12" data-aos="fade-right">
+                <span class="text-xs tracking-[0.5em] text-gray-500 uppercase">Department 01</span>
+                <h2 class="mds-display text-4xl md:text-6xl">Nike Performance</h2>
             </div>
-            <div class="space-y-4">
-                <p class="text-[10px] tracking-widest text-gray-500 uppercase font-bold">Social</p>
-                <a href="#" class="block text-xs uppercase hover:text-blue-500 transition-colors">Instagram</a>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <script>
+                    for(let i=1; i<=10; i++) {
+                        document.write(`
+                            <div class="product-card p-6 group cursor-pointer" data-aos="fade-up">
+                                <div class="flex justify-between items-start mb-8">
+                                    <span class="tag tag-nike">Nike</span>
+                                    <span class="text-[10px] text-gray-600 font-mono">#NK-2026-${i}</span>
+                                </div>
+                                <div class="aspect-square flex items-center justify-center mb-6">
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500&auto=format" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity">
+                                </div>
+                                <h3 class="mds-display text-sm mb-1">Nike Elite Silhouette</h3>
+                                <p class="text-[10px] tracking-widest text-gray-500 uppercase">Firm Ground / Pro Edition</p>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+
+        <div>
+            <div class="brand-divider mb-12 border-blue-600" data-aos="fade-right">
+                <span class="text-xs tracking-[0.5em] text-gray-500 uppercase">Department 02</span>
+                <h2 class="mds-display text-4xl md:text-6xl">Adidas Football</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <script>
+                    for(let i=1; i<=9; i++) {
+                        document.write(`
+                            <div class="product-card p-6 group cursor-pointer" data-aos="fade-up">
+                                <div class="flex justify-between items-start mb-8">
+                                    <span class="tag tag-adidas">Adidas</span>
+                                    <span class="text-[10px] text-gray-600 font-mono">#AD-2026-${i}</span>
+                                </div>
+                                <div class="aspect-square flex items-center justify-center mb-6">
+                                    <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500&auto=format" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition-opacity">
+                                </div>
+                                <h3 class="mds-display text-sm mb-1">Adidas Elite Silhouette</h3>
+                                <p class="text-[10px] tracking-widest text-gray-500 uppercase">Turf / Professional</p>
+                            </div>
+                        `);
+                    }
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-[#030303] py-20 px-10 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+            <div class="text-center md:text-left">
+                <div class="mds-display text-2xl mb-2">MDS</div>
+                <p class="text-[9px] tracking-[0.4em] uppercase text-gray-600">The Future of Haitian Sport.</p>
+            </div>
+            <div class="flex gap-8">
+                <a href="#" class="text-[10px] tracking-widest uppercase hover:text-white transition-colors">Instagram</a>
+                <a href="#" class="text-[10px] tracking-widest uppercase hover:text-white transition-colors">WhatsApp</a>
             </div>
         </div>
     </footer>
@@ -159,11 +147,6 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init({ once: true });
-        function viewProduct(id) {
-            console.log("Loading archive item:", id);
-            // This would trigger your product modal/details
-            alert("Archive Item " + id + " Details: Contact via Instagram for pricing.");
-        }
     </script>
 </body>
 </html>
