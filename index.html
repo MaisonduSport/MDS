@@ -3,230 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FC TORO × MDS | Strategic Partnership 2026</title>
+    <title>FC TORO × MDS | Portfolio</title>
     <style>
-        /* Global Reset */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #000; color: #fff; font-family: 'Times New Roman', serif; }
+        
+        .sans { 
+            font-family: 'Helvetica', sans-serif; 
+            letter-spacing: 0.4em; 
+            text-transform: uppercase; 
+            font-size: 0.8rem;
         }
 
-        body {
-            background-color: #000000;
-            color: #FFFFFF;
-            font-family: 'Times New Roman', serif;
-            line-height: 1.6;
-        }
-
-        .sans {
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            font-weight: 300;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-        }
-
-        /* Page Container */
-        .page {
-            width: 100%;
-            height: 100vh;
+        section { 
+            width: 100%; 
+            height: 100vh; 
+            display: flex; 
             position: relative;
             overflow: hidden;
-            display: flex;
-            page-break-after: always;
+            border-bottom: 1px solid #1a1a1a;
         }
 
-        /* --- PAGE 1: COVER --- */
-        .cover-wrapper {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            height: 100%;
-            text-align: center;
+        /* Cover Page */
+        .cover { 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            text-align: center; 
         }
+        .brand-wrap { display: flex; align-items: center; gap: 40px; }
+        .brand-title { font-size: clamp(2rem, 8vw, 4.5rem); letter-spacing: 0.2em; }
+        .v-line { width: 2px; height: 80px; background: #D4AF37; }
+        .h-line { width: 60%; max-width: 600px; height: 1px; background: linear-gradient(to right, transparent, #D4AF37, transparent); margin: 40px 0; }
+        .gold-text { color: #D4AF37; letter-spacing: 1em; padding-left: 1em; }
 
-        .brand-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
+        /* Split Layout */
+        .visual { width: 75%; background-size: cover; background-position: center; }
+        .info { 
+            width: 25%; 
+            background: #050505; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            padding: 3rem; 
+            text-align: center; 
+            border-left: 1px solid #111;
         }
+        
+        .label { color: #D4AF37; margin-bottom: 2rem; border-bottom: 1px solid #D4AF37; padding-bottom: 10px; display: inline-block; }
+        .title { font-size: 2.2rem; line-height: 1.1; margin-bottom: 1.5rem; font-weight: normal; }
+        .desc { color: #777; line-height: 2; font-size: 0.9rem; }
+        
+        .footer { position: absolute; bottom: 20px; right: 0; width: 25%; text-align: center; color: #333; font-size: 0.6rem; }
 
-        .brand-title {
-            font-size: 4rem;
-            letter-spacing: 0.2em;
-            margin: 0;
-        }
-
-        .v-divider {
-            width: 2px;
-            height: 80px;
-            background-color: #D4AF37;
-        }
-
-        .h-divider {
-            width: 60%;
-            max-width: 600px;
-            height: 1px;
-            background: linear-gradient(to right, transparent, #D4AF37, transparent);
-            margin: 40px 0;
-        }
-
-        .partnership-text {
-            font-size: 1.2rem;
-            color: #D4AF37;
-            letter-spacing: 0.8em;
-            padding-left: 0.8em;
-        }
-
-        /* --- CONTENT PAGES: 75/25 SPLIT --- */
-        .visual-pane {
-            width: 75%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .info-pane {
-            width: 25%;
-            height: 100%;
-            background-color: #050505;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 40px;
-            text-align: center;
-            border-left: 1px solid #1a1a1a;
-        }
-
-        .label-gold {
-            font-size: 0.75rem;
-            color: #D4AF37;
-            letter-spacing: 0.4em;
-            margin-bottom: 2rem;
-            border-bottom: 1px solid #D4AF37;
-            padding-bottom: 10px;
-            display: inline-block;
-        }
-
-        .title-serif {
-            font-size: 2.5rem;
-            line-height: 1.1;
-            margin-bottom: 2rem;
-            font-weight: normal;
-            text-transform: uppercase;
-        }
-
-        .desc-sans {
-            font-family: 'Helvetica', sans-serif;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            color: #888;
-            font-weight: 300;
-        }
-
-        .footer-branding {
-            position: absolute;
-            bottom: 20px;
-            right: 0;
-            width: 25%; /* Aligned with info pane */
-            text-align: center;
-            font-size: 0.7rem;
-            color: #444;
-            letter-spacing: 0.3em;
-        }
-
-        /* Responsive adjustment for small screens */
         @media (max-width: 1024px) {
-            .page { flex-direction: column; height: auto; }
-            .visual-pane { width: 100%; height: 60vh; }
-            .info-pane { width: 100%; padding: 60px 20px; border-left: none; }
-            .footer-branding { width: 100%; position: static; margin-top: 20px; }
+            section { flex-direction: column; height: auto; }
+            .visual { width: 100%; height: 50vh; }
+            .info { width: 100%; padding: 4rem 1rem; border-left: none; }
+            .footer { position: static; width: 100%; padding-bottom: 20px; }
         }
     </style>
 </head>
 <body>
 
     <!-- PAGE 1: COVER -->
-    <section class="page">
-        <div class="cover-wrapper">
-            <div class="brand-container">
-                <span class="brand-title">FC TORO</span>
-                <span class="v-divider"></span>
-                <span class="brand-title">MDS</span>
-            </div>
-            <div class="h-divider"></div>
-            <div class="partnership-text sans">STRATEGIC PARTNERSHIP 2026</div>
+    <section class="cover">
+        <div class="brand-wrap">
+            <span class="brand-title">FC TORO</span>
+            <div class="v-line"></div>
+            <span class="brand-title">MDS</span>
         </div>
+        <div class="h-line"></div>
+        <div class="gold-text sans">STRATEGIC PARTNERSHIP 2026</div>
     </section>
 
     <!-- PAGE 2: ENTRANCE -->
-    <section class="page">
-        <div class="visual-pane" style="background-image: url('input_file_0.png')"></div>
-        <div class="info-pane">
-            <div class="label-gold sans">The Entrance</div>
-            <h2 class="title-serif">STORE<br>ENTRANCE</h2>
-            <p class="desc-sans">Architectural immersion. The entrance establishes the collaborative tone through minimalist volume and high-contrast material selection.</p>
+    <section>
+        <div class="visual" style="background-image: url('MDS%20x%20FcToro.png')"></div>
+        <div class="info">
+            <div class="label sans">The Entrance</div>
+            <h2 class="title">STORE<br>ENTRANCE</h2>
+            <p class="desc">Architectural immersion. The entrance establishes the collaborative tone through minimalist volume.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MDS</div>
+        <div class="footer sans">FC TORO × MDS</div>
     </section>
 
     <!-- PAGE 3: LOUNGE -->
-    <section class="page">
-        <div class="visual-pane" style="background-image: url('input_file_1.png')"></div>
-        <div class="info-pane">
-            <div class="label-gold sans">Reception</div>
-            <h2 class="title-serif">CASHIER &<br>SITTING LOUNGE</h2>
-            <p class="desc-sans">A dual-purpose environment designed for transaction and rest. Monolithic textures anchor the space while providing luxury comfort.</p>
+    <section>
+        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(2).png')"></div>
+        <div class="info">
+            <div class="label sans">Reception</div>
+            <h2 class="title">CASHIER &<br>SITTING LOUNGE</h2>
+            <p class="desc">A dual-purpose environment designed for transaction and rest. Monolithic textures anchor the space.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MDS</div>
+        <div class="footer sans">FC TORO × MDS</div>
     </section>
 
     <!-- PAGE 4: MDS WALL -->
-    <section class="page">
-        <div class="visual-pane" style="background-image: url('input_file_3.png')"></div>
-        <div class="info-pane">
-            <div class="label-gold sans">Hardware Gallery</div>
-            <h2 class="title-serif">MAISON DU SPORT<br>WALL</h2>
-            <p class="desc-sans">Performance as fine art. Precision-lit silhouettes showcase the peak of athletic footwear and hardware innovation.</p>
+    <section>
+        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(3).png')"></div>
+        <div class="info">
+            <div class="label sans">Hardware Gallery</div>
+            <h2 class="title">MAISON DU SPORT<br>WALL</h2>
+            <p class="desc">Performance as fine art. Precision-lit silhouettes showcase the peak of athletic innovation.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MDS</div>
+        <div class="footer sans">FC TORO × MDS</div>
     </section>
 
     <!-- PAGE 5: COLLAB WALL -->
-    <section class="page">
-        <div class="visual-pane" style="background-image: url('input_file_2.png')"></div>
-        <div class="info-pane">
-            <div class="label-gold sans">Identity</div>
-            <h2 class="title-serif">COLLABORATION<br>WALL</h2>
-            <p class="desc-sans">The visual heart of the partnership. A dedicated installation featuring the brand insignias of both FC TORO and MDS.</p>
+    <section>
+        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(4).png')"></div>
+        <div class="info">
+            <div class="label sans">Identity</div>
+            <h2 class="title">COLLABORATION<br>WALL</h2>
+            <p class="desc">The visual heart of the partnership. A dedicated installation featuring brand insignias.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MDS</div>
+        <div class="footer sans">FC TORO × MDS</div>
     </section>
 
     <!-- PAGE 6: FITTING ROOM -->
-    <section class="page">
-        <div class="visual-pane" style="background-image: url('input_file_4.png')"></div>
-        <div class="info-pane">
-            <div class="label-gold sans">Sanctuary</div>
-            <h2 class="title-serif">THE FITTING<br>ROOM</h2>
-            <p class="desc-sans">The most intimate store protocol. Deep velvet textures and halo-illumination define the private consultation environment.</p>
+    <section>
+        <div class="visual" style="background-image: url('MDS%20x%20FcToro.png')"></div>
+        <div class="info">
+            <div class="label sans">Sanctuary</div>
+            <h2 class="title">THE FITTING<br>ROOM</h2>
+            <p class="desc">The most intimate store protocol. Deep velvet textures and halo-illumination define the environment.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MDS</div>
+        <div class="footer sans">FC TORO × MDS</div>
     </section>
 
     <!-- PAGE 7: EXECUTIVE OFFICE -->
-    <section class="page">
-        <div class="visual-pane" style="background-image: url('input_file_5.png')"></div>
-        <div class="info-pane">
-            <div class="label-gold sans">Administration</div>
-            <h2 class="title-serif">EXECUTIVE<br>OFFICE</h2>
-            <p class="desc-sans">Strategic headquarters. The management wing designed for focused operations and athlete relations.</p>
+    <section>
+        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(6).png')"></div>
+        <div class="info">
+            <div class="label sans">Administration</div>
+            <h2 class="title">EXECUTIVE<br>OFFICE</h2>
+            <p class="desc">Strategic headquarters. Designed for focused operations and elite athlete relations.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MDS</div>
+        <div class="footer sans">FC TORO × MDS</div>
     </section>
 
 </body>
