@@ -1,278 +1,237 @@
+import os
+from weasyprint import HTML
+import base64
+
+def image_to_base64(path):
+    if not os.path.exists(path):
+        return ""
+    with open(path, "rb") as image_file:
+        return f"data:image/png;base64,{base64.b64encode(image_file.read()).decode('utf-8')}"
+
+# mapping based on user's exact sequence:
+img_1 = image_to_base64('input_file_0.png')
+img_2 = image_to_base64('input_file_1.png')
+img_3 = image_to_base64('input_file_3.png')
+img_4 = image_to_base64('input_file_2.png')
+img_5 = image_to_base64('input_file_4.png')
+img_6 = image_to_base64('input_file_5.png')
+
+html_content = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MAISON DU SPORT | Showroom</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #050505;
-            color: #ffffff;
+        @page {{
+            size: A3 landscape;
             margin: 0;
-            overflow-x: hidden;
-        }
+            background-color: #000000;
+        }}
+        * {{ box-sizing: border-box; }}
+        body {{
+            margin: 0; padding: 0;
+            background-color: #000000;
+            color: #FFFFFF;
+            font-family: 'Times New Roman', serif;
+        }}
+        .sans {{
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+        }}
+        .page {{
+            width: 420mm; height: 297mm;
+            position: relative; 
+            overflow: hidden;
+            page-break-after: always;
+        }}
 
-        /* Film Grain Overlay */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Noise_Texture.png');
-            opacity: 0.04;
-            pointer-events: none;
-            z-index: 100;
-        }
-
-        .stadium-parallax {
-            background-image: 
-                linear-gradient(to bottom, rgba(5, 5, 5, 0.4), rgba(5, 5, 5, 1)), 
-                url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&w=2070&auto=format&fit=crop'); 
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .outline-text {
-            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-            color: transparent;
-        }
-
-        .brand-logo {
-            position: fixed;
-            top: 2.5rem;
-            right: 2.5rem;
-            z-index: 50;
-            width: 90px;
-            filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .hype-glow {
-            position: absolute;
-            width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-        }
-
-        /* Product Card Styling */
-        .product-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .product-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: rgba(255, 255, 255, 0.2);
-            transform: translateY(-5px);
-        }
-
-        .shoe-placeholder {
-            aspect-ratio: 1/1;
-            background: rgba(255,255,255,0.02);
+        /* PAGE 1: FLEXBOX CENTERING */
+        .cover-wrapper {{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+            text-align: center;
+        }}
+        .brand-container {{
             display: flex;
             align-items: center;
             justify-content: center;
-        }
+            gap: 60px;
+        }}
+        .brand-title {{
+            font-size: 56pt;
+            letter-spacing: 0.25em;
+            margin: 0;
+            line-height: 1;
+        }}
+        .v-divider {{
+            width: 2px;
+            height: 60pt;
+            background-color: #D4AF37;
+        }}
+        .h-divider {{
+            width: 250mm;
+            height: 1px;
+            background: linear-gradient(to right, transparent, #D4AF37, transparent);
+            margin: 45px 0;
+        }}
+        .partnership-text {{
+            font-size: 15pt;
+            color: #D4AF37;
+            letter-spacing: 1.2em;
+            /* Padding right offsets the letter-spacing of the last char to keep it perfectly centered */
+            padding-left: 1.2em; 
+        }}
 
-        .brand-header {
-            border-left: 3px solid #fff;
-            padding-left: 1.5rem;
-        }
-
-        #productModal {
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-        }
+        /* CONTENT PAGES: 75/25 SPLIT */
+        .master-layout {{
+            display: flex;
+            width: 100%; 
+            height: 100%;
+        }}
+        .visual-pane {{
+            width: 75%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }}
+        .info-pane {{
+            width: 25%;
+            height: 100%;
+            background-color: #050505;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 25mm;
+            text-align: center;
+            border-left: 1px solid #1a1a1a;
+        }}
+        .label-gold {{
+            font-size: 9pt;
+            color: #D4AF37;
+            letter-spacing: 0.5em;
+            margin-bottom: 25mm;
+            border-bottom: 1px solid #D4AF37;
+            padding-bottom: 5mm;
+            text-transform: uppercase;
+        }}
+        .title-serif {{
+            font-size: 30pt;
+            line-height: 1.2;
+            margin-bottom: 18mm;
+            font-weight: normal;
+        }}
+        .desc-sans {{
+            font-family: 'Helvetica', sans-serif;
+            font-size: 11pt;
+            line-height: 2.2;
+            color: #777;
+            font-weight: 300;
+        }}
+        .footer-branding {{
+            position: absolute;
+            bottom: 12mm;
+            width: 100%;
+            text-align: center;
+            font-size: 8pt;
+            color: #444;
+            letter-spacing: 0.6em;
+        }}
     </style>
 </head>
 <body>
 
-    <img src="LOGO.jpeg" alt="MDS Logo" class="brand-logo">
-
-    <section class="relative h-screen flex items-center justify-center stadium-parallax">
-        <div class="hype-glow"></div>
-        <div class="z-10 text-center" data-aos="zoom-out" data-aos-duration="2000">
-            <h1 class="text-7xl md:text-[10rem] font-black tracking-tighter uppercase leading-none">
-                MAISON <br> <span class="outline-text">DU SPORT</span>
-            </h1>
-            <p class="mt-8 tracking-[1em] text-xs uppercase opacity-50">Something different</p>
-        </div>
-    </section>
-
-    <section class="h-screen flex items-center justify-center px-8 bg-black relative">
-        <div class="absolute left-10 text-[10vw] font-black opacity-5 select-none outline-text">01</div>
-        <div class="z-10 text-4xl md:text-7xl font-light italic text-center max-w-5xl tracking-tight" 
-             data-aos="fade-up" data-aos-duration="1200">
-            “The Game Returns.”
-        </div>
-    </section>
-
-    <section class="h-screen flex items-center justify-center px-8 bg-[#050505] relative">
-        <div class="absolute right-10 text-[10vw] font-black opacity-5 select-none outline-text">02</div>
-        <div class="z-10 text-3xl md:text-6xl font-bold uppercase text-center max-w-6xl tracking-tighter" 
-             data-aos="fade-up" data-aos-duration="1200">
-            Building a <span class="bg-white text-black px-4 italic">home</span> for Haitian football.
-        </div>
-    </section>
-
-    <section class="py-32 px-8 bg-black relative min-h-screen">
-        <div class="max-w-7xl mx-auto">
-            
-            <div class="mb-32">
-                <div class="brand-header mb-16" data-aos="fade-right">
-                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-2">Authorized Inventory</span>
-                    <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tighter">Nike Performance</h2>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <script>
-                        for(let i=1; i<=10; i++) {
-                            document.write(`
-                                <div class="product-card p-6 group cursor-pointer" 
-                                     onclick="openProduct('Nike Elite Silhouette ${i}', 'Engineered for top-tier performance on the pitch. Features lightweight synthetic upper and specialized traction for rapid acceleration.', 'NIKE', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format')" 
-                                     data-aos="fade-up">
-                                    <div class="shoe-placeholder mb-6 overflow-hidden">
-                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format" class="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110">
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <div>
-                                            <h3 class="text-sm font-bold tracking-widest uppercase">Elite Boot 0${i}</h3>
-                                            <p class="text-[9px] tracking-[0.2em] text-gray-500 mt-1 uppercase">Firm Ground</p>
-                                        </div>
-                                        <span class="text-[8px] border border-white/20 px-2 py-1">NK-26</span>
-                                    </div>
-                                </div>
-                            `);
-                        }
-                    </script>
-                </div>
+    <div class="page">
+        <div class="cover-wrapper">
+            <div class="brand-container">
+                <span class="brand-title">FC TORO</span>
+                <span class="v-divider"></span>
+                <span class="brand-title">MDS</span>
             </div>
-
-            <div class="mb-20">
-                <div class="brand-header mb-16 border-blue-600" data-aos="fade-right">
-                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500 block mb-2">Authorized Inventory</span>
-                    <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tighter">Adidas Football</h2>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <script>
-                        for(let i=1; i<=9; i++) {
-                            document.write(`
-                                <div class="product-card p-6 group cursor-pointer" 
-                                     onclick="openProduct('Adidas Pro Model ${i}', 'The ultimate control boot for the modern playmaker. HybridTouch upper with specialized Turf grip for explosive movement.', 'ADIDAS', 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format')" 
-                                     data-aos="fade-up">
-                                    <div class="shoe-placeholder mb-6 overflow-hidden">
-                                        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=600&auto=format" class="w-full h-full object-contain opacity-70 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110">
-                                    </div>
-                                    <div class="flex justify-between items-center">
-                                        <div>
-                                            <h3 class="text-sm font-bold tracking-widest uppercase">Pro Silhouette 0${i}</h3>
-                                            <p class="text-[9px] tracking-[0.2em] text-gray-500 mt-1 uppercase">Turf Edition</p>
-                                        </div>
-                                        <span class="text-[8px] border border-white/20 px-2 py-1">AD-26</span>
-                                    </div>
-                                </div>
-                            `);
-                        }
-                    </script>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer class="relative bg-[#030303] pt-40 pb-20 px-10 border-t border-white/5 overflow-hidden">
-        <div class="absolute bottom-[-5%] left-1/2 -translate-x-1/2 select-none pointer-events-none">
-            <h2 class="text-[28vw] font-black leading-none text-white/[0.02] tracking-tighter">MAISON</h2>
-        </div>
-        <div class="relative z-10 max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-end">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-4">
-                        <div class="w-8 h-[1px] bg-white/30"></div>
-                        <span class="text-[10px] tracking-[0.4em] uppercase text-gray-500 font-bold">Port-au-Prince / Global</span>
-                    </div>
-                    <p class="text-xs text-gray-400 leading-loose max-w-[200px] uppercase tracking-[0.2em]">
-                        A Private Company for the future of sports.
-                    </p>
-                </div>
-                <div class="flex flex-col items-center text-center space-y-8">
-                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Inquiries</span>
-                    <a href="mailto:contact@maisondusport.com" class="group relative text-base md:text-lg font-light tracking-[0.3em] text-white transition-all uppercase">
-                        CONTACT@MAISONDUSPORT.COM
-                        <span class="absolute -bottom-2 left-0 w-0 h-[1px] bg-white transition-all duration-500 group-hover:w-full"></span>
-                    </a>
-                </div>
-                <div class="flex flex-col md:items-end space-y-6">
-                    <span class="text-[10px] tracking-[0.5em] uppercase text-gray-500">Social Discovery</span>
-                    <div class="flex gap-8">
-                        <a href="https://www.instagram.com/mdshaiti" target="_blank" class="text-[10px] tracking-[0.3em] uppercase hover:text-white text-gray-400 transition-colors">IG / @MDSHAITI</a>
-                        <a href="https://www.facebook.com/MaisonDuSport" target="_blank" class="text-[10px] tracking-[0.3em] uppercase hover:text-white text-gray-400 transition-colors">FB / MAISON DU SPORT</a>
-                    </div>
-                </div>
-            </div>
-            <div class="mt-32 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="text-[9px] tracking-[0.3em] uppercase text-gray-600">
-                    &copy; 2026 Maison Du Sport. All Rights Reserved.
-                </div>
-                <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="group flex items-center gap-3 text-[9px] tracking-[0.4em] uppercase text-gray-400 hover:text-white transition-all">
-                    <span>Back to Top</span>
-                    <div class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-white/40 transition-all">
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 1V9M5 1L1 5M5 1L9 5" stroke="currentColor" stroke-width="1"/></svg>
-                    </div>
-                </button>
-            </div>
-        </div>
-    </footer>
-
-    <div id="productModal" class="fixed inset-0 z-[200] hidden items-center justify-center p-4 bg-black/95">
-        <div class="bg-[#0A0A0A] border border-white/10 max-w-5xl w-full relative flex flex-col md:flex-row overflow-hidden">
-            <button onclick="closeProduct()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition-colors z-[210]">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-            </button>
-            <div class="w-full md:w-1/2 h-[40vh] md:h-[70vh] bg-neutral-900 p-12">
-                <img id="modalImg" src="" class="w-full h-full object-contain">
-            </div>
-            <div class="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                <span id="modalCategory" class="text-[10px] tracking-[0.5em] uppercase text-blue-500 block mb-4">NIKE</span>
-                <h2 id="modalTitle" class="text-4xl font-black uppercase tracking-tighter mb-6 leading-tight">Shoe Name</h2>
-                <p id="modalDesc" class="text-sm text-gray-400 leading-relaxed tracking-wide mb-10 max-w-sm">Description text.</p>
-                <a href="https://www.instagram.com/mdshaiti" target="_blank" class="block w-full text-center py-5 bg-white text-black font-black text-[10px] tracking-[0.4em] uppercase hover:bg-neutral-200 transition-colors">
-                    Check Availability
-                </a>
-            </div>
+            <div class="h-divider"></div>
+            <div class="partnership-text sans">STRATEGIC PARTNERSHIP 2026</div>
         </div>
     </div>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init({ once: false, mirror: true });
+    <div class="page">
+        <div class="master-layout">
+            <div class="visual-pane" style="background-image: url('{img_1}')"></div>
+            <div class="info-pane">
+                <div class="label-gold sans">The Entrance</div>
+                <h2 class="title-serif">STORE<br>ENTRANCE</h2>
+                <p class="desc-sans">Architectural immersion. The entrance establishes the collaborative tone through minimalist volume and high-contrast material selection.</p>
+            </div>
+        </div>
+        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
+    </div>
 
-        function openProduct(title, description, category, imgSrc) {
-            const modal = document.getElementById('productModal');
-            document.getElementById('modalTitle').innerText = title;
-            document.getElementById('modalDesc').innerText = description;
-            document.getElementById('modalCategory').innerText = `MDS / ${category} DEPT`;
-            document.getElementById('modalImg').src = imgSrc;
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            document.body.style.overflow = 'hidden'; 
-        }
+    <div class="page">
+        <div class="master-layout">
+            <div class="visual-pane" style="background-image: url('{img_2}')"></div>
+            <div class="info-pane">
+                <div class="label-gold sans">Reception</div>
+                <h2 class="title-serif">CASHIER &<br>SITTING LOUNGE</h2>
+                <p class="desc-sans">A dual-purpose environment designed for transaction and rest. Monolithic textures anchor the space while providing luxury comfort.</p>
+            </div>
+        </div>
+        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
+    </div>
 
-        function closeProduct() {
-            const modal = document.getElementById('productModal');
-            modal.classList.add('hidden');
-            modal.classList.remove('flex');
-            document.body.style.overflow = 'auto'; 
-        }
-    </script>
+    <div class="page">
+        <div class="master-layout">
+            <div class="visual-pane" style="background-image: url('{img_3}')"></div>
+            <div class="info-pane">
+                <div class="label-gold sans">Hardware Gallery</div>
+                <h2 class="title-serif">MAISON DU SPORT<br>WALL</h2>
+                <p class="desc-sans">Performance as fine art. Precision-lit silhouettes showcase the peak of athletic footwear and hardware innovation.</p>
+            </div>
+        </div>
+        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
+    </div>
+
+    <div class="page">
+        <div class="master-layout">
+            <div class="visual-pane" style="background-image: url('{img_4}')"></div>
+            <div class="info-pane">
+                <div class="label-gold sans">Identity</div>
+                <h2 class="title-serif">COLLABORATION<br>WALL</h2>
+                <p class="desc-sans">The visual heart of the partnership. A dedicated installation featuring the brand insignias of both FC TORO and MDS.</p>
+            </div>
+        </div>
+        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
+    </div>
+
+    <div class="page">
+        <div class="master-layout">
+            <div class="visual-pane" style="background-image: url('{img_5}')"></div>
+            <div class="info-pane">
+                <div class="label-gold sans">Sanctuary</div>
+                <h2 class="title-serif">THE FITTING<br>ROOM</h2>
+                <p class="desc-sans">The most intimate store protocol. Deep velvet textures and halo-illumination define the private consultation environment.</p>
+            </div>
+        </div>
+        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
+    </div>
+
+    <div class="page">
+        <div class="master-layout">
+            <div class="visual-pane" style="background-image: url('{img_6}')"></div>
+            <div class="info-pane">
+                <div class="label-gold sans">Administration</div>
+                <h2 class="title-serif">EXECUTIVE<br>OFFICE</h2>
+                <p class="desc-sans">Strategic headquarters. The management wing designed for focused operations and athlete relations.</p>
+            </div>
+        </div>
+        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
+    </div>
+
 </body>
 </html>
+"""
+
+HTML(string=html_content).write_pdf("FC_TORO_MDS_Final_Portfolio_v5.pdf")
