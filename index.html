@@ -1,152 +1,157 @@
-import os
-from weasyprint import HTML
-import base64
-
-def image_to_base64(path):
-    if not os.path.exists(path):
-        return ""
-    with open(path, "rb") as image_file:
-        return f"data:image/png;base64,{base64.b64encode(image_file.read()).decode('utf-8')}"
-
- mapping based on user's exact sequence:
-img_1 = image_to_base64('input_file_0.png')
-img_2 = image_to_base64('input_file_1.png')
-img_3 = image_to_base64('input_file_3.png')
-img_4 = image_to_base64('input_file_2.png')
-img_5 = image_to_base64('input_file_4.png')
-img_6 = image_to_base64('input_file_5.png')
-
-html_content = f"""
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FC TORO × MDS | Strategic Partnership 2026</title>
     <style>
-        @page {{
-            size: A3 landscape;
+        /* Global Reset */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            background-color: #000000;
-        }}
-        * {{ box-sizing: border-box; }}
-        body {{
-            margin: 0; padding: 0;
+            padding: 0;
+        }
+
+        body {
             background-color: #000000;
             color: #FFFFFF;
             font-family: 'Times New Roman', serif;
-        }}
-        .sans {{
+            line-height: 1.6;
+        }
+
+        .sans {
             font-family: 'Helvetica', 'Arial', sans-serif;
             font-weight: 300;
             letter-spacing: 0.4em;
             text-transform: uppercase;
-        }}
-        .page {{
-            width: 420mm; height: 297mm;
-            position: relative; 
-            overflow: hidden;
-            page-break-after: always;
-        }}
+        }
 
-        /* PAGE 1: FLEXBOX CENTERING */
-        .cover-wrapper {{
+        /* Page Container */
+        .page {
+            width: 100%;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            page-break-after: always;
+        }
+
+        /* --- PAGE 1: COVER --- */
+        .cover-wrapper {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100%;
             width: 100%;
+            height: 100%;
             text-align: center;
-        }}
-        .brand-container {{
+        }
+
+        .brand-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 60px;
-        }}
-        .brand-title {{
-            font-size: 56pt;
-            letter-spacing: 0.25em;
+            gap: 40px;
+        }
+
+        .brand-title {
+            font-size: 4rem;
+            letter-spacing: 0.2em;
             margin: 0;
-            line-height: 1;
-        }}
-        .v-divider {{
+        }
+
+        .v-divider {
             width: 2px;
-            height: 60pt;
+            height: 80px;
             background-color: #D4AF37;
-        }}
-        .h-divider {{
-            width: 250mm;
+        }
+
+        .h-divider {
+            width: 60%;
+            max-width: 600px;
             height: 1px;
             background: linear-gradient(to right, transparent, #D4AF37, transparent);
-            margin: 45px 0;
-        }}
-        .partnership-text {{
-            font-size: 15pt;
-            color: #D4AF37;
-            letter-spacing: 1.2em;
-            /* Padding right offsets the letter-spacing of the last char to keep it perfectly centered */
-            padding-left: 1.2em; 
-        }}
+            margin: 40px 0;
+        }
 
-        /* CONTENT PAGES: 75/25 SPLIT */
-        .master-layout {{
-            display: flex;
-            width: 100%; 
-            height: 100%;
-        }}
-        .visual-pane {{
+        .partnership-text {
+            font-size: 1.2rem;
+            color: #D4AF37;
+            letter-spacing: 0.8em;
+            padding-left: 0.8em;
+        }
+
+        /* --- CONTENT PAGES: 75/25 SPLIT --- */
+        .visual-pane {
             width: 75%;
             height: 100%;
             background-size: cover;
             background-position: center;
-        }}
-        .info-pane {{
+            background-repeat: no-repeat;
+        }
+
+        .info-pane {
             width: 25%;
             height: 100%;
             background-color: #050505;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 25mm;
+            padding: 40px;
             text-align: center;
             border-left: 1px solid #1a1a1a;
-        }}
-        .label-gold {{
-            font-size: 9pt;
+        }
+
+        .label-gold {
+            font-size: 0.75rem;
             color: #D4AF37;
-            letter-spacing: 0.5em;
-            margin-bottom: 25mm;
+            letter-spacing: 0.4em;
+            margin-bottom: 2rem;
             border-bottom: 1px solid #D4AF37;
-            padding-bottom: 5mm;
-            text-transform: uppercase;
-        }}
-        .title-serif {{
-            font-size: 30pt;
-            line-height: 1.2;
-            margin-bottom: 18mm;
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .title-serif {
+            font-size: 2.5rem;
+            line-height: 1.1;
+            margin-bottom: 2rem;
             font-weight: normal;
-        }}
-        .desc-sans {{
+            text-transform: uppercase;
+        }
+
+        .desc-sans {
             font-family: 'Helvetica', sans-serif;
-            font-size: 11pt;
-            line-height: 2.2;
-            color: #777;
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #888;
             font-weight: 300;
-        }}
-        .footer-branding {{
+        }
+
+        .footer-branding {
             position: absolute;
-            bottom: 12mm;
-            width: 100%;
+            bottom: 20px;
+            right: 0;
+            width: 25%; /* Aligned with info pane */
             text-align: center;
-            font-size: 8pt;
+            font-size: 0.7rem;
             color: #444;
-            letter-spacing: 0.6em;
-        }}
+            letter-spacing: 0.3em;
+        }
+
+        /* Responsive adjustment for small screens */
+        @media (max-width: 1024px) {
+            .page { flex-direction: column; height: auto; }
+            .visual-pane { width: 100%; height: 60vh; }
+            .info-pane { width: 100%; padding: 60px 20px; border-left: none; }
+            .footer-branding { width: 100%; position: static; margin-top: 20px; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="page">
+    <!-- PAGE 1: COVER -->
+    <section class="page">
         <div class="cover-wrapper">
             <div class="brand-container">
                 <span class="brand-title">FC TORO</span>
@@ -156,82 +161,73 @@ html_content = f"""
             <div class="h-divider"></div>
             <div class="partnership-text sans">STRATEGIC PARTNERSHIP 2026</div>
         </div>
-    </div>
+    </section>
 
-    <div class="page">
-        <div class="master-layout">
-            <div class="visual-pane" style="background-image: url('{img_1}')"></div>
-            <div class="info-pane">
-                <div class="label-gold sans">The Entrance</div>
-                <h2 class="title-serif">STORE<br>ENTRANCE</h2>
-                <p class="desc-sans">Architectural immersion. The entrance establishes the collaborative tone through minimalist volume and high-contrast material selection.</p>
-            </div>
+    <!-- PAGE 2: ENTRANCE -->
+    <section class="page">
+        <div class="visual-pane" style="background-image: url('input_file_0.png')"></div>
+        <div class="info-pane">
+            <div class="label-gold sans">The Entrance</div>
+            <h2 class="title-serif">STORE<br>ENTRANCE</h2>
+            <p class="desc-sans">Architectural immersion. The entrance establishes the collaborative tone through minimalist volume and high-contrast material selection.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
-    </div>
+        <div class="footer-branding sans">FC TORO × MDS</div>
+    </section>
 
-    <div class="page">
-        <div class="master-layout">
-            <div class="visual-pane" style="background-image: url('{img_2}')"></div>
-            <div class="info-pane">
-                <div class="label-gold sans">Reception</div>
-                <h2 class="title-serif">CASHIER &<br>SITTING LOUNGE</h2>
-                <p class="desc-sans">A dual-purpose environment designed for transaction and rest. Monolithic textures anchor the space while providing luxury comfort.</p>
-            </div>
+    <!-- PAGE 3: LOUNGE -->
+    <section class="page">
+        <div class="visual-pane" style="background-image: url('input_file_1.png')"></div>
+        <div class="info-pane">
+            <div class="label-gold sans">Reception</div>
+            <h2 class="title-serif">CASHIER &<br>SITTING LOUNGE</h2>
+            <p class="desc-sans">A dual-purpose environment designed for transaction and rest. Monolithic textures anchor the space while providing luxury comfort.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
-    </div>
+        <div class="footer-branding sans">FC TORO × MDS</div>
+    </section>
 
-    <div class="page">
-        <div class="master-layout">
-            <div class="visual-pane" style="background-image: url('{img_3}')"></div>
-            <div class="info-pane">
-                <div class="label-gold sans">Hardware Gallery</div>
-                <h2 class="title-serif">MAISON DU SPORT<br>WALL</h2>
-                <p class="desc-sans">Performance as fine art. Precision-lit silhouettes showcase the peak of athletic footwear and hardware innovation.</p>
-            </div>
+    <!-- PAGE 4: MDS WALL -->
+    <section class="page">
+        <div class="visual-pane" style="background-image: url('input_file_3.png')"></div>
+        <div class="info-pane">
+            <div class="label-gold sans">Hardware Gallery</div>
+            <h2 class="title-serif">MAISON DU SPORT<br>WALL</h2>
+            <p class="desc-sans">Performance as fine art. Precision-lit silhouettes showcase the peak of athletic footwear and hardware innovation.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
-    </div>
+        <div class="footer-branding sans">FC TORO × MDS</div>
+    </section>
 
-    <div class="page">
-        <div class="master-layout">
-            <div class="visual-pane" style="background-image: url('{img_4}')"></div>
-            <div class="info-pane">
-                <div class="label-gold sans">Identity</div>
-                <h2 class="title-serif">COLLABORATION<br>WALL</h2>
-                <p class="desc-sans">The visual heart of the partnership. A dedicated installation featuring the brand insignias of both FC TORO and MDS.</p>
-            </div>
+    <!-- PAGE 5: COLLAB WALL -->
+    <section class="page">
+        <div class="visual-pane" style="background-image: url('input_file_2.png')"></div>
+        <div class="info-pane">
+            <div class="label-gold sans">Identity</div>
+            <h2 class="title-serif">COLLABORATION<br>WALL</h2>
+            <p class="desc-sans">The visual heart of the partnership. A dedicated installation featuring the brand insignias of both FC TORO and MDS.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
-    </div>
+        <div class="footer-branding sans">FC TORO × MDS</div>
+    </section>
 
-    <div class="page">
-        <div class="master-layout">
-            <div class="visual-pane" style="background-image: url('{img_5}')"></div>
-            <div class="info-pane">
-                <div class="label-gold sans">Sanctuary</div>
-                <h2 class="title-serif">THE FITTING<br>ROOM</h2>
-                <p class="desc-sans">The most intimate store protocol. Deep velvet textures and halo-illumination define the private consultation environment.</p>
-            </div>
+    <!-- PAGE 6: FITTING ROOM -->
+    <section class="page">
+        <div class="visual-pane" style="background-image: url('input_file_4.png')"></div>
+        <div class="info-pane">
+            <div class="label-gold sans">Sanctuary</div>
+            <h2 class="title-serif">THE FITTING<br>ROOM</h2>
+            <p class="desc-sans">The most intimate store protocol. Deep velvet textures and halo-illumination define the private consultation environment.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
-    </div>
+        <div class="footer-branding sans">FC TORO × MDS</div>
+    </section>
 
-    <div class="page">
-        <div class="master-layout">
-            <div class="visual-pane" style="background-image: url('{img_6}')"></div>
-            <div class="info-pane">
-                <div class="label-gold sans">Administration</div>
-                <h2 class="title-serif">EXECUTIVE<br>OFFICE</h2>
-                <p class="desc-sans">Strategic headquarters. The management wing designed for focused operations and athlete relations.</p>
-            </div>
+    <!-- PAGE 7: EXECUTIVE OFFICE -->
+    <section class="page">
+        <div class="visual-pane" style="background-image: url('input_file_5.png')"></div>
+        <div class="info-pane">
+            <div class="label-gold sans">Administration</div>
+            <h2 class="title-serif">EXECUTIVE<br>OFFICE</h2>
+            <p class="desc-sans">Strategic headquarters. The management wing designed for focused operations and athlete relations.</p>
         </div>
-        <div class="footer-branding sans">FC TORO × MAISON DU SPORT</div>
-    </div>
+        <div class="footer-branding sans">FC TORO × MDS</div>
+    </section>
 
 </body>
 </html>
-"""
-
-HTML(string=html_content).write_pdf("FC_TORO_MDS_Final_Portfolio_v5.pdf")
