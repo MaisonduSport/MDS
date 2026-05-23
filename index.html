@@ -3,217 +3,333 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FC TORO × MDS | Strategic Partnership</title>
+    <title>ONA VERITAS | Intelligence Architecture</title>
+    
+    <!-- Styling Engine: Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React Core Libraries -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- JSX Compiler -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <style>
-        /* Base Reset */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        
-        body { 
-            background-color: #000; 
-            color: #fff; 
-            font-family: 'Times New Roman', serif;
-            scroll-behavior: smooth;
-        }
-
-        .sans { 
-            font-family: 'Helvetica', 'Arial', sans-serif; 
-            letter-spacing: 0.4em; 
-            text-transform: uppercase; 
-            font-size: 0.75rem;
-        }
-
-        /* Layout spacing - prevents pages from sticking */
-        section { 
-            width: 100%; 
-            height: 100vh; 
-            display: flex; 
-            position: relative;
-            overflow: hidden;
-            margin-bottom: 20px; /* Gap between sections */
-            background-color: #050505;
-        }
-
-        /* Cover Page Centering */
-        .cover { 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            background-color: #000;
-        }
-
-        .brand-wrap { 
-            display: flex; 
-            align-items: center; 
-            gap: 50px; 
-            margin-bottom: 20px;
-        }
-
-        .brand-title { 
-            font-size: clamp(2.5rem, 10vw, 5rem); 
-            letter-spacing: 0.3em; 
-        }
-
-        .v-line { 
-            width: 2px; 
-            height: 100px; 
-            background: #D4AF37; 
-        }
-
-        .h-line { 
-            width: 50%; 
-            max-width: 500px; 
-            height: 1px; 
-            background: linear-gradient(to right, transparent, #D4AF37, transparent); 
-            margin: 50px 0; 
-        }
-
-        .gold-text { 
-            color: #D4AF37; 
-            letter-spacing: 1.2em; 
-            padding-left: 1.2em;
-        }
-
-        /* Content Page Split */
-        .visual { 
-            width: 70%; /* Reduced slightly for more info room */
-            height: 100%;
-            background-size: cover; 
-            background-position: center;
-        }
-
-        .info { 
-            width: 30%; 
-            background: #080808; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            padding: 80px 40px; /* Increased padding for better breathing room */
-            text-align: center; 
-            border-left: 1px solid #1a1a1a;
-        }
-        
-        .label { 
-            color: #D4AF37; 
-            margin-bottom: 40px; 
-            border-bottom: 1px solid #D4AF37; 
-            padding-bottom: 15px; 
-            display: inline-block;
-        }
-
-        .title { 
-            font-size: 2.8rem; 
-            line-height: 1.2; 
-            margin-bottom: 30px; 
-            font-weight: normal;
-            text-transform: uppercase;
-        }
-
-        .desc { 
-            color: #888; 
-            line-height: 2.2; 
-            font-size: 1rem; 
-            max-width: 300px;
-            margin: 0 auto;
-        }
-        
-        .footer { 
-            position: absolute; 
-            bottom: 30px; 
-            right: 0; 
-            width: 30%; 
-            text-align: center; 
-            color: #444; 
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 1100px) {
-            section { flex-direction: column; height: auto; }
-            .visual { width: 100%; height: 60vh; }
-            .info { width: 100%; padding: 80px 20px; border-left: none; }
-            .footer { position: static; width: 100%; padding: 20px 0; }
-            .desc { max-width: 90%; }
+        /* Custom print styling for the enforcement engine */
+        @media print {
+            body { background: white !important; -webkit-print-color-adjust: exact; }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            .print-area { box-shadow: none !important; padding: 0 !important; }
         }
     </style>
 </head>
-<body>
+<body class="bg-[#0A0A0A]">
+    <div id="root"></div>
 
-    <!-- PAGE 1: COVER -->
-    <section class="cover">
-        <div class="brand-wrap">
-            <span class="brand-title">FC TORO</span>
-            <div class="v-line"></div>
-            <span class="brand-title">MDS</span>
-        </div>
-        <div class="h-line"></div>
-        <div class="gold-text sans">STRATEGIC PARTNERSHIP 2026</div>
-    </section>
+    <script type="text/babel">
+        const { useState, useMemo, useEffect } = React;
 
-    <!-- PAGE 2: ENTRANCE -->
-    <section>
-        <div class="visual" style="background-image: url('MDS%20x%20FcToro.png')"></div>
-        <div class="info">
-            <div class="label sans">The Entrance</div>
-            <h2 class="title">STORE<br>ENTRANCE</h2>
-            <p class="desc">Architectural immersion. The entrance establishes the collaborative tone through minimalist volume.</p>
-        </div>
-        <div class="footer sans">FC TORO × MDS</div>
-    </section>
+        // --- ICON SYSTEM (Self-Contained SVGs to avoid external dependencies) ---
+        const IconActivity = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>);
+        const IconShield = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>);
+        const IconDatabase = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg>);
+        const IconFileText = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>);
+        const IconMapPin = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>);
+        const IconAlertTriangle = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>);
+        const IconCheckCircle = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>);
+        const IconSearch = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>);
+        const IconTerminal = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line></svg>);
+        const IconChevronRight = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="9 18 15 12 9 6"></polyline></svg>);
+        const IconPrinter = ({ size=16, className="" }) => (<svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>);
 
-    <!-- PAGE 3: LOUNGE -->
-    <section>
-        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(2).png')"></div>
-        <div class="info">
-            <div class="label sans">Reception</div>
-            <h2 class="title">CASHIER &<br>SITTING LOUNGE</h2>
-            <p class="desc">A dual-purpose environment designed for transaction and rest. Monolithic textures anchor the space.</p>
-        </div>
-        <div class="footer sans">FC TORO × MDS</div>
-    </section>
+        // --- ENTERPRISE DATA MODEL ---
+        const initialDatabase = [
+            { id: 'ONA-8829', nif: '000-111-222-3', name: 'Manufacture Nationale S.A.', sector: 'Industrial', location: 'Port-au-Prince', expected: 450000, actual: 0, status: 'critical', monthsLate: 3 },
+            { id: 'ONA-1024', nif: '111-222-333-4', name: 'Logistique Ouest', sector: 'Logistics', location: 'Carrefour', expected: 120000, actual: 120000, status: 'compliant', monthsLate: 0 },
+            { id: 'ONA-7731', nif: '222-333-444-5', name: 'Agri-Export Sud', sector: 'Agriculture', location: 'Les Cayes', expected: 85000, actual: 40000, status: 'warning', monthsLate: 1 },
+            { id: 'ONA-2290', nif: '333-444-555-6', name: 'Telecom Infrastructure', sector: 'Technology', location: 'Delmas', expected: 950000, actual: 0, status: 'critical', monthsLate: 2 },
+            { id: 'ONA-4451', nif: '444-555-666-7', name: 'Boutique Le Sommet', sector: 'Retail', location: 'Pétion-Ville', expected: 45000, actual: 45000, status: 'compliant', monthsLate: 0 },
+            { id: 'ONA-9982', nif: '555-666-777-8', name: 'Construction Civile Haïti', sector: 'Construction', location: 'Cap-Haïtien', expected: 650000, actual: 200000, status: 'critical', monthsLate: 4 },
+        ];
 
-    <!-- PAGE 4: MDS WALL -->
-    <section>
-        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(4).png')"></div>
-        <div class="info">
-            <div class="label sans">Hardware Gallery</div>
-            <h2 class="title">MAISON DU SPORT<br>WALL</h2>
-            <p class="desc">Performance as fine art. Precision-lit silhouettes showcase the peak of athletic innovation.</p>
-        </div>
-        <div class="footer sans">FC TORO × MDS</div>
-    </section>
+        function VeritasApp() {
+            const [activeTab, setActiveTab] = useState('intelligence');
+            const [searchQuery, setSearchQuery] = useState('');
+            const [database] = useState(initialDatabase);
+            const [selectedEntity, setSelectedEntity] = useState(null);
+            const [actionLog, setActionLog] = useState([
+                { time: new Date().toLocaleTimeString(), action: 'SYSTEM INITIALIZED: SECURE CONNECTION ESTABLISHED' },
+                { time: new Date().toLocaleTimeString(), action: 'DATABASE SYNC: ENTITIES LOADED SUCCESSFULLY' }
+            ]);
 
-    <!-- PAGE 5: COLLAB WALL -->
-    <section>
-        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(3).png')"></div>
-        <div class="info">
-            <div class="label sans">Identity</div>
-            <h2 class="title">COLLABORATION<br>WALL</h2>
-            <p class="desc">The visual heart of the partnership. A dedicated installation featuring brand insignias.</p>
-        </div>
-        <div class="footer sans">FC TORO × MDS</div>
-    </section>
+            const filteredData = useMemo(() => {
+                return database.filter(entity => 
+                    entity.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                    entity.nif.includes(searchQuery)
+                );
+            }, [database, searchQuery]);
 
-    <!-- PAGE 6: FITTING ROOM -->
-    <section>
-        <div class="visual" style="background-image: url('MDS%20x%20FcToro.jpeg')"></div>
-        <div class="info">
-            <div class="label sans">Sanctuary</div>
-            <h2 class="title">THE FITTING<br>ROOM</h2>
-            <p class="desc">The most intimate store protocol. Deep velvet textures and halo-illumination define the environment.</p>
-        </div>
-        <div class="footer sans">FC TORO × MDS</div>
-    </section>
+            const stats = useMemo(() => {
+                const totalExpected = database.reduce((acc, curr) => acc + curr.expected, 0);
+                const totalActual = database.reduce((acc, curr) => acc + curr.actual, 0);
+                const criticalCount = database.filter(e => e.status === 'critical').length;
+                return { totalExpected, totalActual, gap: totalExpected - totalActual, criticalCount };
+            }, [database]);
 
-    <!-- PAGE 7: EXECUTIVE OFFICE -->
-    <section>
-        <div class="visual" style="background-image: url('MDS%20x%20FcToro%20(6).png')"></div>
-        <div class="info">
-            <div class="label sans">Administration</div>
-            <h2 class="title">EXECUTIVE<br>OFFICE</h2>
-            <p class="desc">Strategic headquarters. Designed for focused operations and elite athlete relations.</p>
-        </div>
-        <div class="footer sans">FC TORO × MDS</div>
-    </section>
+            const executeEnforcement = (entity) => {
+                setActionLog(prev => [{ time: new Date().toLocaleTimeString(), action: `LEGAL NOTICE GENERATED: ${entity.id} - ${entity.name}` }, ...prev]);
+                setSelectedEntity(entity);
+                setActiveTab('enforcement');
+            };
 
+            const TabButton = ({ id, icon: Icon, label }) => (
+                <button 
+                    onClick={() => setActiveTab(id)}
+                    className={`flex items-center space-x-2 px-6 py-4 text-xs tracking-[0.2em] uppercase transition-all duration-300 ${
+                        activeTab === id ? 'border-b-2 border-[#D4AF37] text-[#D4AF37] bg-[#1A1A1A]' : 'text-[#707070] hover:text-[#F5F5DC] border-b-2 border-transparent'
+                    }`}
+                >
+                    <Icon size={14} />
+                    <span>{label}</span>
+                </button>
+            );
+
+            return (
+                <div className="min-h-screen text-[#F5F5DC] font-sans flex flex-col no-print">
+                    
+                    {/* TOP COMMAND BAR */}
+                    <header className="bg-[#111111] border-b border-[#2A2A2A] px-8 py-5 flex justify-between items-center">
+                        <div className="flex items-center space-x-6">
+                            <div>
+                                <h1 className="text-2xl font-light tracking-widest text-[#F5F5DC]">
+                                    ONA <span className="text-[#D4AF37] font-medium">VERITAS</span>
+                                </h1>
+                                <p className="text-[10px] text-[#707070] tracking-[0.3em] uppercase mt-1">Intelligence & Audit Architecture</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center space-x-6">
+                            <div className="flex items-center space-x-2 text-[10px] text-emerald-500 tracking-widest animate-pulse">
+                                <IconActivity size={12} /> <span>SECURE UPLINK ACTIVE</span>
+                            </div>
+                            <div className="px-4 py-2 border border-[#2A2A2A] bg-[#1A1A1A] flex items-center space-x-2">
+                                <IconShield size={12} className="text-[#D4AF37]" />
+                                <span className="text-[10px] tracking-widest text-[#A0A0A0]">AUTHORIZATION: DIRECTORATE</span>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* NAVIGATION TABS */}
+                    <div className="flex px-8 border-b border-[#2A2A2A] bg-[#0F0F0F]">
+                        <TabButton id="intelligence" icon={IconActivity} label="Global Intelligence" />
+                        <TabButton id="registry" icon={IconDatabase} label="Entity Registry" />
+                        <TabButton id="enforcement" icon={IconFileText} label="Enforcement Engine" />
+                    </div>
+
+                    {/* MAIN CONTENT AREA */}
+                    <main className="flex-1 p-8 overflow-y-auto">
+                        
+                        {/* VIEW 1: GLOBAL INTELLIGENCE */}
+                        {activeTab === 'intelligence' && (
+                            <div className="space-y-8 animate-in fade-in duration-500">
+                                <div className="grid grid-cols-4 gap-6">
+                                    {[
+                                        { label: 'Expected Revenue (HTG)', val: stats.totalExpected.toLocaleString(), color: 'text-[#F5F5DC]' },
+                                        { label: 'Reconciled Revenue (HTG)', val: stats.totalActual.toLocaleString(), color: 'text-emerald-500' },
+                                        { label: 'Critical Deficit Gap (HTG)', val: stats.gap.toLocaleString(), color: 'text-red-500' },
+                                        { label: 'Critical Entities Flagged', val: stats.criticalCount, color: 'text-[#D4AF37]' }
+                                    ].map((stat, i) => (
+                                        <div key={i} className="p-6 bg-[#111111] border border-[#2A2A2A]">
+                                            <div className="text-[10px] text-[#707070] tracking-[0.2em] uppercase mb-3">{stat.label}</div>
+                                            <div className={`text-3xl font-light tracking-wider ${stat.color}`}>{stat.val}</div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="grid grid-cols-3 gap-6">
+                                    <div className="col-span-2 bg-[#111111] border border-[#2A2A2A] p-6">
+                                        <div className="text-xs text-[#A0A0A0] tracking-widest uppercase border-b border-[#2A2A2A] pb-4 mb-4">High-Risk Entities (Live Feed)</div>
+                                        <div className="space-y-3">
+                                            {database.filter(e => e.status === 'critical').map(entity => (
+                                                <div key={entity.id} className="flex justify-between items-center p-4 border border-[#2A2A2A] hover:bg-[#1A1A1A] transition-colors cursor-pointer" onClick={() => executeEnforcement(entity)}>
+                                                    <div className="flex items-center space-x-4">
+                                                        <IconAlertTriangle size={16} className="text-red-500" />
+                                                        <div>
+                                                            <div className="text-sm font-medium tracking-wide">{entity.name}</div>
+                                                            <div className="text-xs text-[#707070] tracking-wider font-mono mt-1">{entity.id} | {entity.location}</div>
+                                                        </div>
+                                                    </div>
+                                                    <div className="text-right">
+                                                        <div className="text-sm text-red-500 font-mono">- HTG {(entity.expected - entity.actual).toLocaleString()}</div>
+                                                        <div className="text-[10px] text-[#707070] tracking-widest mt-1 uppercase">{entity.monthsLate} Months Late</div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="col-span-1 bg-[#111111] border border-[#2A2A2A] p-6">
+                                        <div className="text-xs text-[#A0A0A0] tracking-widest uppercase border-b border-[#2A2A2A] pb-4 mb-4 flex items-center space-x-2"><IconMapPin size={14} className="text-[#D4AF37]"/><span>Regional Leakage</span></div>
+                                        <div className="space-y-6 mt-6">
+                                            {['Ouest (Port-au-Prince) - 78%', 'Nord (Cap-Haïtien) - 12%', 'Sud (Les Cayes) - 10%'].map((region, idx) => (
+                                                <div key={idx}>
+                                                    <div className="flex justify-between text-xs tracking-wider mb-2"><span>{region.split(' - ')[0]}</span><span className="text-[#D4AF37]">{region.split(' - ')[1]}</span></div>
+                                                    <div className="w-full bg-[#1A1A1A] h-1 border border-[#2A2A2A]">
+                                                        <div className="bg-[#D4AF37] h-full" style={{ width: region.split(' - ')[1] }}></div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* VIEW 2: ENTITY REGISTRY */}
+                        {activeTab === 'registry' && (
+                            <div className="animate-in fade-in duration-500 bg-[#111111] border border-[#2A2A2A] flex flex-col h-full min-h-[500px]">
+                                <div className="p-6 border-b border-[#2A2A2A] flex justify-between items-center">
+                                    <div className="relative w-1/2">
+                                        <IconSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#707070]" size={14} />
+                                        <input 
+                                            type="text" 
+                                            placeholder="SEARCH BY NIF OR COMPANY NAME..." 
+                                            className="w-full bg-[#0A0A0A] border border-[#2A2A2A] text-xs text-[#F5F5DC] tracking-widest p-3 pl-10 focus:outline-none focus:border-[#D4AF37] placeholder-[#404040]"
+                                            value={searchQuery}
+                                            onChange={(e) => setSearchQuery(e.target.value)}
+                                        />
+                                    </div>
+                                    <div className="text-xs text-[#707070] tracking-widest uppercase">{filteredData.length} Records Found</div>
+                                </div>
+                                
+                                <div className="overflow-x-auto">
+                                    <table className="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr className="bg-[#0A0A0A] border-b border-[#2A2A2A] text-[10px] tracking-[0.2em] text-[#707070] uppercase">
+                                                <th className="p-4 font-normal">Entity ID</th>
+                                                <th className="p-4 font-normal">NIF</th>
+                                                <th className="p-4 font-normal">Company Name</th>
+                                                <th className="p-4 font-normal text-right">Expected (HTG)</th>
+                                                <th className="p-4 font-normal text-right">Deficit</th>
+                                                <th className="p-4 font-normal text-center">Status</th>
+                                                <th className="p-4 font-normal">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="text-xs tracking-wider">
+                                            {filteredData.map(entity => (
+                                                <tr key={entity.id} className="border-b border-[#2A2A2A] hover:bg-[#1A1A1A] transition-colors">
+                                                    <td className="p-4 font-mono text-[#A0A0A0]">{entity.id}</td>
+                                                    <td className="p-4 font-mono">{entity.nif}</td>
+                                                    <td className="p-4 font-medium">{entity.name}</td>
+                                                    <td className="p-4 text-right font-mono">{entity.expected.toLocaleString()}</td>
+                                                    <td className="p-4 text-right font-mono text-red-500">
+                                                        {entity.expected - entity.actual > 0 ? `-${(entity.expected - entity.actual).toLocaleString()}` : '0'}
+                                                    </td>
+                                                    <td className="p-4 flex justify-center">
+                                                        {entity.status === 'compliant' ? <IconCheckCircle size={14} className="text-emerald-500" /> : <IconAlertTriangle size={14} className="text-red-500" />}
+                                                    </td>
+                                                    <td className="p-4">
+                                                        <button onClick={() => executeEnforcement(entity)} className="text-[10px] tracking-widest text-[#D4AF37] hover:text-[#0A0A0A] border border-[#D4AF37] hover:bg-[#D4AF37] px-3 py-1 uppercase transition-colors">
+                                                            Audit
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        )}
+
+                        {/* VIEW 3: ENFORCEMENT ENGINE */}
+                        {activeTab === 'enforcement' && (
+                            <div className="animate-in fade-in duration-500 h-full min-h-[600px] flex items-center justify-center">
+                                {!selectedEntity ? (
+                                    <div className="text-[#707070] text-sm tracking-widest uppercase flex flex-col items-center space-y-4">
+                                        <IconFileText size={32} className="text-[#2A2A2A]" />
+                                        <p>Select an entity from the Intelligence or Registry tab to generate a legal notice.</p>
+                                    </div>
+                                ) : (
+                                    <div className="w-full max-w-4xl bg-white text-black p-12 shadow-2xl relative print-area">
+                                        <div className="absolute top-8 right-8 flex space-x-4 print:hidden">
+                                            <button className="flex items-center space-x-2 text-xs tracking-widest font-bold border border-black px-4 py-2 hover:bg-black hover:text-white transition-colors" onClick={() => window.print()}>
+                                                <IconPrinter size={14} /> <span>PRINT / EXPORT PDF</span>
+                                            </button>
+                                        </div>
+
+                                        <div className="text-center border-b-2 border-black pb-6 mb-8 mt-4">
+                                            <h2 className="text-xl font-bold tracking-widest uppercase text-black">République d'Haïti</h2>
+                                            <h3 className="text-sm font-semibold tracking-wide mt-2 text-black">Office National d'Assurance-Vieillesse (ONA)</h3>
+                                            <p className="text-xs mt-1 italic text-black">Direction Générale - Unité de Conformité Automatisée</p>
+                                        </div>
+
+                                        <div className="space-y-6 text-sm leading-relaxed font-serif text-black">
+                                            <div className="flex justify-between">
+                                                <div>
+                                                    <p className="font-bold uppercase text-black">{selectedEntity.name}</p>
+                                                    <p className="text-black">NIF: {selectedEntity.nif}</p>
+                                                    <p className="text-black">Secteur: {selectedEntity.sector} | {selectedEntity.location}</p>
+                                                </div>
+                                                <div className="text-right">
+                                                    <p className="text-black">Port-au-Prince, le {new Date().toLocaleDateString('fr-FR')}</p>
+                                                    <p className="font-mono text-xs mt-1 text-black">Réf: ONA-VERITAS-{selectedEntity.id}-{new Date().getFullYear()}</p>
+                                                </div>
+                                            </div>
+
+                                            <p className="font-bold underline mt-8 text-black">Objet : Mise en demeure pour non-paiement des cotisations sociales</p>
+
+                                            <p className="text-black">Madame, Monsieur le Directeur,</p>
+
+                                            <p className="text-black">
+                                                Par la présente, la Direction Générale de l'Office National d'Assurance-Vieillesse (ONA) vous informe que, suite à l'analyse de notre système de conformité centralisé, votre entreprise présente un déficit critique concernant le versement de vos cotisations sociales obligatoires.
+                                            </p>
+
+                                            <div className="bg-gray-100 p-6 border-l-4 border-black font-mono text-xs my-6 text-black">
+                                                <p className="text-black font-bold mb-2">DÉTAIL DU DÉFICIT CONSTATÉ :</p>
+                                                <p className="text-black mt-1">- Cotisations attendues : <span className="font-bold">{selectedEntity.expected.toLocaleString()} HTG</span></p>
+                                                <p className="text-black mt-1">- Montant réconcilié : <span className="font-bold">{selectedEntity.actual.toLocaleString()} HTG</span></p>
+                                                <p className="text-black font-bold mt-2 pt-2 border-t border-gray-300">- Écart total (Dette) : {(selectedEntity.expected - selectedEntity.actual).toLocaleString()} HTG</p>
+                                                <p className="text-black mt-1">- Retard constaté : {selectedEntity.monthsLate} mois</p>
+                                            </div>
+
+                                            <p className="text-black">
+                                                Conformément à la législation en vigueur, vous disposez d'un délai de huit (8) jours francs à compter de la réception de la présente pour régulariser votre situation auprès de nos services. À défaut, l'institution se verra dans l'obligation d'engager des poursuites légales pour recouvrer les sommes dues, majorées des pénalités de retard.
+                                            </p>
+
+                                            <p className="text-black">Dans l'attente de votre régularisation, veuillez agréer, Madame, Monsieur le Directeur, l'expression de nos salutations distinguées.</p>
+
+                                            <div className="mt-12 w-64 border-t border-black pt-2 text-center text-black">
+                                                <p className="font-bold text-xs uppercase text-black">La Direction Générale</p>
+                                                <p className="text-[10px] text-gray-600 mt-1">Document généré automatiquement par ONA Veritas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </main>
+
+                    {/* TERMINAL LOG CONSOLE */}
+                    <footer className="h-32 bg-[#050505] border-t border-[#2A2A2A] p-4 overflow-y-auto font-mono text-[10px]">
+                        <div className="flex items-center space-x-2 text-[#707070] mb-2 border-b border-[#2A2A2A] pb-2">
+                            <IconTerminal size={12} /> <span>SYSTEM COMMAND LOG</span>
+                        </div>
+                        <div className="space-y-2">
+                            {actionLog.map((log, index) => (
+                                <div key={index} className="flex space-x-4">
+                                    <span className="text-[#A0A0A0]">[{log.time}]</span>
+                                    <span className="text-[#D4AF37] flex items-center"><IconChevronRight size={10} className="mr-1"/> {log.action}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<VeritasApp />);
+    </script>
 </body>
 </html>
